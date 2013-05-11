@@ -41,7 +41,7 @@
                 <p><%=ED_ROW.MINOR%> MINOR</p>
                 <p><%=ED_ROW.CERTIFICATIONS%></p>
             </div>
-            <!-- end education loop --> 
+            <!-- end education loop  -->  
   END LOOP;
   CLOSE ED_CURSOR;%>
 
