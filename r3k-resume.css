@@ -1,0 +1,25 @@
+/* styles for resume presentation */
+
+
+.bottom-page{
+  margin-bottom: 300px;
+}
+
+.container{
+	box-shadow: black 0em 0em 1em;
+	/*background-image: url("../img/resumeBG.png");*/
+	background-color: #FFFFFF;
+	border: 1px red solid;	
+}
+
+.front-page{
+	margin-top: 45px;
+}
+
+body{
+	background-color: #363634;
+}
+
+.well{
+	background-color: #F5F5F0;
+}
