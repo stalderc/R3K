@@ -324,7 +324,7 @@ IF AUTHENTICATE_INT = 0 THEN%>
 <!--POPULATE WORK HISTORY-->
 
           <section id="workhistory">
-            <h4>Work History: <a href="#add-work-history-modal" data-toggle="modal"><i class="icon-plus"> </i></a></h4>
+            <h4>Work History: <a href="#add-work-history-modal" data-toggle="modal"><i class="icon-plus"> </i></a> <a href="#edit-work-history-modal" data-toggle="modal"><i class="icon-pencil"> </i></a> </h4>
 
             <div class="row"><!-- work history box -->
               <% PAGE_WORK_EXPERIENCE_CURSOR (RESUMATOR_ID_VAL); %>
@@ -419,7 +419,7 @@ IF AUTHENTICATE_INT = 0 THEN%>
 
   <div id="objective-modal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
     <div class="modal-header">
-      <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+      <button type="button" class="close" data-dismiss="modal" aria-hidden="true">x</button>
       <h3 id="myModalLabel">Objective Statement</h3>
     </div>
     <form>
