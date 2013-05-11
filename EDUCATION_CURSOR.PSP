@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<%@page language="PL/SQL"%>
+<%@plsql procedure="PAGE_EDUCATION_CURSOR"%>
+<%@plsql parameter="RESUMATOR_ID_VAL" DEFAULT="NULL"%>
+
+<%!CURSOR ED_CURSOR
+  IS
+    SELECT 
+      EDUCATION.SCHOOL_ID,
+      EDUCATION.DEGREE,
+      EDUCATION.MAJOR,
+      EDUCATION.MINOR,
+      EDUCATION.CERTIFICATIONS,
+      EDUCATION.GPA,
+      EDUCATION.GRAD_DATE,
+      EDUCATION.DISPLAY_RANK
+    FROM EDUCATION
+    WHERE EDUCATION.RESUMATOR_ID = RESUMATOR_ID_VAL
+    ORDER BY DISPLAY_RANK;
+  ED_ROW ED_CURSOR%ROWTYPE;
+  EDUCATION_NO_INFO EXCEPTION;
+  S_NAME SCHOOL.SCHOOL_NAME%TYPE;
+  S_CITY SCHOOL.SCHOOL_CITY%TYPE;
+  S_STATE SCHOOL.SCHOOL_STATE%TYPE; %>
+
+  <%OPEN ED_CURSOR;
+  LOOP
+    FETCH ED_CURSOR INTO ED_ROW;
+    SELECT SCHOOL_NAME INTO S_NAME FROM SCHOOL WHERE SCHOOL.SCHOOL_ID = ED_ROW.SCHOOL_ID;
+    SELECT SCHOOL_CITY INTO S_CITY FROM SCHOOL WHERE SCHOOL.SCHOOL_ID = ED_ROW.SCHOOL_ID;
+    SELECT SCHOOL_STATE INTO S_STATE FROM SCHOOL WHERE SCHOOL.SCHOOL_ID = ED_ROW.SCHOOL_ID;
+    EXIT WHEN ED_CURSOR%NOTFOUND;%>
+            <!-- loop through users education -->
+            <ul>
+                <!-- Full name of educational institution, city and state -->
+                <li><a href="http://umbc.edu" target="_blank"><%=S_NAME%>, <%=S_CITY%>, <%=S_STATE%></a>
+                  <ul>
+                    <!-- Name of Degree Program -->
+                    <li><a href="http://www.is.umbc.edu" target="_blank"><%=ED_ROW.DEGREE%>, <%=ED_ROW.MAJOR%></a></li>
+                      <!-- list GPA if above 3.00 -->  
+                      <ul>
+                        <li><%=ED_ROW.MINOR%> MINOR</li>
+                        <li><%=ED_ROW.GPA%> GPA</li>
+                        <li><%=ED_ROW.CERTIFICATIONS%></li>
+                        <li><%=ED_ROW.GRAD_DATE%></li>
+                      </ul>
+                  </ul>
+            </ul>
+            <!-- end education loop -->  
+  <%
+  END LOOP;
+  CLOSE ED_CURSOR;%>
+
+  <!-- ADD EDUCATION MODAL -->
+
+  <div id="add-education-modal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-header">
+      <button type="button" class="close" data-dismiss="modal" aria-hidden="true">x</button>
+      <h3 id="myModalLabel">Add Education Information</h3>
+    </div>
+    <div class="modal-body">
+      <form action="http://oracle.is.umbc.edu:8080/classpsp/IS420_TEAM_TRG.FORM_EDUCATION" method="get">
+          <div class="form-inline margin-form-inline">
+            <input class="span3" type="text" placeholder="Degree Name">
+            <input class="span2" type="text" placeholder="Major">
+            <input class="span2" type="text" placeholder="Minor">
+          </div>
+          <div class="form-inline margin-form-inline">
+            <input class="span3" type="text" placeholder="Certification">
+          </div>
+          <div class="form-inline margin-form-inline">
+            <input class="span2" type="text" placeholder="Grade Point Average">
+            <input class="span2" type="text" placeholder="Graduation Date">
+          </div>
+          <hr>
+      </form>
+    </div>
+    <div class="modal-footer">
+      <button class="btn" data-dismiss="modal" aria-hidden="true">Cancel</button>
+      <button class="btn btn-primary">Save changes</button>
+    </div>
+  </div>
+
+
+<!-- EDIT EDUCATION MODAL -->
+
+  <div id="edit-education-modal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-header">
+      <button type="button" class="close" data-dismiss="modal" aria-hidden="true">x</button>
+      <h3 id="myModalLabel">Edit Education Information</h3>
+    </div>
+    <div class="modal-body">
+      <form action="http://oracle.is.umbc.edu:8080/classpsp/IS420_TEAM_TRG.FORM_EDUCATION" method="get">
+          <div class="form-inline margin-form-inline">
+            <input class="span3" type="text" placeholder="Degree Name">
+            <input class="span2" type="text" placeholder="Major">
+            <input class="span2" type="text" placeholder="Minor">
+          </div>
+          <div class="form-inline margin-form-inline">
+            <input class="span3" type="text" placeholder="Certifications">
+          </div>
+          <div class="form-inline margin-form-inline">
+            <input class="span2" type="text" placeholder="Grade Point Average">
+            <input class="span2" type="text" placeholder="Graduation Date">
+          </div>
+          <hr>
+      </form>
+    </div>
+    <div class="modal-footer">
+      <button class="btn" data-dismiss="modal" aria-hidden="true">Cancel</button>
+      <button class="btn btn-primary">Save changes</button>
+    </div>
+  </div>

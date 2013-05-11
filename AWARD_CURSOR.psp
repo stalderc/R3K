@@ -1,0 +1,73 @@
+<!DOCTYPE HTML>
+<%@page language="PL/SQL"%>
+<%@plsql procedure="PAGE_AWARD_CURSOR"%>
+<%@plsql parameter="RESUMATOR_ID_VAL" DEFAULT="NULL"%>
+
+<%!CURSOR AWARD_CURSOR IS 
+SELECT AWARD.HONOR_NAME, AWARD.YEAR, AWARD.SEMESTER, AWARD.DISPLAY_RANK
+FROM AWARD
+WHERE AWARD.RESUMATOR_ID = RESUMATOR_ID_VAL
+ORDER BY DISPLAY_RANK; 
+
+AWARD_ROW AWARD_CURSOR%ROWTYPE;
+%>
+
+<% OPEN AWARD_CURSOR;
+LOOP
+FETCH AWARD_CURSOR INTO AWARD_ROW;
+EXIT WHEN AWARD_CURSOR%NOTFOUND;%>
+              <!-- loop through all listed projects -->
+              <ul>
+                 <li><%=AWARD_ROW.HONOR_NAME%>, <%=AWARD_ROW.SEMESTER%> <%=AWARD_ROW.YEAR%></li>
+              </ul>
+<%END LOOP;
+CLOSE AWARD_CURSOR;%>
+
+<!-- ADD HONORS MODAL -->
+
+  <div id="add-honors-modal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-header">
+      <button type="button" class="close" data-dismiss="modal" aria-hidden="true">x</button>
+      <h3 id="myModalLabel">Add Honors and Awards Information</h3>
+    </div>
+    <div class="modal-body">
+      <form action="http://oracle.is.umbc.edu:8080/classpsp/IS420_TEAM_TRG.FORM_AWARD" method="get">
+          <div class="form-inline margin-form-inline">
+            <input class="span3" type="text" placeholder="Honor or Award Name">
+            <input class="span2" type="text" placeholder="Year Received">
+          </div>
+          <div class="form-inline margin-form-inline">
+            <input class="span2" type="text" placeholder="Semester Received">
+          </div>
+      </form>
+    </div>
+    <div class="modal-footer">
+      <button class="btn" data-dismiss="modal" aria-hidden="true">Cancel</button>
+      <button class="btn btn-primary">Save changes</button>
+    </div>
+  </div>
+
+
+<!-- EDIT HONORS MODAL -->
+
+  <div id="edit-honors-modal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-header">
+      <button type="button" class="close" data-dismiss="modal" aria-hidden="true">x</button>
+      <h3 id="myModalLabel">Edit Honors and Awards Information</h3>
+    </div>
+    <div class="modal-body">
+      <form action="http://oracle.is.umbc.edu:8080/classpsp/IS420_TEAM_TRG.FORM_AWARD" method="get">
+          <div class="form-inline margin-form-inline">
+            <input class="span3" type="text" placeholder="Honor or Award Name">
+            <input class="span2" type="text" placeholder="Year Received">
+          </div>
+          <div class="form-inline margin-form-inline">
+            <input class="span2" type="text" placeholder="Semester Received">
+          </div>
+      </form>
+    </div>
+    <div class="modal-footer">
+      <button class="btn" data-dismiss="modal" aria-hidden="true">Cancel</button>
+      <button class="btn btn-primary">Save changes</button>
+    </div>
+  </div>

@@ -1,0 +1,129 @@
+
+<!DOCTYPE HTML>
+<%@page language="PL/SQL"%>
+<%@plsql procedure="PAGE_WORK_EXPERIENCE_CURSOR"%>
+<%@plsql parameter="RESUMATOR_ID_VAL" DEFAULT="NULL"%>
+
+<%!CURSOR WORK_EX_CURSOR IS
+
+SELECT WORK_EXPERIENCE.WORK_ID, WORK_EXPERIENCE.START_DATE, WORK_EXPERIENCE.END_DATE, WORK_EXPERIENCE.CITY, WORK_EXPERIENCE.STATE, WORK_EXPERIENCE.EMPLOYER, WORK_EXPERIENCE.POSITION_TITLE, WORK_EXPERIENCE.DISPLAY_RANK
+FROM WORK_EXPERIENCE
+WHERE WORK_EXPERIENCE.RESUMATOR_ID = RESUMATOR_ID_VAL
+ORDER BY DISPLAY_RANK;
+
+CURSOR WORK_DESC_CURSOR IS
+
+SELECT WORK_DESCRIPTION.WORK_ID, WORK_DESCRIPTION.DESCRIPTION, WORK_DESCRIPTION.DISPLAY_RANK
+FROM WORK_DESCRIPTION, WORK_EXPERIENCE
+WHERE WORK_EXPERIENCE.WORK_ID = WORK_DESCRIPTION.WORK_ID
+AND WORK_EXPERIENCE.RESUMATOR_ID = RESUMATOR_ID_VAL
+ORDER BY WORK_EXPERIENCE.WORK_ID, DISPLAY_RANK;
+
+WORK_DESC_ROW WORK_DESC_CURSOR%ROWTYPE;
+WORK_EX_ROW WORK_EX_CURSOR%ROWTYPE;
+%>
+
+<%
+OPEN WORK_EX_CURSOR;
+LOOP
+FETCH WORK_EX_CURSOR INTO WORK_EX_ROW;
+EXIT WHEN WORK_EX_CURSOR%NOTFOUND;%>
+            <div class="span8">
+                <ul>
+                    <!-- Company name and Date Range Employment -->
+                    <h4 class="company-name"><%=WORK_EX_ROW.POSITION_TITLE%><span class="pull-right"><%=WORK_EX_ROW.START_DATE%> - <%=WORK_EX_ROW.END_DATE%></span> </h4>
+                    <!-- job title -->
+                    <h5 class="company-name"><a href="http://resumator3000.com" target="_blank"><%=WORK_EX_ROW.EMPLOYER%></a><span class="pull-right"><%=WORK_EX_ROW.CITY%>, <%=WORK_EX_ROW.STATE%></span></h5>
+                    
+                    <!-- loop through job bullet points  -->
+                    <%OPEN WORK_DESC_CURSOR;
+                      LOOP
+                      FETCH WORK_DESC_CURSOR INTO WORK_DESC_ROW;
+                      EXIT WHEN WORK_DESC_CURSOR%NOTFOUND;
+
+                    IF(WORK_EX_ROW.WORK_ID = WORK_DESC_ROW.WORK_ID) THEN
+                    %>
+                    <li><%=WORK_DESC_ROW.DESCRIPTION%></li>
+                    <%
+                      END IF;
+                      END LOOP;
+                      CLOSE WORK_DESC_CURSOR;%>
+                    
+                </ul>
+              </div><!-- end loop through job bullet points -->
+<%END LOOP;
+CLOSE WORK_EX_CURSOR;%>
+
+<%%>
+<!-- ADD WORK HISTORY MODAL -->
+
+  <div id="add-work-history-modal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-header">
+      <button type="button" class="close" data-dismiss="modal" aria-hidden="true">x</button>
+      <h3 id="myModalLabel">Add Work History Information</h3>
+    </div>
+    <div class="modal-body">
+      <form action="http://oracle.is.umbc.edu:8080/classpsp/IS420_TEAM_TRG.FORM_WORK_EXPERIENCE" method="get">
+        <fieldset>
+
+          <p>Fill out only what needs to be changed.</p>
+
+          <div class="form-inline margin-form-inline">
+            <input class="span3" type="text" placeholder="Start Date">
+            <input class="span2" type="text" placeholder="End Date">
+          </div>
+          <div class="form-inline margin-form-inline">
+            <input class="span3" type="text" placeholder="City">
+            <input class="span2" type="text" placeholder="State">
+          </div>
+          <div class="form-inline margin-form-inline">
+            <input class="span2" type="text" placeholder="Employer">
+            <input class="span2" type="text" placeholder="Position Title">
+          </div>
+          
+
+        </fieldset>
+      </form>
+    </div><!-- close modal-body -->
+    <div class="modal-footer">
+      <button class="btn" data-dismiss="modal" aria-hidden="true">Cancel</button>
+      <button class="btn btn-primary" type="submit">Save changes</button>
+    </div>
+  </div>
+
+
+
+<!-- EDIT WORK HISTORY MODAL -->
+
+  <div id="edit-work-history-modal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-header">
+      <button type="button" class="close" data-dismiss="modal" aria-hidden="true">x</button>
+      <h3 id="myModalLabel">Edit Work History Information</h3>
+    </div>
+    <div class="modal-body">
+      <form action="http://oracle.is.umbc.edu:8080/classpsp/IS420_TEAM_TRG.FORM_WORK_EXPERIENCE" method="get">
+        <fieldset>
+
+          <p>Fill out only what needs to be changed.</p>
+
+          <div class="form-inline margin-form-inline">
+            <input class="span3" type="text" placeholder="Start Date">
+            <input class="span2" type="text" placeholder="End date">
+          </div>
+          <div class="form-inline margin-form-inline">
+            <input class="span3" type="text" placeholder="City">
+            <input class="span2" type="text" placeholder="State">
+          </div>
+          <div class="form-inline margin-form-inline">
+            <input class="span2" type="text" placeholder="Employer">
+            <input class="span2" type="text" placeholder="Position Title">
+          </div>
+
+        </fieldset>
+      </form>
+    </div><!-- close modal-body -->
+    <div class="modal-footer">
+      <button class="btn" data-dismiss="modal" aria-hidden="true">Cancel</button>
+      <button class="btn btn-primary" type="submit">Save changes</button>
+    </div>
+  </div>
