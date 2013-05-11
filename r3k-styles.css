@@ -1,0 +1,173 @@
+/* overrides for R3K styles */
+
+/**{
+  border: 2px red solid;
+}*/
+
+.system-serif{
+	font-family: 'Droid Serif', serif;
+}
+
+.system-sans-serif > blockquote,
+li{
+	font-family: 'Roboto', sans-serif;
+}
+
+.front-page > h1,
+h2,
+h3,
+h4,
+h5{
+	font-family: 'Noto Sans', sans-serif;
+	/*margin: 0px;*/
+}
+
+.front-page ul li{
+	padding-left: 32px;
+	list-style-position:inside;
+}
+
+.front-page ul{
+	list-style-type: disc;
+}
+
+.front-page ul li{
+  font-family: 'Droid Serif', serif;
+}
+
+a{
+	color: #990400;
+}
+
+footer{
+	color: black; /* original #464646*/
+	/*background-color: #000000;*/
+	background-position: bottom center;
+	position: fixed;
+	bottom: 0px;
+	height: 18px;
+	width: 100%;
+	padding: 0px 12px;
+	margin: 0px;
+}
+
+.system-updates{
+	background-color: #F2EDEF;
+	position: relative;
+	top: 0px;
+	font-size: 85%;
+	padding-top: 8px;
+	padding-left: 8px;
+
+	-webkit-border-radius: 6px;
+      -moz-border-radius: 6px;
+          border-radius: 6px;
+}
+
+.navbar .brand{
+	color: red;
+}
+
+.address{
+  margin-left: 22px;
+}
+
+.company-name{
+  /*border: 2px red solid;*/
+  margin: 0px;
+  padding: 0px;
+}
+
+.bottom-page{
+  margin-bottom: 800px; /*577 original*/
+}
+
+section {
+  padding-top: 0px;
+  
+}
+section > .page-header,
+section > .lead {
+  color: #5a5a5a;
+}
+
+.colorred{
+  border: 2px red solid;
+}
+
+li .icon-pencil{
+  margin-top: 2px;
+  margin-left: 2px;
+}
+
+h4 .icon-pencil{
+  margin-top: 6px;
+  margin-left: 2px;
+  margin-bottom: 0px;
+}
+
+h4 .icon-plus{
+  margin-top: 6px;
+  margin-left: 2px;
+  margin-bottom: 0px;
+}
+
+p .icon-pencil{
+  margin-top: 6px;
+  margin-left: 2px;
+  margin-bottom: 0px;
+}
+
+.floatnav li{
+	font-size: 14px;
+}
+
+.control-font-size{
+	font-size: 14px;
+}
+
+.margin-form-inline{
+	margin-top: 14px;
+	margin-bottom: 14px;
+}
+
+.max-width{
+	width: 98%;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
