@@ -13,28 +13,28 @@ ORDER BY DISPLAY_RANK;
 SCRIPT_COUNTER INTEGER := 0;
 REF_ROW REF_CURSOR%ROWTYPE;
 %>
-<script language="javascript" type="text/javascript">
-var references_array = new Array();
-</script>
+<form id="referencesForm">
 <%OPEN REF_CURSOR;
 LOOP
 FETCH REF_CURSOR INTO REF_ROW;
 EXIT WHEN REF_CURSOR%NOTFOUND;%>
               <!-- loop through all listed projects -->
-<script>references_array[<%=SCRIPT_COUNTER%>] = [<%=REF_ROW.REFERENCE_ID%>, <%=REF_ROW.F_NAME%>,<%=REF_ROW.L_NAME%>, <%=REF_ROW.PHONE_NUMBER%>,<%=REF_ROW.ADDRESS%>,<%=REF_ROW.EMAIL%>,<%=REF_ROW.COMPANY%>,<%=REF_ROW.TITLE%>,<%=REF_ROW.DISPLAY_RANK%> ] </script>
+              <%%>  
               <p>
-                 <%=REF_ROW.F_NAME%> <%=REF_ROW.L_NAME%><br/>
-                 <%=REF_ROW.TITLE%><br/>
-                 <%=REF_ROW.COMPANY%><br/>
-                 <%=REF_ROW.ADDRESS%><br/>
-                 <%=REF_ROW.EMAIL%><br/>
-                 <%=REF_ROW.PHONE_NUMBER%><br/>
+                <input type="hidden" value="<%=REF_ROW.REFERENCE_ID%>"/><input type="hidden" value="<%=RESUMATOR_ID_VAL%>"/><input type="hidden" value="<%=REF_ROW.F_NAME%>"/> <%=REF_ROW.F_NAME%> <input type="hidden" value="<%=REF_ROW.L_NAME%>"/><%=REF_ROW.L_NAME%><br/>
+                 <input type="hidden" value="<%=REF_ROW.TITLE%>"/><%=REF_ROW.TITLE%><br/>
+                 <input type="hidden" value="<%=REF_ROW.COMPANY%>"/><%=REF_ROW.COMPANY%><br/>
+                 <input type="hidden" value="<%=REF_ROW.ADDRESS%>"/><%=REF_ROW.ADDRESS%><br/>
+                 <input type="hidden" value="<%=REF_ROW.EMAIL%>"/><%=REF_ROW.EMAIL%><br/>
+                 <input type="hidden" value="<%=REF_ROW.PHONE_NUMBER%>"/> <%=REF_ROW.PHONE_NUMBER%><br/>
+                 <input type="hidden" value="<%=REF_ROW.DISPLAY_RANK%>"/>
+                 "/>
               </p>
 <%
 SCRIPT_COUNTER := SCRIPT_COUNTER + 1;
 END LOOP;
 CLOSE REF_CURSOR;%>
-
+</form>
   <!-- ADD EDUCATION MODAL -->
 
   <div id="add-education-modal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
@@ -75,36 +75,48 @@ CLOSE REF_CURSOR;%>
   </div>
 
 <!-- EDIT REFERENCES MODAL -->
+<%!CURSOR REF_ID_CURSOR IS
 
+SELECT REFERENCES.REFERENCE_ID, REFERENCES.DISPLAY_RANK
+FROM REFERENCES
+WHERE REFERENCES.RESUMATOR_ID = RESUMATOR_ID_VAL
+ORDER BY DISPLAY_RANK;
+
+REF_ID_ROW REF_ID_CURSOR%ROWTYPE;
+%>
   <div id="edit-references-modal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
     <div class="modal-header">
       <button type="button" class="close" data-dismiss="modal" aria-hidden="true">x</button>
       <h3 id="myModalLabel">Edit References Information</h3>
     </div>
     <div class="modal-body">
-      <form action="http://oracle.is.umbc.edu:8080/classpsp/IS420_TEAM_TRG.FORM_REFERENCES" method="get">
+      <form id="editReferences" action="http://oracle.is.umbc.edu:8080/classpsp/IS420_TEAM_TRG.FORM_REFERENCES" method="get">
           <div class="form-inline margin-form-inline">
-            <select name="REFERENCES_ID_IN">
-            <script>for (var i = 0; i < references_array.length(); i++) {
-              <option value="references_array[i].[0]"> document.write(references_array[0].[1] + " " +references_array[0].[2]); </option>
-            }; </script>
-          </SELECT>
-            <input class="span3" type="hidden" NAME="RESUMATOR_ID_IN" VALUE="<%=RESUMATOR_ID_VAL%>">
-            <input class="span3" type="text" NAME="F_NAME_IN" placeholder="First name" value="<%=%>">
-            <input class="span2" type="text" NAME="L_NAME_IN" placeholder="Last Name" value="<%=%>">
+            <select class="span2" ID="REFERENCE_ID_IN" name="REFERENCES_ID_IN">
+              <%OPEN REF_ID_CURSOR;
+                LOOP
+                FETCH REF_ID_CURSOR INTO REF_ID_ROW;
+                EXIT WHEN REF_ID_CURSOR%NOTFOUND;%>
+              <option onchange="populateForm(<%=REF_ID_ROW.REFERENCE_ID%>,'referencesForm','editReferences')" value="<%=REF_ID_ROW.REFERENCE_ID%>"><%=REF_ID_ROW.DISPLAY_RANK%></option>
+              <%END LOOP;
+              CLOSE REF_ID_CURSOR;%>
+          </select>
+            <input class="span3" type="hidden" ID="RESUMATOR_ID_IN" NAME="RESUMATOR_ID_IN" VALUE="<%=RESUMATOR_ID_VAL%>">
+            <input class="span3" type="text"   ID="F_NAME_IN" NAME="F_NAME_IN" placeholder="First name" value="">
+            <input class="span2" type="text"   ID="L_NAME_IN" NAME="L_NAME_IN" placeholder="Last Name" value="">
           </div>
           <div class="form-inline margin-form-inline">
-            <input class="span2" type="text" NAME="PHONE_NUMBER_IN" placeholder="Phone Number" value="<%=%>">
+            <input class="span2" type="text"   ID="PHONE_NUMBER_IN" NAME="PHONE_NUMBER_IN" placeholder="Phone Number" value="">
             
           </div>
 
-          <textarea class="max-width" rows="3"NAME="ADDRESS_IN" placeholder="Address." value="<%=%>"></textarea>
+          <textarea class="max-width" rows="3" ID="ADDRESS_IN" NAME="ADDRESS_IN" placeholder="Address." value=""></textarea>
 
           <div class="form-inline margin-form-inline">
-            <input class="span2" type="text" NAME="EMAIL_IN" placeholder="Email Address" value="<%=%>">
-            <input class="span2" type="text" NAME="COMPANY_IN" placeholder="Company name" value="<%=%>">
-            <input class="span2" type="text" NAME="TITLE_IN" placeholder="Title" value="<%=%>">
-            <input class="span2" type="text" NAME="DISPLAY_RANK_IN" placeholder="Display Rank" value="<%=%>">
+            <input class="span2" type="text" ID="EMAIL_IN" NAME="EMAIL_IN" placeholder="Email Address" value="">
+            <input class="span2" type="text" ID="COMPANY_IN" NAME="COMPANY_IN" placeholder="Company name" value="">
+            <input class="span2" type="text" ID="TITLE_IN" NAME="TITLE_IN" placeholder="Title" value="">
+            <input class="span2" type="text" ID="DISPLAY_IN" NAME="DISPLAY_RANK_IN" placeholder="Display Rank" value="">
           </div>
       <button class="btn" data-dismiss="modal" aria-hidden="true">Cancel</button>
       <button class="btn btn-primary" type="submit">Save changes</button>
@@ -113,3 +125,5 @@ CLOSE REF_CURSOR;%>
     <div class="modal-footer">
     </div>
   </div>
+
+<script src="http://userpages.umbc.edu/~stalder1/is448/REFERENCES_FILL.js"></script>
