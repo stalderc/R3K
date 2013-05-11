@@ -1,0 +1,37 @@
+<%PASSWORD_IN := get_cookie('PASSWORD');
+EMAIL_IN := get_cookie('EMAIL');%> 
+<%!EMAIL_IN VARCHAR2(50);
+PASSWORD_IN VARCHAR2(50);%>
+<!DOCTYPE HTML>
+<%@page language="PL/SQL"%>
+<%@plsql procedure="FORM_ADD_RESEARCH_PUB"%>
+<%@plsql parameter="RESUMATOR_ID_IN" DEFAULT="NULL"%>
+<%@plsql parameter="RESEARCH_TITLE" DEFAULT="NULL"%>
+<%@plsql parameter="RESEARCH_TYPE" DEFAULT="NULL"%>
+<%@plsql parameter="RESEARCH_LOCATION" DEFAULT="NULL"%>
+<%@plsql parameter="RESEARCH_DATE_PRESENTED" DEFAULT="NULL"%>
+<%@plsql parameter="DISPLAY_RANK_IN" DEFAULT="NULL"%>
+
+
+<%
+
+
+INSERT
+  INTO RESEARCH_PUB VALUES
+    (
+      RES_PUB_ID_SEQ.NEXTVAL,
+      RESUMATOR_ID_IN,
+      RESEARCH_TITLE,
+      RESEARCH_TYPE,
+      RESEARCH_LOCATION,
+      RESEARCH_DATE_PRESENTED,
+      DISPLAY_RANK_IN
+    );
+EDIT_PAGE(EMAIL_IN, PASSWORD_IN);
+
+
+EXCEPTION
+WHEN OTHERS THEN
+%>
+
+<%=SQLERRM%>
