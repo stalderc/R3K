@@ -58,13 +58,14 @@ CLOSE REF_CURSOR;%>
           <div class="form-inline margin-form-inline">
            <input class="span2" type="text" NAME="DISPLAY_RANK_IN"placeholder="Display Rank">
           </div>
-      </form>
-    </div>
+
+        </div>
     <div class="modal-footer">
       <button class="btn" data-dismiss="modal" aria-hidden="true">Cancel</button>
       <button class="btn btn-primary" type="submit">Save changes</button>
     </div>
-  </div>
+   </form>
+ </div>
 
 <!-- EDIT REFERENCES MODAL -->
 
