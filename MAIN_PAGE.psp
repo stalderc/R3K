@@ -541,156 +541,43 @@ CLOSE DESIGN_SKILLS_CURSOR;%>
 
 <!-- WORK HISTORY -->
 <!--POPULATE WORK HISTORY-->
-<%!CURSOR WORK_EX_CURSOR IS
 
-SELECT WORK_EXPERIENCE.WORK_ID, WORK_EXPERIENCE.START_DATE, WORK_EXPERIENCE.END_DATE, WORK_EXPERIENCE.CITY, WORK_EXPERIENCE.STATE, WORK_EXPERIENCE.EMPLOYER, WORK_EXPERIENCE.POSITION_TITLE, WORK_EXPERIENCE.DISPLAY_RANK
-FROM WORK_EXPERIENCE
-WHERE WORK_EXPERIENCE.RESUMATOR_ID = RESUMATOR_ID_VAL
-ORDER BY DISPLAY_RANK;
-
-CURSOR WORK_DESC_CURSOR IS
-
-SELECT WORK_DESCRIPTION.WORK_ID, WORK_DESCRIPTION.DESCRIPTION, WORK_DESCRIPTION.DISPLAY_RANK
-FROM WORK_DESCRIPTION, WORK_EXPERIENCE
-WHERE WORK_EXPERIENCE.WORK_ID = WORK_DESCRIPTION.WORK_ID
-AND WORK_EXPERIENCE.RESUMATOR_ID = RESUMATOR_ID_VAL
-ORDER BY WORK_EXPERIENCE.WORK_ID, DISPLAY_RANK;
-
-WORK_DESC_ROW WORK_DESC_CURSOR%ROWTYPE;
-WORK_EX_ROW WORK_EX_CURSOR%ROWTYPE;
-%>
           <section id="workhistory">
             <h4>Work History: <a href="#add-work-history-modal" data-toggle="modal"><i class="icon-plus"> </i></a></h4>
 
             <div class="row"><!-- work history box -->
-<%
-OPEN WORK_EX_CURSOR;
-LOOP
-FETCH WORK_EX_CURSOR INTO WORK_EX_ROW;
-EXIT WHEN WORK_EX_CURSOR%NOTFOUND;%>
-            <div class="span8">
-                <ul>
-                    <!-- Company name and Date Range Employment -->
-                    <h4 class="company-name"><%=WORK_EX_ROW.POSITION_TITLE%><span class="pull-right"><%=WORK_EX_ROW.START_DATE%> - <%=WORK_EX_ROW.END_DATE%></span> <a href="#edit-work-history-modal" data-toggle="modal"><i class="icon-pencil"> </i></a> </h4>
-                    <!-- job title -->
-                    <h5 class="company-name"><a href="http://resumator3000.com" target="_blank"><%=WORK_EX_ROW.EMPLOYER%></a><span class="pull-right"><%=WORK_EX_ROW.CITY%>, <%=WORK_EX_ROW.STATE%></span></h5>
-                    
-                    <!-- loop through job bullet points  -->
-                    <%OPEN WORK_DESC_CURSOR;
-                      LOOP
-                      FETCH WORK_DESC_CURSOR INTO WORK_DESC_ROW;
-                      EXIT WHEN WORK_DESC_CURSOR%NOTFOUND;
-
-                    IF(WORK_EX_ROW.WORK_ID = WORK_DESC_ROW.WORK_ID) THEN
-                    %>
-                    <li><%=WORK_DESC_ROW.DESCRIPTION%></li>
-                    <%
-                      END IF;
-                      END LOOP;
-                      CLOSE WORK_DESC_CURSOR;%>
-                    
-                </ul>
-              </div><!-- end loop through job bullet points -->
-<%END LOOP;
-CLOSE WORK_EX_CURSOR;%>
+              <% PAGE_WORK_EXPERIENCE_CURSOR (RESUMATOR_ID_VAL); %>
             </div> <!-- end first work history row -->
           </section>
           <hr>
 
 <!-- HONORS AND AWARDS SECTION -->
 <!-- POPULATE HONORS AND AWARDS SECTION -->
-<%!CURSOR AWARD_CURSOR IS 
-SELECT AWARD.HONOR_NAME, AWARD.YEAR, AWARD.SEMESTER, AWARD.DISPLAY_RANK
-FROM AWARD
-WHERE AWARD.RESUMATOR_ID = RESUMATOR_ID_VAL
-ORDER BY DISPLAY_RANK; 
 
-AWARD_ROW AWARD_CURSOR%ROWTYPE;
-%>
           <section id="honors">
             <h4>Honors and Awards: <a href="#add-honors-modal" data-toggle="modal"><i class="icon-plus"> </i></a> <a href="#edit-honors-modal" data-toggle="modal"><i class="icon-pencil"> </i></a> </h4>
-<% OPEN AWARD_CURSOR;
-LOOP
-FETCH AWARD_CURSOR INTO AWARD_ROW;
-EXIT WHEN AWARD_CURSOR%NOTFOUND;%>
-              <!-- loop through all listed projects -->
-              <ul>
-                 <li><%=AWARD_ROW.HONOR_NAME%>, <%=AWARD_ROW.SEMESTER%> <%=AWARD_ROW.YEAR%></li>
-              </ul>
-<%END LOOP;
-CLOSE AWARD_CURSOR;%>
+            <% PAGE_AWARD_CURSOR (RESUMATOR_ID_VAL);%>
           </section>
           <hr> 
 
 
 <!-- EXTRACURRICULAR ACTIVITIES SECTION -->
-<%!CURSOR EXTRA_CURSOR IS
 
-SELECT EXTRA_CURRICULAR.TITLE, EXTRA_CURRICULAR.YEAR, EXTRA_CURRICULAR.SEMESTER, EXTRA_CURRICULAR.ORGANIZATION, EXTRA_CURRICULAR.DISPLAY_RANK
-FROM EXTRA_CURRICULAR
-WHERE EXTRA_CURRICULAR.RESUMATOR_ID = RESUMATOR_ID_VAL
-ORDER BY DISPLAY_RANK;  
-
-EXTRA_COUNTER INTEGER := 0;
-EXTRA_ROW EXTRA_CURSOR%ROWTYPE;
-%>
 
           <section id="activities">
             <h4>Extra Curricular: <a href="#add-extracurricular-modal" data-toggle="modal"><i class="icon-plus"> </i></a> <a href="#edit-extracurricular-modal" data-toggle="modal"><i class="icon-pencil"> </i></a> </h4>
 
             <div class="row"><!-- extra curricular row -->
-<%OPEN EXTRA_CURSOR;
-LOOP
-FETCH EXTRA_CURSOR INTO EXTRA_ROW;
-EXIT WHEN EXTRA_CURSOR%NOTFOUND;%>
-            <!-- loop through extra curricular 5 max -->
-                <%IF EXTRA_COUNTER < 4 THEN EXTRA_COUNTER := EXTRA_COUNTER + 1;%>
-                <div class="span4">
-                  <ul>
-                     <li><%=EXTRA_ROW.ORGANIZATION%>,<%=EXTRA_ROW.TITLE%> <%=EXTRA_ROW.SEMESTER%> <%=EXTRA_ROW.YEAR%></li>
-                  </ul>
-                </div>
-                <%ELSIF EXTRA_COUNTER >= 4 AND EXTRA_COUNTER < 9 THEN EXTRA_COUNTER := EXTRA_COUNTER + 1;%>
-                <div class="span4">
-                  <ul>
-                     <li><%=EXTRA_ROW.ORGANIZATION%>,<%=EXTRA_ROW.TITLE%> <%=EXTRA_ROW.SEMESTER%> <%=EXTRA_ROW.YEAR%></li>
-                  </ul>
-                </div><!-- loop end -->
-<%
-END IF;
-END LOOP;
-CLOSE EXTRA_CURSOR;%>
+              <% PAGE_EXTRA_CURRICULAR_CURSOR (RESUMATOR_ID_VAL); %>
              </div><!-- extra curricular row -->
           </section>
           <hr>
 
 <!-- REFERENCES SECTION -->
-<%!CURSOR REF_CURSOR IS
 
-SELECT REFERENCES.F_NAME, REFERENCES.L_NAME, REFERENCES.PHONE_NUMBER, REFERENCES.ADDRESS, REFERENCES.EMAIL, REFERENCES.COMPANY, REFERENCES.TITLE, REFERENCES.DISPLAY_RANK
-FROM REFERENCES
-WHERE REFERENCES.RESUMATOR_ID = RESUMATOR_ID_VAL
-ORDER BY DISPLAY_RANK;
-
-REF_ROW REF_CURSOR%ROWTYPE;
-%>
           <section id="references">
             <h4>References and Contacts: <a href="#add-references-modal" data-toggle="modal"><i class="icon-plus"> </i></a> <a href="#edit-references-modal" data-toggle="modal"><i class="icon-pencil"> </i></a> </h4>
-<%OPEN REF_CURSOR;
-LOOP
-FETCH REF_CURSOR INTO REF_ROW;
-EXIT WHEN REF_CURSOR%NOTFOUND;%>
-              <!-- loop through all listed projects -->
-              <ul>
-                 <li><%=REF_ROW.F_NAME%> <%=REF_ROW.L_NAME%></li>
-                 <li><%=REF_ROW.TITLE%></li>
-                 <li><%=REF_ROW.COMPANY%></li>
-                 <li><%=REF_ROW.ADDRESS%></li>
-                 <li><%=REF_ROW.EMAIL%></li>
-                 <li><%=REF_ROW.PHONE_NUMBER%></li>
-              </ul>
-<%END LOOP;
-CLOSE REF_CURSOR;%>
+              <% PAGE_REFERENCES_CURSOR (RESUMATOR_ID_VAL); %>
           </section>
           <hr> 
 
@@ -1159,258 +1046,6 @@ CLOSE REF_CURSOR;%>
     </div>
   </div>
 
-<%%>
-<!-- ADD WORK HISTORY MODAL -->
-
-  <div id="add-work-history-modal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-    <div class="modal-header">
-      <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-      <h3 id="myModalLabel">Add Work History Information</h3>
-    </div>
-    <div class="modal-body">
-      <form action="http://oracle.is.umbc.edu:8080/classpsp/IS420_TEAM_TRG.FORM_WORK_EXPERIENCE" method="get">
-        <fieldset>
-
-          <p>Fill out only what needs to be changed.</p>
-
-          <div class="form-inline margin-form-inline">
-            <input class="span3" type="text" placeholder="Start Date">
-            <input class="span2" type="text" placeholder="End Date">
-          </div>
-          <div class="form-inline margin-form-inline">
-            <input class="span3" type="text" placeholder="City">
-            <input class="span2" type="text" placeholder="State">
-          </div>
-          <div class="form-inline margin-form-inline">
-            <input class="span2" type="text" placeholder="Employer">
-            <input class="span2" type="text" placeholder="Position Title">
-          </div>
-          
-
-        </fieldset>
-      </form>
-    </div><!-- close modal-body -->
-    <div class="modal-footer">
-      <button class="btn" data-dismiss="modal" aria-hidden="true">Cancel</button>
-      <button class="btn btn-primary" type="submit">Save changes</button>
-    </div>
-  </div>
-
-
-
-<!-- EDIT WORK HISTORY MODAL -->
-
-  <div id="edit-work-history-modal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-    <div class="modal-header">
-      <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-      <h3 id="myModalLabel">Edit Work History Information</h3>
-    </div>
-    <div class="modal-body">
-      <form action="http://oracle.is.umbc.edu:8080/classpsp/IS420_TEAM_TRG.FORM_WORK_EXPERIENCE" method="get">
-        <fieldset>
-
-          <p>Fill out only what needs to be changed.</p>
-
-          <div class="form-inline margin-form-inline">
-            <input class="span3" type="text" placeholder="Start Date">
-            <input class="span2" type="text" placeholder="End date">
-          </div>
-          <div class="form-inline margin-form-inline">
-            <input class="span3" type="text" placeholder="City">
-            <input class="span2" type="text" placeholder="State">
-          </div>
-          <div class="form-inline margin-form-inline">
-            <input class="span2" type="text" placeholder="Employer">
-            <input class="span2" type="text" placeholder="Position Title">
-          </div>
-
-        </fieldset>
-      </form>
-    </div><!-- close modal-body -->
-    <div class="modal-footer">
-      <button class="btn" data-dismiss="modal" aria-hidden="true">Cancel</button>
-      <button class="btn btn-primary" type="submit">Save changes</button>
-    </div>
-  </div>
-
-
-<!-- ADD HONORS MODAL -->
-
-  <div id="add-honors-modal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-    <div class="modal-header">
-      <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-      <h3 id="myModalLabel">Add Honors and Awards Information</h3>
-    </div>
-    <div class="modal-body">
-      <form action="http://oracle.is.umbc.edu:8080/classpsp/IS420_TEAM_TRG.FORM_AWARD" method="get">
-          <div class="form-inline margin-form-inline">
-            <input class="span3" type="text" placeholder="Honor or Award Name">
-            <input class="span2" type="text" placeholder="Year Received">
-          </div>
-          <div class="form-inline margin-form-inline">
-            <input class="span2" type="text" placeholder="Semester Received">
-          </div>
-      </form>
-    </div>
-    <div class="modal-footer">
-      <button class="btn" data-dismiss="modal" aria-hidden="true">Cancel</button>
-      <button class="btn btn-primary">Save changes</button>
-    </div>
-  </div>
-
-
-<!-- EDIT HONORS MODAL -->
-
-  <div id="edit-honors-modal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-    <div class="modal-header">
-      <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-      <h3 id="myModalLabel">Edit Honors and Awards Information</h3>
-    </div>
-    <div class="modal-body">
-      <form action="http://oracle.is.umbc.edu:8080/classpsp/IS420_TEAM_TRG.FORM_AWARD" method="get">
-          <div class="form-inline margin-form-inline">
-            <input class="span3" type="text" placeholder="Honor or Award Name">
-            <input class="span2" type="text" placeholder="Year Received">
-          </div>
-          <div class="form-inline margin-form-inline">
-            <input class="span2" type="text" placeholder="Semester Received">
-          </div>
-      </form>
-    </div>
-    <div class="modal-footer">
-      <button class="btn" data-dismiss="modal" aria-hidden="true">Cancel</button>
-      <button class="btn btn-primary">Save changes</button>
-    </div>
-  </div>
-
-
-<%%>
-<!-- ADD EXTRACURRICULAR MODAL -->
-
-  <div id="add-extracurricular-modal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-    <div class="modal-header">
-      <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-      <h3 id="myModalLabel">Add ExtraCurricular Information</h3>
-    </div>
-    <div class="modal-body">
-      <form action="http://oracle.is.umbc.edu:8080/classpsp/IS420_TEAM_TRG.FORM_EXTRA_CURRICULAR" method="get">
-          <div class="form-inline margin-form-inline">
-            <input class="span3" type="text" placeholder="ExtraCurricular Title">
-            <input class="span2" type="text" placeholder="Year Participated">
-          </div>
-          <div class="form-inline margin-form-inline">
-            <input class="span2" type="text" placeholder="Semester Received">
-            <input class="span2" type="text" placeholder="Organization">
-          </div>
-
-          <textarea class="max-width" rows="3" placeholder="ExtraCurricular description goes here."></textarea>
-
-      </form>
-    </div>
-    <div class="modal-footer">
-      <button class="btn" data-dismiss="modal" aria-hidden="true">Cancel</button>
-      <button class="btn btn-primary">Save changes</button>
-    </div>
-  </div>
-<%%>
-
-<!-- EDIT EXTRACURRICULAR MODAL -->
-
-  <div id="edit-extracurricular-modal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-    <div class="modal-header">
-      <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-      <h3 id="myModalLabel">Edit ExtraCurricular Information</h3>
-    </div>
-    <div class="modal-body">
-      <form action="http://oracle.is.umbc.edu:8080/classpsp/IS420_TEAM_TRG.FORM_EXTRA_CURRICULAR" method="get">
-          <div class="form-inline margin-form-inline">
-            <input class="span3" type="text" placeholder="ExtraCurricular Title">
-            <input class="span2" type="text" placeholder="Year Participated">
-          </div>
-          <div class="form-inline margin-form-inline">
-            <input class="span2" type="text" placeholder="Semester Receieved">
-            <input class="span2" type="text" placeholder="Organization">
-          </div>
-
-          <textarea class="max-width" rows="3" placeholder="ExtraCurricular description goes here."></textarea>
-      </form>
-    </div>
-    <div class="modal-footer">
-      <button class="btn" data-dismiss="modal" aria-hidden="true">Cancel</button>
-      <button class="btn btn-primary">Save changes</button>
-    </div>
-  </div>
-
-
-
-<!-- ADD REFERENCES MODAL -->
-
-  <div id="add-references-modal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-    <div class="modal-header">
-      <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-      <h3 id="myModalLabel">Add References Information</h3>
-    </div>
-    <div class="modal-body">
-      <form action="http://oracle.is.umbc.edu:8080/classpsp/IS420_TEAM_TRG.FORM_REFERENCES" method="get">
-          <div class="form-inline margin-form-inline">
-            <input class="span3" type="text" placeholder="First name">
-            <input class="span2" type="text" placeholder="Last Name">
-          </div>
-          <div class="form-inline margin-form-inline">
-            <input class="span2" type="text" placeholder="Phone Number">
-            
-          </div>
-
-          <textarea class="max-width" rows="3" placeholder="Address."></textarea>
-
-          <div class="form-inline margin-form-inline">
-            <input class="span2" type="text" placeholder="Email Address">
-            <input class="span2" type="text" placeholder="Company name">
-            <input class="span2" type="text" placeholder="Title">
-          </div>
-      </form>
-    </div>
-    <div class="modal-footer">
-      <button class="btn" data-dismiss="modal" aria-hidden="true">Cancel</button>
-      <button class="btn btn-primary">Save changes</button>
-    </div>
-  </div>
-
-
-<!-- EDIT REFERENCES MODAL -->
-
-  <div id="edit-references-modal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-    <div class="modal-header">
-      <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-      <h3 id="myModalLabel">Edit References Information</h3>
-    </div>
-    <div class="modal-body">
-      <form action="http://oracle.is.umbc.edu:8080/classpsp/IS420_TEAM_TRG.FORM_REFERENCES" method="get">
-          <div class="form-inline margin-form-inline">
-            <input class="span2" type="text" placeholder="First Name">
-            <input class="span2" type="text" placeholder="Last Name">
-          </div>
-          <div class="form-inline margin-form-inline">
-            <input class="span2" type="text" placeholder="Phone Number">
-          </div>
-
-          <textarea class="max-width" rows="3" placeholder="Address"></textarea>
-
-          <div class="form-inline margin-form-inline">
-            <input class="span3" type="text" placeholder="Email Address">
-            <input class="span2" type="text" placeholder="Company name">
-            <input class="span2" type="text" placeholder="Title">
-          </div>
-      </form>
-    </div>
-    <div class="modal-footer">
-      <button class="btn" data-dismiss="modal" aria-hidden="true">Cancel</button>
-      <button class="btn btn-primary">Save changes</button>
-    </div>
-  </div>
-
-
-
 <!--
 *
 *
@@ -1461,5 +1096,6 @@ END IF;
 EXCEPTION
 WHEN OTHERS THEN %> 
 <p><%=SQLERRM%></p>
-  </body>
+
+</body>
 </html>
