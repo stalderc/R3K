@@ -14,9 +14,7 @@ ORDER BY DISPLAY_RANK;
 PROJECT_ROW PROJECT_CURSOR%ROWTYPE;
 %>
 
-          <section id="projects">
-            <h4>Projects: <a href="#add-project-modal" data-toggle="modal"><i class="icon-plus"> </i></a> <a href="#edit-project-modal" data-toggle="modal"><i class="icon-pencil"> </i></a> </h4>
-              <!-- loop through all listed projects -->
+
 <%
 OPEN PROJECT_CURSOR;
 LOOP
@@ -26,10 +24,8 @@ EXIT WHEN PROJECT_CURSOR%NOTFOUND;%>
                  <li><a href="http://userpages.umbc.edu/~booth1/r3k/index.htm"  target="_blank">R3k Project Development Site</a></li>
               </ul>
 <%END LOOP;
-END IF;
 CLOSE PROJECT_CURSOR;%>
-    </section>
-  <hr>  
+
 
 <!-- ADD PROJECT MODAL -->
 
