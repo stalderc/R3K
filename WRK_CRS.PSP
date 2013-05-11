@@ -13,10 +13,7 @@ ORDER BY DISPLAY_RANK;
 COURSE_COUNTER INTEGER := 0;
 COURSE_ROW COURSE_CURSOR%ROWTYPE;
 %>
-                    <section id="academic">
-            <h4>Academic Coursework: <a href="#add-academic-course-modal" data-toggle="modal"><i class="icon-plus"> </i></a> <a href="#edit-academic-course-modal" data-toggle="modal"><i class="icon-pencil"> </i></a> </h4>
 
-            <div class="row"><!-- academic coursework row -->
 <%
 OPEN COURSE_CURSOR;
 LOOP
@@ -39,10 +36,7 @@ EXIT WHEN COURSE_CURSOR%NOTFOUND;%>
 END IF;
 END LOOP;
 CLOSE COURSE_CURSOR;%>  
-            </div><!-- end academic coursework row -->
 
-          </section>
-          <hr>  
 
           <!-- ADD ACADEMIC COURSE MODAL -->
 
