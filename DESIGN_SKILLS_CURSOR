@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<%@page language="PL/SQL"%>
+<%@plsql procedure="PAGE_DESIGN_SKILLS_CURSOR"%>
+<%@plsql parameter="RESUMATOR_ID_VAL" DEFAULT="NULL"%>
+
+<%!CURSOR DESIGN_SKILLS_CURSOR IS
+
+SELECT SKILLS.SKILL_NAME, SKILLS.SKILL_TYPE 
+FROM SKILLS, USERSSKILLS
+WHERE SKILLS.SKILL_ID = USERSSKILLS.SKILL_ID
+AND USERSSKILLS.RESUMATOR_ID = RESUMATOR_ID_VAL
+AND SKILLS.SKILL_TYPE = 'DESIGN';
+
+DESIGN_SKILLS_COUNTER INTEGER := 0;
+DESIGN_SKILLS_ROW DESIGN_SKILLS_CURSOR%ROWTYPE;
+%>
+
+<%OPEN DESIGN_SKILLS_CURSOR;
+LOOP
+FETCH DESIGN_SKILLS_CURSOR INTO DESIGN_SKILLS_ROW;
+EXIT WHEN DESIGN_SKILLS_CURSOR%NOTFOUND;%>  
+               <!-- loop through academic coursework 5 max -->
+                <%IF(DESIGN_SKILLS_COUNTER < 4) THEN DESIGN_SKILLS_COUNTER := DESIGN_SKILLS_COUNTER + 1;%>
+                <div class="span4">
+                  <ul>
+                     <li><%=DESIGN_SKILLS_ROW.SKILL_NAME%></li>
+                  </ul>
+                </div>
+                <%ELSIF(DESIGN_SKILLS_COUNTER >= 4 AND DESIGN_SKILLS_COUNTER < 9) THEN DESIGN_SKILLS_COUNTER := DESIGN_SKILLS_COUNTER + 1;%>
+                <div class="span4">
+                  <ul>
+                     <li><%=DESIGN_SKILLS_ROW.SKILL_NAME%></li>
+                  </ul>
+                </div><!-- end loop -->
+<%
+END IF;
+END LOOP;
+CLOSE DESIGN_SKILLS_CURSOR;%>
+
+<!-- ADD DESIGN SKILLS MODAL -->
+
+  <div id="add-design-skills-modal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-header">
+      <button type="button" class="close" data-dismiss="modal" aria-hidden="true">x</button>
+      <h3 id="myModalLabel">Add Design Skills Information</h3>
+    </div>
+    <div class="modal-body">
+      <form action="http://oracle.is.umbc.edu:8080/classpsp/IS420_TEAM_TRG.FORM_SKILLS" method="get">
+          <div class="form-inline margin-form-inline">
+            <input class="span3" type="text" placeholder="Skill Type">
+            <input class="span2" type="text" placeholder="Skill Name">
+          </div>
+      </form>
+    </div>
+    <div class="modal-footer">
+      <button class="btn" data-dismiss="modal" aria-hidden="true">Cancel</button>
+      <button class="btn btn-primary">Save changes</button>
+    </div>
+  </div>
+<%%>
+
+<!-- EDIT DESIGN SKILLS MODAL -->
+
+  <div id="edit-design-skills-modal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-header">
+      <button type="button" class="close" data-dismiss="modal" aria-hidden="true">x</button>
+      <h3 id="myModalLabel">Edit Design Skills Information</h3>
+    </div>
+    <div class="modal-body">
+      <form action="http://oracle.is.umbc.edu:8080/classpsp/IS420_TEAM_TRG.FORM_SKILLS" method="get">
+          <div class="form-inline margin-form-inline">
+            <input class="span3" type="text" placeholder="Skill Type">
+            <input class="span2" type="text" placeholder="Skill Name">
+          </div>
+      </form>
+    </div>
+    <div class="modal-footer">
+      <button class="btn" data-dismiss="modal" aria-hidden="true">Cancel</button>
+      <button class="btn btn-primary">Save changes</button>
+    </div>
+  </div>

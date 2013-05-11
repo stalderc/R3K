@@ -1,0 +1,43 @@
+<%PASSWORD_IN := get_cookie('PASSWORD');
+EMAIL_IN := get_cookie('EMAIL');%> 
+<%!EMAIL_IN VARCHAR2(50);
+PASSWORD_IN VARCHAR2(50);%>
+<!DOCTYPE HTML>
+<%@page language="PL/SQL"%>
+<%@plsql procedure="FORM_ADD_REFERENCES"%>
+<%@plsql parameter="RESUMATOR_ID_IN" DEFAULT="NULL"%>
+<%@plsql parameter="F_NAME_IN" DEFAULT="NULL"%>
+<%@plsql parameter="L_NAME_IN" DEFAULT="NULL"%>
+<%@plsql parameter="PHONE_NUMBER_IN" DEFAULT="NULL"%>
+<%@plsql parameter="ADDRESS_IN" DEFAULT="NULL"%>
+<%@plsql parameter="EMAIL_IN1" DEFAULT="NULL"%>
+<%@plsql parameter="COMPANY_IN" DEFAULT="NULL"%>
+<%@plsql parameter="TITLE_IN" DEFAULT="NULL"%>
+<%@plsql parameter="DISPLAY_RANK_IN" DEFAULT="NULL"%>
+
+
+<%
+
+
+INSERT
+  INTO REFERENCES VALUES
+    (
+      REFERENCES_SEQ.NEXTVAL,
+      RESUMATOR_ID_IN,
+      F_NAME_IN,
+      L_NAME_IN,
+      PHONE_NUMBER_IN,
+      ADDRESS_IN,
+      EMAIL_IN1,
+      COMPANY_IN,
+      TITLE_IN,
+      DISPLAY_RANK_IN
+    );
+EDIT_PAGE(EMAIL_IN, PASSWORD_IN);
+
+
+EXCEPTION
+WHEN OTHERS THEN
+%>
+
+<%=SQLERRM%>

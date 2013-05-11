@@ -1,3 +1,4 @@
+
 <!DOCTYPE HTML>
 <%@page language="PL/SQL"%>
 <%@plsql procedure="PAGE_REFERENCES_CURSOR"%>
@@ -18,16 +19,14 @@ LOOP
 FETCH REF_CURSOR INTO REF_ROW;
 EXIT WHEN REF_CURSOR%NOTFOUND;%>
               <!-- loop through all listed projects -->
-              <div class="reference-block">
-                
-                 <p><%=REF_ROW.F_NAME%> <%=REF_ROW.L_NAME%><br />
-                                  <%=REF_ROW.TITLE%><br />
-                                  <%=REF_ROW.COMPANY%><br />
-                                  <%=REF_ROW.ADDRESS%><br />
-                                  <%=REF_ROW.EMAIL%><br />
-                                  <%=REF_ROW.PHONE_NUMBER%></p>
-              
-              </div>
+              <p>
+                 <%=REF_ROW.F_NAME%> <%=REF_ROW.L_NAME%><br/>
+                 <%=REF_ROW.TITLE%><br/>
+                 <%=REF_ROW.COMPANY%><br/>
+                 <%=REF_ROW.ADDRESS%><br/>
+                 <%=REF_ROW.EMAIL%><br/>
+                 <%=REF_ROW.PHONE_NUMBER%><br/>
+              </p>
 <%END LOOP;
 CLOSE REF_CURSOR;%>
 
@@ -39,29 +38,31 @@ CLOSE REF_CURSOR;%>
       <h3 id="myModalLabel">Add References Information</h3>
     </div>
     <div class="modal-body">
-      <form action="http://oracle.is.umbc.edu:8080/classpsp/IS420_TEAM_TRG.FORM_REFERENCES" method="get">
+      <form action="http://oracle.is.umbc.edu:8080/classpsp/IS420_TEAM_TRG.FORM_ADD_REFERENCES" method="get">
           <div class="form-inline margin-form-inline">
-            <input class="span3" type="text" placeholder="First name">
-            <input class="span2" type="text" placeholder="Last Name">
+            <input class="span3" type="hidden" NAME="RESUMATOR_ID_IN" VALUE="<%=RESUMATOR_ID_VAL%>">
+            <input class="span3" type="text" NAME="F_NAME_IN"placeholder="First name">
+            <input class="span2" type="text" NAME="L_NAME_IN"placeholder="Last Name">
           </div>
           <div class="form-inline margin-form-inline">
-            <input class="span2" type="text" placeholder="Phone Number">
+            <input class="span2" type="text" NAME="PHONE_NUMBER_IN"placeholder="Phone Number">
             
           </div>
 
-          <textarea class="max-width" rows="3" placeholder="Address."></textarea>
+          <textarea class="max-width" rows="3"NAME="ADDRESS_IN" placeholder="Address."></textarea>
 
           <div class="form-inline margin-form-inline">
-            <input class="span2" type="text" placeholder="Email Address">
-            <input class="span2" type="text" placeholder="Company name">
-            <input class="span2" type="text" placeholder="Title">
+            <input class="span2" type="text" NAME="EMAIL_IN1"placeholder="Email Address">
+            <input class="span2" type="text" NAME="COMPANY_IN"placeholder="Company name">
+            <input class="span2" type="text" NAME="TITLE_IN"placeholder="Title">
+            <input class="span2" type="text" NAME="DISPLAY_RANK_IN"placeholder="Display Rank">
           </div>
-      </form>
     </div>
     <div class="modal-footer">
       <button class="btn" data-dismiss="modal" aria-hidden="true">Cancel</button>
-      <button class="btn btn-primary">Save changes</button>
+      <button class="btn btn-primary" type="submit">Save changes</button>
     </div>
+      </form>
   </div>
 
 <!-- EDIT REFERENCES MODAL -->
@@ -74,19 +75,21 @@ CLOSE REF_CURSOR;%>
     <div class="modal-body">
       <form action="http://oracle.is.umbc.edu:8080/classpsp/IS420_TEAM_TRG.FORM_REFERENCES" method="get">
           <div class="form-inline margin-form-inline">
-            <input class="span2" type="text" placeholder="First Name">
-            <input class="span2" type="text" placeholder="Last Name">
+            <input class="span3" type="text" NAME="F_NAME"placeholder="First name">
+            <input class="span2" type="text" NAME="L_NAME"placeholder="Last Name">
           </div>
           <div class="form-inline margin-form-inline">
-            <input class="span2" type="text" placeholder="Phone Number">
+            <input class="span2" type="text" NAME="PHONE_NUMBER"placeholder="Phone Number">
+            
           </div>
 
-          <textarea class="max-width" rows="3" placeholder="Address"></textarea>
+          <textarea class="max-width" rows="3"NAME="ADDRESS" placeholder="Address."></textarea>
 
           <div class="form-inline margin-form-inline">
-            <input class="span3" type="text" placeholder="Email Address">
-            <input class="span2" type="text" placeholder="Company name">
-            <input class="span2" type="text" placeholder="Title">
+            <input class="span2" type="text" NAME="EMAIL"placeholder="Email Address">
+            <input class="span2" type="text" NAME="COMPANY"placeholder="Company name">
+            <input class="span2" type="text" NAME="TITLE"placeholder="Title">
+            <input class="span2" type="text" NAME="DISPLAY_RANK"placeholder="Display Rank">
           </div>
       </form>
     </div>

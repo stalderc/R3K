@@ -1,13 +1,9 @@
-<%IF COOKIE_EXISTS('EMAIL') THEN set_cookie('EMAIL', EMAIL_IN); END IF;
-IF COOKIE_EXISTS('PASSWORD') THEN set_cookie('PASSWORD', PASSWORD_IN); END IF;%>
 <!DOCTYPE html>
 <%@page language="PL/SQL"%>
-<%@plsql procedure="EDIT_PAGE"%>
-<%@plsql parameter="EMAIL_IN" DEFAULT="NULL"%>
-<%@plsql parameter="PASSWORD_IN" DEFAULT="NULL"%>
-<%! RESUMATOR_ID_VAL USERS.RESUMATOR_ID%TYPE;
-AUTHENTICATE_INT NUMBER := 0;%>
-<%SELECT RESUMATOR_ID INTO RESUMATOR_ID_VAL FROM USERS WHERE EMAIL_ADDRESS = UPPER(EMAIL_IN);%>
+<%@plsql procedure="RESUME_OUTPUT"%>
+<%@plsql PARAMETER="EMAIL_IN"%>
+<%@plsql PARAMETER="RESUMATOR_ID_VAL"%>
+
 
 <html lang="en">
 
@@ -50,6 +46,7 @@ AUTHENTICATE_INT NUMBER := 0;%>
     <link href="http://userpages.umbc.edu/~booth1/resumator3000/assets/css/docs.css" rel="stylesheet">
     <!-- r3k-styles.css contains custom settings to override TWBS code -->
     <link href="http://userpages.umbc.edu/~booth1/resumator3000/assets/css/r3k-styles.css" rel="stylesheet">
+    <link href="http://userpages.umbc.edu/~booth1/resumator3000/assets/css/r3k-resume.css" rel="stylesheet">
     <style type="text/css">
       body {
         padding-top: 60px;
@@ -88,14 +85,6 @@ AUTHENTICATE_INT NUMBER := 0;%>
 
     </script>
 
-    <!-- jquery assets -->
-    <script src="http://userpages.umbc.edu/~booth1/resumator3000/assets/js/jquery-1.9.1.min.js"></script>
-    <script src="http://userpages.umbc.edu/~booth1/resumator3000/assets/js/jquery.smooth-scroll.js"></script>
-    <script>
-      $(document).ready(function() {
-        $('ul.floatnav a').smoothScroll();
-      });
-    </script>
 
   </head>
 
@@ -133,87 +122,12 @@ AUTHENTICATE_INT NUMBER := 0;%>
  -->
 
   <body>
-
-<!-- START NAVIGATION SECTION -->
-
-    <div class="navbar navbar-inverse navbar-fixed-top">
-      <div class="navbar-inner">
-        <div class="container control-font-size">
-          <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-          </a>
-          <a class="brand" href="http://userpages.umbc.edu/~booth1/resumator3000/html/index.html">Resumator3000</a>
-          <div class="nav-collapse collapse">
-            <ul class="nav">
-              <li class="active"><a href="http://userpages.umbc.edu/~booth1/resumator3000/html/index.html">Home</a></li>
-              <li><a href="http://userpages.umbc.edu/~booth1/resumator3000/html/about.html">About</a></li>
-              <li><a href="http://userpages.umbc.edu/~booth1/resumator3000/html/contact.html">Contact</a></li>
-              <li><a href="http://userpages.umbc.edu/~booth1/r3k/index.htm" target="_blank">Project Site</a></li>
-
-<%
-AUTHENTICATE_INT := AUTHENTICATE(UPPER(EMAIL_IN), PASSWORD_IN);
-IF AUTHENTICATE_INT = 0 THEN%>
-
-            </ul>
-            <form class="navbar-form pull-right" action="http://oracle.is.umbc.edu:8080/classpsp/IS420_TEAM_TRG.EDIT_PAGE">
-              <input class="span2" NAME="EMAIL_IN" type="text" placeholder="Email">
-              <input class="span2" NAME="PASSWORD_IN" type="password" placeholder="Password">
-              <button type="submit" class="btn">Log In</button>
-            </form>
-
-          </div><!--/.nav-collapse -->
-        </div>
-      </div>
-    </div>            
-
-<div class="container"><!-- main page container -->
-
-<p><span class="label label-warning">You've entered an invalid user name or password.</span></p>
-
-</div>    
-
-<%ELSE%>
-            <li><a href="http://oracle.is.umbc.edu:8080/classpsp/IS420_TEAM_TRG.RESUME_OUTPUT">Resume Link</a></li>
-            </ul>
-
-            <a href="http://userpages.umbc.edu/~booth1/resumator3000/html/index.html" class="btn pull-right">Logout</a>
-            
-          </div><!--/.nav-collapse -->
-        </div>
-      </div>
-    </div>
-
-<!--  END NAVIGATION SECTION -->   
-
+  
     <div class="container"><!-- main page container -->
-
       <div class="row">
-<!-- SIDEBAR NAVIGATION ON LEFT OF PAGE -->
-        <div class="span3 affix"> <!-- removed bs-docs-sidebar   -->
-          <ul class="floatnav nav nav-list bs-docs-sidenav" data-spy="affix">
-            <li><a href="#contactinfo">     <i class="icon-chevron-right"></i> Contact Information</a></li>
-            <li><a href="#objective">       <i class="icon-chevron-right"></i> Objective Statement</a></li>
-            <li><a href="#education">       <i class="icon-chevron-right"></i> Education</a></li>
-            <li><a href="#certifications">  <i class="icon-chevron-right"></i> Certifications and Licenses</a></li>
-            <li><a href="#research">        <i class="icon-chevron-right"></i> Research, Publications and Presentations</a></li>
-            <li><a href="#projects">        <i class="icon-chevron-right"></i> Projects</a></li>
-            <li><a href="#academic">        <i class="icon-chevron-right"></i> Academic Coursework</a></li>
-            <li><a href="#skills">          <i class="icon-chevron-right"></i> Standard Skills</a></li>
-            <li><a href="#technical">       <i class="icon-chevron-right"></i> Technical Skills</a></li>
-            <li><a href="#design">          <i class="icon-chevron-right"></i> Design Skills</a></li>
-            <li><a href="#workhistory">     <i class="icon-chevron-right"></i> Work History</a></li>
-            <li><a href="#honors">          <i class="icon-chevron-right"></i> Honors and Awards</a></li>
-            <li><a href="#activities">      <i class="icon-chevron-right"></i> Extra Curricular</a></li>
-            <li><a href="#references">      <i class="icon-chevron-right"></i> References and Contacts</a></li>
-          </ul>
-        </div>
 
         <!-- front-page holds all the conent on the right of the page -->
-    <div class="front-page system-serif system-sans-serif span8 offset3">
-    <!-- ###### REMOVE THE MESSAGE BELOW WHEN MOVED INTO OFFICIAL ALPHA STATUS ##### -->
-    <p><span class="label label-info">Resumator3000 is a work in progress and isn't scheduled to be fully operational until end of May 2013. Thank you.</span></p>
+    <div class="front-page system-serif system-sans-serif span8 offset2">
 
 <!-- STUDENT USER PERSONAL DATA -->
 <section id="contactinfo">
@@ -376,66 +290,6 @@ IF AUTHENTICATE_INT = 0 THEN%>
 </div> <!-- close main page container div -->
 
 
-<!-- FOOTER SECTION -->
-
-    <footer>
-      <p>Resumator3000 &copy; 2013</p>
-    </footer>
- 
-
-
-<!--
-*
-*
-*
-*
-*
-*
-*
-*
-*
-*
-*
-* 
-*
-*
-*    Modal Section
-*
-*
-*
-*
-*
-*
-*
-*
-*
-*
-*
-*
-*
-*
-*
- -->
-
-<!-- OBJECTIVE MODAL -->
-
-  <div id="objective-modal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-    <div class="modal-header">
-      <button type="button" class="close" data-dismiss="modal" aria-hidden="true">x</button>
-      <h3 id="myModalLabel">Objective Statement</h3>
-    </div>
-    <form>
-      <div class="modal-body">
-        <textarea class="max-width" rows="5" placeholder="Resumes shouldn't be written in one day, updating information shouldn't be a hassle, and sharing should be simple with no account required to view. Resumator3000 does all this and handles layout, typography, design, and more. We are not a resume builder; we are your resume partner dedicated to working with you over your student career. Join and start building a better resume today."></textarea>
-      </div>
-    </form>
-    <div class="modal-footer">
-      <button class="btn" data-dismiss="modal" aria-hidden="true">Cancel</button>
-      <button class="btn btn-primary">Save changes</button>
-    </div>
-  </div>
-
-
 <!--
 *
 *
@@ -475,17 +329,11 @@ IF AUTHENTICATE_INT = 0 THEN%>
     <!-- <script src="http://userpages.umbc.edu/~booth1/resumator3000/assets/js/bootstrap-carousel.js"></script> -->
     <script src="http://userpages.umbc.edu/~booth1/resumator3000/assets/js/bootstrap-typeahead.js"></script>
     
-
     <script src="http://userpages.umbc.edu/~booth1/resumator3000/assets/js/bootstrap-affix.js"></script>
     <script src="http://userpages.umbc.edu/~booth1/resumator3000/assets/js/holder/holder.js"></script>
     <script src="http://userpages.umbc.edu/~booth1/resumator3000/assets/js/google-code-prettify/prettify.js"></script>
     <script src="http://userpages.umbc.edu/~booth1/resumator3000/assets/js/application.js"></script>
 
-<%
-END IF;
-EXCEPTION
-WHEN OTHERS THEN %> 
-<p><%=SQLERRM%></p>
-
-</body>
-</html>
+  </body>
+<%EXCEPTION WHEN OTHERS THEN%>
+<%=SQLERRM%>
