@@ -21,7 +21,7 @@ LOOP
 FETCH PROJECT_CURSOR INTO PROJECT_ROW;
 EXIT WHEN PROJECT_CURSOR%NOTFOUND;%>
               <ul>
-                 <li><a href="http://userpages.umbc.edu/~booth1/r3k/index.htm"  target="_blank">R3k Project Development Site</a></li>
+                 <li>This Needs To Be Updated</li>
               </ul>
 <%END LOOP;
 CLOSE PROJECT_CURSOR;%>
