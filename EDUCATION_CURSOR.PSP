@@ -30,22 +30,18 @@
     SELECT SCHOOL_CITY INTO S_CITY FROM SCHOOL WHERE SCHOOL.SCHOOL_ID = ED_ROW.SCHOOL_ID;
     SELECT SCHOOL_STATE INTO S_STATE FROM SCHOOL WHERE SCHOOL.SCHOOL_ID = ED_ROW.SCHOOL_ID;
     EXIT WHEN ED_CURSOR%NOTFOUND;%>
+
             <!-- loop through users education -->
-            <ul>
+            <div class="education-block">
                 <!-- Full name of educational institution, city and state -->
-                <li><%=S_NAME%>, <%=S_CITY%>, <%=S_STATE%>
-                  <ul>
-                    <!-- Name of Degree Program -->
-                    <li><%=ED_ROW.DEGREE%>, <%=ED_ROW.MAJOR%></li>
-                      <!-- list GPA if above 3.00 -->  
-                      <ul>
-                        <li><%=ED_ROW.MINOR%> MINOR</li>
-                        <li><%=ED_ROW.GPA%> GPA</li>
-                        <li><%=ED_ROW.CERTIFICATIONS%></li>
-                        <li><%=ED_ROW.GRAD_DATE%></li>
-                      </ul>
-                  </ul>
-            </ul>
+                <p><%=S_NAME%>, <span class="pull-right"><%=S_CITY%>, <%=S_STATE%></span></p>
+                <!-- Name of Degree Program -->
+                <p><%=ED_ROW.DEGREE%>, <%=ED_ROW.MAJOR%><span class="pull-right"><%=ED_ROW.GRAD_DATE%></span></p>
+                <p><%=ED_ROW.GPA%></p>
+                <!-- list GPA if above 3.00 -->  
+                <p><%=ED_ROW.MINOR%> MINOR</p>
+                <p><%=ED_ROW.CERTIFICATIONS%> CERTIFICATIONS</p>
+            </div>
             <!-- end education loop -->  
   <%
   END LOOP;
