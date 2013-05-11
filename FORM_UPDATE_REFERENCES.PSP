@@ -1,0 +1,45 @@
+<%PASSWORD_IN := get_cookie('PASSWORD');
+EMAIL_IN := get_cookie('EMAIL');%> 
+<%!EMAIL_IN VARCHAR2(50);
+PASSWORD_IN VARCHAR2(50);%>
+<!DOCTYPE HTML>
+<%@page language="PL/SQL"%>
+<%@plsql procedure="FORM_UPDATE_REFERENCES"%>
+<%@plsql parameter="RESUMATOR_ID_IN" DEFAULT="NULL"%>
+<%@plsql parameter="F_NAME_IN" DEFAULT="NULL"%>
+<%@plsql parameter="L_NAME_IN" DEFAULT="NULL"%>
+<%@plsql parameter="PHONE_NUMBER_IN" DEFAULT="NULL"%>
+<%@plsql parameter="ADDRESS_IN" DEFAULT="NULL"%>
+<%@plsql parameter="EMAIL_IN1" DEFAULT="NULL"%>
+<%@plsql parameter="COMPANY_IN" DEFAULT="NULL"%>
+<%@plsql parameter="TITLE_IN" DEFAULT="NULL"%>
+<%@plsql parameter="DISPLAY_RANK_IN" DEFAULT="NULL"%>
+
+
+<%
+
+
+UPDATE REFERENCES 
+    SET
+     F_NAME       =  F_NAME_IN,
+     L_NAME       =  L_NAME_IN,
+     PHONE_NUMBER =  PHONE_NUMBER_IN,
+     ADDRESS      =  ADDRESS_IN,
+     EMAIL        =  EMAIL_IN1,
+     COMPANY      =  COMPANY_IN,
+     TITLE        =  TITLE_IN,
+     DISPLAY_RANK =  DISPLAY_RANK_IN
+     WHERE RESUMATOR_ID = RESUMATOR_ID
+     AND REFERENCE_ID   = REFERENCE_ID;
+    
+    
+EDIT_PAGE(EMAIL_IN, PASSWORD_IN);
+
+
+
+
+EXCEPTION
+WHEN OTHERS THEN
+%>
+
+<%=SQLERRM%>
