@@ -21,7 +21,7 @@ LOOP
 FETCH PROJECT_CURSOR INTO PROJECT_ROW;
 EXIT WHEN PROJECT_CURSOR%NOTFOUND;%>
               <ul>
-                 <li>This Needs To Be Updated</li>
+                 <li><%=PROJECT_ROW.PROJECT_NAME%></li>
               </ul>
 <%END LOOP;
 CLOSE PROJECT_CURSOR;%>
