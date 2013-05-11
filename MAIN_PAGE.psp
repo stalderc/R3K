@@ -387,12 +387,22 @@ CLOSE PUB_CURSOR;%>
           <hr> 
 
 <!-- PROJECTS SECTION -->
-<!-- POPULATE PROJECTS-->
+    <section id="projects">
+      <h4>Projects: <a href="#add-project-modal" data-toggle="modal"><i class="icon-plus"> </i></a> <a href="#edit-project-modal" data-toggle="modal"><i class="icon-pencil"> </i></a> </h4>
+  <!-- loop through all listed projects -->
 <%PAGE_PROJECT_CURSOR(RESUMATOR_ID_VAL);%>
+    </section>
+  <hr>  
 
 <!-- ACADEMIC COURSEWORK -->
-<!-- POPULATE ACADEMIC COURSEWORK-->
+   <section id="academic">
+      <h4>Academic Coursework: <a href="#add-academic-course-modal" data-toggle="modal"><i class="icon-plus"> </i></a> <a href="#edit-academic-course-modal" data-toggle="modal"><i class="icon-pencil"> </i></a> </h4>
+         <div class="row"><!-- academic coursework row -->
 <%PAGE_COURSE_WORK_CURSOR(RESUMATOR_ID_VAL);%>
+        </div><!-- end academic coursework row -->
+
+    </section>
+  <hr>  
 <!-- STANDARD SKILLS -->
 
 <%!CURSOR STANDARD_SKILLS_CURSOR IS
