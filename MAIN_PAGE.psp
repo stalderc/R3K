@@ -408,13 +408,13 @@ STANDARD_SKILLS_ROW STANDARD_SKILLS_CURSOR%ROWTYPE;
 %>
           <section id="skills">
             <h4>Skills: <a href="#add-skills-modal" data-toggle="modal"><i class="icon-plus"> </i></a> <a href="#edit-skills-modal" data-toggle="modal"><i class="icon-pencil"> </i></a> </h4>
-            <!-- standard skills row -->
+            
+            <div class="row"><!-- standard skills row -->
 <%OPEN STANDARD_SKILLS_CURSOR;
 LOOP
 FETCH STANDARD_SKILLS_CURSOR INTO STANDARD_SKILLS_ROW;
 EXIT WHEN STANDARD_SKILLS_CURSOR%NOTFOUND;%>  
-               <div class="row"><!-- academic coursework row -->
-                <!-- loop through academic coursework 5 max -->
+               <!-- loop through academic coursework 5 max -->
                 <%IF(STANDARD_SKILLS_COUNTER < 4) THEN STANDARD_SKILLS_COUNTER := STANDARD_SKILLS_COUNTER + 1;%>
                 <div class="span4">
                   <ul>
@@ -427,11 +427,13 @@ EXIT WHEN STANDARD_SKILLS_CURSOR%NOTFOUND;%>
                      <li><%=STANDARD_SKILLS_ROW.SKILL_NAME%></li>
                   </ul>
                 </div>
-            </div><!-- end standard skills row -->
+                <!-- end loop -->
 <%
 END IF;
 END LOOP;
 CLOSE STANDARD_SKILLS_CURSOR;%>
+
+              </div><!-- end standard skills row -->
           </section>
           <hr>
 
@@ -452,13 +454,15 @@ TECHNICAL_SKILLS_ROW TECHNICAL_SKILLS_CURSOR%ROWTYPE;
           <section id="technical">
             <h4>Technical Skills: <a href="#add-technical-skills-modal" data-toggle="modal"><i class="icon-plus"> </i></a> <a href="#edit-technical-skills-modal" data-toggle="modal"><i class="icon-pencil"> </i></a> </h4>
 
-            <!-- technical row -->  
+            <!-- technical row --> 
+
+            <div class="row"><!-- techinal skills row -->
+
             <%OPEN TECHNICAL_SKILLS_CURSOR;
 LOOP
 FETCH TECHNICAL_SKILLS_CURSOR INTO TECHNICAL_SKILLS_ROW;
 EXIT WHEN TECHNICAL_SKILLS_CURSOR%NOTFOUND;%>  
-               <div class="row"><!-- academic coursework row -->
-                <!-- loop through academic coursework 5 max -->
+               <!-- loop through academic coursework 5 max -->
                 <%IF(TECHNICAL_SKILLS_COUNTER < 4) THEN TECHNICAL_SKILLS_COUNTER := TECHNICAL_SKILLS_COUNTER + 1;%>
                 <div class="span4">
                   <ul>
@@ -470,13 +474,13 @@ EXIT WHEN TECHNICAL_SKILLS_CURSOR%NOTFOUND;%>
                   <ul>
                      <li><%=TECHNICAL_SKILLS_ROW.SKILL_NAME%></li>
                   </ul>
-                </div>
-            </div><!-- end TECHNICAL skills row -->
+                </div> 
 <%
 END IF;
 END LOOP;
 
 CLOSE TECHNICAL_SKILLS_CURSOR;%>
+              </div><!-- end TECHNICAL skills row -->
           </section>
           <hr>
 
@@ -496,13 +500,14 @@ DESIGN_SKILLS_ROW DESIGN_SKILLS_CURSOR%ROWTYPE;
           <section id="design">
             <h4>Design Skills: <a href="#add-design-skills-modal" data-toggle="modal"><i class="icon-plus"> </i></a> <a href="#edit-design-skills-modal" data-toggle="modal"><i class="icon-pencil"> </i></a> </h4>
 
-            <!-- DESIGN row -->  
+            <!-- DESIGN row -->
+
+            <div class="row"><!-- academic coursework row --> 
                        <%OPEN DESIGN_SKILLS_CURSOR;
 LOOP
 FETCH DESIGN_SKILLS_CURSOR INTO DESIGN_SKILLS_ROW;
 EXIT WHEN DESIGN_SKILLS_CURSOR%NOTFOUND;%>  
-               <div class="row"><!-- academic coursework row -->
-                <!-- loop through academic coursework 5 max -->
+               <!-- loop through academic coursework 5 max -->
                 <%IF(DESIGN_SKILLS_COUNTER < 4) THEN DESIGN_SKILLS_COUNTER := DESIGN_SKILLS_COUNTER + 1;%>
                 <div class="span4">
                   <ul>
@@ -514,12 +519,12 @@ EXIT WHEN DESIGN_SKILLS_CURSOR%NOTFOUND;%>
                   <ul>
                      <li><%=DESIGN_SKILLS_ROW.SKILL_NAME%></li>
                   </ul>
-                </div>
-            </div><!-- end DESIGN skills row -->
+                </div><!-- end loop -->
 <%
 END IF;
 END LOOP;
 CLOSE DESIGN_SKILLS_CURSOR;%>
+             </div><!-- end DESIGN skills row -->
           </section>
           <hr>
 
@@ -544,17 +549,16 @@ ORDER BY WORK_EXPERIENCE.WORK_ID, DISPLAY_RANK;
 WORK_DESC_ROW WORK_DESC_CURSOR%ROWTYPE;
 WORK_EX_ROW WORK_EX_CURSOR%ROWTYPE;
 %>
-
           <section id="workhistory">
             <h4>Work History: <a href="#add-work-history-modal" data-toggle="modal"><i class="icon-plus"> </i></a></h4>
+
+            <div class="row"><!-- work history box -->
 <%
 OPEN WORK_EX_CURSOR;
 LOOP
 FETCH WORK_EX_CURSOR INTO WORK_EX_ROW;
 EXIT WHEN WORK_EX_CURSOR%NOTFOUND;%>
-            <!-- first work history entry -->
-            <div class="row">
-              <div class="span8">
+            <div class="span8">
                 <ul>
                     <!-- Company name and Date Range Employment -->
                     <h4 class="company-name"><%=WORK_EX_ROW.POSITION_TITLE%><span class="pull-right"><%=WORK_EX_ROW.START_DATE%> - <%=WORK_EX_ROW.END_DATE%></span> <a href="#edit-work-history-modal" data-toggle="modal"><i class="icon-pencil"> </i></a> </h4>
@@ -574,13 +578,12 @@ EXIT WHEN WORK_EX_CURSOR%NOTFOUND;%>
                       END IF;
                       END LOOP;
                       CLOSE WORK_DESC_CURSOR;%>
-                    <!-- end loop through job bullet points -->
+                    
                 </ul>
-              </div>
-            </div> <!-- end first work history row -->
+              </div><!-- end loop through job bullet points -->
 <%END LOOP;
 CLOSE WORK_EX_CURSOR;%>
-
+            </div> <!-- end first work history row -->
           </section>
           <hr>
 
@@ -624,13 +627,13 @@ EXTRA_ROW EXTRA_CURSOR%ROWTYPE;
 
           <section id="activities">
             <h4>Extra Curricular: <a href="#add-extracurricular-modal" data-toggle="modal"><i class="icon-plus"> </i></a> <a href="#edit-extracurricular-modal" data-toggle="modal"><i class="icon-pencil"> </i></a> </h4>
+
+            <div class="row"><!-- extra curricular row -->
 <%OPEN EXTRA_CURSOR;
 LOOP
 FETCH EXTRA_CURSOR INTO EXTRA_ROW;
 EXIT WHEN EXTRA_CURSOR%NOTFOUND;%>
-            <!-- technical row -->  
-                         <div class="row"><!-- academic coursework row -->
-                <!-- loop through academic coursework 5 max -->
+            <!-- loop through extra curricular 5 max -->
                 <%IF EXTRA_COUNTER < 4 THEN EXTRA_COUNTER := EXTRA_COUNTER + 1;%>
                 <div class="span4">
                   <ul>
@@ -642,13 +645,12 @@ EXIT WHEN EXTRA_CURSOR%NOTFOUND;%>
                   <ul>
                      <li><%=EXTRA_ROW.ORGANIZATION%>,<%=EXTRA_ROW.TITLE%> <%=EXTRA_ROW.SEMESTER%> <%=EXTRA_ROW.YEAR%></li>
                   </ul>
-                </div>
-
-            </div><!-- end technical row -->
+                </div><!-- loop end -->
 <%
 END IF;
 END LOOP;
 CLOSE EXTRA_CURSOR;%>
+             </div><!-- extra curricular row -->
           </section>
           <hr>
 
