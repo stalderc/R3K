@@ -1,0 +1,58 @@
+<%PASSWORD_IN := get_cookie('PASSWORD');
+EMAIL_IN := get_cookie('EMAIL');%> 
+<%!EMAIL_IN VARCHAR2(50);
+PASSWORD_IN VARCHAR2(50);%>
+<!DOCTYPE HTML>
+<%@page language="PL/SQL"%>
+<%@plsql procedure="FORM_ADD_EDUCATION"%>
+<%@plsql parameter="RESUMATOR_ID_IN" DEFAULT="NULL"%>
+<%@plsql parameter="INSTITUTION_NAME" DEFAULT="NULL"%>
+<%@plsql parameter="STATE_NAME" DEFAULT="NULL"%>
+<%@plsql parameter="CITY_NAME" DEFAULT="NULL"%>
+<%@plsql parameter="DEGREE_NAME" DEFAULT="NULL"%>
+<%@plsql parameter="DEGREE_MAJOR" DEFAULT="NULL"%>
+<%@plsql parameter="DEGREE_MINOR" DEFAULT="NULL"%>
+<%@plsql parameter="CERTIFICATION" DEFAULT="NULL"%>
+<%@plsql parameter="GRADE_POINTS" DEFAULT="NULL"%>
+<%@plsql parameter="GRADUATION_DATE" DEFAULT="NULL"%>
+<%@plsql parameter="DISPLAY_RANK_IN" DEFAULT="NULL"%>
+
+
+<%
+
+INSERT
+  INTO SCHOOL VALUES
+    (
+      SCHOOL_SEQ.NEXTVAL,
+      INSTITUTION_NAME,
+      STATE_NAME,
+      CITY_NAME
+    );
+
+SELECT SCHOOL_ID, SCHOOL_NAME
+INTO EDUCATION_SCHOOL_ID
+FROM SCHOOL
+WHERE SCHOOL_NAME = INSTITUTION_NAME;
+
+INSERT
+  INTO EDUCATION VALUES
+    (
+      EDUCATION_SEQ.NEXTVAL,
+      RESUMATOR_ID_IN,
+      EDUCATION_SCHOOL_ID,
+      DEGREE_NAME,
+      DEGREE_MAJOR,
+      DEGREE_MINOR,
+      CERTIFICATION,
+      GRADE_POINTS,
+      GRADUATION_DATE,
+      DISPLAY_RANK_IN
+    );
+EDIT_PAGE(EMAIL_IN, PASSWORD_IN);
+
+
+EXCEPTION
+WHEN OTHERS THEN
+%>
+
+<%=SQLERRM%>
