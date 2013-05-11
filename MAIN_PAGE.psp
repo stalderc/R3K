@@ -480,6 +480,7 @@ IF AUTHENTICATE_INT = 0 THEN%>
     <script src="http://userpages.umbc.edu/~booth1/resumator3000/assets/js/holder/holder.js"></script>
     <script src="http://userpages.umbc.edu/~booth1/resumator3000/assets/js/google-code-prettify/prettify.js"></script>
     <script src="http://userpages.umbc.edu/~booth1/resumator3000/assets/js/application.js"></script>
+    <script src="http://userpages.umbc.edu/~booth1/resumator3000/assets/js/editforms.js"></script>
 
 <%
 END IF;
