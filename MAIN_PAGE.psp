@@ -214,38 +214,8 @@ IF AUTHENTICATE_INT = 0 THEN%>
     <p><span class="label label-info">Resumator3000 is a work in progress and isn't scheduled to be fully operational until end of May 2013. Thank you.</span></p>
 
 <!-- STUDENT USER PERSONAL DATA -->
-<%!CURSOR USERS_CURSOR IS 
-
-SELECT USERS.F_NAME, USERS.L_NAME, USERS.STREET, USERS.CITY, USERS.STATE, USERS.ZIPCODE, USERS.PHONE_NUMBER, USERS.ACCOUNT_TYPE
-FROM USERS
-WHERE USERS.RESUMATOR_ID = RESUMATOR_ID_VAL;
-
-USERS_ROW USERS_CURSOR%ROWTYPE;%>
-        <section id="contactinfo">
-          <!-- user first & last name - career title they assign themselves -->
-<%OPEN USERS_CURSOR;
-FETCH USERS_CURSOR INTO USERS_ROW;
-IF USERS_CURSOR%NOTFOUND THEN%>
-
-          <!-- First Name Last Name - Career Title -->
-          <h4>Add Your Personal Information<a href="#contact-modal" data-toggle="modal"><i class="icon-pencil"></i></a> </h4>
-          <!-- House Number Street Name Street Type -->
-          <p class="address"><br />
-          <!-- City, State, Zipcode -->  
-            <br />
-<%ELSE%>   
-          <!-- First Name Last Name - Career Title -->
-          <h4><%=USERS_ROW.F_NAME%> <%=USERS_ROW.L_NAME%><a href="#contact-modal" data-toggle="modal"><i class="icon-pencil"></i></a> </h4>
-          <!-- House Number Street Name Street Type -->
-          <p class="address"><%=USERS_ROW.STREET%><br />
-          <!-- City, State, Zipcode -->  
-            <%=USERS_ROW.CITY%>, <%=USERS_ROW.STATE%> <%=USERS_ROW.ZIPCODE%><br />
-          <!-- href="mailto:emailaddress@domain.com" -->
-          <!-- Insert First Name Last Name as linkable text -->
-          <a href="mailto:<%=EMAIL_IN%>"><i class="icon-envelope"></i><%=USERS_ROW.F_NAME%> <%=USERS_ROW.L_NAME%></a></p>
-<%
-END IF;
-CLOSE USERS_CURSOR;%>
+<section id="contactinfo">
+        <%PAGE_USERS_CURSOR(RESUMATOR_ID_VAL, EMAIL_IN);%>
         </section>
 
 
@@ -262,127 +232,33 @@ CLOSE USERS_CURSOR;%>
 
 <!-- EDUCATION SECTION -->
 <!-- EDUCATION CURSOR DECLARATION -->
-<%!CURSOR ED_CURSOR
-  IS
-    SELECT 
-      EDUCATION.SCHOOL_ID,
-      EDUCATION.DEGREE,
-      EDUCATION.MAJOR,
-      EDUCATION.MINOR,
-      EDUCATION.CERTIFICATIONS,
-      EDUCATION.GPA,
-      EDUCATION.GRAD_DATE,
-      EDUCATION.DISPLAY_RANK
-    FROM EDUCATION
-    WHERE EDUCATION.RESUMATOR_ID = RESUMATOR_ID_VAL
-    ORDER BY DISPLAY_RANK;
-  ED_ROW ED_CURSOR%ROWTYPE;
-  EDUCATION_NO_INFO EXCEPTION;
-  S_NAME SCHOOL.SCHOOL_NAME%TYPE;
-  S_CITY SCHOOL.SCHOOL_CITY%TYPE;
-  S_STATE SCHOOL.SCHOOL_STATE%TYPE; %>
+
           <section id="education">
-            <h4>Education: <a href="#add-education-modal" data-toggle="modal"><i class="icon-plus"> </i></a> </h4>
-<!-- EDUCATION POPULATE-->
-<%OPEN ED_CURSOR;
-  LOOP
-    FETCH ED_CURSOR INTO ED_ROW;
-    SELECT SCHOOL_NAME INTO S_NAME FROM SCHOOL WHERE SCHOOL.SCHOOL_ID = ED_ROW.SCHOOL_ID;
-    SELECT SCHOOL_CITY INTO S_CITY FROM SCHOOL WHERE SCHOOL.SCHOOL_ID = ED_ROW.SCHOOL_ID;
-    SELECT SCHOOL_STATE INTO S_STATE FROM SCHOOL WHERE SCHOOL.SCHOOL_ID = ED_ROW.SCHOOL_ID;
-    EXIT WHEN ED_CURSOR%NOTFOUND;%>
-            <!-- loop through users education -->
-            <ul>
-                <!-- Full name of educational institution, city and state -->
-                <li><a href="http://umbc.edu" target="_blank"><%=S_NAME%>, <%=S_CITY%>, <%=S_STATE%></a>
+            <h4>Education: <a href="#add-education-modal" data-toggle="modal"><i class="icon-plus"> </i></a>  
                 <a href="#edit-education-modal" data-toggle="modal"><i class="icon-pencil"> </i></a></li>
-                  <ul>
-                    <!-- Name of Degree Program -->
-                    <li><a href="http://www.is.umbc.edu" target="_blank"><%=ED_ROW.DEGREE%>, <%=ED_ROW.MAJOR%></a></li>
-                      <!-- list GPA if above 3.00 -->  
-                      <ul>
-                        <li><%=ED_ROW.MINOR%> MINOR</li>
-                        <li><%=ED_ROW.GPA%> GPA</li>
-                        <li><%=ED_ROW.CERTIFICATIONS%></li>
-                        <li><%=ED_ROW.GRAD_DATE%></li>
-                      </ul>
-                  </ul>
-            </ul>
-            <!-- end education loop -->  
-  <%
-  END LOOP;
-  CLOSE ED_CURSOR;%>
+            </h4>
+      <%PAGE_EDUCATION_CURSOR(RESUMATOR_ID_VAL);%>
           </section>  
           <hr>
 
 <!-- CERTIFICATIONS AND LICENSES -->
 <!-- POPULATE CERTIFICATIONS-->
-<%! CURSOR CERT_CURSOR IS
 
-SELECT CERTIFICATIONS.DATE_REC, CERTIFICATIONS.TITLE, CERTIFICATIONS.DISPLAY_RANK
-FROM CERTIFICATIONS
-WHERE CERTIFICATIONS.RESUMATOR_ID = RESUMATOR_ID_VAL
-ORDER BY DISPLAY_RANK; 
-
-CERT_COUNTER INTEGER := 0;
-CERT_ROW CERT_CURSOR%ROWTYPE;
-%>
 
           <section id="certifications">
             <h4>Certifications and Licenses: <a href="#add-certifications-modal" data-toggle="modal"><i class="icon-plus"> </i></a> <a href="#edit-certifications-modal" data-toggle="modal"><i class="icon-pencil"> </i></a> </h4>
-
-<%OPEN CERT_CURSOR;
-LOOP
-FETCH CERT_CURSOR INTO CERT_ROW;
-EXIT WHEN CERT_CURSOR%NOTFOUND;%>
-            <div class="row"><!-- certifications and licenses row -->
-            
-                <!-- loop through certifications and licenses 5 max -->
-                <%IF(CERT_COUNTER < 4) THEN CERT_COUNTER := CERT_COUNTER + 1;%>
-                <div class="span4">
-                  <ul>
-                     <li><%=CERT_ROW.TITLE%>, <%=CERT_ROW.DATE_REC%></li>
-                  </ul>
-                </div>
-                <%ELSIF(CERT_COUNTER >= 4 AND CERT_COUNTER < 9)THEN CERT_COUNTER := CERT_COUNTER + 1;%>
-                <div class="span4">
-                  <ul>
-                     <li><%=CERT_ROW.TITLE%>, <%=CERT_ROW.DATE_REC%></li>
-                  </ul>
-                </div>
-            </div><!-- end certifications and licenses row -->
-<%
-END IF;
-END LOOP;
-CLOSE CERT_CURSOR;%>
+      <%PAGE_CERTIFICATION_CURSOR(RESUMATOR_ID_VAL);%>
           </section>
           <hr>  
 
 
 <!-- RESEARCH SECTION -->
 <!-- POPULATE RESEARCH-->
-<%!CURSOR PUB_CURSOR IS
 
-SELECT RESEARCH_PUB.TITLE, RESEARCH_PUB.TYPE, RESEARCH_PUB.LOCATION, RESEARCH_PUB.DATE_PRESENTED, RESEARCH_PUB.DISPLAY_RANK
-FROM RESEARCH_PUB
-WHERE RESEARCH_PUB.RESUMATOR_ID = RESUMATOR_ID_VAL
-ORDER BY DISPLAY_RANK; 
-
-PUB_ROW PUB_CURSOR%ROWTYPE;
-%>
           <section id="research">
             <h4>Research, Publications and Presentations: <a href="#add-research-modal" data-toggle="modal"><i class="icon-plus"> </i></a> <a href="#edit-research-modal" data-toggle="modal"><i class="icon-pencil"> </i></a> </h4>
               <!-- loop through all listed projects -->
-<%OPEN PUB_CURSOR;
-LOOP
-FETCH PUB_CURSOR INTO PUB_ROW;
-EXIT WHEN PUB_CURSOR%NOTFOUND;%>
-              <ul>
-                 <li><%=PUB_ROW.TITLE%>, <%=PUB_ROW.TYPE%>, <%=PUB_ROW.LOCATION%></li>
-              </ul>
-<%END LOOP;
-CLOSE PUB_CURSOR;%>
-
+      <%PAGE_PUBLICATION_CURSOR(RESUMATOR_ID_VAL);%>
           </section>
           <hr> 
 
@@ -390,7 +266,7 @@ CLOSE PUB_CURSOR;%>
     <section id="projects">
       <h4>Projects: <a href="#add-project-modal" data-toggle="modal"><i class="icon-plus"> </i></a> <a href="#edit-project-modal" data-toggle="modal"><i class="icon-pencil"> </i></a> </h4>
   <!-- loop through all listed projects -->
-<%PAGE_PROJECT_CURSOR(RESUMATOR_ID_VAL);%>
+      <%PAGE_PROJECT_CURSOR(RESUMATOR_ID_VAL);%>
     </section>
   <hr>  
 
@@ -398,146 +274,51 @@ CLOSE PUB_CURSOR;%>
    <section id="academic">
       <h4>Academic Coursework: <a href="#add-academic-course-modal" data-toggle="modal"><i class="icon-plus"> </i></a> <a href="#edit-academic-course-modal" data-toggle="modal"><i class="icon-pencil"> </i></a> </h4>
          <div class="row"><!-- academic coursework row -->
-<%PAGE_COURSE_WORK_CURSOR(RESUMATOR_ID_VAL);%>
+      <%PAGE_COURSE_WORK_CURSOR(RESUMATOR_ID_VAL);%>
         </div><!-- end academic coursework row -->
 
     </section>
   <hr>  
 <!-- STANDARD SKILLS -->
 
-<%!CURSOR STANDARD_SKILLS_CURSOR IS
 
-SELECT SKILLS.SKILL_NAME, SKILLS.SKILL_TYPE 
-FROM SKILLS, USERSSKILLS
-WHERE SKILLS.SKILL_ID = USERSSKILLS.SKILL_ID
-AND USERSSKILLS.RESUMATOR_ID = RESUMATOR_ID_VAL
-AND SKILLS.SKILL_TYPE = 'STANDARD';
-
-STANDARD_SKILLS_COUNTER INTEGER := 0;
-STANDARD_SKILLS_ROW STANDARD_SKILLS_CURSOR%ROWTYPE;
-%>
           <section id="skills">
             <h4>Skills: <a href="#add-skills-modal" data-toggle="modal"><i class="icon-plus"> </i></a> <a href="#edit-skills-modal" data-toggle="modal"><i class="icon-pencil"> </i></a> </h4>
             
             <div class="row"><!-- standard skills row -->
-<%OPEN STANDARD_SKILLS_CURSOR;
-LOOP
-FETCH STANDARD_SKILLS_CURSOR INTO STANDARD_SKILLS_ROW;
-EXIT WHEN STANDARD_SKILLS_CURSOR%NOTFOUND;%>  
-               <!-- loop through academic coursework 5 max -->
-                <%IF(STANDARD_SKILLS_COUNTER < 4) THEN STANDARD_SKILLS_COUNTER := STANDARD_SKILLS_COUNTER + 1;%>
-                <div class="span4">
-                  <ul>
-                     <li><%=STANDARD_SKILLS_ROW.SKILL_NAME%></li>
-                  </ul>
-                </div>
-                <%ELSIF(STANDARD_SKILLS_COUNTER >= 4 AND STANDARD_SKILLS_COUNTER < 9) THEN STANDARD_SKILLS_COUNTER := STANDARD_SKILLS_COUNTER + 1;%>
-                <div class="span4">
-                  <ul>
-                     <li><%=STANDARD_SKILLS_ROW.SKILL_NAME%></li>
-                  </ul>
-                </div>
-                <!-- end loop -->
-<%
-END IF;
-END LOOP;
-CLOSE STANDARD_SKILLS_CURSOR;%>
-
-              </div><!-- end standard skills row -->
+        <%PAGE_STANDARD_SKILLS_CURSOR(RESUMATOR_ID_VAL);%>
+            </div><!-- end standard skills row -->
           </section>
           <hr>
 
 
 
 <!-- TECHNICAL SKILLS -->
-<%!CURSOR TECHNICAL_SKILLS_CURSOR IS
 
-SELECT SKILLS.SKILL_NAME, SKILLS.SKILL_TYPE 
-FROM SKILLS, USERSSKILLS
-WHERE SKILLS.SKILL_ID = USERSSKILLS.SKILL_ID
-AND USERSSKILLS.RESUMATOR_ID = RESUMATOR_ID_VAL
-AND SKILLS.SKILL_TYPE = 'TECHNICAL';
-
-TECHNICAL_SKILLS_COUNTER INTEGER := 0;
-TECHNICAL_SKILLS_ROW TECHNICAL_SKILLS_CURSOR%ROWTYPE;
-%>
           <section id="technical">
             <h4>Technical Skills: <a href="#add-technical-skills-modal" data-toggle="modal"><i class="icon-plus"> </i></a> <a href="#edit-technical-skills-modal" data-toggle="modal"><i class="icon-pencil"> </i></a> </h4>
 
             <!-- technical row --> 
 
             <div class="row"><!-- techinal skills row -->
-
-            <%OPEN TECHNICAL_SKILLS_CURSOR;
-LOOP
-FETCH TECHNICAL_SKILLS_CURSOR INTO TECHNICAL_SKILLS_ROW;
-EXIT WHEN TECHNICAL_SKILLS_CURSOR%NOTFOUND;%>  
-               <!-- loop through academic coursework 5 max -->
-                <%IF(TECHNICAL_SKILLS_COUNTER < 4) THEN TECHNICAL_SKILLS_COUNTER := TECHNICAL_SKILLS_COUNTER + 1;%>
-                <div class="span4">
-                  <ul>
-                     <li><%=TECHNICAL_SKILLS_ROW.SKILL_NAME%></li>
-                  </ul>
-                </div>
-                <%ELSIF(TECHNICAL_SKILLS_COUNTER >= 4 AND TECHNICAL_SKILLS_COUNTER < 9) THEN TECHNICAL_SKILLS_COUNTER := TECHNICAL_SKILLS_COUNTER + 1;%>
-                <div class="span4">
-                  <ul>
-                     <li><%=TECHNICAL_SKILLS_ROW.SKILL_NAME%></li>
-                  </ul>
-                </div> 
-<%
-END IF;
-END LOOP;
-
-CLOSE TECHNICAL_SKILLS_CURSOR;%>
+        <%PAGE_TECHNICAL_SKILLS_CURSOR(RESUMATOR_ID_VAL);%>
               </div><!-- end TECHNICAL skills row -->
           </section>
           <hr>
 
 
 <!-- DESIGN SKILLS -->
-<%!CURSOR DESIGN_SKILLS_CURSOR IS
 
-SELECT SKILLS.SKILL_NAME, SKILLS.SKILL_TYPE 
-FROM SKILLS, USERSSKILLS
-WHERE SKILLS.SKILL_ID = USERSSKILLS.SKILL_ID
-AND USERSSKILLS.RESUMATOR_ID = RESUMATOR_ID_VAL
-AND SKILLS.SKILL_TYPE = 'DESIGN';
-
-DESIGN_SKILLS_COUNTER INTEGER := 0;
-DESIGN_SKILLS_ROW DESIGN_SKILLS_CURSOR%ROWTYPE;
-%>
           <section id="design">
             <h4>Design Skills: <a href="#add-design-skills-modal" data-toggle="modal"><i class="icon-plus"> </i></a> <a href="#edit-design-skills-modal" data-toggle="modal"><i class="icon-pencil"> </i></a> </h4>
 
             <!-- DESIGN row -->
 
             <div class="row"><!-- academic coursework row --> 
-                       <%OPEN DESIGN_SKILLS_CURSOR;
-LOOP
-FETCH DESIGN_SKILLS_CURSOR INTO DESIGN_SKILLS_ROW;
-EXIT WHEN DESIGN_SKILLS_CURSOR%NOTFOUND;%>  
-               <!-- loop through academic coursework 5 max -->
-                <%IF(DESIGN_SKILLS_COUNTER < 4) THEN DESIGN_SKILLS_COUNTER := DESIGN_SKILLS_COUNTER + 1;%>
-                <div class="span4">
-                  <ul>
-                     <li><%=DESIGN_SKILLS_ROW.SKILL_NAME%></li>
-                  </ul>
-                </div>
-                <%ELSIF(DESIGN_SKILLS_COUNTER >= 4 AND DESIGN_SKILLS_COUNTER < 9) THEN DESIGN_SKILLS_COUNTER := DESIGN_SKILLS_COUNTER + 1;%>
-                <div class="span4">
-                  <ul>
-                     <li><%=DESIGN_SKILLS_ROW.SKILL_NAME%></li>
-                  </ul>
-                </div><!-- end loop -->
-<%
-END IF;
-END LOOP;
-CLOSE DESIGN_SKILLS_CURSOR;%>
+        <%PAGE_DESIGN_SKILLS_CURSOR(RESUMATOR_ID_VAL);%>
              </div><!-- end DESIGN skills row -->
           </section>
           <hr>
-
 
 <!-- WORK HISTORY -->
 <!--POPULATE WORK HISTORY-->
