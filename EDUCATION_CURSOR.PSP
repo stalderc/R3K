@@ -37,7 +37,7 @@
                 <p><%=S_NAME%>, <span class="pull-right"><%=S_CITY%>, <%=S_STATE%></span></p>
                 <!-- Name of Degree Program -->
                 <p><%=ED_ROW.DEGREE%>, <%=ED_ROW.MAJOR%><span class="pull-right"><%=ED_ROW.GRAD_DATE%></span></p>
-                <p><%=ED_ROW.GPA%></p>
+                <p>GPA <%=ED_ROW.GPA%></p>
                 <!-- list GPA if above 3.00 -->  
                 <p><%=ED_ROW.MINOR%> MINOR</p>
                 <p><%=ED_ROW.CERTIFICATIONS%> CERTIFICATIONS</p>
