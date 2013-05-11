@@ -1,4 +1,3 @@
-
 <!DOCTYPE HTML>
 <%@page language="PL/SQL"%>
 <%@plsql procedure="PAGE_REFERENCES_CURSOR"%>
@@ -19,14 +18,16 @@ LOOP
 FETCH REF_CURSOR INTO REF_ROW;
 EXIT WHEN REF_CURSOR%NOTFOUND;%>
               <!-- loop through all listed projects -->
-              <ul>
-                 <li><%=REF_ROW.F_NAME%> <%=REF_ROW.L_NAME%></li>
-                 <li><%=REF_ROW.TITLE%></li>
-                 <li><%=REF_ROW.COMPANY%></li>
-                 <li><%=REF_ROW.ADDRESS%></li>
-                 <li><%=REF_ROW.EMAIL%></li>
-                 <li><%=REF_ROW.PHONE_NUMBER%></li>
-              </ul>
+              <div class="reference-block">
+                
+                 <p><%=REF_ROW.F_NAME%> <%=REF_ROW.L_NAME%><br />
+                                  <%=REF_ROW.TITLE%><br />
+                                  <%=REF_ROW.COMPANY%><br />
+                                  <%=REF_ROW.ADDRESS%><br />
+                                  <%=REF_ROW.EMAIL%><br />
+                                  <%=REF_ROW.PHONE_NUMBER%></p>
+              
+              </div>
 <%END LOOP;
 CLOSE REF_CURSOR;%>
 
