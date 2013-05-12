@@ -168,7 +168,10 @@ AUTHENTICATE_INT NUMBER := 0;%>
 
           <section id="certifications">
             <h4>Certifications and Licenses: </h4>
+            <div class="row">
       <%PAGE_CERTIFICATION_CURSOR(RESUMATOR_ID_VAL);%>
+      </div>
+      </div>
           </section>
           <hr>  
 
