@@ -20,13 +20,13 @@ FETCH REF_CURSOR INTO REF_ROW;
 EXIT WHEN REF_CURSOR%NOTFOUND;%>
               <!-- loop through all listed projects -->
                <p>
-                 <input id="F_NAME_<%=REFERENCES.REFERENCE_ID%>" type="hidden" value="<%=REF_ROW.F_NAME%>"/> <%=REF_ROW.F_NAME%> <input id="L_NAME_<%=REFERENCES.REFERENCE_ID%>" type="hidden" value="<%=REF_ROW.L_NAME%>"/><%=REF_ROW.L_NAME%><br/>
-                 <input id="TITLE_<%=REFERENCES.REFERENCE_ID%>" type="hidden" value="<%=REF_ROW.TITLE%>"/><%=REF_ROW.TITLE%><br/>
-                 <input id="COMAPNY_<%=REFERENCES.REFERENCE_ID%>" type="hidden" value="<%=REF_ROW.COMPANY%>"/><%=REF_ROW.COMPANY%><br/>
-                 <input id="ADDRESS_<%=REFERENCES.REFERENCE_ID%>" type="hidden" value="<%=REF_ROW.ADDRESS%>"/><%=REF_ROW.ADDRESS%><br/>
-                 <input id="EMAIL_<%=REFERENCES.REFERENCE_ID%>" type="hidden" value="<%=REF_ROW.EMAIL%>"/><%=REF_ROW.EMAIL%><br/>
-                 <input id="DISPLAY_RANK_ID_<%=REFERENCES.REFERENCE_ID%>" type="hidden" value="<%=REF_ROW.PHONE_NUMBER%>"/> <%=REF_ROW.PHONE_NUMBER%><br/>
-                 <input id="DISPLAY_RANK_ID_<%=REFERENCES.REFERENCE_ID%>" type="hidden" value="<%=REF_ROW.DISPLAY_RANK%>"/>
+                 <input id="F_NAME_<%=REF_ROW.REFERENCE_ID%>" type="hidden" value="<%=REF_ROW.F_NAME%>"/> <%=REF_ROW.F_NAME%> <input id="L_NAME_<%=REF_ROW.REFERENCE_ID%>" type="hidden" value="<%=REF_ROW.L_NAME%>"/><%=REF_ROW.L_NAME%><br/>
+                 <input id="TITLE_<%=REF_ROW.REFERENCE_ID%>" type="hidden" value="<%=REF_ROW.TITLE%>"/><%=REF_ROW.TITLE%><br/>
+                 <input id="COMAPNY_<%=REF_ROW.REFERENCE_ID%>" type="hidden" value="<%=REF_ROW.COMPANY%>"/><%=REF_ROW.COMPANY%><br/>
+                 <input id="ADDRESS_<%=REF_ROW.REFERENCE_ID%>" type="hidden" value="<%=REF_ROW.ADDRESS%>"/><%=REF_ROW.ADDRESS%><br/>
+                 <input id="EMAIL_<%=REF_ROW.REFERENCE_ID%>" type="hidden" value="<%=REF_ROW.EMAIL%>"/><%=REF_ROW.EMAIL%><br/>
+                 <input id="DISPLAY_RANK_ID_<%=REF_ROW.REFERENCE_ID%>" type="hidden" value="<%=REF_ROW.PHONE_NUMBER%>"/> <%=REF_ROW.PHONE_NUMBER%><br/>
+                 <input id="DISPLAY_RANK_ID_<%=REF_ROW.REFERENCE_ID%>" type="hidden" value="<%=REF_ROW.DISPLAY_RANK%>"/>
               </p>
 <%
 SCRIPT_COUNTER := SCRIPT_COUNTER + 1;
