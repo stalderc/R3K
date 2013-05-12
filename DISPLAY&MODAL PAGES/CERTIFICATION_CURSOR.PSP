@@ -5,7 +5,7 @@
 
 <%! CURSOR CERT_CURSOR IS
 
-SELECT CERTIFICATIONS.DATE_REC, CERTIFICATIONS.TITLE, CERTIFICATIONS.DISPLAY_RANK
+SELECT CERTIFICATIONS.CERT_ID, CERTIFICATIONS.DATE_REC, CERTIFICATIONS.TITLE, CERTIFICATIONS.DISPLAY_RANK
 FROM CERTIFICATIONS
 WHERE CERTIFICATIONS.RESUMATOR_ID = RESUMATOR_ID_VAL
 ORDER BY DISPLAY_RANK; 
@@ -24,13 +24,17 @@ EXIT WHEN CERT_CURSOR%NOTFOUND;%>
                 <%IF CERT_COUNTER < 4 THEN CERT_COUNTER := CERT_COUNTER + 1;%>
                 <div class="span4">
                   <ul>
-                     <li><%=CERT_ROW.TITLE%>, <%=CERT_ROW.DATE_REC%></li>
+                     <li id="CERTIFICATION_TITLE_<%=CERT_ROW.CERT_ID%>" type="hidden" value="<%=CERT_ROW.CERT_ID%>"/><%=CERT_ROW.TITLE%>, 
+                     <span id="CERTIFICATION_DATE_<%=CERT_ROW.CERT_ID%>" type="hidden" value="<%=CERT_ROW.CERT_ID%>"/><%=CERT_ROW.DATE_REC%></span></li>
+                     <input id="DISPLAY_RANK_ID_<%=CERT_ROW.CERT_ID%>"type="hidden" value="<%=CERT_ROW.DISPLAY_RANK%>"/><!-- doesn't show -->
                   </ul>
                 </div>
                 <%ELSIF CERT_COUNTER >= 4 AND CERT_COUNTER < 9 THEN CERT_COUNTER := CERT_COUNTER + 1;%>
                 <div class="span4">
                   <ul>
-                     <li><%=CERT_ROW.TITLE%>, <%=CERT_ROW.DATE_REC%></li>
+                     <li id="CERTIFICATION_TITLE_<%=CERT_ROW.CERT_ID%>" type="hidden" value="<%=CERT_ROW.CERT_ID%>"/><%=CERT_ROW.TITLE%>, 
+                     <span id="CERTIFICATION_DATE_<%=CERT_ROW.CERT_ID%>" type="hidden" value="<%=CERT_ROW.CERT_ID%>"/><%=CERT_ROW.DATE_REC%></span></li>
+                     <input id="DISPLAY_RANK_ID_<%=CERT_ROW.CERT_ID%>"type="hidden" value="<%=CERT_ROW.DISPLAY_RANK%>"/><!-- doesn't show -->
                   </ul>
                 </div>
             </div><!-- end certifications and licenses row -->
@@ -64,7 +68,17 @@ CLOSE CERT_CURSOR;%>
     </form>
   </div>
 
-<!-- EDIT CERTIFICATION MODAL -->
+<!-- EDIT ACADEMIC COURSE MODAL -->
+<!-- create a new cursor -->
+<%!CURSOR CERT_ID_CURSOR IS
+
+SELECT CERTIFICATIONS.CERT_ID, CERTIFICATIONS.DISPLAY_RANK
+FROM CERTIFICATIONS
+WHERE CERTIFICATIONS.RESUMATOR_ID = RESUMATOR_ID_VAL
+ORDER BY DISPLAY_RANK;
+
+CERT_ID_ROW CERT_ID_CURSOR%ROWTYPE;
+%>
 
   <div id="edit-certifications-modal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
     <div class="modal-header">
@@ -74,14 +88,42 @@ CLOSE CERT_CURSOR;%>
     <div class="modal-body">
       <form action="http://oracle.is.umbc.edu:8080/classpsp/IS420_TEAM_TRG.FORM_CERTIFICATIONS" method="get">
           <div class="form-inline margin-form-inline">
-            <input class="span3" type="text" placeholder="Certification Title">
-            <input class="span2" type="text" placeholder="Date Recorded">
-           </div>
-         
-      </form>
-    </div>
+
+            <!-- insert select statement -->
+            <select onchange="populate_certification_fields()"class="span2" ID="CERT_ID_IN" name="CERT_ID_IN">
+              <%OPEN CERT_ID_CURSOR;
+                LOOP
+                FETCH CERT_ID_CURSOR INTO CERT_ID_ROW;
+                EXIT WHEN CERT_ID_CURSOR%NOTFOUND;%>
+                  <option value="<%=CERT_ID_ROW.CERT_ID%>"><%=CERT_ID_ROW.DISPLAY_RANK%></option>
+                <%END LOOP;
+                CLOSE CERT_ID_CURSOR;%>
+            </select>
+
+            <div class="form-inline margin-form-inline">
+              <input class="span3" type="hidden" id="RESUMATOR_ID_IN" NAME="RESUMATOR_ID_IN" VALUE="<%=RESUMATOR_ID_VAL%>">
+              <input class="span3" type="text" id="CERTIFICATION_TITLE" name="CERTIFICATION_TITLE_IN" placeholder="Certification Title">
+              <input class="span2" type="text" id="DATE_RECORDED" name="DATE_RECORDED_IN" placeholder="Date Recorded">
+            </div>
+          <div class="form-inline margin-form-inline">
+           <input class="span2" type="text" id="DISPLAY_RANK_IN" NAME="DISPLAY_RANK_IN"placeholder="Display Rank">
+          </div>
+      
+          </div>
     <div class="modal-footer">
       <button class="btn" data-dismiss="modal" aria-hidden="true">Cancel</button>
-      <button class="btn btn-primary">Save changes</button>
+      <button class="btn btn-primary" type="submit">Save changes</button>
     </div>
+    </form>    
   </div>
+  <!-- removed what appeared to be an extra div -->
+
+
+
+
+
+
+
+
+
+

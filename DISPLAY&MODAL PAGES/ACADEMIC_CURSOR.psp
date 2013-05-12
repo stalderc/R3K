@@ -104,7 +104,7 @@ COURSE_ID_ROW COURSE_ID_CURSOR%ROWTYPE;
                   <option value="<%=COURSE_ID_ROW.COURSE_ID%>"><%=COURSE_ID_ROW.DISPLAY_RANK%></option>
                 <%END LOOP;
                 CLOSE COURSE_ID_CURSOR;%>
-          </select>
+            </select>
 
             <div class="form-inline margin-form-inline">
             <input class="span3" type="hidden"id="RESUMATOR_ID_IN"  NAME="RESUMATOR_ID_IN" VALUE="<%=RESUMATOR_ID_VAL%>">

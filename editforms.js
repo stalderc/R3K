@@ -51,3 +51,39 @@ document.getElementById('DISPLAY_IN').setAttribute("value", 		DISPLAY_RANK_ID);
 
 }
 
+
+function populate_certification_fields(){
+var refID 				= 	document.getElementById('CERT_ID_IN'			      ).value;
+var CERTIFICATION_TITLE = 	document.getElementById('CERTIFICATION_TITLE_' + refID).value;
+var CERTIFICATION_DATE	= 	document.getElementById('CERTIFICATION_DATE_'  + refID).value;
+var DISPLAY_RANK_ID 	=	document.getElementById('DISPLAY_RANK_ID_'     + refID).value;
+
+document.getElementById('CERTIFICATION_TITLE_IN').setAttribute("value",CERTIFICATION_TITLE);
+document.getElementById('CERTIFICATION_DATE_IN').setAttribute("value", CERTIFICATION_DATE);
+document.getElementById('DISPLAY_IN').setAttribute("value", 		DISPLAY_RANK_ID);
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
