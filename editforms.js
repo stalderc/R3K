@@ -12,11 +12,11 @@ var DISPLAY_RANK_ID =  document.getElementById('DISPLAY_RANK_ID_' + refID).value
 
 document.getElementById('F_NAME_IN').setAttribute("value", F_NAME);
 document.getElementById('L_NAME_IN').setAttribute("value", L_NAME);
-document.getElementById('PHONE_NUMBER_IN').setAttribute("value", TITLE);
-document.getElementById('ADDRESS_IN').setAttribute("value", COMPANY);
-document.getElementById('EMAIL_IN').setAttribute("value", ADDRESS);
-document.getElementById('COMPANY_IN').setAttribute("value", EMAIL);
-document.getElementById('TITLE_IN').setAttribute("value", PHONE_NUMBER);
+document.getElementById('PHONE_NUMBER_IN').setAttribute("value", PHONE_NUMBER);
+document.getElementById('ADDRESS_IN').setAttribute("value", ADDRESS);
+document.getElementById('EMAIL_IN').setAttribute("value", EMAIL_IN);
+document.getElementById('COMPANY_IN').setAttribute("value", COMPANY_IN);
+document.getElementById('TITLE_IN').setAttribute("value", TITLE_IN);
 document.getElementById('DISPLAY_IN').setAttribute("value", DISPLAY_RANK_ID);
 }
 

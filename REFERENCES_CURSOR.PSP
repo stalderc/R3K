@@ -22,10 +22,10 @@ EXIT WHEN REF_CURSOR%NOTFOUND;%>
                <p>
                  <input id="F_NAME_<%=REF_ROW.REFERENCE_ID%>" type="hidden" value="<%=REF_ROW.F_NAME%>"/> <%=REF_ROW.F_NAME%> <input id="L_NAME_<%=REF_ROW.REFERENCE_ID%>" type="hidden" value="<%=REF_ROW.L_NAME%>"/><%=REF_ROW.L_NAME%><br/>
                  <input id="TITLE_<%=REF_ROW.REFERENCE_ID%>" type="hidden" value="<%=REF_ROW.TITLE%>"/><%=REF_ROW.TITLE%><br/>
-                 <input id="COMAPNY_<%=REF_ROW.REFERENCE_ID%>" type="hidden" value="<%=REF_ROW.COMPANY%>"/><%=REF_ROW.COMPANY%><br/>
+                 <input id="COMPANY_<%=REF_ROW.REFERENCE_ID%>" type="hidden" value="<%=REF_ROW.COMPANY%>"/><%=REF_ROW.COMPANY%><br/>
                  <input id="ADDRESS_<%=REF_ROW.REFERENCE_ID%>" type="hidden" value="<%=REF_ROW.ADDRESS%>"/><%=REF_ROW.ADDRESS%><br/>
                  <input id="EMAIL_<%=REF_ROW.REFERENCE_ID%>" type="hidden" value="<%=REF_ROW.EMAIL%>"/><%=REF_ROW.EMAIL%><br/>
-                 <input id="DISPLAY_RANK_ID_<%=REF_ROW.REFERENCE_ID%>" type="hidden" value="<%=REF_ROW.PHONE_NUMBER%>"/> <%=REF_ROW.PHONE_NUMBER%><br/>
+                 <input id="PHONE_NUMBER_<%=REF_ROW.REFERENCE_ID%>" type="hidden" value="<%=REF_ROW.PHONE_NUMBER%>"/> <%=REF_ROW.PHONE_NUMBER%><br/>
                  <input id="DISPLAY_RANK_ID_<%=REF_ROW.REFERENCE_ID%>" type="hidden" value="<%=REF_ROW.DISPLAY_RANK%>"/>
               </p>
 <%
