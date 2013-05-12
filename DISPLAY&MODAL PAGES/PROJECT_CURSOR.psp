@@ -37,14 +37,22 @@ CLOSE PROJECT_CURSOR;%>
     <div class="modal-body">
       <form action="http://oracle.is.umbc.edu:8080/classpsp/IS420_TEAM_TRG.FORM_ADD_PROJECT" method="get">
           <div class="form-inline margin-form-inline">
-            <input class="span3" type="hidden" NAME="RESUMATOR_ID_IN" VALUE="<%=RESUMATOR_ID_VAL%>">
-            <input class="span3" type="text" name="PROJECT_NAME" placeholder="Project Name">        
+            <input class="span3" type="hidden" name="RESUMATOR_ID_IN" VALUE="<%=RESUMATOR_ID_VAL%>">
+            <input class="span3" type="text" name="PROJECT_NAME_IN" placeholder="Project Name">        
           </div>
 
-          <textarea class="max-width" rows="3" name="PROJECT_DESCRIPTION" placeholder="Project Description goes here."></textarea>
+          <textarea class="max-width" rows="3" name="PROJECT_DESCRIPTION_IN" placeholder="Project Description goes here."></textarea>
 
           <div class="form-inline margin-form-inline">
-           <input class="span2" type="text" NAME="DISPLAY_RANK_IN"placeholder="Display Rank">
+           <!-- <input class="span2" type="text" name="DISPLAY_RANK_IN"placeholder="Display Rank"> -->
+            <select class="span2" type="text" name="DISPLAY_RANK_IN">
+              <option>Display Rank</option>
+              <option value="1">1 - High</option>
+              <option value="2">2</option>
+              <option value="3">3</option>
+              <option value="4">4</option>
+              <option value="5">5 - Low</option>
+            </select>           
           </div>
       </div>
     <div class="modal-footer">
@@ -65,15 +73,19 @@ CLOSE PROJECT_CURSOR;%>
     <div class="modal-body">
       <form action="http://oracle.is.umbc.edu:8080/classpsp/IS420_TEAM_TRG.FORM_PROJECT" method="get">
           <div class="form-inline margin-form-inline">
-            <input class="span3" type="text" placeholder="Project Name">
+            <input class="span3" type="hidden" id="RESUMATOR_ID_IN" name="RESUMATOR_ID_IN" VALUE="<%=RESUMATOR_ID_VAL%>">
+            <input class="span3" type="text" id="PROJECT_NAME_IN" name="PROJECT_NAME_IN" placeholder="Project Name">        
           </div>
 
-          <textarea class="max-width" rows="3" placeholder="Project description goes here."></textarea>
+          <textarea class="max-width" rows="3" id="PROJECT_DESCRIPTION_IN" name="PROJECT_DESCRIPTION_IN" placeholder="Project Description goes here."></textarea>
 
-      </form>
-    </div>
+          <div class="form-inline margin-form-inline">
+           <input class="span2" type="text" id="DISPLAY_RANK_IN" name="DISPLAY_RANK_IN"placeholder="Display Rank">          
+          </div>
+      </div>
     <div class="modal-footer">
       <button class="btn" data-dismiss="modal" aria-hidden="true">Cancel</button>
-      <button class="btn btn-primary">Save changes</button>
+      <button class="btn btn-primary" type="submit">Save changes</button>
     </div>
+    </form>
   </div>

@@ -66,24 +66,32 @@ CLOSE WORK_EX_CURSOR;%>
       <form action="http://oracle.is.umbc.edu:8080/classpsp/IS420_TEAM_TRG.FORM_ADD_WORK_EXPERIENCE" method="get">
 
           <div class="form-inline margin-form-inline">
-            <input class="span3" type="hidden" NAME="RESUMATOR_ID_IN" VALUE="<%=RESUMATOR_ID_VAL%>">
-            <input class="span2" type="text" name="WORK_EMPLOYER" placeholder="Employer">
-            <input class="span2" type="text" name="WORK_POSITION" placeholder="Position Title">
+            <input class="span3" type="hidden" name="RESUMATOR_ID_IN" value="<%=RESUMATOR_ID_VAL%>">
+            <input class="span2" type="text" name="WORK_EMPLOYER_IN" placeholder="Employer">
+            <input class="span2" type="text" name="WORK_POSITION_IN" placeholder="Position Title">
           </div>
           <div class="form-inline margin-form-inline">
-            <input class="span3" type="text" name="WORK_START_DATE" placeholder="Start Date">
-            <input class="span2" type="text" name="WORK_END_DATE" placeholder="End Date">
+            <input class="span3" type="text" id="datepicker1" name="WORK_START_DATE_IN" placeholder="Start Date">
+            <input class="span2" type="text" id="datepicker2" name="WORK_END_DATE_IN" placeholder="End Date">
           </div>
           <div class="form-inline margin-form-inline">
-            <input class="span3" type="text" name="WORK_CITY" placeholder="City">
-            <input class="span2" type="text" name="WORK_STATE" placeholder="State">
+            <input class="span3" type="text" name="WORK_CITY_IN" placeholder="City">
+            <input class="span2" type="text" name="WORK_STATE_IN" placeholder="State">
           </div>
 
 
-          <textarea class="max-width" rows="3" name="WORK_DESCRIPTION" placeholder="Work Description goes here."></textarea>
+          <textarea class="max-width" rows="3" name="WORK_DESCRIPTION_IN" placeholder="Work Description goes here."></textarea>
 
           <div class="form-inline margin-form-inline">
-           <input class="span2" type="text" NAME="DISPLAY_RANK_IN"placeholder="Display Rank">
+           <!-- <input class="span2" type="text" name="DISPLAY_RANK_IN"placeholder="Display Rank"> -->
+            <select class="span2" type="text" name="DISPLAY_RANK_IN">
+              <option>Display Rank</option>
+              <option value="1">1 - High</option>
+              <option value="2">2</option>
+              <option value="3">3</option>
+              <option value="4">4</option>
+              <option value="5">5 - Low</option>
+            </select>           
           </div>
 
 
@@ -106,28 +114,40 @@ CLOSE WORK_EX_CURSOR;%>
     </div>
     <div class="modal-body">
       <form action="http://oracle.is.umbc.edu:8080/classpsp/IS420_TEAM_TRG.FORM_WORK_EXPERIENCE" method="get">
-        <fieldset>
-
-          <p>Fill out only what needs to be changed.</p>
-
-          <div class="form-inline margin-form-inline">
-            <input class="span3" type="text" placeholder="Start Date">
-            <input class="span2" type="text" placeholder="End date">
+        <div class="form-inline margin-form-inline">
+            <input class="span3" type="hidden" id="RESUMATOR_ID_IN" name="RESUMATOR_ID_IN" value="<%=RESUMATOR_ID_VAL%>">
+            <input class="span2" type="text" id="WORK_EMPLOYER_IN" name="WORK_EMPLOYER_IN" placeholder="Employer">
+            <input class="span2" type="text" id="WORK_POSITION_IN" name="WORK_POSITION_IN" placeholder="Position Title">
           </div>
           <div class="form-inline margin-form-inline">
-            <input class="span3" type="text" placeholder="City">
-            <input class="span2" type="text" placeholder="State">
+            <input class="span3" type="text" id="WORK_START_DATE_IN" name="WORK_START_DATE_IN" placeholder="Start Date">
+            <input class="span2" type="text" id="WORK_END_DATE_IN" name="WORK_END_DATE_IN" placeholder="End Date">
           </div>
           <div class="form-inline margin-form-inline">
-            <input class="span2" type="text" placeholder="Employer">
-            <input class="span2" type="text" placeholder="Position Title">
+            <input class="span3" type="text" id="WORK_CITY_IN" name="WORK_CITY_IN" placeholder="City">
+            <input class="span2" type="text" id="WORK_STATE_IN" name="WORK_STATE_IN" placeholder="State">
           </div>
 
-        </fieldset>
-      </form>
+
+          <textarea class="max-width" rows="3" id="WORK_DESCRIPTION_IN" name="WORK_DESCRIPTION_IN" placeholder="Work Description goes here."></textarea>
+
+          <div class="form-inline margin-form-inline">
+           <!-- <input class="span2" type="text" id="DISPLAY_RANK_IN" name="DISPLAY_RANK_IN"placeholder="Display Rank"> -->
+            <select class="span2" type="text" id="DISPLAY_RANK_IN"> name="DISPLAY_RANK_IN">
+              <option>Display Rank</option>
+              <option value="1">1 - High</option>
+              <option value="2">2</option>
+              <option value="3">3</option>
+              <option value="4">4</option>
+              <option value="5">5 - Low</option>
+            </select>           
+          </div>
+
+
     </div><!-- close modal-body -->
     <div class="modal-footer">
       <button class="btn" data-dismiss="modal" aria-hidden="true">Cancel</button>
       <button class="btn btn-primary" type="submit">Save changes</button>
     </div>
+    </form>   
   </div>
