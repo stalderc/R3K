@@ -86,12 +86,12 @@ REF_ID_ROW REF_ID_CURSOR%ROWTYPE;
     <div class="modal-body">
       <form id="editReferences" action="http://oracle.is.umbc.edu:8080/classpsp/IS420_TEAM_TRG.FORM_REFERENCES" method="get">
           <div class="form-inline margin-form-inline">
-            <select onmousemove="populateFields(<%=REF_ID_ROW.REFERENCE_ID%>)" class="span2" ID="REFERENCE_ID_IN" name="REFERENCES_ID_IN">
+            <select class="span2" ID="REFERENCE_ID_IN" name="REFERENCES_ID_IN">
               <%OPEN REF_ID_CURSOR;
                 LOOP
                 FETCH REF_ID_CURSOR INTO REF_ID_ROW;
                 EXIT WHEN REF_ID_CURSOR%NOTFOUND;%>
-              <option value="<%=REF_ID_ROW.REFERENCE_ID%>"><%=REF_ID_ROW.DISPLAY_RANK%></option>
+              <option onchange="populateFields(<%=REF_ID_ROW.REFERENCE_ID%>)" value="<%=REF_ID_ROW.REFERENCE_ID%>"><%=REF_ID_ROW.DISPLAY_RANK%></option>
               <%END LOOP;
               CLOSE REF_ID_CURSOR;%>
           </select>
