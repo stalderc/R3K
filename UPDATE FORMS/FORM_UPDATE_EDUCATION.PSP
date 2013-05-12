@@ -4,7 +4,8 @@ EMAIL_IN := get_cookie('EMAIL');%>
 PASSWORD_IN VARCHAR2(50);%>
 <!DOCTYPE HTML>
 <%@page language="PL/SQL"%>
-<%@plsql procedure="FORM_ADD_EDUCATION"%>
+<%@plsql procedure="FORM_UPDATE_EDUCATION"%>
+<%@plsql parameter="EDUCATION_ID_IN" DEFAULT="NULL"%>
 <%@plsql parameter="RESUMATOR_ID_IN" DEFAULT="NULL"%>
 <%@plsql parameter="DEGREE_NAME_IN" DEFAULT="NULL"%>
 <%@plsql parameter="DEGREE_MAJOR_IN" DEFAULT="NULL"%>
@@ -14,25 +15,19 @@ PASSWORD_IN VARCHAR2(50);%>
 <%@plsql parameter="GRADUATION_DATE_IN" DEFAULT="NULL"%>
 <%@plsql parameter="DISPLAY_RANK_IN" DEFAULT="NULL"%>
 
-<%!EDUCATION_SCHOOL_ID VARCHAR(50);%>
 <%
-
-INSERT
-  INTO EDUCATION VALUES
-    (
-      EDUCATION_SEQ.NEXTVAL,
-      RESUMATOR_ID_IN,
-      SCHOOL_SEQ.CURRVAL,
-      DEGREE_NAME_IN,
-      DEGREE_MAJOR_IN,
-      DEGREE_MINOR_IN,
-      CERTIFICATION_IN,
-      GRADE_POINTS_IN,
-      GRADUATION_DATE_IN,
-      DISPLAY_RANK_IN
-    );
-
-%>
+UPDATE EDUCATION 
+    SET
+     DEGREE             = DEGREE_NAME_IN,
+     MAJOR              = DEGREE_MAJOR_IN,
+     MINOR               = DEGREE_MINOR_IN,
+     CERTIFICATIONS     = CERTIFICATION_IN,
+     GPA                = GRADE_POINTS_IN,
+     GRAD_DATE          = GRADUATION_DATE_IN,
+     DISPLAY_RANK       = DISPLAY_RANK_IN
+     WHERE RESUMATOR_ID = RESUMATOR_ID_IN
+     AND ED_ID          = EDUCATION_ID_IN;
+%> 
 <HEAD>
 <script>
 
@@ -57,8 +52,8 @@ function postwith (to,p) {
 
 </BODY>
 </HTML>
-<%
 
+<%
 EXCEPTION
 WHEN OTHERS THEN
 %>

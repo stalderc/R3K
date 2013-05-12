@@ -6,10 +6,10 @@ PASSWORD_IN VARCHAR2(50);%>
 <%@page language="PL/SQL"%>
 <%@plsql procedure="FORM_ADD_RESEARCH_PUB"%>
 <%@plsql parameter="RESUMATOR_ID_IN" DEFAULT="NULL"%>
-<%@plsql parameter="RESEARCH_TITLE" DEFAULT="NULL"%>
-<%@plsql parameter="RESEARCH_TYPE" DEFAULT="NULL"%>
-<%@plsql parameter="RESEARCH_LOCATION" DEFAULT="NULL"%>
-<%@plsql parameter="RESEARCH_DATE_PRESENTED" DEFAULT="NULL"%>
+<%@plsql parameter="RESEARCH_TITLE_IN" DEFAULT="NULL"%>
+<%@plsql parameter="RESEARCH_TYPE_IN" DEFAULT="NULL"%>
+<%@plsql parameter="RESEARCH_LOCATION_IN" DEFAULT="NULL"%>
+<%@plsql parameter="RESEARCH_DATE_PRESENTED_IN" DEFAULT="NULL"%>
 <%@plsql parameter="DISPLAY_RANK_IN" DEFAULT="NULL"%>
 
 
@@ -21,10 +21,10 @@ INSERT
     (
       RES_PUB_ID_SEQ.NEXTVAL,
       RESUMATOR_ID_IN,
-      RESEARCH_TITLE,
-      RESEARCH_TYPE,
-      RESEARCH_LOCATION,
-      RESEARCH_DATE_PRESENTED,
+      RESEARCH_TITLE_IN,
+      RESEARCH_TYPE_IN,
+      RESEARCH_LOCATION_IN,
+      RESEARCH_DATE_PRESENTED_IN,
       DISPLAY_RANK_IN
     );
 %>

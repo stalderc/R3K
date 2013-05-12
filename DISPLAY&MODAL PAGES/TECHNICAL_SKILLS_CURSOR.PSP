@@ -21,13 +21,13 @@ LOOP
 FETCH TECHNICAL_SKILLS_CURSOR INTO TECHNICAL_SKILLS_ROW;
 EXIT WHEN TECHNICAL_SKILLS_CURSOR%NOTFOUND;%>  
                <!-- loop through academic coursework 5 max -->
-                <%IF(TECHNICAL_SKILLS_COUNTER < 4) THEN TECHNICAL_SKILLS_COUNTER := TECHNICAL_SKILLS_COUNTER + 1;%>
+                <%IF TECHNICAL_SKILLS_COUNTER < 4 THEN TECHNICAL_SKILLS_COUNTER := TECHNICAL_SKILLS_COUNTER + 1;%>
                 <div class="span4">
                   <ul>
                      <li><%=TECHNICAL_SKILLS_ROW.SKILL_NAME%></li>
                   </ul>
                 </div>
-                <%ELSIF(TECHNICAL_SKILLS_COUNTER >= 4 AND TECHNICAL_SKILLS_COUNTER < 9) THEN TECHNICAL_SKILLS_COUNTER := TECHNICAL_SKILLS_COUNTER + 1;%>
+                <%ELSIF TECHNICAL_SKILLS_COUNTER >= 4 AND TECHNICAL_SKILLS_COUNTER < 9  THEN TECHNICAL_SKILLS_COUNTER := TECHNICAL_SKILLS_COUNTER + 1;%>
                 <div class="span4">
                   <ul>
                      <li><%=TECHNICAL_SKILLS_ROW.SKILL_NAME%></li>

@@ -5,6 +5,7 @@ PASSWORD_IN VARCHAR2(50);%>
 <!DOCTYPE HTML>
 <%@page language="PL/SQL"%>
 <%@plsql procedure="FORM_UPDATE_REFERENCES"%>
+<%@plsql parameter="REFERENCE_ID_IN" DEFAULT="NULL"%>
 <%@plsql parameter="RESUMATOR_ID_IN" DEFAULT="NULL"%>
 <%@plsql parameter="F_NAME_IN" DEFAULT="NULL"%>
 <%@plsql parameter="L_NAME_IN" DEFAULT="NULL"%>
@@ -15,10 +16,7 @@ PASSWORD_IN VARCHAR2(50);%>
 <%@plsql parameter="TITLE_IN" DEFAULT="NULL"%>
 <%@plsql parameter="DISPLAY_RANK_IN" DEFAULT="NULL"%>
 
-
 <%
-
-
 UPDATE REFERENCES 
     SET
      F_NAME       =  F_NAME_IN,
@@ -29,15 +27,35 @@ UPDATE REFERENCES
      COMPANY      =  COMPANY_IN,
      TITLE        =  TITLE_IN,
      DISPLAY_RANK =  DISPLAY_RANK_IN
-     WHERE RESUMATOR_ID = RESUMATOR_ID
-     AND REFERENCE_ID   = REFERENCE_ID;
-    
-    
-EDIT_PAGE(EMAIL_IN, PASSWORD_IN);
+     WHERE RESUMATOR_ID = RESUMATOR_ID_IN
+     AND REFERENCE_ID   = REFERENCE_ID_IN;
+%> 
+<HEAD>
+<script>
+
+function postwith (to,p) {
+  var myForm = document.createElement("form");
+  myForm.method="post" ;
+  myForm.action = to ;
+  for (var k in p) {
+    var myInput = document.createElement("input") ;
+    myInput.setAttribute("name", k) ;
+    myInput.setAttribute("value", p[k]);
+    myForm.appendChild(myInput) ;
+  }
+  document.body.appendChild(myForm) ;
+  myForm.submit() ;
+  document.body.removeChild(myForm) ;
+}
+</script>
+</HEAD>
+<BODY onload="javascript:postwith('http://oracle.is.umbc.edu:8080/classpsp/IS420_TEAM_TRG.EDIT_PAGE',{email_in:'<%=email_in%>',password_in:'<%=password_in%>'})"></a>
 
 
+</BODY>
+</HTML>
 
-
+<%
 EXCEPTION
 WHEN OTHERS THEN
 %>
