@@ -20,6 +20,7 @@ INSERT
       PROJECTS_SEQ.NEXTVAL,
       RESUMATOR_ID_IN,
       PROJECT_NAME,
+      NULL,
       DISPLAY_RANK_IN
     );
 
