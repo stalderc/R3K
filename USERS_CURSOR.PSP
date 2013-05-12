@@ -18,14 +18,14 @@ FETCH USERS_CURSOR INTO USERS_ROW;
 IF USERS_CURSOR%NOTFOUND THEN%>
 
           <!-- First Name Last Name - Career Title -->
-          <h4>Add Your Personal Information<a href="#contact-modal" data-toggle="modal"><i class="icon-pencil"></i></a> </h4>
+          Add Your Personal Information </h4>
           <!-- House Number Street Name Street Type -->
           <p class="address"><br />
           <!-- City, State, Zipcode -->  
             <br />
 <%ELSE%>   
           <!-- First Name Last Name - Career Title -->
-          <h4><%=USERS_ROW.F_NAME%> <%=USERS_ROW.L_NAME%><a href="#contact-modal" data-toggle="modal"><i class="icon-pencil"></i></a> </h4>
+          <%=USERS_ROW.F_NAME%> <%=USERS_ROW.L_NAME%><a href="#contact-modal" </h4>
           <!-- House Number Street Name Street Type -->
           <p class="address"><%=USERS_ROW.STREET%><br />
           <!-- City, State, Zipcode -->  
