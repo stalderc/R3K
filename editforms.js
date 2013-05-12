@@ -51,7 +51,9 @@ document.getElementById('DISPLAY_IN').setAttribute("value", 		DISPLAY_RANK_ID);
 
 }
 
-
+/* joseph left off here this might not be fully implemented 
+ * verify code prior to alpha release
+ */
 function populate_certification_fields(){
 var refID 				= 	document.getElementById('CERT_ID_IN'			      ).value;
 var CERTIFICATION_TITLE = 	document.getElementById('CERTIFICATION_TITLE_' + refID).value;
