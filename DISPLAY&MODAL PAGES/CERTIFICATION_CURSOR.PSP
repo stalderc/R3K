@@ -37,9 +37,10 @@ EXIT WHEN CERT_CURSOR%NOTFOUND;%>
                      <input id="DISPLAY_RANK_ID_<%=CERT_ROW.CERT_ID%>"type="hidden" value="<%=CERT_ROW.DISPLAY_RANK%>"/><!-- doesn't show -->
                   </ul>
                 </div>
-              <%END IF;%>
+              
             
 <%
+END IF;
 END LOOP;
 CLOSE CERT_CURSOR;%>
 
