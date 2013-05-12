@@ -25,7 +25,7 @@ IF USERS_CURSOR%NOTFOUND THEN%>
             <br />
 <%ELSE%>   
           <!-- First Name Last Name - Career Title -->
-          <%=USERS_ROW.F_NAME%> <%=USERS_ROW.L_NAME%><a href="#contact-modal" </h4>
+          <%=USERS_ROW.F_NAME%> <%=USERS_ROW.L_NAME%> </h4>
           <!-- House Number Street Name Street Type -->
           <p class="address"><%=USERS_ROW.STREET%><br />
           <!-- City, State, Zipcode -->  
