@@ -1,14 +1,14 @@
 function populateFields(){
 
-var refID = '2';
-var F_NAME = 			document.getElementById('F_NAME_' + refID);
-var L_NAME =  			document.getElementById('L_NAME_' + refID);
-var TITLE =  			document.getElementById('TITLE_' + refID);
-var COMPANY =  			document.getElementById('COMPANY_' + refID);
-var ADDRESS =  			document.getElementById('ADDRESS_' + refID);
-var EMAIL =  			document.getElementById('EMAIL_' + refID);
-var PHONE_NUMBER =  	document.getElementById('PHONE_NUMBER_' + refID);
-var DISPLAY_RANK_ID =  document.getElementById('DISPLAY_RANK_ID_' + refID);
+var refID = document.getElementById('REFERENCE_ID_IN').value;
+var F_NAME = document.getElementById('F_NAME_' + refID).value;
+var L_NAME =  document.getElementById('L_NAME_' + refID).value;
+var TITLE =  document.getElementById('TITLE_' + refID).value;
+var COMPANY =  document.getElementById('COMPANY_' + refID).value;
+var ADDRESS =  	document.getElementById('ADDRESS_' + refID).value;
+var EMAIL =  document.getElementById('EMAIL_' + refID).value;
+var PHONE_NUMBER =  document.getElementById('PHONE_NUMBER_' + refID).value;
+var DISPLAY_RANK_ID =  document.getElementById('DISPLAY_RANK_ID_' + refID).value;
 
 document.getElementById('F_NAME_IN').setAttribute("value", F_NAME);
 document.getElementById('L_NAME_IN').setAttribute("value", L_NAME);
