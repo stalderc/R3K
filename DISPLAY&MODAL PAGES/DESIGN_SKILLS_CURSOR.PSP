@@ -48,8 +48,8 @@ CLOSE DESIGN_SKILLS_CURSOR;%>
       <form action="http://oracle.is.umbc.edu:8080/classpsp/IS420_TEAM_TRG.FORM_ADD_SKILLS" method="get">
           <div class="form-inline margin-form-inline">
             <input class="span3" type="hidden" name="RESUMATOR_ID_IN" value="<%=RESUMATOR_ID_VAL%>">
-            <input class="span3" type="text" name="SKILL_TYPE" placeholder="Skill Type">
-            <input class="span2" type="text" name="SKILL_NAME" placeholder="Skill Name">
+            <input class="span3" type="text" name="SKILL_TYPE_IN" placeholder="Skill Type">
+            <input class="span2" type="text" name="SKILL_NAME_IN" placeholder="Skill Name">
           </div>
           <div class="form-inline margin-form-inline">
            <!-- <input class="span2" type="text" name="DISPLAY_RANK_IN"placeholder="Display Rank"> -->
