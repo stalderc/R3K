@@ -46,7 +46,7 @@ CLOSE COURSE_CURSOR;%>
 
 <!-- ADD ACADEMIC COURSE MODAL -->
 
-  <div id="#add-academic-course-modal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div id="add-academic-course-modal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
     <div class="modal-header">
       <button type="button" class="close" data-dismiss="modal" aria-hidden="true">x</button>
       <h3 id="myModalLabel">Add Academic Information</h3>
@@ -86,7 +86,7 @@ ORDER BY DISPLAY_RANK;
 COURSE_ID_ROW COURSE_ID_CURSOR%ROWTYPE;
 %>
 
-  <div id="#edit-academic-course-modal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div id="edit-academic-course-modal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
     <div class="modal-header">
       <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
       <h3 id="myModalLabel">Edit Academic Information</h3>
