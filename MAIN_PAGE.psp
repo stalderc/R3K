@@ -258,7 +258,9 @@ IF AUTHENTICATE_INT = 0 OR AUTHENTICATE_INT = 2 THEN%>
 
           <section id="certifications">
             <h4>Certifications and Licenses: <a href="#add-certifications-modal" data-toggle="modal"><i class="icon-plus"> </i></a> <a href="#edit-certifications-modal" data-toggle="modal"><i class="icon-pencil"> </i></a> </h4>
+          <div class="row"><!-- certifications and licenses row -->
       <%PAGE_CERTIFICATION_CURSOR(RESUMATOR_ID_VAL);%>
+          </div><!-- end certifications and licenses row -->
           </section>
           <hr>  
 

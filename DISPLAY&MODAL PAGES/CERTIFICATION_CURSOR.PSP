@@ -18,7 +18,7 @@ CERT_ROW CERT_CURSOR%ROWTYPE;
 LOOP
 FETCH CERT_CURSOR INTO CERT_ROW;
 EXIT WHEN CERT_CURSOR%NOTFOUND;%>
-            <div class="row"><!-- certifications and licenses row -->
+            
             
                 <!-- loop through certifications and licenses 5 max -->
                 <%IF CERT_COUNTER < 4 THEN CERT_COUNTER := CERT_COUNTER + 1;%>
@@ -38,7 +38,7 @@ EXIT WHEN CERT_CURSOR%NOTFOUND;%>
                   </ul>
                 </div>
               <%END IF;%>
-            </div><!-- end certifications and licenses row -->
+            
 <%
 END LOOP;
 CLOSE CERT_CURSOR;%>
