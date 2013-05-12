@@ -217,6 +217,7 @@ IF AUTHENTICATE_INT = 0 THEN%>
 
 <!-- STUDENT USER PERSONAL DATA -->
 <section id="contactinfo">
+        <h4><a href="#contact-modal" data-toggle="modal"><i class="icon-pencil"></i></a>
         <%PAGE_USERS_CURSOR(RESUMATOR_ID_VAL, EMAIL_IN);%>
         </section>
 
