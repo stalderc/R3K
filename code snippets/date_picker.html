@@ -1,0 +1,30 @@
+<!-- this is the code needed to insert a date picker into HTML -->
+
+<!-- goes in the head -->
+
+	<link rel="stylesheet" href="../assets/css/jquery-ui.css" />
+
+	<script src="../assets/js/jquery-1.9.1.js"></script>
+	<script src="../assets/js/jquery-ui.js"></script>
+
+	<script>
+	  $(function() {
+	    $( "#datepicker" ).datepicker({
+	      changeMonth: true,
+	      changeYear: true
+	    });
+	    window.alert("in here");
+	  });
+	</script>
+
+<!-- goes in the body  -->
+
+	<p>Date: <input type="text" id="datepicker" /></p>
+
+
+
+
+
+
+
+

@@ -97,6 +97,31 @@ AUTHENTICATE_INT NUMBER := 0;%>
       });
     </script>
 
+<!-- code for date pickers -->
+
+  <link rel="stylesheet" href="../assets/css/jquery-ui.css" />
+
+  <script src="../assets/js/jquery-1.9.1.js"></script>
+  <script src="../assets/js/jquery-ui.js"></script>
+
+  <script>
+    $(function() {
+      $( '#datepicker1' ).datepicker({
+        changeMonth: true,
+        changeYear: true, 
+      });
+    });
+
+    $(function() {
+      $( '#datepicker2' ).datepicker({
+        changeMonth: true,
+        changeYear: true
+      });
+    });
+  </script>
+
+<!-- end code for datepickers -->
+
   </head>
 
 <!-- 

@@ -34,14 +34,23 @@ CLOSE AWARD_CURSOR;%>
       <form action="http://oracle.is.umbc.edu:8080/classpsp/IS420_TEAM_TRG.FORM_ADD_AWARD" method="get">
           <div class="form-inline margin-form-inline">
             <input class="span3" type="hidden" name="RESUMATOR_ID_IN" value="<%=RESUMATOR_ID_VAL%>">
-            <input class="span3" type="text" name="AWARD_NAME" placeholder="Honor or Award Name">
-            <input class="span2" type="text" name="YEAR_RECEIVED" placeholder="Year Received">
+            <input class="span3" type="text" name="AWARD_NAME_IN" placeholder="Honor or Award Name">
+            <input class="span2" type="text" name="YEAR_RECEIVED_IN" placeholder="Year Received">
           </div>
           <div class="form-inline margin-form-inline">
-            <input class="span2" type="text" name="SEMESTER_RECEIVED" placeholder="Semester Received">
+            <input class="span2" type="text" name="SEMESTER_RECEIVED_IN" placeholder="Semester Received">
           </div>
           <div class="form-inline margin-form-inline">
-           <input class="span2" type="text" name="DISPLAY_RANK_IN"placeholder="Display Rank">
+
+            <select class="span2" type="text" name="DISPLAY_RANK_IN_IN">
+              <option>Display Rank</option>
+              <option value="1">1 - High</option>
+              <option value="2">2</option>
+              <option value="3">3</option>
+              <option value="4">4</option>
+              <option value="5">5 - Low</option>
+            </select>
+
           </div> 
     </div>
     <div class="modal-footer">
@@ -62,16 +71,30 @@ CLOSE AWARD_CURSOR;%>
     <div class="modal-body">
       <form action="http://oracle.is.umbc.edu:8080/classpsp/IS420_TEAM_TRG.FORM_AWARD" method="get">
           <div class="form-inline margin-form-inline">
-            <input class="span3" type="text" placeholder="Honor or Award Name">
-            <input class="span2" type="text" placeholder="Year Received">
+            <input class="span3" type="hidden" id="RESUMATOR_ID_IN" name="RESUMATOR_ID_IN_IN" value="<%=RESUMATOR_ID_VAL%>">
+            <input class="span3" type="text" id="AWARD_NAME_IN"  name="AWARD_NAME_IN_IN" placeholder="Honor or Award Name">
+            <input class="span2" type="text" id="YEAR_RECEIVED_IN" name="YEAR_RECEIVED_IN_IN" placeholder="Year Received">
           </div>
           <div class="form-inline margin-form-inline">
-            <input class="span2" type="text" placeholder="Semester Received">
+            <input class="span2" type="text" id="SEMESTER_RECEIVED_IN" name="SEMESTER_RECEIVED_IN_IN" placeholder="Semester Received">
           </div>
-      </form>
+          <div class="form-inline margin-form-inline">
+           <input class="span2" type="text" id="DISPLAY_RANK_IN" name="DISPLAY_RANK_IN_IN"placeholder="Display Rank">
+          </div> 
     </div>
     <div class="modal-footer">
       <button class="btn" data-dismiss="modal" aria-hidden="true">Cancel</button>
-      <button class="btn btn-primary">Save changes</button>
+      <button class="btn btn-primary" type="submit">Save changes</button>
     </div>
+    </form>    
   </div>
+
+
+
+
+
+
+
+
+
+

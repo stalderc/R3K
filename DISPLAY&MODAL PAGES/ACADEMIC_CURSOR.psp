@@ -54,15 +54,24 @@ CLOSE COURSE_CURSOR;%>
     <div class="modal-body">
       <form action="http://oracle.is.umbc.edu:8080/classpsp/IS420_TEAM_TRG.FORM_ADD_COURSE_WORK" method="get">
           <div class="form-inline margin-form-inline">
-            <input class="span3" type="hidden" NAME="RESUMATOR_ID_IN" VALUE="<%=RESUMATOR_ID_VAL%>">
-            <input class="span3" type="text" name="COURSE_TITLE" placeholder="Course Title">
-            <input class="span2" type="text" name="COURSE_NUMBER" placeholder="Course Number">
+            <input class="span3" type="hidden" name="RESUMATOR_ID_IN" VALUE="<%=RESUMATOR_ID_VAL%>">
+            <!-- school_id should be here for future versions -->
+            <input class="span3" type="text" name="COURSE_TITLE_IN" placeholder="Course Title">
+            <input class="span2" type="text" name="COURSE_NUMBER_IN" placeholder="Course Number">
           </div>
 
-          <textarea class="max-width" rows="3" name="COURSE_DESCRIPTION" placeholder="Course description goes here."></textarea>
+          <textarea class="max-width" rows="3" name="COURSE_DESCRIPTION_IN" placeholder="Course description goes here."></textarea>
 
           <div class="form-inline margin-form-inline">
-           <input class="span2" type="text" NAME="DISPLAY_RANK_IN"placeholder="Display Rank">
+           <!-- <input class="span2" type="text" NAME="DISPLAY_RANK_IN"placeholder="Display Rank"> -->
+            <select class="span2" type="text" name="DISPLAY_RANK_IN">
+                <option>Display Rank</option>
+                <option value="1">1 - High</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5 - Low</option>
+            </select>
          
           </div>
     </div>
@@ -109,14 +118,15 @@ COURSE_ID_ROW COURSE_ID_CURSOR%ROWTYPE;
 
             <div class="form-inline margin-form-inline">
             <input class="span3" type="hidden"id="RESUMATOR_ID_IN"  NAME="RESUMATOR_ID_IN" VALUE="<%=RESUMATOR_ID_VAL%>">
-            <input class="span3" type="text" id="COURSE_TITLE" name="COURSE_TITLE_IN" placeholder="Course Title">
-            <input class="span2" type="text" id="COURSE_NUMBER" name="COURSE_NUMBER_IN" placeholder="Course Number">
+            <!-- school_id should be here for future versions -->
+            <input class="span3" type="text" id="COURSE_TITLE_IN" name="COURSE_TITLE_IN" placeholder="Course Title">
+            <input class="span2" type="text" id="COURSE_NUMBER_IN" name="COURSE_NUMBER_IN" placeholder="Course Number">
           </div>
 
-          <textarea class="max-width" rows="3" id="COURSE_DESCRIPTION" name="COURSE_DESCRIPTION_IN" placeholder="Course description goes here."></textarea>
+          <textarea class="max-width" rows="3" id="COURSE_DESCRIPTION_IN" name="COURSE_DESCRIPTION_IN" placeholder="Course description goes here."></textarea>
 
           <div class="form-inline margin-form-inline">
-           <input class="span2" type="text" id="DISPLAY_RANK" NAME="DISPLAY_RANK_IN"placeholder="Display Rank">
+           <input class="span2" type="text" id="DISPLAY_RANK_IN" NAME="DISPLAY_RANK_IN"placeholder="Display Rank">
           </div>
 
     </div>
