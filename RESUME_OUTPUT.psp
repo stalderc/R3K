@@ -156,9 +156,7 @@ AUTHENTICATE_INT NUMBER := 0;%>
 <!-- EDUCATION CURSOR DECLARATION -->
 
           <section id="education">
-            <h4>Education: <a href="#add-education-modal" data-toggle="modal"><i class="icon-plus"> </i></a>  
-                <a href="#edit-education-modal" data-toggle="modal"><i class="icon-pencil"> </i></a></li>
-            </h4>
+            <h4>Education: </h4>
       <%PAGE_EDUCATION_CURSOR(RESUMATOR_ID_VAL);%>
           </section>  
           <hr>
@@ -168,7 +166,7 @@ AUTHENTICATE_INT NUMBER := 0;%>
 
 
           <section id="certifications">
-            <h4>Certifications and Licenses: <a href="#add-certifications-modal" data-toggle="modal"><i class="icon-plus"> </i></a> <a href="#edit-certifications-modal" data-toggle="modal"><i class="icon-pencil"> </i></a> </h4>
+            <h4>Certifications and Licenses: </h4>
       <%PAGE_CERTIFICATION_CURSOR(RESUMATOR_ID_VAL);%>
           </section>
           <hr>  
@@ -178,7 +176,7 @@ AUTHENTICATE_INT NUMBER := 0;%>
 <!-- POPULATE RESEARCH-->
 
           <section id="research">
-            <h4>Research, Publications and Presentations: <a href="#add-research-modal" data-toggle="modal"><i class="icon-plus"> </i></a> <a href="#edit-research-modal" data-toggle="modal"><i class="icon-pencil"> </i></a> </h4>
+            <h4>Research, Publications and Presentations: </h4>
               <!-- loop through all listed projects -->
       <%PAGE_PUBLICATION_CURSOR(RESUMATOR_ID_VAL);%>
           </section>
@@ -186,7 +184,7 @@ AUTHENTICATE_INT NUMBER := 0;%>
 
 <!-- PROJECTS SECTION -->
     <section id="projects">
-      <h4>Projects: <a href="#add-project-modal" data-toggle="modal"><i class="icon-plus"> </i></a> <a href="#edit-project-modal" data-toggle="modal"><i class="icon-pencil"> </i></a> </h4>
+      <h4>Projects: </h4>
   <!-- loop through all listed projects -->
       <%PAGE_PROJECT_CURSOR(RESUMATOR_ID_VAL);%>
     </section>
@@ -194,7 +192,7 @@ AUTHENTICATE_INT NUMBER := 0;%>
 
 <!-- ACADEMIC COURSEWORK -->
    <section id="academic">
-      <h4>Academic Coursework: <a href="#add-academic-course-modal" data-toggle="modal"><i class="icon-plus"> </i></a> <a href="#edit-academic-course-modal" data-toggle="modal"><i class="icon-pencil"> </i></a> </h4>
+      <h4>Academic Coursework: </h4>
          <div class="row"><!-- academic coursework row -->
       <%PAGE_COURSE_WORK_CURSOR(RESUMATOR_ID_VAL);%>
         </div><!-- end academic coursework row -->
@@ -205,7 +203,7 @@ AUTHENTICATE_INT NUMBER := 0;%>
 
 
           <section id="skills">
-            <h4>Skills: <a href="#add-skills-modal" data-toggle="modal"><i class="icon-plus"> </i></a> <a href="#edit-skills-modal" data-toggle="modal"><i class="icon-pencil"> </i></a> </h4>
+            <h4>Skills: </h4>
             
             <div class="row"><!-- standard skills row -->
         <%PAGE_STANDARD_SKILLS_CURSOR(RESUMATOR_ID_VAL);%>
@@ -218,7 +216,7 @@ AUTHENTICATE_INT NUMBER := 0;%>
 <!-- TECHNICAL SKILLS -->
 
           <section id="technical">
-            <h4>Technical Skills: <a href="#add-technical-skills-modal" data-toggle="modal"><i class="icon-plus"> </i></a> <a href="#edit-technical-skills-modal" data-toggle="modal"><i class="icon-pencil"> </i></a> </h4>
+            <h4>Technical Skills: </h4>
 
             <!-- technical row --> 
 
@@ -232,7 +230,7 @@ AUTHENTICATE_INT NUMBER := 0;%>
 <!-- DESIGN SKILLS -->
 
           <section id="design">
-            <h4>Design Skills: <a href="#add-design-skills-modal" data-toggle="modal"><i class="icon-plus"> </i></a> <a href="#edit-design-skills-modal" data-toggle="modal"><i class="icon-pencil"> </i></a> </h4>
+            <h4>Design Skills: </h4>
 
             <!-- DESIGN row -->
 
@@ -246,7 +244,7 @@ AUTHENTICATE_INT NUMBER := 0;%>
 <!--POPULATE WORK HISTORY-->
 
           <section id="workhistory">
-            <h4>Work History: <a href="#add-work-history-modal" data-toggle="modal"><i class="icon-plus"> </i></a> <a href="#edit-work-history-modal" data-toggle="modal"><i class="icon-pencil"> </i></a> </h4>
+            <h4>Work History: </h4>
 
             <div class="row"><!-- work history box -->
               <% PAGE_WORK_EXPERIENCE_CURSOR (RESUMATOR_ID_VAL); %>
@@ -258,7 +256,7 @@ AUTHENTICATE_INT NUMBER := 0;%>
 <!-- POPULATE HONORS AND AWARDS SECTION -->
 
           <section id="honors">
-            <h4>Honors and Awards: <a href="#add-honors-modal" data-toggle="modal"><i class="icon-plus"> </i></a> <a href="#edit-honors-modal" data-toggle="modal"><i class="icon-pencil"> </i></a> </h4>
+            <h4>Honors and Awards: </h4>
             <% PAGE_AWARD_CURSOR (RESUMATOR_ID_VAL);%>
           </section>
           <hr> 
@@ -268,7 +266,7 @@ AUTHENTICATE_INT NUMBER := 0;%>
 
 
           <section id="activities">
-            <h4>Extra Curricular: <a href="#add-extracurricular-modal" data-toggle="modal"><i class="icon-plus"> </i></a> <a href="#edit-extracurricular-modal" data-toggle="modal"><i class="icon-pencil"> </i></a> </h4>
+            <h4>Extra Curricular: </h4>
 
             <div class="row"><!-- extra curricular row -->
               <% PAGE_EXTRA_CURRICULAR_CURSOR (RESUMATOR_ID_VAL); %>
@@ -279,7 +277,7 @@ AUTHENTICATE_INT NUMBER := 0;%>
 <!-- REFERENCES SECTION -->
 
           <section id="references">
-            <h4>References and Contacts: <a href="#add-references-modal" data-toggle="modal"><i class="icon-plus"> </i></a> <a href="#edit-references-modal" data-toggle="modal"><i class="icon-pencil"> </i></a> </h4>
+            <h4>References and Contacts: </h4>
               <% PAGE_REFERENCES_CURSOR (RESUMATOR_ID_VAL); %>
           </section>
           <hr> 
