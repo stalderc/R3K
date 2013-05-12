@@ -24,22 +24,22 @@ EXIT WHEN CERT_CURSOR%NOTFOUND;%>
                 <%IF CERT_COUNTER < 4 THEN CERT_COUNTER := CERT_COUNTER + 1;%>
                 <div class="span4">
                   <ul>
-                     <li id="CERTIFICATION_TITLE_<%=CERT_ROW.CERT_ID%>" type="hidden" value="<%=CERT_ROW.TITLE%>"/><%=CERT_ROW.TITLE%>, 
-                     <span id="CERTIFICATION_DATE_<%=CERT_ROW.CERT_ID%>" type="hidden" value="<%=CERT_ROW.DATE_REC%>"/><%=CERT_ROW.DATE_REC%></span></li>
+                     <li><input id="CERTIFICATION_TITLE_<%=CERT_ROW.CERT_ID%>" type="hidden" value="<%=CERT_ROW.TITLE%>"/><%=CERT_ROW.TITLE%>, 
+                     <input id="CERTIFICATION_DATE_<%=CERT_ROW.CERT_ID%>" type="hidden" value="<%=CERT_ROW.DATE_REC%>"/><%=CERT_ROW.DATE_REC%></li>
                      <input id="DISPLAY_RANK_ID_<%=CERT_ROW.CERT_ID%>"type="hidden" value="<%=CERT_ROW.DISPLAY_RANK%>"/><!-- doesn't show -->
                   </ul>
                 </div>
                 <%ELSIF CERT_COUNTER >= 4 AND CERT_COUNTER < 9 THEN CERT_COUNTER := CERT_COUNTER + 1;%>
                 <div class="span4">
                   <ul>
-                     <li id="CERTIFICATION_TITLE_<%=CERT_ROW.CERT_ID%>" type="hidden" value="<%=CERT_ROW.TITLE%>"/><%=CERT_ROW.TITLE%>, 
-                     <span id="CERTIFICATION_DATE_<%=CERT_ROW.CERT_ID%>" type="hidden" value="<%=CERT_ROW.DATE_REC%>"/><%=CERT_ROW.DATE_REC%></span></li>
+                     <li><input id="CERTIFICATION_TITLE_<%=CERT_ROW.CERT_ID%>" type="hidden" value="<%=CERT_ROW.TITLE%>"/><%=CERT_ROW.TITLE%>, 
+                     <input id="CERTIFICATION_DATE_<%=CERT_ROW.CERT_ID%>" type="hidden" value="<%=CERT_ROW.DATE_REC%>"/><%=CERT_ROW.DATE_REC%></li>
                      <input id="DISPLAY_RANK_ID_<%=CERT_ROW.CERT_ID%>"type="hidden" value="<%=CERT_ROW.DISPLAY_RANK%>"/><!-- doesn't show -->
                   </ul>
                 </div>
+              <%END IF;%>
             </div><!-- end certifications and licenses row -->
 <%
-END IF;
 END LOOP;
 CLOSE CERT_CURSOR;%>
 
