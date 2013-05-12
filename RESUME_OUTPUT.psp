@@ -146,7 +146,7 @@ AUTHENTICATE_INT NUMBER := 0;%>
         <section id="objective">
           <!-- user objective section -->
           <p class="well well-small">Resumes shouldn't be written in one day, updating information shouldn't be a hassle, and sharing should be simple with no account required to view. Resumator3000 does all this and handles layout, typography, design, and more. We are not a resume builder; we are your resume partner dedicated to working with you over your student career. Join and start building a better resume today. <br />
-           <a href="#objective-modal" data-toggle="modal"><i class="icon-pencil"> </i></a> </p>
+          </p>
         </section>
           <hr> 
 
@@ -280,7 +280,6 @@ AUTHENTICATE_INT NUMBER := 0;%>
             <h4>References and Contacts: </h4>
               <% PAGE_REFERENCES_CURSOR (RESUMATOR_ID_VAL); %>
           </section>
-          <hr> 
 
 <!-- RESUME CONTENT ENDS -->
 
