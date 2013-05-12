@@ -61,7 +61,7 @@ CLOSE WORK_EX_CURSOR;%>
       <h3 id="myModalLabel">Add Work History Information</h3>
     </div>
     <div class="modal-body">
-      <form action="http://oracle.is.umbc.edu:8080/classpsp/IS420_TEAM_TRG.FORM_WORK_EXPERIENCE" method="get">
+      <form action="http://oracle.is.umbc.edu:8080/classpsp/IS420_TEAM_TRG.FORM_ADD_WORK_EXPERIENCE" method="get">
 
           <div class="form-inline margin-form-inline">
             <input class="span3" type="text" placeholder="Start Date">
