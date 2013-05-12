@@ -64,24 +64,33 @@ CLOSE WORK_EX_CURSOR;%>
       <form action="http://oracle.is.umbc.edu:8080/classpsp/IS420_TEAM_TRG.FORM_ADD_WORK_EXPERIENCE" method="get">
 
           <div class="form-inline margin-form-inline">
-            <input class="span3" type="text" placeholder="Start Date">
-            <input class="span2" type="text" placeholder="End Date">
+            <input class="span3" type="hidden" NAME="RESUMATOR_ID_IN" VALUE="<%=RESUMATOR_ID_VAL%>">
+            <input class="span2" type="text" name="WORK_EMPLOYER" placeholder="Employer">
+            <input class="span2" type="text" name="WORK_POSITION" placeholder="Position Title">
           </div>
           <div class="form-inline margin-form-inline">
-            <input class="span3" type="text" placeholder="City">
-            <input class="span2" type="text" placeholder="State">
+            <input class="span3" type="text" name="WORK_START_DATE" placeholder="Start Date">
+            <input class="span2" type="text" name="WORK_END_DATE" placeholder="End Date">
           </div>
           <div class="form-inline margin-form-inline">
-            <input class="span2" type="text" placeholder="Employer">
-            <input class="span2" type="text" placeholder="Position Title">
+            <input class="span3" type="text" name="WORK_CITY" placeholder="City">
+            <input class="span2" type="text" name="WORK_STATE" placeholder="State">
           </div>
 
-      </form>
+
+          <textarea class="max-width" rows="3" name="PROJECT_DESCRIPTION" placeholder="Project Description goes here."></textarea>
+
+          <div class="form-inline margin-form-inline">
+           <input class="span2" type="text" NAME="DISPLAY_RANK_IN"placeholder="Display Rank">
+          </div>
+
+
     </div><!-- close modal-body -->
     <div class="modal-footer">
       <button class="btn" data-dismiss="modal" aria-hidden="true">Cancel</button>
       <button class="btn btn-primary" type="submit">Save changes</button>
     </div>
+    </form>   
   </div>
 
 
