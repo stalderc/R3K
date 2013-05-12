@@ -1,5 +1,6 @@
-function populateFields(refID){
-
+function populateFields(){
+	
+var refID = getElementById(REFERENCE_ID_IN);
 var F_NAME = getElementById('F_NAME_' + refID);
 var L_NAME =  getElementById('L_NAME_' + refID);
 var TITLE =  getElementById('TITLE_' + refID);
