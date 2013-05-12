@@ -11,10 +11,7 @@ PASSWORD_IN VARCHAR2(50);%>
 <%@plsql parameter="COURSE_DESCRIPTION" DEFAULT="NULL"%>
 <%@plsql parameter="DISPLAY_RANK_IN" DEFAULT="NULL"%>
 
-
 <%
-
-
 INSERT
   INTO COURSE_WORK VALUES
     (
@@ -26,11 +23,51 @@ INSERT
       COURSE_DESCRIPTION,
       DISPLAY_RANK_IN
     );
+%>
+<HEAD>
+<script>
 
-EDIT_PAGE(EMAIL_IN, PASSWORD_IN);
+function postwith (to,p) {
+  var myForm = document.createElement("form");
+  myForm.method="post" ;
+  myForm.action = to ;
+  for (var k in p) {
+    var myInput = document.createElement("input") ;
+    myInput.setAttribute("name", k) ;
+    myInput.setAttribute("value", p[k]);
+    myForm.appendChild(myInput) ;
+  }
+  document.body.appendChild(myForm) ;
+  myForm.submit() ;
+  document.body.removeChild(myForm) ;
+}
+</script>
+</HEAD>
+<BODY onload="javascript:postwith('http://oracle.is.umbc.edu:8080/classpsp/IS420_TEAM_TRG.EDIT_PAGE',{email_in:'stalder1@umbc.edu',password_in:'password'})"">
+<p > </p>
 
+</BODY>
+</HTML>
+<%
 EXCEPTION
 WHEN OTHERS THEN
 %>
 
 <%=SQLERRM%>
+  function postwith (a,b) {
+  var myForm = document.createElement("form");
+  myForm.method="post" ;
+  myForm.action = "http://oracle.is.umbc.edu:8080/classpsp/IS420_TEAM_TRG.EDIT_PAGE" ;
+var myInput.document.createElement("input");
+    myInput.setAttribute("name", 'EMAIL_IN');
+    myInput.setAttribute("value", a);
+    myForm.appendChild(myInput);
+    myInput.setAttribute("name", 'PASSWORD_IN');
+    myInput.setAttribute("value", b);
+    myForm.appendChild(myInput);
+  
+  document.body.appendChild(myForm) ;
+  myForm.submit() ;
+  document.body.removeChild(myForm) ;
+}
+  

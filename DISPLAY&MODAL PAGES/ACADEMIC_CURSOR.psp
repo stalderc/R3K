@@ -63,6 +63,7 @@ CLOSE COURSE_CURSOR;%>
 
           <div class="form-inline margin-form-inline">
            <input class="span2" type="text" NAME="DISPLAY_RANK_IN"placeholder="Display Rank">
+         
           </div>
     </div>
     <div class="modal-footer">
