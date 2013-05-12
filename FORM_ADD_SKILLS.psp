@@ -19,7 +19,7 @@ INSERT
     (
       SKILLS_SEQ.NEXTVAL,
       SKILL_NAME,
-      SKILL_TYPE
+      UPPER(SKILL_TYPE)
     );
 
 INSERT
