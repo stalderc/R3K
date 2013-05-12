@@ -12,19 +12,24 @@ ORDER BY DISPLAY_RANK;
 
 CURSOR WORK_DESC_CURSOR IS
 
-SELECT *
+SELECT WORK_DESCRIPTION.WORK_ID, WORK_DESCRIPTION.DESCRIPTION, WORK_DESCRIPTION.DISPLAY_RANK
 FROM WORK_DESCRIPTION, WORK_EXPERIENCE
 WHERE WORK_EXPERIENCE.WORK_ID = WORK_DESCRIPTION.WORK_ID
 AND WORK_EXPERIENCE.RESUMATOR_ID = RESUMATOR_ID_VAL
 ORDER BY WORK_EXPERIENCE.WORK_ID, WORK_DESCRIPTION.DISPLAY_RANK;
 
-TYPE WORK_DESC_ARRAYTYPE IS TABLE OF WORK_DESCRIPTION%ROWTYPE;
+TYPE WORK_DESC_ARRAYTYPE IS TABLE OF WORK_DESC_CURSOR%ROWTYPE;
 WORK_DESC_ARRAY WORK_DESC_ARRAYTYPE;
 WORK_EX_ROW WORK_EX_CURSOR%ROWTYPE;
 %>
 
 <%
-
+OPEN WORK_DESC_CURSOR;
+LOOP
+FETCH WORK_DESC_CURSOR BULK COLLECT INTO WORK_DESC_ARRAY;
+EXIT WHEN WORK_DESC_CURSOR%NOTFOUND;
+END LOOP;
+CLOSE WORK_DESC_CURSOR; 
 
 OPEN WORK_EX_CURSOR;
 LOOP
@@ -38,7 +43,11 @@ EXIT WHEN WORK_EX_CURSOR%NOTFOUND;%>
                     <h5 class="company-name"><a href="http://resumator3000.com" target="_blank"><%=WORK_EX_ROW.EMPLOYER%></a><span class="pull-right"><%=WORK_EX_ROW.CITY%>, <%=WORK_EX_ROW.STATE%></span></h5>
                     
                     <!-- loop through job bullet points  -->
-
+                    <% for i in 1..WORK_DESC_ARRAY.COUNT LOOP%>
+                     <%IF WORK_DESC_ARRAY(i).WORK_ID = WORK_EX_ROW.WORK_ID THEN%> 
+                    <li><%=WORK_DESC_ARRAY(i).DESCRIPTION%></li>
+                    <%END IF;%>
+                    <%END LOOP;%>
 
                     
                 </ul>
@@ -71,7 +80,7 @@ CLOSE WORK_EX_CURSOR;%>
           </div>
 
 
-          <textarea class="max-width" rows="3" name="PROJECT_DESCRIPTION" placeholder="Project Description goes here."></textarea>
+          <textarea class="max-width" rows="3" name="WORK_DESCRIPTION" placeholder="Work Description goes here."></textarea>
 
           <div class="form-inline margin-form-inline">
            <input class="span2" type="text" NAME="DISPLAY_RANK_IN"placeholder="Display Rank">
