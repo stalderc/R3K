@@ -5,7 +5,7 @@
 
 <%!CURSOR COURSE_CURSOR IS
 
-SELECT COURSE_WORK.COURSE_TITLE, COURSE_WORK.COURSE_NUMBER, COURSE_WORK.COURSE_DESC, COURSE_WORK.DISPLAY_RANK
+SELECT COURSE_WORK.COURSE_ID, COURSE_WORK.COURSE_TITLE, COURSE_WORK.COURSE_NUMBER, COURSE_WORK.COURSE_DESC, COURSE_WORK.DISPLAY_RANK
 FROM COURSE_WORK
 WHERE COURSE_WORK.RESUMATOR_ID = RESUMATOR_ID_VAL
 ORDER BY DISPLAY_RANK;
@@ -23,13 +23,15 @@ EXIT WHEN COURSE_CURSOR%NOTFOUND;%>
                 <%IF(COURSE_COUNTER < 4) THEN COURSE_COUNTER := COURSE_COUNTER + 1;%>
                 <div class="span4">
                   <ul>
-                     <li><%=COURSE_ROW.COURSE_TITLE%></li>
+                     <li id="COURSE_TITLE_<%=COURSE_ROW.COURSE_ID%>" type="hidden" value="<%=COURSE_ROW.COURSE_ID%>"/> <%=COURSE_ROW.COURSE_TITLE%></li>
+                     <input id="DISPLAY_RANK_ID_<%=COURSE_ROW.COURSE_ID%>"type="hidden" value="<%=COURSE_ROW.DISPLAY_RANK%>"/><!-- doesn't show -->
                   </ul>
                 </div>
                 <%ELSIF(COURSE_COUNTER >= 4 AND COURSE_COUNTER < 9) THEN COURSE_COUNTER := COURSE_COUNTER + 1;%>
                 <div class="span4">
                   <ul>
-                     <li><%=COURSE_ROW.COURSE_TITLE%></li>
+                     <li id="COURSE_TITLE_<%=COURSE_ROW.COURSE_ID%>" type="hidden" value="<%=COURSE_ROW.COURSE_ID%>"/> <%=COURSE_ROW.COURSE_TITLE%></li>
+                     <input id="DISPLAY_RANK_ID_<%=COURSE_ROW.COURSE_ID%>"type="hidden" value="<%=COURSE_ROW.DISPLAY_RANK%>"/><!-- doesn't show -->
                   </ul>
                 </div><!-- end loop -->
 <%
@@ -68,6 +70,16 @@ CLOSE COURSE_CURSOR;%>
 
 
 <!-- EDIT ACADEMIC COURSE MODAL -->
+<!-- create a new cursor -->
+<%!CURSOR COURSE_ID_CURSOR IS
+
+SELECT COURSE_WORK.COURSE_ID, COURSE_WORK.DISPLAY_RANK
+FROM COURSE_WORK
+WHERE COURSE_WORK.RESUMATOR_ID = RESUMATOR_ID_VAL
+ORDER BY DISPLAY_RANK;
+
+COURSE_ID_ROW COURSE_ID_CURSOR%ROWTYPE;
+%>
 
   <div id="edit-academic-course-modal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
     <div class="modal-header">
@@ -77,6 +89,18 @@ CLOSE COURSE_CURSOR;%>
     <div class="modal-body">
       <form action="http://oracle.is.umbc.edu:8080/classpsp/IS420_TEAM_TRG.FORM_COURSE_WORK" method="get">
           <div class="form-inline margin-form-inline">
+
+<!-- insert select statement -->
+            <select onchange="populate_education_fields()"class="span2" ID="COURSE_ID_IN" name="COURSE_ID_IN">
+              <%OPEN COURSE_ID_CURSOR;
+                LOOP
+                FETCH COURSE_ID_CURSOR INTO COURSE_ID_ROW;
+                EXIT WHEN COURSE_ID_CURSOR%NOTFOUND;%>
+                  <option value="<%=COURSE_ID_ROW.COURSE_ID%>"><%=COURSE_ID_ROW.DISPLAY_RANK%></option>
+                <%END LOOP;
+                CLOSE COURSE_ID_CURSOR;%>
+          </select>
+
             <input class="span3" type="text" placeholder="Course Title">
             <input class="span2" type="text" placeholder="Course Number">
           </div>
