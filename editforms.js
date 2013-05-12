@@ -16,7 +16,7 @@ document.getElementById('PHONE_NUMBER_IN').setAttribute("value", PHONE_NUMBER);
 document.getElementById('ADDRESS_IN').setAttribute("value", ADDRESS);
 document.getElementById('EMAIL_IN').setAttribute("value", EMAIL);
 document.getElementById('COMPANY_IN').setAttribute("value", COMPANY);
-document.getElementById('TITLE_IN').setAttribute("value", TITLE_IN);
+document.getElementById('TITLE_IN').setAttribute("value", TITLE);
 document.getElementById('DISPLAY_IN').setAttribute("value", DISPLAY_RANK_ID);
 }
 

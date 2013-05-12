@@ -43,7 +43,7 @@ function postwith (to,p) {
 }
 </script>
 </HEAD>
-<BODY onload="javascript:postwith('http://oracle.is.umbc.edu:8080/classpsp/IS420_TEAM_TRG.EDIT_PAGE',{email_in:'stalder1@umbc.edu',password_in:'password'})"">
+<BODY onload="javascript:postwith('http://oracle.is.umbc.edu:8080/classpsp/IS420_TEAM_TRG.EDIT_PAGE',{email_in:<%=EMAIL_IN%>,password_in:<%=PASSWORD_IN%>}">
 <p > </p>
 
 </BODY>
@@ -54,20 +54,4 @@ WHEN OTHERS THEN
 %>
 
 <%=SQLERRM%>
-  function postwith (a,b) {
-  var myForm = document.createElement("form");
-  myForm.method="post" ;
-  myForm.action = "http://oracle.is.umbc.edu:8080/classpsp/IS420_TEAM_TRG.EDIT_PAGE" ;
-var myInput.document.createElement("input");
-    myInput.setAttribute("name", 'EMAIL_IN');
-    myInput.setAttribute("value", a);
-    myForm.appendChild(myInput);
-    myInput.setAttribute("name", 'PASSWORD_IN');
-    myInput.setAttribute("value", b);
-    myForm.appendChild(myInput);
-  
-  document.body.appendChild(myForm) ;
-  myForm.submit() ;
-  document.body.removeChild(myForm) ;
-}
   
