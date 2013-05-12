@@ -71,6 +71,7 @@ CLOSE COURSE_CURSOR;%>
     </div>
     </form>
   </div>
+</div>
 
 
 <!-- EDIT ACADEMIC COURSE MODAL -->
@@ -124,3 +125,4 @@ COURSE_ID_ROW COURSE_ID_CURSOR%ROWTYPE;
     </div>
     </form>    
   </div>
+</div>  
