@@ -1,0 +1,55 @@
+<%PASSWORD_IN := get_cookie('PASSWORD');
+EMAIL_IN := get_cookie('EMAIL');%> 
+<%!EMAIL_IN VARCHAR2(50);
+PASSWORD_IN VARCHAR2(50);%>
+<!DOCTYPE HTML>
+<%@page language="PL/SQL"%>
+<%@plsql procedure="FORM_UPDATE_AWARD"%>
+<%@plsql parameter="HONOR_ID_IN" DEFAULT="NULL"%>
+<%@plsql parameter="RESUMATOR_ID_IN" DEFAULT="NULL"%>
+<%@plsql parameter="AWARD_NAME_IN" DEFAULT="NULL"%> 
+<%@plsql parameter="YEAR_RECEIVED_IN" DEFAULT="NULL"%> 
+<%@plsql parameter="SEMESTER_RECEIVED_IN" DEFAULT="NULL"%> 
+<%@plsql parameter="DISPLAY_RANK_IN" DEFAULT="NULL"%> 
+
+<%
+UPDATE AWARD 
+    SET
+     HONOR_NAME         = AWARD_NAME_IN,
+     YEAR               = YEAR_RECEIVED_IN,
+     SEMESTER           = SEMESTER_RECEIVED_IN,
+     DISPLAY_RANK       = DISPLAY_RANK_IN
+     WHERE RESUMATOR_ID = RESUMATOR_ID_IN
+     AND HONOR_ID       = HONOR_ID_IN;
+%> 
+<HEAD>
+<script>
+
+function postwith (to,p) {
+  var myForm = document.createElement("form");
+  myForm.method="post" ;
+  myForm.action = to ;
+  for (var k in p) {
+    var myInput = document.createElement("input") ;
+    myInput.setAttribute("name", k) ;
+    myInput.setAttribute("value", p[k]);
+    myForm.appendChild(myInput) ;
+  }
+  document.body.appendChild(myForm) ;
+  myForm.submit() ;
+  document.body.removeChild(myForm) ;
+}
+</script>
+</HEAD>
+<BODY onload="javascript:postwith('http://oracle.is.umbc.edu:8080/classpsp/IS420_TEAM_TRG.EDIT_PAGE',{email_in:'<%=email_in%>',password_in:'<%=password_in%>'})"></a>
+
+
+</BODY>
+</HTML>
+
+<%
+EXCEPTION
+WHEN OTHERS THEN
+%>
+
+<%=SQLERRM%>

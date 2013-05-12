@@ -22,6 +22,7 @@ CREATE TABLE USERS
     RESUMATOR_ID  VARCHAR(50),
     F_NAME        VARCHAR(140),
     L_NAME        VARCHAR(140),
+    SURNAME       VARCHAR(30),
     STREET        VARCHAR(140),
     CITY          VARCHAR(140),
     STATE         VARCHAR(2),
