@@ -1,10 +1,6 @@
 function populateFields(){
 
-<<<<<<< HEAD
-var refID = getElementById('REFERENCE_ID_IN').value;
-=======
-var refID = getElementById('REFERENCE_ID_IN').focus();
->>>>>>> good
+var refID = '2';
 var F_NAME = getElementById('F_NAME_' + refID);
 var L_NAME =  getElementById('L_NAME_' + refID);
 var TITLE =  getElementById('TITLE_' + refID);
@@ -32,12 +28,7 @@ document.getElementById('DISPLAY_IN').setAttribute("value", DISPLAY_RANK_ID);
 	var formData = document.getElementById(formID);
 	var formSize = document.getElementById(formID);
 	var position = formData.indexOf(refID);
-<<<<<<< HEAD
-	var inputIDs = document.getElementsByTagName(editFormID).innerHTML.inputIDs.getAttribute('ID');
-=======
-	var refIDs = document.getElementsByTagName(editFormID);
-	document.getElementById(editFormID).innerHTML=refIDs.getAttribute('ID');
->>>>>>> more updates
+
 
 	for(i= position - formSize; i < position; i++ ){
 		document.getElementById(refIDs[i]).setAttribute("value", formData[i]);
