@@ -7,7 +7,7 @@ IF COOKIE_EXISTS('PASSWORD') THEN set_cookie('PASSWORD', PASSWORD_IN); END IF;%>
 <%@plsql parameter="PASSWORD_IN" DEFAULT="NULL"%>
 <%! RESUMATOR_ID_VAL USERS.RESUMATOR_ID%TYPE;
 AUTHENTICATE_INT NUMBER := 0;%>
-<%SELECT RESUMATOR_ID INTO RESUMATOR_ID_VAL FROM USERS WHERE EMAIL_ADDRESS = UPPER(EMAIL_IN);%>
+
 
 <html lang="en">
 
@@ -154,7 +154,7 @@ AUTHENTICATE_INT NUMBER := 0;%>
 
 <%
 AUTHENTICATE_INT := AUTHENTICATE(UPPER(EMAIL_IN), PASSWORD_IN);
-IF AUTHENTICATE_INT = 0 THEN%>
+IF AUTHENTICATE_INT = 0 OR AUTHENTICATE_INT = 2 THEN%>
 
             </ul>
             <form class="navbar-form pull-right" action="http://oracle.is.umbc.edu:8080/classpsp/IS420_TEAM_TRG.EDIT_PAGE">
@@ -169,16 +169,19 @@ IF AUTHENTICATE_INT = 0 THEN%>
     </div>            
 
 <div class="container"><!-- main page container -->
-
-<p><span class="label label-warning">You've entered an invalid user name or password.</span></p>
-
+<%IF AUTHENTICATE_INT = 2 THEN%>
+<p><span class="label label-warning">You've entered an invalid password.</span></p>
+<%ELSIF AUTHENTICATE_INT = 0 THEN%>
+<p><span class="label label-warning">You've entered an invalid user name.</span></p>
+<%END IF;%>
 </div>    
 
 <%ELSE%>
+<%SELECT RESUMATOR_ID INTO RESUMATOR_ID_VAL FROM USERS WHERE EMAIL_ADDRESS = UPPER(EMAIL_IN);%>
             <li><a href="http://oracle.is.umbc.edu:8080/classpsp/IS420_TEAM_TRG.RESUME_OUTPUT">Resume Link</a></li>
             </ul>
 
-            <a onclick="<%delete_cookie('EMAIL','PASSWORD',EMAIL_IN,PASSWORD_IN);%> href="http://userpages.umbc.edu/~booth1/resumator3000/html/index.html" class="btn pull-right">Logout</a>
+            <a onclick="<%delete_cookie('EMAIL','PASSWORD',EMAIL_IN,PASSWORD_IN);%>" href="http://userpages.umbc.edu/~booth1/resumator3000/html/index.html" class="btn pull-right">Logout</a>
             
           </div><!--/.nav-collapse -->
         </div>
