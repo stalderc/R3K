@@ -171,8 +171,13 @@ IF AUTHENTICATE_INT = 0 OR AUTHENTICATE_INT = 2 THEN%>
 <div class="container"><!-- main page container -->
 <%IF AUTHENTICATE_INT = 2 THEN%>
 <p><span class="label label-warning">You've entered an invalid password.</span></p>
+
+
+
 <%ELSIF AUTHENTICATE_INT = 0 THEN%>
 <p><span class="label label-warning">You've entered an invalid user name.</span></p>
+
+
 <%END IF;%>
 </div>    
 

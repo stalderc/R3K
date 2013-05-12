@@ -33,7 +33,32 @@ INSERT
       TITLE_IN,
       DISPLAY_RANK_IN
     );
-EDIT_PAGE(EMAIL_IN, PASSWORD_IN);
+%>
+<HEAD>
+<script>
+
+function postwith (to,p) {
+  var myForm = document.createElement("form");
+  myForm.method="post" ;
+  myForm.action = to ;
+  for (var k in p) {
+    var myInput = document.createElement("input") ;
+    myInput.setAttribute("name", k) ;
+    myInput.setAttribute("value", p[k]);
+    myForm.appendChild(myInput) ;
+  }
+  document.body.appendChild(myForm) ;
+  myForm.submit() ;
+  document.body.removeChild(myForm) ;
+}
+</script>
+</HEAD>
+<BODY onload="javascript:postwith('http://oracle.is.umbc.edu:8080/classpsp/IS420_TEAM_TRG.EDIT_PAGE',{email_in:'<%=email_in%>',password_in:'<%=password_in%>'})"></a>
+
+
+</BODY>
+</HTML>
+<%
 
 
 EXCEPTION
