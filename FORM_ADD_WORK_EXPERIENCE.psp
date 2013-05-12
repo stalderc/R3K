@@ -14,11 +14,7 @@ PASSWORD_IN VARCHAR2(50);%>
 <%@plsql parameter="WORK_STATE" DEFAULT="NULL"%>
 <%@plsql parameter="WORK_DESCRIPTION" DEFAULT="NULL"%>
 <%@plsql parameter="DISPLAY_RANK_IN" DEFAULT="NULL"%>
-
-
 <%
-
-
 INSERT
   INTO WORK_EXPERIENCE VALUES
     (
@@ -32,7 +28,6 @@ INSERT
       WORK_POSITION,
       DISPLAY_RANK_IN
     );
-
 INSERT
   INTO WORK_DESCRIPTION VALUES
   (
@@ -41,25 +36,8 @@ INSERT
     WORK_DESCRIPTION,
     DISPLAY_RANK_IN
   );
-
 EDIT_PAGE(EMAIL_IN, PASSWORD_IN);
-
 EXCEPTION
 WHEN OTHERS THEN
 %>
-
 <%=SQLERRM%>
-
-
-
-
-
-
-
-
-
-
-
-
-
-

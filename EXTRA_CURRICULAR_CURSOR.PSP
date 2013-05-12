@@ -7,7 +7,7 @@
 
 <%!CURSOR EXTRA_CURSOR IS
 
-SELECT EXTRA_CURRICULAR.TITLE, EXTRA_CURRICULAR.YEAR, EXTRA_CURRICULAR.SEMESTER, EXTRA_CURRICULAR.ORGANIZATION, EXTRA_CURRICULAR.DISPLAY_RANK
+SELECT EXTRA_CURRICULAR.EX_CUR_ID, EXTRA_CURRICULAR.TITLE, EXTRA_CURRICULAR.YEAR, EXTRA_CURRICULAR.SEMESTER, EXTRA_CURRICULAR.ORGANIZATION, EXTRA_CURRICULAR.DISPLAY_RANK
 FROM EXTRA_CURRICULAR
 WHERE EXTRA_CURRICULAR.RESUMATOR_ID = RESUMATOR_ID_VAL
 ORDER BY DISPLAY_RANK;  
@@ -24,13 +24,13 @@ EXIT WHEN EXTRA_CURSOR%NOTFOUND;%>
                 <%IF EXTRA_COUNTER < 4 THEN EXTRA_COUNTER := EXTRA_COUNTER + 1;%>
                 <div class="span4">
                   <ul>
-                     <li><%=EXTRA_ROW.ORGANIZATION%>,<%=EXTRA_ROW.TITLE%> <%=EXTRA_ROW.SEMESTER%> <%=EXTRA_ROW.YEAR%></li>
+                     <li><input id="ORGANIZATION_<%=EXTRA_ROW.EX_CUR_ID%>" type="hidden" value="<%=EXTRA_ROW.ORGANIZATION%>"><%=EXTRA_ROW.ORGANIZATION%>,<input id="TITLE_<%=EXTRA_ROW.EX_CUR_ID%>" type="hidden" value="<%=EXTRA_ROW.TITLE%>"><%=EXTRA_ROW.TITLE%> <input id="SEMESTER_<%=EXTRA_ROW.EX_CUR_ID%>" type="hidden" value="<%=EXTRA_ROW.SEMESTER%>"><%=EXTRA_ROW.SEMESTER%> <input id="YEAR_<%=EXTRA_ROW.EX_CUR_ID%>" type="hidden" value="<%=EXTRA_ROW.YEAR%>"><%=EXTRA_ROW.YEAR%></li>
                   </ul>
                 </div>
                 <%ELSIF EXTRA_COUNTER >= 4 AND EXTRA_COUNTER < 9 THEN EXTRA_COUNTER := EXTRA_COUNTER + 1;%>
                 <div class="span4">
                   <ul>
-                     <li><%=EXTRA_ROW.ORGANIZATION%>,<%=EXTRA_ROW.TITLE%> <%=EXTRA_ROW.SEMESTER%> <%=EXTRA_ROW.YEAR%></li>
+                     <li><input id="ORGANIZATION_<%=EXTRA_ROW.EX_CUR_ID%>" type="hidden" value="<%=EXTRA_ROW.ORGANIZATION%>"><%=EXTRA_ROW.ORGANIZATION%>,<input id="TITLE_<%=EXTRA_ROW.EX_CUR_ID%>" type="hidden" value="<%=EXTRA_ROW.TITLE%>"><%=EXTRA_ROW.TITLE%> <input id="SEMESTER_<%=EXTRA_ROW.EX_CUR_ID%>" type="hidden" value="<%=EXTRA_ROW.SEMESTER%>"><%=EXTRA_ROW.SEMESTER%> <input id="YEAR_<%=EXTRA_ROW.EX_CUR_ID%>" type="hidden" value="<%=EXTRA_ROW.YEAR%>"><%=EXTRA_ROW.YEAR%></li>
                   </ul>
                 </div><!-- loop end -->
 <%
@@ -68,7 +68,15 @@ CLOSE EXTRA_CURSOR;%>
     <div class="modal-footer">
     </div>
   </div>
-<%%>
+<%!CURSOR EXTRA_ID_CURSOR IS
+
+SELECT EXTRA_CURRICULAR.EX_CUR_ID, EXTRA_CURRICULAR.DISPLAY_RANK
+FROM EXTRA_CURRICULAR
+WHERE EXTRA_CURRICULAR.RESUMATOR_ID = RESUMATOR_ID_VAL
+ORDER BY DISPLAY_RANK;  
+
+EXTRA_ID_ROW EXTRA_ID_CURSOR%ROWTYPE;
+%>
 
 <!-- EDIT EXTRACURRICULAR MODAL -->
 
@@ -79,13 +87,16 @@ CLOSE EXTRA_CURSOR;%>
     </div>
     <div class="modal-body">
       <form action="http://oracle.is.umbc.edu:8080/classpsp/IS420_TEAM_TRG.FORM_EXTRA_CURRICULAR" method="get">
+        <input class="span3" type="hidden" NAME="RESUMATOR_ID_IN" VALUE="<%=RESUMATOR_ID_VAL%>">
           <div class="form-inline margin-form-inline">
-            <input class="span3" type="text" placeholder="ExtraCurricular Title">
-            <input class="span2" type="text" placeholder="Year Participated">
+
+            <input class="span3" id="TITLE_IN" name="TITLE_IN" type="text" placeholder="ExtraCurricular Title">
+            <input class="span2" id="YEAR_IN" name="YEAR_IN" type="text" placeholder="Year Participated">
           </div>
           <div class="form-inline margin-form-inline">
-            <input class="span2" type="text" placeholder="Semester Receieved">
-            <input class="span2" type="text" placeholder="Organization">
+            <input class="span2" id="SEMESTER_IN" name="SEMESTER_IN" type="text" placeholder="Semester Receieved">
+            <input class="span2" id="ORGANIZATOIN_IN" name="ORGANIZATOIN_IN" type="text" placeholder="Organization">
+            <input class="span2" id="DISPLAY_RANK_IN" name="DISPLAY_RANK_IN" type="text" NAME="DISPLAY_RANK_IN"placeholder="Display Rank">
           </div>
 
           <textarea class="max-width" rows="3" placeholder="ExtraCurricular description goes here."></textarea>
