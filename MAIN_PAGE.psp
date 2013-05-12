@@ -239,6 +239,7 @@ IF AUTHENTICATE_INT = 0 THEN%>
           <section id="education">
             <h4>Education: <a href="#add-education-modal" data-toggle="modal"><i class="icon-plus"> </i></a>  
                 <a href="#edit-education-modal" data-toggle="modal"><i class="icon-pencil"> </i></a>
+            </h4>    
        <%PAGE_EDUCATION_CURSOR(RESUMATOR_ID_VAL);%>
           </section>  
           <hr>
