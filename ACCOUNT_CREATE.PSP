@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<%@page language="PL/SQL"%>
+<%@plsql procedure="FORM_ACCOUNT_CREATE"%>
+<%@plsql parameter="EMAIL_IN" DEFAULT="NULL"%>
+<%@plsql parameter="PASSWORD_IN" DEFAULT="NULL"%>
+
+<%!CREATE_INT INTEGER;%>
+
+<%ACCOUNT_CREATE(EMAIL_IN,PASSWORD_IN;
+IF CREATE_INT = 0 THEN%>
+<p><span class="label label-warning">That user name is already in use!</span></p>
+
+<%ELSIF CREATE_INT = 1 THEN%>
+
+
+	%>

@@ -4,7 +4,9 @@ EMAIL_IN := get_cookie('EMAIL');%>
 PASSWORD_IN VARCHAR2(50);%>
 <!DOCTYPE HTML>
 <%@page language="PL/SQL"%>
-<%@plsql procedure="FORM_ADD_WORK_EXPERIENCE"%>
+<%@plsql procedure="FORM_UPDATE_WORK_EXPERIENCE"%>
+<%@plsql parameter="WORK_EXPERIENCE_ID_IN" DEFAULT="NULL"%>
+<%@plsql parameter="WORK_DESCRIPTION_ID_IN" DEFAULT="NULL"%>
 <%@plsql parameter="RESUMATOR_ID_IN" DEFAULT="NULL"%>
 <%@plsql parameter="WORK_EMPLOYER_IN" DEFAULT="NULL"%>
 <%@plsql parameter="WORK_POSITION_IN" DEFAULT="NULL"%>
@@ -14,29 +16,27 @@ PASSWORD_IN VARCHAR2(50);%>
 <%@plsql parameter="WORK_STATE_IN" DEFAULT="NULL"%>
 <%@plsql parameter="WORK_DESCRIPTION_IN" DEFAULT="NULL"%>
 <%@plsql parameter="DISPLAY_RANK_IN" DEFAULT="NULL"%>
+
+
 <%
-INSERT
-  INTO WORK_EXPERIENCE VALUES
-    (
-      WORK_ID_SEQ.NEXTVAL,
-      RESUMATOR_ID_IN,
-      WORK_START_DATE_IN,
-      WORK_END_DATE_IN,
-      WORK_CITY_IN,
-      WORK_STATE_IN,
-      WORK_EMPLOYER_IN,
-      WORK_POSITION_IN,
-      DISPLAY_RANK_IN
-    );
-INSERT
-  INTO WORK_DESCRIPTION VALUES
-  (
-    WDESC_ID_SEQ.NEXTVAL,
-    WORK_ID_SEQ.CURRVAL,
-    WORK_DESCRIPTION_IN,
-    DISPLAY_RANK_IN
-  );
-%>
+UPDATE WORK_EXPERIENCE 
+    SET
+     START_DATE         = WORK_START_DATE_IN,
+     END_DATE           = WORK_END_DATE_IN,
+     CITY               = WORK_CITY_IN,
+     STATE              = WORK_STATE_IN,
+     EMPLOYER           = WORK_EMPLOYER_IN,
+     POSITION_TITLE     = WORK_POSITION_IN,
+     DISPLAY_RANK       = DISPLAY_RANK_IN
+     WHERE RESUMATOR_ID = RESUMATOR_ID_IN
+     AND WORK_ID        = WORK_EXPERIENCE_ID_IN;
+
+UPDATE WORK_DESCRIPTION 
+    SET
+     DESCRIPTION        = WORK_DESCRIPTION_IN
+     WHERE DESC_ID      = WORK_DESCRIPTION_ID_IN;
+
+%> 
 <HEAD>
 <script>
 
@@ -61,8 +61,10 @@ function postwith (to,p) {
 
 </BODY>
 </HTML>
+
 <%
 EXCEPTION
 WHEN OTHERS THEN
 %>
+
 <%=SQLERRM%>

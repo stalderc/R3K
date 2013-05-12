@@ -6,9 +6,9 @@ PASSWORD_IN VARCHAR2(50);%>
 <%@page language="PL/SQL"%>
 <%@plsql procedure="FORM_ADD_COURSE_WORK"%>
 <%@plsql parameter="RESUMATOR_ID_IN" DEFAULT="NULL"%>
-<%@plsql parameter="COURSE_TITLE" DEFAULT="NULL"%>
-<%@plsql parameter="COURSE_NUMBER" DEFAULT="NULL"%>
-<%@plsql parameter="COURSE_DESCRIPTION" DEFAULT="NULL"%>
+<%@plsql parameter="COURSE_TITLE_IN" DEFAULT="NULL"%>
+<%@plsql parameter="COURSE_NUMBER_IN" DEFAULT="NULL"%>
+<%@plsql parameter="COURSE_DESCRIPTION_IN" DEFAULT="NULL"%>
 <%@plsql parameter="DISPLAY_RANK_IN" DEFAULT="NULL"%>
 
 <%
@@ -19,9 +19,9 @@ INSERT
       COURSE_SEQ.NEXTVAL,
       RESUMATOR_ID_IN,
       NULL,
-      COURSE_TITLE,
-      COURSE_NUMBER,
-      COURSE_DESCRIPTION,
+      COURSE_TITLE_IN,
+      COURSE_NUMBER_IN,
+      COURSE_DESCRIPTION_IN,
       DISPLAY_RANK_IN
     );
 %>

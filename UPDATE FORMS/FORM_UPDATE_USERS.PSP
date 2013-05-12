@@ -4,35 +4,32 @@ EMAIL_IN := get_cookie('EMAIL');%>
 PASSWORD_IN VARCHAR2(50);%>
 <!DOCTYPE HTML>
 <%@page language="PL/SQL"%>
-<%@plsql procedure="FORM_ADD_EDUCATION"%>
+<%@plsql procedure="FORM_UPDATE_USER"%>
 <%@plsql parameter="RESUMATOR_ID_IN" DEFAULT="NULL"%>
-<%@plsql parameter="DEGREE_NAME_IN" DEFAULT="NULL"%>
-<%@plsql parameter="DEGREE_MAJOR_IN" DEFAULT="NULL"%>
-<%@plsql parameter="DEGREE_MINOR_IN" DEFAULT="NULL"%>
-<%@plsql parameter="CERTIFICATION_IN" DEFAULT="NULL"%>
-<%@plsql parameter="GRADE_POINTS_IN" DEFAULT="NULL"%>
-<%@plsql parameter="GRADUATION_DATE_IN" DEFAULT="NULL"%>
-<%@plsql parameter="DISPLAY_RANK_IN" DEFAULT="NULL"%>
+<%@plsql parameter="EMAIL_ADDRESS_IN" DEFAULT="NULL"%>
+<%@plsql parameter="F_NAME_IN" DEFAULT="NULL"%>
+<%@plsql parameter="L_NAME_IN" DEFAULT="NULL"%>
+<%@plsql parameter="PHONE_NUMBER_IN" DEFAULT="NULL"%>
+<%@plsql parameter="STREET_IN" DEFAULT="NULL"%>
+<%@plsql parameter="CITY_IN" DEFAULT="NULL"%>
+<%@plsql parameter="STATE_IN" DEFAULT="NULL"%>
+<%@plsql parameter="ZIPCODE_IN" DEFAULT="NULL"%>
 
-<%!EDUCATION_SCHOOL_ID VARCHAR(50);%>
+
+
 <%
-
-INSERT
-  INTO EDUCATION VALUES
-    (
-      EDUCATION_SEQ.NEXTVAL,
-      RESUMATOR_ID_IN,
-      SCHOOL_SEQ.CURRVAL,
-      DEGREE_NAME_IN,
-      DEGREE_MAJOR_IN,
-      DEGREE_MINOR_IN,
-      CERTIFICATION_IN,
-      GRADE_POINTS_IN,
-      GRADUATION_DATE_IN,
-      DISPLAY_RANK_IN
-    );
-
-%>
+UPDATE USERS
+    SET
+     CITY               = CITY_IN,
+     STATE              = STATE_IN,
+     ZIPCODE            = ZIPCODE_IN,
+     F_NAME             = F_NAME_IN,
+     L_NAME             = L_NAME_IN,
+     PHONE_NUMBER       = PHONE_NUMBER_IN,
+     STREET             = STREET_IN
+     WHERE RESUMATOR_ID = RESUMATOR_ID_IN
+     AND EMAIL_ADDRESS  = EMAIL_ADDRESS_IN;
+%> 
 <HEAD>
 <script>
 
@@ -57,8 +54,8 @@ function postwith (to,p) {
 
 </BODY>
 </HTML>
-<%
 
+<%
 EXCEPTION
 WHEN OTHERS THEN
 %>

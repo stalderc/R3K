@@ -6,8 +6,8 @@ PASSWORD_IN VARCHAR2(50);%>
 <%@page language="PL/SQL"%>
 <%@plsql procedure="FORM_ADD_SKILLS"%>
 <%@plsql parameter="RESUMATOR_ID_IN" DEFAULT="NULL"%>
-<%@plsql parameter="SKILL_TYPE" DEFAULT="NULL"%>
-<%@plsql parameter="SKILL_NAME" DEFAULT="NULL"%>
+<%@plsql parameter="SKILL_TYPE_IN" DEFAULT="NULL"%>
+<%@plsql parameter="SKILL_NAME_IN" DEFAULT="NULL"%>
 <%@plsql parameter="DISPLAY_RANK_IN" DEFAULT="NULL"%>
 
 
@@ -18,8 +18,8 @@ INSERT
   INTO SKILLS VALUES
     (
       SKILLS_SEQ.NEXTVAL,
-      SKILL_NAME,
-      UPPER(SKILL_TYPE)
+      SKILL_NAME_IN,
+      UPPER(SKILL_TYPE_IN)
     );
 
 INSERT

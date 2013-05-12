@@ -6,8 +6,8 @@ PASSWORD_IN VARCHAR2(50);%>
 <%@page language="PL/SQL"%>
 <%@plsql procedure="FORM_ADD_PROJECT"%>
 <%@plsql parameter="RESUMATOR_ID_IN" DEFAULT="NULL"%>
-<%@plsql parameter="PROJECT_NAME" DEFAULT="NULL"%>
-<%@plsql parameter="PROJECT_DESCRIPTION" DEFAULT="NULL"%>
+<%@plsql parameter="PROJECT_NAME_IN" DEFAULT="NULL"%>
+<%@plsql parameter="PROJECT_DESCRIPTION_IN" DEFAULT="NULL"%>
 <%@plsql parameter="DISPLAY_RANK_IN" DEFAULT="NULL"%>
 
 
@@ -19,7 +19,7 @@ INSERT
     (
       PROJECTS_SEQ.NEXTVAL,
       RESUMATOR_ID_IN,
-      PROJECT_NAME,
+      PROJECT_NAME_IN,
       NULL,
       DISPLAY_RANK_IN
     );
@@ -29,7 +29,7 @@ INSERT
     (
       PROJ_DESC_SEQ.NEXTVAL,
       PROJECTS_SEQ.CURRVAL,
-      PROJECT_DESCRIPTION,
+      PROJECT_DESCRIPTION_IN,
       DISPLAY_RANK_IN
     );
 

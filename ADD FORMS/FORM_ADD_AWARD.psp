@@ -6,9 +6,9 @@ PASSWORD_IN VARCHAR2(50);%>
 <%@page language="PL/SQL"%>
 <%@plsql procedure="FORM_ADD_AWARD"%>
 <%@plsql parameter="RESUMATOR_ID_IN" DEFAULT="NULL"%>
-<%@plsql parameter="AWARD_NAME" DEFAULT="NULL"%>
-<%@plsql parameter="YEAR_RECEIVED" DEFAULT="NULL"%>
-<%@plsql parameter="SEMESTER_RECEIVED" DEFAULT="NULL"%>
+<%@plsql parameter="AWARD_NAME_IN" DEFAULT="NULL"%>
+<%@plsql parameter="YEAR_RECEIVED_IN" DEFAULT="NULL"%>
+<%@plsql parameter="SEMESTER_RECEIVED_IN" DEFAULT="NULL"%>
 <%@plsql parameter="DISPLAY_RANK_IN" DEFAULT="NULL"%>
 
 
@@ -20,9 +20,9 @@ INSERT
     (
       HONOR_ID_SEQ.NEXTVAL,
       RESUMATOR_ID_IN,
-      AWARD_NAME,
-      YEAR_RECEIVED,
-      SEMESTER_RECEIVED,
+      AWARD_NAME_IN,
+      YEAR_RECEIVED_IN,
+      SEMESTER_RECEIVED_IN,
       DISPLAY_RANK_IN
     );
 
