@@ -20,7 +20,7 @@ LOOP
 FETCH COURSE_CURSOR INTO COURSE_ROW;
 EXIT WHEN COURSE_CURSOR%NOTFOUND;%>            
              <!-- loop through academic coursework 5 max -->
-                <%IF(COURSE_COUNTER < 4) THEN COURSE_COUNTER := COURSE_COUNTER + 1;%>
+                <%IF COURSE_COUNTER < 4 THEN COURSE_COUNTER := COURSE_COUNTER + 1;%>
                 <div class="span4">
                   <ul>
                      <li id="COURSE_TITLE_<%=COURSE_ROW.COURSE_ID%>" type="hidden" value="<%=COURSE_ROW.COURSE_ID%>"/> <%=COURSE_ROW.COURSE_TITLE%></li>
@@ -29,7 +29,7 @@ EXIT WHEN COURSE_CURSOR%NOTFOUND;%>
                      <input id="DISPLAY_RANK_ID_<%=COURSE_ROW.COURSE_ID%>"type="hidden" value="<%=COURSE_ROW.DISPLAY_RANK%>"/><!-- doesn't show -->
                   </ul>
                 </div>
-                <%ELSIF(COURSE_COUNTER >= 4 AND COURSE_COUNTER < 9) THEN COURSE_COUNTER := COURSE_COUNTER + 1;%>
+                <%ELSIF COURSE_COUNTER >= 4 AND COURSE_COUNTER < 9 THEN COURSE_COUNTER := COURSE_COUNTER + 1;%>
                 <div class="span4">
                   <ul>
                      <li id="COURSE_TITLE_<%=COURSE_ROW.COURSE_ID%>" type="hidden" value="<%=COURSE_ROW.COURSE_ID%>"/> <%=COURSE_ROW.COURSE_TITLE%></li>
@@ -46,7 +46,7 @@ CLOSE COURSE_CURSOR;%>
 
 <!-- ADD ACADEMIC COURSE MODAL -->
 
-  <div id="add-academic-course-modal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div id="#add-academic-course-modal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
     <div class="modal-header">
       <button type="button" class="close" data-dismiss="modal" aria-hidden="true">x</button>
       <h3 id="myModalLabel">Add Academic Information</h3>
@@ -71,7 +71,7 @@ CLOSE COURSE_CURSOR;%>
     </div>
     </form>
   </div>
-</div>
+
 
 
 <!-- EDIT ACADEMIC COURSE MODAL -->
@@ -86,7 +86,7 @@ ORDER BY DISPLAY_RANK;
 COURSE_ID_ROW COURSE_ID_CURSOR%ROWTYPE;
 %>
 
-  <div id="edit-academic-course-modal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div id="#edit-academic-course-modal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
     <div class="modal-header">
       <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
       <h3 id="myModalLabel">Edit Academic Information</h3>
@@ -125,4 +125,4 @@ COURSE_ID_ROW COURSE_ID_CURSOR%ROWTYPE;
     </div>
     </form>    
   </div>
-</div>  
+  
