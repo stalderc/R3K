@@ -18,8 +18,8 @@ INSERT
   INTO SKILLS VALUES
     (
       SKILLS_SEQ.NEXTVAL,
-      SKILL_TYPE,
-      SKILL_NAME
+      SKILL_NAME,
+      SKILL_TYPE
     );
 
 INSERT
