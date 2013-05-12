@@ -14,8 +14,8 @@ document.getElementById('F_NAME_IN').setAttribute("value", F_NAME);
 document.getElementById('L_NAME_IN').setAttribute("value", L_NAME);
 document.getElementById('PHONE_NUMBER_IN').setAttribute("value", PHONE_NUMBER);
 document.getElementById('ADDRESS_IN').setAttribute("value", ADDRESS);
-document.getElementById('EMAIL_IN').setAttribute("value", EMAIL_IN);
-document.getElementById('COMPANY_IN').setAttribute("value", COMPANY_IN);
+document.getElementById('EMAIL_IN').setAttribute("value", EMAIL);
+document.getElementById('COMPANY_IN').setAttribute("value", COMPANY);
 document.getElementById('TITLE_IN').setAttribute("value", TITLE_IN);
 document.getElementById('DISPLAY_IN').setAttribute("value", DISPLAY_RANK_ID);
 }
@@ -36,7 +36,7 @@ document.getElementById('DISPLAY_IN').setAttribute("value", DISPLAY_RANK_ID);
 }
 
 
-function populate_education_fields(){
+function populate_academic_fields(){
 
 var refID 				= 	document.getElementById('COURSE_ID_IN'			   	   ).value;
 var COURSE_TITLE 		= 	document.getElementById('COURSE_TITLE_' 		+ refID).value;
