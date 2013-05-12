@@ -25,7 +25,7 @@ EXIT WHEN COURSE_CURSOR%NOTFOUND;%>
                   <ul>
                      <li id="COURSE_TITLE_<%=COURSE_ROW.COURSE_ID%>" type="hidden" value="<%=COURSE_ROW.COURSE_ID%>"/> <%=COURSE_ROW.COURSE_TITLE%></li>
                      <input id="COURSE_NUMBER_<%=COURSE_ROW.COURSE_ID%>"type="hidden" value="<%=COURSE_ROW.COURSE_NUMBER%>"/><!-- doesn't show --> 
-                     <input id="COURSE_DESCRIPTION_<%=COURSE_ROW.COURSE_ID%>"type="hidden" value="<%=COURSE_ROW.COURSE_DESCRIPTION%>"/><!-- doesn't show --> 
+                     <input id="COURSE_DESCRIPTION_<%=COURSE_ROW.COURSE_ID%>"type="hidden" value="<%=COURSE_ROW.COURSE_DESC%>"/><!-- doesn't show --> 
                      <input id="DISPLAY_RANK_ID_<%=COURSE_ROW.COURSE_ID%>"type="hidden" value="<%=COURSE_ROW.DISPLAY_RANK%>"/><!-- doesn't show -->
                   </ul>
                 </div>
@@ -34,7 +34,7 @@ EXIT WHEN COURSE_CURSOR%NOTFOUND;%>
                   <ul>
                      <li id="COURSE_TITLE_<%=COURSE_ROW.COURSE_ID%>" type="hidden" value="<%=COURSE_ROW.COURSE_ID%>"/> <%=COURSE_ROW.COURSE_TITLE%></li>
                      <input id="COURSE_NUMBER_<%=COURSE_ROW.COURSE_ID%>"type="hidden" value="<%=COURSE_ROW.COURSE_NUMBER%>"/><!-- doesn't show --> 
-                     <input id="COURSE_DESCRIPTION_<%=COURSE_ROW.COURSE_ID%>"type="hidden" value="<%=COURSE_ROW.COURSE_DESCRIPTION%>"/><!-- doesn't show --> 
+                     <input id="COURSE_DESCRIPTION_<%=COURSE_ROW.COURSE_ID%>"type="hidden" value="<%=COURSE_ROW.COURSE_DESC%>"/><!-- doesn't show --> 
                      <input id="DISPLAY_RANK_ID_<%=COURSE_ROW.COURSE_ID%>"type="hidden" value="<%=COURSE_ROW.DISPLAY_RANK%>"/><!-- doesn't show -->
                   </ul>
                 </div><!-- end loop -->
@@ -107,11 +107,11 @@ COURSE_ID_ROW COURSE_ID_CURSOR%ROWTYPE;
 
             <div class="form-inline margin-form-inline">
             <input class="span3" type="hidden"id="RESUMATOR_ID_IN"  NAME="RESUMATOR_ID_IN" VALUE="<%=RESUMATOR_ID_VAL%>">
-            <input class="span3" type="text" id="COURSE_TITLE" name="COURSE_TITLE" placeholder="Course Title">
-            <input class="span2" type="text" id="COURSE_NUMBER" name="COURSE_NUMBER" placeholder="Course Number">
+            <input class="span3" type="text" id="COURSE_TITLE" name="COURSE_TITLE_IN" placeholder="Course Title">
+            <input class="span2" type="text" id="COURSE_NUMBER" name="COURSE_NUMBER_IN" placeholder="Course Number">
           </div>
 
-          <textarea class="max-width" rows="3" id="COURSE_DESCRIPTION" name="COURSE_DESCRIPTION" placeholder="Course description goes here."></textarea>
+          <textarea class="max-width" rows="3" id="COURSE_DESCRIPTION" name="COURSE_DESCRIPTION_IN" placeholder="Course description goes here."></textarea>
 
           <div class="form-inline margin-form-inline">
            <input class="span2" type="text" id="DISPLAY_RANK" NAME="DISPLAY_RANK_IN"placeholder="Display Rank">

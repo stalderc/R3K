@@ -46,7 +46,7 @@ var DISPLAY_RANK_ID 	=	document.getElementById('DISPLAY_RANK_ID_'  	+ refID).val
 
 document.getElementById('COURSE_TITLE').setAttribute("value", 		COURSE_TITLE);
 document.getElementById('COURSE_NUMBER').setAttribute("value", 		COURSE_NUMBER);
-document.getElementById('COURSE_DESCRIPTION').setAttribute("value", COURSE_DESCRIPTION);
+document.getElementById('COURSE_DESC').setAttribute("value", 		COURSE_DESCRIPTION);
 document.getElementById('DISPLAY_IN').setAttribute("value", 		DISPLAY_RANK_ID);
 
 }
