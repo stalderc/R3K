@@ -35,3 +35,19 @@ document.getElementById('YEAR_IN').setAttribute("value", YEAR);
 document.getElementById('DISPLAY_IN').setAttribute("value", DISPLAY_RANK_ID);
 }
 
+
+function populate_education_fields(){
+
+var refID 				= 	document.getElementById('COURSE_ID_IN'			   	   ).value;
+var COURSE_TITLE 		= 	document.getElementById('COURSE_TITLE_' 		+ refID).value;
+var COURSE_NUMBER 		= 	document.getElementById('COURSE_NUMBER_' 		+ refID).value;
+var COURSE_DESCRIPTION 	= 	document.getElementById('COURSE_DESCRIPTION_' 	+ refID).value;
+var DISPLAY_RANK_ID 	=	document.getElementById('DISPLAY_RANK_ID_'  	+ refID).value;
+
+document.getElementById('COURSE_TITLE').setAttribute("value", 		COURSE_TITLE);
+document.getElementById('COURSE_NUMBER').setAttribute("value", 		COURSE_NUMBER);
+document.getElementById('COURSE_DESCRIPTION').setAttribute("value", COURSE_DESCRIPTION);
+document.getElementById('DISPLAY_IN').setAttribute("value", 		DISPLAY_RANK_ID);
+
+}
+
