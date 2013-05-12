@@ -12,17 +12,20 @@ ORDER BY DISPLAY_RANK;
 
 CURSOR WORK_DESC_CURSOR IS
 
-SELECT WORK_DESCRIPTION.WORK_ID, WORK_DESCRIPTION.DESCRIPTION, WORK_DESCRIPTION.DISPLAY_RANK
+SELECT *
 FROM WORK_DESCRIPTION, WORK_EXPERIENCE
 WHERE WORK_EXPERIENCE.WORK_ID = WORK_DESCRIPTION.WORK_ID
 AND WORK_EXPERIENCE.RESUMATOR_ID = RESUMATOR_ID_VAL
-ORDER BY WORK_EXPERIENCE.WORK_ID, DISPLAY_RANK;
+ORDER BY WORK_EXPERIENCE.WORK_ID, WORK_DESCRIPTION.DISPLAY_RANK;
 
-WORK_DESC_ROW WORK_DESC_CURSOR%ROWTYPE;
+TYPE WORK_DESC_ARRAYTYPE IS TABLE OF WORK_DESCRIPTION%ROWTYPE;
+WORK_DESC_ARRAY WORK_DESC_ARRAYTYPE;
 WORK_EX_ROW WORK_EX_CURSOR%ROWTYPE;
 %>
 
 <%
+
+
 OPEN WORK_EX_CURSOR;
 LOOP
 FETCH WORK_EX_CURSOR INTO WORK_EX_ROW;
@@ -35,18 +38,8 @@ EXIT WHEN WORK_EX_CURSOR%NOTFOUND;%>
                     <h5 class="company-name"><a href="http://resumator3000.com" target="_blank"><%=WORK_EX_ROW.EMPLOYER%></a><span class="pull-right"><%=WORK_EX_ROW.CITY%>, <%=WORK_EX_ROW.STATE%></span></h5>
                     
                     <!-- loop through job bullet points  -->
-                    <%OPEN WORK_DESC_CURSOR;
-                      LOOP
-                      FETCH WORK_DESC_CURSOR INTO WORK_DESC_ROW;
-                      EXIT WHEN WORK_DESC_CURSOR%NOTFOUND;
 
-                    IF(WORK_EX_ROW.WORK_ID = WORK_DESC_ROW.WORK_ID) THEN
-                    %>
-                    <li><%=WORK_DESC_ROW.DESCRIPTION%></li>
-                    <%
-                      END IF;
-                      END LOOP;
-                      CLOSE WORK_DESC_CURSOR;%>
+
                     
                 </ul>
               </div><!-- end loop through job bullet points -->
