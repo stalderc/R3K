@@ -1,4 +1,4 @@
-function populateFields(){
+function populate_ref_Fields(){
 
 var refID = document.getElementById('REFERENCE_ID_IN').value;
 var F_NAME = document.getElementById('F_NAME_' + refID).value;
@@ -19,21 +19,4 @@ document.getElementById('COMPANY_IN').setAttribute("value", COMPANY_IN);
 document.getElementById('TITLE_IN').setAttribute("value", TITLE_IN);
 document.getElementById('DISPLAY_IN').setAttribute("value", DISPLAY_RANK_ID);
 }
-
-
-
-
-/*function populateForm(refID,formID,editFormId){
-		
-	var formData = document.getElementById(formID);
-	var formSize = document.getElementById(formID);
-	var position = formData.indexOf(refID);
-
-
-	for(i= position - formSize; i < position; i++ ){
-		document.getElementById(refIDs[i]).setAttribute("value", formData[i]);
-	}
-*/
-	
-		
 
