@@ -378,7 +378,7 @@ IF AUTHENTICATE_INT = 0 OR AUTHENTICATE_INT = 2 THEN%>
 <!-- POPULATE HONORS AND AWARDS SECTION -->
 
           <section id="honors">
-            <h4>Honors and Awards: <a href="#add-honors-modal" data-toggle="modal"><i class="icon-plus"> </i></a> <a onmousedown="populate__fields()" href="#edit-honors-modal" data-toggle="modal"><i class="icon-pencil"> </i></a> </h4>
+            <h4>Honors and Awards: <a href="#add-honors-modal" data-toggle="modal"><i class="icon-plus"> </i></a> <a onmousedown="populate_award_fields()" href="#edit-honors-modal" data-toggle="modal"><i class="icon-pencil"> </i></a> </h4>
             <% PAGE_AWARD_CURSOR (RESUMATOR_ID_VAL);%>
           </section>
           <hr> 
@@ -388,7 +388,7 @@ IF AUTHENTICATE_INT = 0 OR AUTHENTICATE_INT = 2 THEN%>
 
 
           <section id="activities">
-            <h4>Extra Curricular: <a href="#add-extracurricular-modal" data-toggle="modal"><i class="icon-plus"> </i></a> <a onmousedown="populate_award_fields()" href="#edit-extracurricular-modal" data-toggle="modal"><i class="icon-pencil"> </i></a> </h4>
+            <h4>Extra Curricular: <a href="#add-extracurricular-modal" data-toggle="modal"><i class="icon-plus"> </i></a> <a onmousedown="populate_ex_curr_Fields()" href="#edit-extracurricular-modal" data-toggle="modal"><i class="icon-pencil"> </i></a> </h4>
 
             <div class="row"><!-- extra curricular row -->
               <% PAGE_EXTRA_CURRICULAR_CURSOR (RESUMATOR_ID_VAL); %>

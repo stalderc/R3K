@@ -28,11 +28,11 @@ var YEAR 			=	document.getElementById('YEAR_' 			+ refID).value;
 var DISPLAY_RANK_ID =	document.getElementById('DISPLAY_RANK_ID_'  + refID).value;
 var SEMESTER_IN 	=	document.getElementById('SEMESTER_'  		+ refID).value;
 
-document.getElementById('ORGANIZATION_IN').setAttribute("value", ORGANIZATION);
 document.getElementById('TITLE_IN').setAttribute("value", TITLE);
 document.getElementById('SEMESTER_IN').setAttribute("value", SEMESTER_IN);
 document.getElementById('YEAR_IN').setAttribute("value", YEAR);
 document.getElementById('DISPLAY_IN').setAttribute("value", DISPLAY_RANK_ID);
+document.getElementById('ORGANIZATION_IN').setAttribute("value", ORGANIZATION);
 }
 
 
@@ -192,6 +192,7 @@ var CITY		=	document.getElementById('CITY').value;
 var STATE		=	document.getElementById('STATE').value;
 var ZIPCODE		=	document.getElementById('ZIPCODE').value;
 var SURNAME		=	document.getElementById('SURNAME').value;
+var EMAIL		=	document.getElementById('EMAIL').value;
 
 
 document.getElementById('F_NAME_IN').setAttribute("value", F_NAME);
@@ -202,4 +203,5 @@ document.getElementById('USER_STREET_ADDRESS_IN').setAttribute("value", STREET);
 document.getElementById('USER_CITY_IN').setAttribute("value", CITY);
 document.getElementById('USER_STATE_IN').setAttribute("value", STATE);
 document.getElementById('USER_ZIPCODE_IN').setAttribute("value", ZIPCODE);
+document.getElementById('EMAIL_ADDRESS_IN').setAttribute("value", EMAIL);
 }

@@ -36,6 +36,7 @@ IF USERS_CURSOR%NOTFOUND THEN%>
           <input id="CITY" type="hidden" value="<%=USERS_ROW.CITY%>"/><%=USERS_ROW.CITY%>, 
           <input id="STATE" type="hidden" value="<%=USERS_ROW.STATE%>"/><%=USERS_ROW.STATE%> 
           <input id="ZIPCODE" type="hidden" value="<%=USERS_ROW.ZIPCODE%>"/><%=USERS_ROW.ZIPCODE%><br />
+          <input id="EMAIL" type="hidden" value="<%=EMAIL_IN%>"/>
           <!-- href="mailto:emailaddress@domain.com" -->
           <!-- Insert First Name Last Name as linkable text -->
           <a href="mailto:<%=EMAIL_IN%>"><i class="icon-envelope"></i>
