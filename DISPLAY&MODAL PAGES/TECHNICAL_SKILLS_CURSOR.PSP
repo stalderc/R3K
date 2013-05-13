@@ -93,7 +93,7 @@ SKILL_ID_ROW SKILL_ID_CURSOR%ROWTYPE;
       <h3 id="myModalLabel">Edit Tehcnical Skills Information</h3>
     </div>
     <div class="modal-body">
-      <form action="http://oracle.is.umbc.edu:8080/classpsp/IS420_TEAM_TRG.FORM_SKILLS" method="get">
+      <form action="http://oracle.is.umbc.edu:8080/classpsp/IS420_TEAM_TRG.FORM_UPDATE_SKILLS" method="get">
           <div class="form-inline margin-form-inline">
             <select onchange="populate_technical_skill_fields()"class="span2" ID="TECHNICAL_SKILL_ID_IN" name="SKILLS_ID_IN">
               <%OPEN SKILL_ID_CURSOR;

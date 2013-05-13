@@ -6,14 +6,16 @@ PASSWORD_IN VARCHAR2(50);%>
 <%@page language="PL/SQL"%>
 <%@plsql procedure="FORM_UPDATE_USER"%>
 <%@plsql parameter="RESUMATOR_ID_IN" DEFAULT="NULL"%>
-<%@plsql parameter="EMAIL_ADDRESS_IN" DEFAULT="NULL"%>
 <%@plsql parameter="F_NAME_IN" DEFAULT="NULL"%>
+<%@plsql parameter="M_NAME_IN" DEFAULT="NULL"%>
 <%@plsql parameter="L_NAME_IN" DEFAULT="NULL"%>
+<%@plsql parameter="SURNAME_IN" DEFAULT="NULL"%>
 <%@plsql parameter="PHONE_NUMBER_IN" DEFAULT="NULL"%>
 <%@plsql parameter="STREET_IN" DEFAULT="NULL"%>
 <%@plsql parameter="CITY_IN" DEFAULT="NULL"%>
 <%@plsql parameter="STATE_IN" DEFAULT="NULL"%>
 <%@plsql parameter="ZIPCODE_IN" DEFAULT="NULL"%>
+<%@plsql parameter="EMAIL_ADDRESS_IN" DEFAULT="NULL"%>
 
 
 

@@ -130,7 +130,7 @@ WORK_ID_ROW WORK_ID_CURSOR%ROWTYPE;
       <h3 id="myModalLabel">Edit Work History Information</h3>
     </div>
     <div class="modal-body">
-      <form action="http://oracle.is.umbc.edu:8080/classpsp/IS420_TEAM_TRG.FORM_WORK_EXPERIENCE" method="get">
+      <form action="http://oracle.is.umbc.edu:8080/classpsp/IS420_TEAM_TRG.FORM_UPDATE_WORK_EXPERIENCE" method="get">
         <div class="form-inline margin-form-inline">
            <select onchange="populate_work_history_fields()"class="span2" ID="WORK_ID_IN" name="WORK_EXPERIENCE_ID_IN">
               <%OPEN WORK_ID_CURSOR;
@@ -154,7 +154,7 @@ WORK_ID_ROW WORK_ID_CURSOR%ROWTYPE;
             <input class="span2" type="text" id="WORK_STATE_IN" name="WORK_STATE_IN" placeholder="State">
           </div>
 
-
+          <input class="span2" type="HIDDEN" id="WORK_DESCRIPTION_ID_IN" name="WORK_DESCRIPTION_ID_IN" placeholder="State">
           <textarea class="max-width" rows="3" id="WORK_DESCRIPTION_IN" name="WORK_DESCRIPTION_IN" placeholder="Work Description goes here."></textarea>
 
           <div class="form-inline margin-form-inline">

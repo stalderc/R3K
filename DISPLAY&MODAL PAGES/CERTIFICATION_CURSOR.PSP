@@ -94,11 +94,11 @@ CERT_ID_ROW CERT_ID_CURSOR%ROWTYPE;
       <h3 id="myModalLabel">Edit Certification Information</h3>
     </div>
     <div class="modal-body">
-      <form action="http://oracle.is.umbc.edu:8080/classpsp/IS420_TEAM_TRG.FORM_CERTIFICATIONS" method="get">
+      <form action="http://oracle.is.umbc.edu:8080/classpsp/IS420_TEAM_TRG.FORM_UPDATE_CERTIFICATIONS" method="get">
           <div class="form-inline margin-form-inline">
 
             <!-- insert select statement -->
-            <select onchange="populate_certification_fields()"class="span2" ID="CERT_ID_IN" name="CERT_ID_IN_IN">
+            <select onchange="populate_certification_fields()"class="span2" ID="CERT_ID_IN" name="CERT_ID_IN">
               <%OPEN CERT_ID_CURSOR;
                 LOOP
                 FETCH CERT_ID_CURSOR INTO CERT_ID_ROW;

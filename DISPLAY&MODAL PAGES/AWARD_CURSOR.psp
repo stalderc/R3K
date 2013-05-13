@@ -84,7 +84,7 @@ AWARD_ID_ROW AWARD_ID_CURSOR%ROWTYPE;
     <div class="modal-body">
       <form action="http://oracle.is.umbc.edu:8080/classpsp/IS420_TEAM_TRG.FORM_UPDATE_AWARD" method="get">
           <div class="form-inline margin-form-inline">
-             <select onchange="populate_award_fields()"class="span2" ID="HONOR_ID_IN" name="AWARD_ID_IN">
+             <select onchange="populate_award_fields()"class="span2" ID="HONOR_ID_IN" name="HONOR_ID_IN">
               <%OPEN AWARD_ID_CURSOR;
                 LOOP
                 FETCH AWARD_ID_CURSOR INTO AWARD_ID_ROW;

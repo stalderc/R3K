@@ -41,6 +41,7 @@ IF USERS_CURSOR%NOTFOUND THEN%>
           <a href="mailto:<%=EMAIL_IN%>"><i class="icon-envelope"></i>
           <%=USERS_ROW.F_NAME%> 
           <%=USERS_ROW.L_NAME%></a></p>
+           <input id="PHONE_NUMBER" type="hidden" value="<%=USERS_ROW.PHONE_NUMBER%>"/><%=USERS_ROW.PHONE_NUMBER%> 
 <%
 END IF;
 CLOSE USERS_CURSOR;%>
@@ -53,9 +54,9 @@ CLOSE USERS_CURSOR;%>
       <h3 id="myModalLabel">Contact Information</h3>
     </div>
     <div class="modal-body">
-      <form>
+      <form action="http://oracle.is.umbc.edu:8080/classpsp/IS420_TEAM_TRG.FORM_UPDATE_USER" method="get">
           <p>Fill out only what needs to be changed.</p>
-
+            <input class="span3" type="hidden" id="RESUMATOR_ID_IN" name="RESUMATOR_ID_IN" value="<%=RESUMATOR_ID_VAL%>">
           <div class="form-inline margin-form-inline" >
             <input class="span2" type="text" id="F_NAME_IN" name="F_NAME_IN" placeholder="First Name">
             <input class="span2" type="text" id="M_NAME_IN" name="M_NAME_IN" placeholder="Middle Name">
@@ -63,13 +64,15 @@ CLOSE USERS_CURSOR;%>
             <input class="span1" type="text" id="SURNAME_IN" name="SURNAME_IN" placeholder="II, Jr.">
           </div>
           <div class="form-inline margin-form-inline">
-            <input class="span3" type="text" id="USER_STREET_ADDRESS_IN" name="USER_STREET_ADDRESS_IN" placeholder="Street Address">
-            <input class="span2" type="text" id="USER_CITY_IN" name="USER_CITY_IN" placeholder="City">
+            <input class="span2" type="text" id="PHONE_NUMBER_IN" name="PHONE_NUMBER_IN" placeholder="555-555-5555">
+            <input class="span3" type="text" id="USER_STREET_ADDRESS_IN" name="STREET_IN" placeholder="Street Address">
+            <input class="span2" type="text" id="USER_CITY_IN" name="CITY_IN" placeholder="City">
           </div>
           <div class="form-inline margin-form-inline">
-            <input class="span2" type="text" id="USER_STATE_IN" name="USER_STATE_IN" placeholder="State">
-            <input class="span2" type="text" id="USER_ZIPCODE_IN" name="USER_ZIPCODE_IN" placeholder="Zipcode">
+            <input class="span2" type="text" id="USER_STATE_IN" name="STATE_IN" placeholder="State">
+            <input class="span2" type="text" id="USER_ZIPCODE_IN" name="ZIPCODE_IN" placeholder="Zipcode">
           </div>
+          <input class="span2" type="HIDDEN" id="EMAIL_ADDRESS_IN" name="EMAIL_ADDRESS_IN" placeholder="Zipcode">
  
 
     </div><!-- close modal-body -->

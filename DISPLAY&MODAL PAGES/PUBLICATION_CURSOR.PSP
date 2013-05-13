@@ -83,7 +83,7 @@ RESEARCH_PUB_ID_ROW RESEARCH_PUB_ID_CURSOR%ROWTYPE;
       <h3 id="myModalLabel">Edit Research Information</h3>
     </div>
     <div class="modal-body">
-      <form action="http://oracle.is.umbc.edu:8080/classpsp/IS420_TEAM_TRG.FORM_RESEARCH_PUB" method="get">
+      <form action="http://oracle.is.umbc.edu:8080/classpsp/IS420_TEAM_TRG.FORM_UPDATE_RESEARCH_PUBS" method="get">
          <div class="form-inline margin-form-inline">
             <select onchange="populate_publication_fields()"class="span2" ID="RESEARCH_PUB_ID_IN" name="RESEARCH_PUB_ID_IN">
               <%OPEN RESEARCH_PUB_ID_CURSOR;
