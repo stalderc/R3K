@@ -6,6 +6,7 @@
 <%!CURSOR ED_CURSOR
   IS
     SELECT 
+      EDUCATION.ED_ID,
       EDUCATION.SCHOOL_ID,
       EDUCATION.DEGREE,
       EDUCATION.MAJOR,
@@ -54,13 +55,21 @@ CLOSE SCHOOL_CURSOR;
             <!-- loop through users education -->
             <div class="education-block">
                 <!-- Full name of educational institution, city and state -->
-                <p><%=S_NAME%> <span class="pull-right"><%=S_CITY%>, <%=S_STATE%></span></p>
+                <p><input id="SCHOOL_ID_<%=ED_ROW.ED_ID%>" type="hidden" value="<%=ED_ROW.SCHOOL_ID%>">  <%=S_NAME%> 
+                  <span class="pull-right">
+                  <%=S_CITY%>, 
+                  <%=S_STATE%>
+                </span></p>
                 <!-- Name of Degree Program -->
-                <p><%=ED_ROW.DEGREE%>, <%=ED_ROW.MAJOR%><span class="pull-right"><%=ED_ROW.GRAD_DATE%></span></p>
-                <p>GPA <%=ED_ROW.GPA%></p>
+                <p><input id="DEGREE_<%=ED_ROW.ED_ID%>" type="hidden" value="<%=ED_ROW.DEGREE%>"><%=ED_ROW.DEGREE%>, 
+                  <input id="MAJOR_<%=ED_ROW.ED_ID%>" type="hidden" value="<%=ED_ROW.MAJOR%>"><%=ED_ROW.MAJOR%><span class="pull-right">
+                  <input id="GRAD_DATE_<%=ED_ROW.ED_ID%>" type="hidden" value="<%=ED_ROW.GRAD_DATE%>"><%=ED_ROW.GRAD_DATE%></span></p>
+                <p>GPA 
+                  <input id="GPA_<%=ED_ROW.ED_ID%>" type="hidden" value="<%=ED_ROW.GPA%>"><%=ED_ROW.GPA%></p>
                 <!-- list GPA if above 3.00 -->  
-                <p><%=ED_ROW.MINOR%> MINOR</p>
-                <p><%=ED_ROW.CERTIFICATIONS%> CERTIFICATIONS</p>
+                <p><input id="MINOR_<%=ED_ROW.ED_ID%>" type="hidden" value="<%=ED_ROW.MINOR%>"><%=ED_ROW.MINOR%> MINOR</p>
+                <p><input id="CERTIFICATIONS_<%=ED_ROW.ED_ID%>" type="hidden" value="<%=ED_ROW.CERTIFICATIONS%>"><%=ED_ROW.CERTIFICATIONS%> CERTIFICATIONS</p>
+                <input id="DISPLAY_RANK_ID_<%=ED_ROW.ED_ID%>" type="hidden" value="<%=ED_ROW.DISPLAY_RANK%>"/>
             </div>
             <!-- end education loop -->  
   <%
@@ -123,7 +132,15 @@ CLOSE SCHOOL_CURSOR;
 
 
 <!-- EDIT EDUCATION MODAL -->
+<%!CURSOR ED_ID_CURSOR IS
 
+SELECT EDUCATION.ED_ID, EDUCATION.DISPLAY_RANK
+FROM EDUCATION
+WHERE EDUCATION.RESUMATOR_ID = RESUMATOR_ID_VAL
+ORDER BY DISPLAY_RANK;
+
+ED_ID_ROW ED_ID_CURSOR%ROWTYPE;
+%>
   <div id="edit-education-modal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
     <div class="modal-header">
       <button type="button" class="close" data-dismiss="modal" aria-hidden="true">x</button>
@@ -132,6 +149,15 @@ CLOSE SCHOOL_CURSOR;
     <div class="modal-body">
       <form action="http://oracle.is.umbc.edu:8080/classpsp/IS420_TEAM_TRG.FORM_EDUCATION" method="get">
           <div class="form-inline margin-form-inline">
+             <select onchange="populate_education_fields()"class="span2" ID="EDUCATION_ID_IN" name="EDUCATION_ID_IN">
+              <%OPEN ED_ID_CURSOR;
+                LOOP
+                FETCH ED_ID_CURSOR INTO ED_ID_ROW;
+                EXIT WHEN ED_ID_CURSOR%NOTFOUND;%>
+              <option value="<%=ED_ID_ROW.ED_ID%>"><%=ED_ID_ROW.DISPLAY_RANK%></option>
+              <%END LOOP;
+              CLOSE ED_ID_CURSOR;%>
+          </select>
             <input class="span3" type="hidden" id="RESUMATOR_ID_IN" name="RESUMATOR_ID_IN" VALUE="<%=RESUMATOR_ID_VAL%>">
             <!-- school_id will need to be inserted here in future versions -->
             <input class="span3" type="text" id="DEGREE_NAME_IN" name="DEGREE_NAME_IN" placeholder="Degree Name">

@@ -50,8 +50,8 @@ CLOSE TECHNICAL_SKILLS_CURSOR;%>
       <form action="http://oracle.is.umbc.edu:8080/classpsp/IS420_TEAM_TRG.FORM_ADD_SKILLS" method="get">
           <div class="form-inline margin-form-inline">
             <input class="span3" type="hidden" name="RESUMATOR_ID_IN" value="<%=RESUMATOR_ID_VAL%>">
-            <input class="span3" type="text" name="SKILL_TYPE_IN" placeholder="Skill Type">
-            <input class="span2" type="hidden" name="SKILL_NAME_IN" value="Technical">
+            <input class="span3" type="hidden" name="SKILL_TYPE_IN" value="Technical">
+            <input class="span2" type="text" name="SKILL_NAME_IN" placeholder="Skill Name">
             <select class="span2" type="text" name="DISPLAY_RANK_IN">
               <option>Display Rank</option>
               <option value="1">1 - High</option>

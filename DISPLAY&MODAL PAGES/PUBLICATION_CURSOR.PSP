@@ -5,7 +5,7 @@
 
 <%!CURSOR PUB_CURSOR IS
 
-SELECT RESEARCH_PUB.TITLE, RESEARCH_PUB.TYPE, RESEARCH_PUB.LOCATION, RESEARCH_PUB.DATE_PRESENTED, RESEARCH_PUB.DISPLAY_RANK
+SELECT RESEARCH_PUB.RESEARCH_PUB_ID, RESEARCH_PUB.TITLE, RESEARCH_PUB.TYPE, RESEARCH_PUB.LOCATION, RESEARCH_PUB.DATE_PRESENTED, RESEARCH_PUB.DISPLAY_RANK
 FROM RESEARCH_PUB
 WHERE RESEARCH_PUB.RESUMATOR_ID = RESUMATOR_ID_VAL
 ORDER BY DISPLAY_RANK; 
@@ -18,7 +18,13 @@ LOOP
 FETCH PUB_CURSOR INTO PUB_ROW;
 EXIT WHEN PUB_CURSOR%NOTFOUND;%>
               <ul>
-                 <li><%=PUB_ROW.TITLE%>, <%=PUB_ROW.TYPE%>, <%=PUB_ROW.LOCATION%></li>
+                 <li>
+                  <input id="TITLE_<%=PUB_ROW.RESEARCH_PUB_ID%>" type="hidden" value="<%=PUB_ROW.TITLE%>"/><%=PUB_ROW.TITLE%>, 
+                  <input id="TYPE_<%=PUB_ROW.RESEARCH_PUB_ID%>" type="hidden" value="<%=PUB_ROW.TYPE%>"/><%=PUB_ROW.TYPE%>, 
+                  <input id="LOCATION_<%=PUB_ROW.RESEARCH_PUB_ID%>" type="hidden" value="<%=PUB_ROW.LOCATION%>"/><%=PUB_ROW.LOCATION%>
+                  <input id="DATE_PRESENTED_<%=PUB_ROW.RESEARCH_PUB_ID%>" type="hidden" value="<%=PUB_ROW.DATE_PRESENTED%>"/><%=PUB_ROW.DATE_PRESENTED%>
+                   <input id="DISPLAY_RANK_ID_<%=PUB_ROW.RESEARCH_PUB_ID%>" type="hidden" value="<%=PUB_ROW.DISPLAY_RANK%>"/>
+                </li>
               </ul>
 <%END LOOP;
 CLOSE PUB_CURSOR;%>
@@ -60,9 +66,17 @@ CLOSE PUB_CURSOR;%>
     </form>
   </div>
 
-<%%>
-<!-- EDIT RESEARCH MODAL -->
 
+<!-- EDIT RESEARCH MODAL -->
+<%!CURSOR RESEARCH_PUB_ID_CURSOR IS
+
+SELECT RESEARCH_PUB.RESEARCH_PUB_ID, RESEARCH_PUB.DISPLAY_RANK
+FROM RESEARCH_PUB
+WHERE RESEARCH_PUB.RESUMATOR_ID = RESUMATOR_ID_VAL
+ORDER BY DISPLAY_RANK;
+
+RESEARCH_PUB_ID_ROW RESEARCH_PUB_ID_CURSOR%ROWTYPE;
+%>
   <div id="edit-research-modal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
     <div class="modal-header">
       <button type="button" class="close" data-dismiss="modal" aria-hidden="true">x</button>
@@ -71,6 +85,15 @@ CLOSE PUB_CURSOR;%>
     <div class="modal-body">
       <form action="http://oracle.is.umbc.edu:8080/classpsp/IS420_TEAM_TRG.FORM_RESEARCH_PUB" method="get">
          <div class="form-inline margin-form-inline">
+            <select onchange="populate_publication_fields()"class="span2" ID="RESEARCH_PUB_ID_IN" name="RESEARCH_PUB_ID_IN">
+              <%OPEN RESEARCH_PUB_ID_CURSOR;
+                LOOP
+                FETCH RESEARCH_PUB_ID_CURSOR INTO RESEARCH_PUB_ID_ROW;
+                EXIT WHEN RESEARCH_PUB_ID_CURSOR%NOTFOUND;%>
+              <option value="<%=RESEARCH_PUB_ID_ROW.RESEARCH_PUB_ID%>"><%=RESEARCH_PUB_ID_ROW.DISPLAY_RANK%></option>
+              <%END LOOP;
+              CLOSE RESEARCH_PUB_ID_CURSOR;%>
+          </select>
             <input class="span3" type="hidden" id="RESUMATOR_ID_IN" name="RESUMATOR_ID_IN" VALUE="<%=RESUMATOR_ID_VAL%>">
             <input class="span3" type="text" id="RESEARCH_TITLE_IN" name="RESEARCH_TITLE_IN" placeholder="Title of Research">
             <input class="span2" type="text" id="RESEARCH_TYPE_IN" name="RESEARCH_TYPE_IN" placeholder="Type of Activity">
