@@ -49,10 +49,7 @@ CLOSE DESIGN_SKILLS_CURSOR;%>
           <div class="form-inline margin-form-inline">
             <input class="span3" type="hidden" name="RESUMATOR_ID_IN" value="<%=RESUMATOR_ID_VAL%>">
             <input class="span3" type="text" name="SKILL_TYPE_IN" placeholder="Skill Type">
-            <input class="span2" type="text" name="SKILL_NAME_IN" placeholder="Skill Name">
-          </div>
-          <div class="form-inline margin-form-inline">
-           <!-- <input class="span2" type="text" name="DISPLAY_RANK_IN"placeholder="Display Rank"> -->
+            <input class="span2" type="hidden" name="SKILL_NAME_IN" value="Design">
             <select class="span2" type="text" name="DISPLAY_RANK_IN">
               <option>Display Rank</option>
               <option value="1">1 - High</option>

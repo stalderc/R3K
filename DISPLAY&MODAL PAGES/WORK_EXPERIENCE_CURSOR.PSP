@@ -40,7 +40,7 @@ EXIT WHEN WORK_EX_CURSOR%NOTFOUND;%>
                     <!-- Company name and Date Range Employment -->
                     <h4 class="company-name"><%=WORK_EX_ROW.POSITION_TITLE%><span class="pull-right"><%=WORK_EX_ROW.START_DATE%> - <%=WORK_EX_ROW.END_DATE%></span> </h4>
                     <!-- job title -->
-                    <h5 class="company-name"><a href="http://resumator3000.com" target="_blank"><%=WORK_EX_ROW.EMPLOYER%></a><span class="pull-right"><%=WORK_EX_ROW.CITY%>, <%=WORK_EX_ROW.STATE%></span></h5>
+                    <h5 class="company-name"><%=WORK_EX_ROW.EMPLOYER%></a><span class="pull-right"><%=WORK_EX_ROW.CITY%>, <%=WORK_EX_ROW.STATE%></span></h5>
                     
                     <!-- loop through job bullet points  -->
                     <% for i in 1..WORK_DESC_ARRAY.COUNT LOOP%>

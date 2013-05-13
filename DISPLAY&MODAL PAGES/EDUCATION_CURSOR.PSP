@@ -19,11 +19,31 @@
     ORDER BY DISPLAY_RANK;
   ED_ROW ED_CURSOR%ROWTYPE;
   EDUCATION_NO_INFO EXCEPTION;
+
+CURSOR SCHOOL_CURSOR IS
+
+SELECT SCHOOL.SCHOOL_ID, SCHOOL.SCHOOL_NAME
+FROM SCHOOL;
+
+TYPE SCHOOL_DETAILS_ARRAYTYPE IS TABLE OF SCHOOL_CURSOR%ROWTYPE;
+SCHOOL_DETAILS_ARRAY SCHOOL_DETAILS_ARRAYTYPE;
+
   S_NAME SCHOOL.SCHOOL_NAME%TYPE;
   S_CITY SCHOOL.SCHOOL_CITY%TYPE;
   S_STATE SCHOOL.SCHOOL_STATE%TYPE; %>
 
-  <%OPEN ED_CURSOR;
+  <%
+OPEN SCHOOL_CURSOR;
+LOOP
+FETCH SCHOOL_CURSOR BULK COLLECT INTO SCHOOL_DETAILS_ARRAY;
+EXIT WHEN SCHOOL_CURSOR%NOTFOUND;
+END LOOP;
+CLOSE SCHOOL_CURSOR; 
+
+
+
+
+  OPEN ED_CURSOR;
   LOOP
     FETCH ED_CURSOR INTO ED_ROW;
     SELECT SCHOOL_NAME INTO S_NAME FROM SCHOOL WHERE SCHOOL.SCHOOL_ID = ED_ROW.SCHOOL_ID;
@@ -34,7 +54,7 @@
             <!-- loop through users education -->
             <div class="education-block">
                 <!-- Full name of educational institution, city and state -->
-                <p><%=S_NAME%>, <span class="pull-right"><%=S_CITY%>, <%=S_STATE%></span></p>
+                <p><%=S_NAME%> <span class="pull-right"><%=S_CITY%>, <%=S_STATE%></span></p>
                 <!-- Name of Degree Program -->
                 <p><%=ED_ROW.DEGREE%>, <%=ED_ROW.MAJOR%><span class="pull-right"><%=ED_ROW.GRAD_DATE%></span></p>
                 <p>GPA <%=ED_ROW.GPA%></p>
@@ -58,8 +78,20 @@
       <form action="http://oracle.is.umbc.edu:8080/classpsp/IS420_TEAM_TRG.FORM_ADD_EDUCATION" method="get">
           <div class="form-inline margin-form-inline">
             <input class="span3" type="hidden" name="RESUMATOR_ID_IN" VALUE="<%=RESUMATOR_ID_VAL%>">
-            <!-- school_id will need to be inserted here in future versions -->
-            <input class="span3" type="text" name="DEGREE_NAME_IN" placeholder="Degree Name">
+            <select class="span3" name="SCHOOL_ID_IN">
+             <% for i in 1..SCHOOL_DETAILS_ARRAY.COUNT LOOP%>
+                     
+                    <OPTION VALUE="<%=SCHOOL_DETAILS_ARRAY(i).SCHOOL_ID%>"><%=SCHOOL_DETAILS_ARRAY(i).SCHOOL_NAME%></OPTION>
+                    <%END LOOP;%>
+            </select>
+            <select class="span3" name="DEGREE_NAME_IN">
+                <option value="Associate of Arts">Associate of Arts</option>
+                <option value="Associate of Applied Sciance">Associate of Applied Sciance</option>
+                <option value="Bachelor of Arts">Bachelor of Arts</option>
+                <option value="Bachelor of Science">Bachelor of Science</option>
+                <option value="Master of Arts">Master of Arts</option>
+                <option value="Master of Science">Master of Science</option>
+            </select>
             <input class="span2" type="text" name="DEGREE_MAJOR_IN" placeholder="Major">
             <input class="span2" type="text" name="DEGREE_MINOR_IN" placeholder="Minor">
           </div>

@@ -51,10 +51,7 @@ CLOSE TECHNICAL_SKILLS_CURSOR;%>
           <div class="form-inline margin-form-inline">
             <input class="span3" type="hidden" name="RESUMATOR_ID_IN" value="<%=RESUMATOR_ID_VAL%>">
             <input class="span3" type="text" name="SKILL_TYPE_IN" placeholder="Skill Type">
-            <input class="span2" type="text" name="SKILL_NAME_IN" placeholder="Skill Name">
-          </div>
-          <div class="form-inline margin-form-inline">
-           <!-- <input class="span2" type="text" name="DISPLAY_RANK_IN"placeholder="Display Rank"> -->
+            <input class="span2" type="hidden" name="SKILL_NAME_IN" value="Technical">
             <select class="span2" type="text" name="DISPLAY_RANK_IN">
               <option>Display Rank</option>
               <option value="1">1 - High</option>
@@ -62,8 +59,8 @@ CLOSE TECHNICAL_SKILLS_CURSOR;%>
               <option value="3">3</option>
               <option value="4">4</option>
               <option value="5">5 - Low</option>
-            </select>           
-          </div>
+            </select>
+          </div> 
     </div>
     <div class="modal-footer">
       <button class="btn" data-dismiss="modal" aria-hidden="true">Cancel</button>
