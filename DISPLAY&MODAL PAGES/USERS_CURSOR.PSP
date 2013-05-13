@@ -6,7 +6,7 @@
 
 <%!CURSOR USERS_CURSOR IS 
 
-SELECT USERS.F_NAME, USERS.L_NAME, USERS.STREET, USERS.CITY, USERS.STATE, USERS.ZIPCODE, USERS.PHONE_NUMBER, USERS.ACCOUNT_TYPE
+SELECT USERS.F_NAME, USERS.L_NAME, USERS.STREET, USERS.CITY, USERS.STATE, USERS.ZIPCODE, USERS.PHONE_NUMBER, USERS.ACCOUNT_TYPE, USERS.SURNAME, USERS.M_NAME
 FROM USERS
 WHERE USERS.RESUMATOR_ID = RESUMATOR_ID_VAL;
 
@@ -18,21 +18,29 @@ FETCH USERS_CURSOR INTO USERS_ROW;
 IF USERS_CURSOR%NOTFOUND THEN%>
 
           <!-- First Name Last Name - Career Title -->
-          Add Your Personal Information </h4>
+          Add Your Personal Information! </h4>
           <!-- House Number Street Name Street Type -->
           <p class="address"><br />
           <!-- City, State, Zipcode -->  
             <br />
 <%ELSE%>   
           <!-- First Name Last Name - Career Title -->
-          <%=USERS_ROW.F_NAME%> <%=USERS_ROW.L_NAME%> </h4>
+          <input id="F_NAME" type="hidden" value="<%=USERS_ROW.F_NAME%>"/><%=USERS_ROW.F_NAME%>
+          <input id="M_NAME" type="hidden" value="<%=USERS_ROW.M_NAME%>"/><%=USERS_ROW.M_NAME%> 
+          <input id="L_NAME" type="hidden" value="<%=USERS_ROW.L_NAME%>"/><%=USERS_ROW.L_NAME%> </h4>
+          <input id="SURNAME" type="hidden" value="<%=USERS_ROW.SURNAME%>"/><%=USERS_ROW.SURNAME%>
           <!-- House Number Street Name Street Type -->
-          <p class="address"><%=USERS_ROW.STREET%><br />
+          <p class="address">
+          <input id="STREET" type="hidden" value="<%=USERS_ROW.STREET%>"/><%=USERS_ROW.STREET%><br />
           <!-- City, State, Zipcode -->  
-            <%=USERS_ROW.CITY%>, <%=USERS_ROW.STATE%> <%=USERS_ROW.ZIPCODE%><br />
+          <input id="CITY" type="hidden" value="<%=USERS_ROW.CITY%>"/><%=USERS_ROW.CITY%>, 
+          <input id="STATE" type="hidden" value="<%=USERS_ROW.STATE%>"/><%=USERS_ROW.STATE%> 
+          <input id="ZIPCODE" type="hidden" value="<%=USERS_ROW.ZIPCODE%>"/><%=USERS_ROW.ZIPCODE%><br />
           <!-- href="mailto:emailaddress@domain.com" -->
           <!-- Insert First Name Last Name as linkable text -->
-          <a href="mailto:<%=EMAIL_IN%>"><i class="icon-envelope"></i><%=USERS_ROW.F_NAME%> <%=USERS_ROW.L_NAME%></a></p>
+          <a href="mailto:<%=EMAIL_IN%>"><i class="icon-envelope"></i>
+          <%=USERS_ROW.F_NAME%> 
+          <%=USERS_ROW.L_NAME%></a></p>
 <%
 END IF;
 CLOSE USERS_CURSOR;%>
@@ -48,14 +56,11 @@ CLOSE USERS_CURSOR;%>
       <form>
           <p>Fill out only what needs to be changed.</p>
 
-          <div class="form-inline margin-form-inline">
+          <div class="form-inline margin-form-inline" >
             <input class="span2" type="text" id="F_NAME_IN" name="F_NAME_IN" placeholder="First Name">
             <input class="span2" type="text" id="M_NAME_IN" name="M_NAME_IN" placeholder="Middle Name">
             <input class="span2" type="text" id="L_NAME_IN" name="L_NAME_IN" placeholder="Last Name">
-            <input class="span1" type="text" id="SUFFIX_IN" name="SUFFIX_IN" placeholder="II, Jr.">
-          </div>
-          <div class="form-inline margin-form-inline">
-            <input class="span4" type="text" id="CAREER_TITLE_IN" name="CAREER_TITLE_IN" placeholder="Career Title (ex. 'Business Analyst')">
+            <input class="span1" type="text" id="SURNAME_IN" name="SURNAME_IN" placeholder="II, Jr.">
           </div>
           <div class="form-inline margin-form-inline">
             <input class="span3" type="text" id="USER_STREET_ADDRESS_IN" name="USER_STREET_ADDRESS_IN" placeholder="Street Address">
@@ -65,9 +70,7 @@ CLOSE USERS_CURSOR;%>
             <input class="span2" type="text" id="USER_STATE_IN" name="USER_STATE_IN" placeholder="State">
             <input class="span2" type="text" id="USER_ZIPCODE_IN" name="USER_ZIPCODE_IN" placeholder="Zipcode">
           </div>
-          <div class="form-inline margin-form-inline">
-            <input class="span3" type="text" id="USER_EMAIL_ADDRESS_IN" name="USER_EMAIL_ADDRESS_IN" placeholder="Email Address">
-          </div>
+ 
 
     </div><!-- close modal-body -->
     <div class="modal-footer">

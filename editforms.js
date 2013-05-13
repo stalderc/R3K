@@ -131,9 +131,9 @@ var DISPLAY_RANK	= 	document.getElementById('STANDARD_DISPLAY_RANK_ID_'  + refID
 var SKILL_TYPE	= 	document.getElementById('STANDARD_SKILL_TYPE_'  + refID).value;
 
 
-document.getElementById('STANDARD_SKILL_TYPE_IN').setAttribute("value",SKILL_NAME);
-document.getElementById('STANDARD_SKILL_NAME_IN').setAttribute("value", DISPLAY_RANK);
-document.getElementById('STANDARD_DISPLAY_RANK_IN').setAttribute("value", SKILL_TYPE);
+document.getElementById('STANDARD_SKILL_TYPE_IN').setAttribute("value",SKILL_TYPE);
+document.getElementById('STANDARD_SKILL_NAME_IN').setAttribute("value", SKILL_NAME);
+document.getElementById('STANDARD_DISPLAY_RANK_IN').setAttribute("value", DISPLAY_RANK);
 }
 
 function populate_technical_skill_fields(){
@@ -143,9 +143,9 @@ var DISPLAY_RANK	= 	document.getElementById('TECHNICAL_DISPLAY_RANK_ID_'  + refI
 var SKILL_TYPE	= 	document.getElementById('TECHNICAL_SKILL_TYPE_'  + refID).value;
 
 
-document.getElementById('TECHNICAL_SKILL_TYPE_IN').setAttribute("value",SKILL_NAME);
-document.getElementById('TECHNICAL_SKILL_NAME_IN').setAttribute("value", DISPLAY_RANK);
-document.getElementById('TECHNICAL_DISPLAY_RANK_IN').setAttribute("value", SKILL_TYPE);
+document.getElementById('TECHNICAL_SKILL_TYPE_IN').setAttribute("value",SKILL_TYPE);
+document.getElementById('TECHNICAL_SKILL_NAME_IN').setAttribute("value", SKILL_NAME);
+document.getElementById('TECHNICAL_DISPLAY_RANK_IN').setAttribute("value", DISPLAY_RANK);
 }
 function populate_design_skill_fields(){
 var refID 				= 	document.getElementById('DESIGN_SKILL_ID_IN'			      ).value;
@@ -154,9 +154,9 @@ var DISPLAY_RANK	= 	document.getElementById('DESIGN_DISPLAY_RANK_ID_'  + refID).
 var SKILL_TYPE	= 	document.getElementById('DESIGN_SKILL_TYPE_'  + refID).value;
 
 
-document.getElementById('DESIGN_SKILL_TYPE_IN').setAttribute("value",SKILL_NAME);
-document.getElementById('DESIGN_SKILL_NAME_IN').setAttribute("value", DISPLAY_RANK);
-document.getElementById('DESIGN_DISPLAY_RANK_IN').setAttribute("value", SKILL_TYPE);
+document.getElementById('DESIGN_SKILL_TYPE_IN').setAttribute("value",SKILL_TYPE);
+document.getElementById('DESIGN_SKILL_NAME_IN').setAttribute("value", SKILL_NAME);
+document.getElementById('DESIGN_DISPLAY_RANK_IN').setAttribute("value", DISPLAY_RANK);
 }
 
 function populate_work_history_fields(){
@@ -169,7 +169,7 @@ var EMPLOYER			=	document.getElementById('EMPLOYER_' 			+ refID).value;
 var CITY				=	document.getElementById('CITY_' 			+ refID).value;
 var STATE				=	document.getElementById('STATE_' 			+ refID).value;
 var DISPLAY_RANK_ID		=	document.getElementById('DISPLAY_RANK_ID_'  + refID).value;
-var DESCRIPTION			=	document.getElementById('DESCRIPTION_0_' 	+ refID).value;
+var DESCRIPTION			=	document.getElementById('DESCRIPTION_1_' 	+ refID).value;
 
 document.getElementById('WORK_POSITION_IN').setAttribute("value", POSITION_TITLE);
 document.getElementById('WORK_START_DATE_IN').setAttribute("value", START_DATE);
@@ -179,4 +179,27 @@ document.getElementById('WORK_CITY_IN').setAttribute("value", CITY);
 document.getElementById('WORK_STATE_IN').setAttribute("value", STATE);
 document.getElementById('WORK_DESCRIPTION_IN').setAttribute("value", DESCRIPTION);
 document.getElementById('DISPLAY_RANK_IN').setAttribute("value", DISPLAY_RANK_ID);
+}
+
+function populate_user_fields(){
+
+
+var F_NAME		=	document.getElementById('F_NAME').value;
+var M_NAME		=	document.getElementById('M_NAME').value;
+var L_NAME		=	document.getElementById('L_NAME').value;
+var STREET		=	document.getElementById('STREET').value;
+var CITY		=	document.getElementById('CITY').value;
+var STATE		=	document.getElementById('STATE').value;
+var ZIPCODE		=	document.getElementById('ZIPCODE').value;
+var SURNAME		=	document.getElementById('SURNAME').value;
+
+
+document.getElementById('F_NAME_IN').setAttribute("value", F_NAME);
+document.getElementById('M_NAME_IN').setAttribute("value", M_NAME);
+document.getElementById('L_NAME_IN').setAttribute("value", L_NAME);
+document.getElementById('SURNAME_IN').setAttribute("value", SURNAME);
+document.getElementById('USER_STREET_ADDRESS_IN').setAttribute("value", STREET);
+document.getElementById('USER_CITY_IN').setAttribute("value", CITY);
+document.getElementById('USER_STATE_IN').setAttribute("value", STATE);
+document.getElementById('USER_ZIPCODE_IN').setAttribute("value", ZIPCODE);
 }
