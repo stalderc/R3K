@@ -1,5 +1,5 @@
 function populate_user_fields(){
-var F_NAME		=	document.getElementById('F_NAME').value;
+var F_NAME  	=	document.getElementById('F_NAME').value;
 var M_NAME		=	document.getElementById('M_NAME').value;
 var L_NAME		=	document.getElementById('L_NAME').value;
 var STREET		=	document.getElementById('STREET').value;
@@ -38,7 +38,7 @@ document.getElementById('ADDRESS_IN').setAttribute("value", ADDRESS);
 document.getElementById('EMAIL_IN').setAttribute("value", EMAIL);
 document.getElementById('COMPANY_IN').setAttribute("value", COMPANY);
 document.getElementById('TITLE_IN').setAttribute("value", TITLE);
-document.getElementById('DISPLAY_IN').setAttribute("value", DISPLAY_RANK_ID);
+document.getElementById('REF_DISPLAY_IN').setAttribute("value", DISPLAY_RANK_ID);
 }
 
 function populate_ex_curr_Fields () {
@@ -52,7 +52,7 @@ var SEMESTER_IN 	=	document.getElementById('SEMESTER_'  		+ refID).value;
 document.getElementById('TITLE_IN').setAttribute("value", TITLE);
 document.getElementById('SEMESTER_IN').setAttribute("value", SEMESTER_IN);
 document.getElementById('YEAR_IN').setAttribute("value", YEAR);
-document.getElementById('DISPLAY_RANK_IN').setAttribute("value", DISPLAY_RANK_ID);
+document.getElementById('EX_CUR_DISPLAY_RANK_IN').setAttribute("value", DISPLAY_RANK_ID);
 document.getElementById('ORGANIZATION_IN').setAttribute("value", ORGANIZATION);
 }
 
@@ -68,7 +68,7 @@ var DISPLAY_RANK_ID 	=	document.getElementById('DISPLAY_RANK_ID_'  	+ refID).val
 document.getElementById('COURSE_TITLE_IN').setAttribute("value", 		COURSE_TITLE);
 document.getElementById('COURSE_NUMBER_IN').setAttribute("value", 		COURSE_NUMBER);
 document.getElementById('COURSE_DESCRIPTION_IN').setAttribute("value", 		COURSE_DESCRIPTION);
-document.getElementById('DISPLAY_RANK_IN').setAttribute("value", 		DISPLAY_RANK_ID);
+document.getElementById('ACEDEMIC_DISPLAY_RANK_IN').setAttribute("value", 		DISPLAY_RANK_ID);
 
 }
 
@@ -80,7 +80,7 @@ var DISPLAY_RANK_ID 	=	document.getElementById('DISPLAY_RANK_ID_'     + refID).v
 
 document.getElementById('CERTIFICATION_TITLE_IN').setAttribute("value",CERTIFICATION_TITLE);
 document.getElementById('DATE_RECORDED_IN').setAttribute("value", CERTIFICATION_DATE);
-document.getElementById('DISPLAY_RANK_IN').setAttribute("value", 		DISPLAY_RANK_ID);
+document.getElementById('CERT_DISPLAY_RANK_IN').setAttribute("value", 		DISPLAY_RANK_ID);
 
 }
 
@@ -94,7 +94,7 @@ var DISPLAY_RANK_ID 	=	document.getElementById('DISPLAY_RANK_ID_'     + refID).v
 document.getElementById('AWARD_NAME_IN').setAttribute("value",AWARD_NAME);
 document.getElementById('YEAR_RECEIVED_IN').setAttribute("value", YEAR);
 document.getElementById('SEMESTER_RECEIVED_IN').setAttribute("value", 		SEMESTER);
-document.getElementById('DISPLAY_RANK_IN').setAttribute("value", DISPLAY_RANK_ID);
+document.getElementById('AWARD_DISPLAY_RANK_IN').setAttribute("value", DISPLAY_RANK_ID);
 }
 
 function populate_education_fields() {
@@ -114,7 +114,7 @@ document.getElementById('DEGREE_MINOR_IN').setAttribute("value", MINOR);
 document.getElementById('CERTIFICATION_IN').setAttribute("value", CERTIFICATIONS);
 document.getElementById('GRADE_POINTS_IN').setAttribute("value", 		GPA);
 document.getElementById('GRADUATION_DATE_IN').setAttribute("value", GRAD_DATE);
-document.getElementById('DISPLAY_RANK_IN').setAttribute("value", DISPLAY_RANK_ID);
+document.getElementById('EDU_DISPLAY_RANK_IN').setAttribute("value", DISPLAY_RANK_ID);
 
 }
 
@@ -130,7 +130,7 @@ document.getElementById('RESEARCH_TITLE_IN').setAttribute("value",TITLE);
 document.getElementById('RESEARCH_TYPE_IN').setAttribute("value", TYPE);
 document.getElementById('RESEARCH_LOCATION_IN').setAttribute("value", 		LOCATION);
 document.getElementById('RESEARCH_DATE_PRESENTED_IN').setAttribute("value", 		DATE_PRESENTED);
-document.getElementById('DISPLAY_RANK_IN').setAttribute("value", DISPLAY_RANK);
+document.getElementById('PUB_DISPLAY_RANK_IN').setAttribute("value", DISPLAY_RANK);
 }
 
 function populate_projects_fields(){
@@ -141,7 +141,7 @@ var DISPLAY_RANK 	=	document.getElementById('DISPLAY_RANK_ID_'     + refID).valu
 
 document.getElementById('PROJECT_NAME_IN').setAttribute("value",PROJECT_NAME);
 document.getElementById('PROJECT_DESCRIPTION_IN').setAttribute("value", DESCRIPTION);
-document.getElementById('DISPLAY_RANK_IN').setAttribute("value", 		DISPLAY_RANK);
+document.getElementById('PROJ_DISPLAY_RANK_IN').setAttribute("value", 		DISPLAY_RANK);
 
 }
 
@@ -199,5 +199,5 @@ document.getElementById('WORK_EMPLOYER_IN').setAttribute("value", EMPLOYER);
 document.getElementById('WORK_CITY_IN').setAttribute("value", CITY);
 document.getElementById('WORK_STATE_IN').setAttribute("value", STATE);
 document.getElementById('WORK_DESCRIPTION_IN').setAttribute("value", DESCRIPTION);
-document.getElementById('DISPLAY_RANK_IN').setAttribute("value", DISPLAY_RANK_ID);
+document.getElementById('WORK_DISPLAY_RANK_IN').setAttribute("value", DISPLAY_RANK_ID);
 }
