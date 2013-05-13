@@ -111,3 +111,72 @@ document.getElementById('RESEARCH_LOCATION_IN').setAttribute("value", 		LOCATION
 document.getElementById('RESEARCH_DATE_PRESENTED_IN').setAttribute("value", 		DATE_PRESENTED);
 document.getElementById('DISPLAY_RANK_IN').setAttribute("value", DISPLAY_RANK);
 }
+
+function populate_projects_fields(){
+var refID 				= 	document.getElementById('PROJECT_ID_IN'			      ).value;
+var PROJECT_NAME = 	document.getElementById('NAME_' + refID).value;
+var DESCRIPTION	= 	document.getElementById('DESCRIPTION_'  + refID).value;
+var DISPLAY_RANK 	=	document.getElementById('DISPLAY_RANK_ID_'     + refID).value;
+
+document.getElementById('PROJECT_NAME_IN').setAttribute("value",PROJECT_NAME);
+document.getElementById('PROJECT_DESCRIPTION_IN').setAttribute("value", DESCRIPTION);
+document.getElementById('DISPLAY_RANK_IN').setAttribute("value", 		DISPLAY_RANK);
+
+}
+
+function populate_standard_skill_fields(){
+var refID 				= 	document.getElementById('STANDARD_SKILL_ID_IN'			      ).value;
+var SKILL_NAME = 	document.getElementById('STANDARD_SKILL_NAME_' + refID).value;
+var DISPLAY_RANK	= 	document.getElementById('STANDARD_DISPLAY_RANK_ID_'  + refID).value;
+var SKILL_TYPE	= 	document.getElementById('STANDARD_SKILL_TYPE_'  + refID).value;
+
+
+document.getElementById('STANDARD_SKILL_TYPE_IN').setAttribute("value",SKILL_NAME);
+document.getElementById('STANDARD_SKILL_NAME_IN').setAttribute("value", DISPLAY_RANK);
+document.getElementById('STANDARD_DISPLAY_RANK_IN').setAttribute("value", SKILL_TYPE);
+}
+
+function populate_technical_skill_fields(){
+var refID 				= 	document.getElementById('TECHNICAL_SKILL_ID_IN'			      ).value;
+var SKILL_NAME = 	document.getElementById('TECHNICAL_SKILL_NAME_' + refID).value;
+var DISPLAY_RANK	= 	document.getElementById('TECHNICAL_DISPLAY_RANK_ID_'  + refID).value;
+var SKILL_TYPE	= 	document.getElementById('TECHNICAL_SKILL_TYPE_'  + refID).value;
+
+
+document.getElementById('TECHNICAL_SKILL_TYPE_IN').setAttribute("value",SKILL_NAME);
+document.getElementById('TECHNICAL_SKILL_NAME_IN').setAttribute("value", DISPLAY_RANK);
+document.getElementById('TECHNICAL_DISPLAY_RANK_IN').setAttribute("value", SKILL_TYPE);
+}
+function populate_design_skill_fields(){
+var refID 				= 	document.getElementById('DESIGN_SKILL_ID_IN'			      ).value;
+var SKILL_NAME = 	document.getElementById('DESIGN_SKILL_NAME_' + refID).value;
+var DISPLAY_RANK	= 	document.getElementById('DESIGN_DISPLAY_RANK_ID_'  + refID).value;
+var SKILL_TYPE	= 	document.getElementById('DESIGN_SKILL_TYPE_'  + refID).value;
+
+
+document.getElementById('DESIGN_SKILL_TYPE_IN').setAttribute("value",SKILL_NAME);
+document.getElementById('DESIGN_SKILL_NAME_IN').setAttribute("value", DISPLAY_RANK);
+document.getElementById('DESIGN_DISPLAY_RANK_IN').setAttribute("value", SKILL_TYPE);
+}
+
+function populate_work_history_fields(){
+
+var refID 				=	document.getElementById('WORK_ID_IN'          ).value;
+var POSITION_TITLE		=	document.getElementById('POSITION_TITLE_' 			+ refID).value;
+var START_DATE			=	document.getElementById('START_DATE_' 			+ refID).value;
+var END_DATE			=	document.getElementById('END_DATE_' 			+ refID).value;
+var EMPLOYER			=	document.getElementById('EMPLOYER_' 			+ refID).value;
+var CITY				=	document.getElementById('CITY_' 			+ refID).value;
+var STATE				=	document.getElementById('STATE_' 			+ refID).value;
+var DISPLAY_RANK_ID		=	document.getElementById('DISPLAY_RANK_ID_'  + refID).value;
+var DESCRIPTION			=	document.getElementById('DESCRIPTION_0_' 	+ refID).value;
+
+document.getElementById('WORK_POSITION_IN').setAttribute("value", POSITION_TITLE);
+document.getElementById('WORK_START_DATE_IN').setAttribute("value", START_DATE);
+document.getElementById('WORK_END_DATE_IN').setAttribute("value", END_DATE);
+document.getElementById('WORK_EMPLOYER_IN').setAttribute("value", EMPLOYER);
+document.getElementById('WORK_CITY_IN').setAttribute("value", CITY);
+document.getElementById('WORK_STATE_IN').setAttribute("value", STATE);
+document.getElementById('WORK_DESCRIPTION_IN').setAttribute("value", DESCRIPTION);
+document.getElementById('DISPLAY_RANK_IN').setAttribute("value", DISPLAY_RANK_ID);
+}

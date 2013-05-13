@@ -38,15 +38,24 @@ EXIT WHEN WORK_EX_CURSOR%NOTFOUND;%>
             <div class="span8">
                 <ul>
                     <!-- Company name and Date Range Employment -->
-                    <h4 class="company-name"><%=WORK_EX_ROW.POSITION_TITLE%><span class="pull-right"><%=WORK_EX_ROW.START_DATE%> - <%=WORK_EX_ROW.END_DATE%></span> </h4>
+                    <h4 class="company-name">
+                      <input id="POSITION_TITLE_<%=WORK_EX_ROW.WORK_ID%>" type="hidden" value="<%=WORK_EX_ROW.POSITION_TITLE%>"/><%=WORK_EX_ROW.POSITION_TITLE%><span class="pull-right">
+                      <input id="START_DATE_<%=WORK_EX_ROW.WORK_ID%>" type="hidden" value="<%=WORK_EX_ROW.START_DATE%>"/><%=WORK_EX_ROW.START_DATE%> - 
+                      <input id="END_DATE_<%=WORK_EX_ROW.WORK_ID%>" type="hidden" value="<%=WORK_EX_ROW.END_DATE%>"/><%=WORK_EX_ROW.END_DATE%></span> </h4>
                     <!-- job title -->
-                    <h5 class="company-name"><%=WORK_EX_ROW.EMPLOYER%></a><span class="pull-right"><%=WORK_EX_ROW.CITY%>, <%=WORK_EX_ROW.STATE%></span></h5>
+                    <h5 class="company-name">
+                      <input id="EMPLOYER_<%=WORK_EX_ROW.WORK_ID%>" type="hidden" value="<%=WORK_EX_ROW.EMPLOYER%>"/><%=WORK_EX_ROW.EMPLOYER%></a><span class="pull-right">
+                      <input id="CITY_<%=WORK_EX_ROW.WORK_ID%>" type="hidden" value="<%=WORK_EX_ROW.CITY%>"/><%=WORK_EX_ROW.CITY%>, 
+                     <input id="STATE_<%=WORK_EX_ROW.WORK_ID%>" type="hidden" value="<%=WORK_EX_ROW.STATE%>"/> <%=WORK_EX_ROW.STATE%></span></h5>
                     
                     <!-- loop through job bullet points  -->
                     <% for i in 1..WORK_DESC_ARRAY.COUNT LOOP%>
                      <%IF WORK_DESC_ARRAY(i).WORK_ID = WORK_EX_ROW.WORK_ID THEN%> 
-                    <li><%=WORK_DESC_ARRAY(i).DESCRIPTION%></li>
+                    <li>
+                      <input id="DESCRIPTION_<%=i%>_<%=WORK_EX_ROW.WORK_ID%>" type="hidden" value="<%=WORK_DESC_ARRAY(i).DESCRIPTION%>"/><%=WORK_DESC_ARRAY(i).DESCRIPTION%>
+                    </li>
                     <%END IF;%>
+                    <input id="DISPLAY_RANK_ID_<%=WORK_EX_ROW.WORK_ID%>" type="hidden" value="<%=WORK_EX_ROW.DISPLAY_RANK%>"/>
                     <%END LOOP;%>
 
                     
@@ -106,7 +115,15 @@ CLOSE WORK_EX_CURSOR;%>
 
 
 <!-- EDIT WORK HISTORY MODAL -->
+<%!CURSOR WORK_ID_CURSOR IS
 
+SELECT WORK_EXPERIENCE.WORK_ID, WORK_EXPERIENCE.DISPLAY_RANK
+FROM WORK_EXPERIENCE
+WHERE WORK_EXPERIENCE.RESUMATOR_ID = RESUMATOR_ID_VAL
+ORDER BY DISPLAY_RANK;
+
+WORK_ID_ROW WORK_ID_CURSOR%ROWTYPE;
+%>
   <div id="edit-work-history-modal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
     <div class="modal-header">
       <button type="button" class="close" data-dismiss="modal" aria-hidden="true">x</button>
@@ -115,6 +132,15 @@ CLOSE WORK_EX_CURSOR;%>
     <div class="modal-body">
       <form action="http://oracle.is.umbc.edu:8080/classpsp/IS420_TEAM_TRG.FORM_WORK_EXPERIENCE" method="get">
         <div class="form-inline margin-form-inline">
+           <select onchange="populate_work_history_fields()"class="span2" ID="WORK_ID_IN" name="WORK_EXPERIENCE_ID_IN">
+              <%OPEN WORK_ID_CURSOR;
+                LOOP
+                FETCH WORK_ID_CURSOR INTO WORK_ID_ROW;
+                EXIT WHEN WORK_ID_CURSOR%NOTFOUND;%>
+              <option value="<%=WORK_ID_ROW.WORK_ID%>"><%=WORK_ID_ROW.DISPLAY_RANK%></option>
+              <%END LOOP;
+              CLOSE WORK_ID_CURSOR;%>
+          </select>
             <input class="span3" type="hidden" id="RESUMATOR_ID_IN" name="RESUMATOR_ID_IN" value="<%=RESUMATOR_ID_VAL%>">
             <input class="span2" type="text" id="WORK_EMPLOYER_IN" name="WORK_EMPLOYER_IN" placeholder="Employer">
             <input class="span2" type="text" id="WORK_POSITION_IN" name="WORK_POSITION_IN" placeholder="Position Title">
@@ -133,7 +159,7 @@ CLOSE WORK_EX_CURSOR;%>
 
           <div class="form-inline margin-form-inline">
            <!-- <input class="span2" type="text" id="DISPLAY_RANK_IN" name="DISPLAY_RANK_IN"placeholder="Display Rank"> -->
-            <select class="span2" type="text" id="DISPLAY_RANK_IN"> name="DISPLAY_RANK_IN">
+            <select class="span2" type="text" id="DISPLAY_RANK_IN" name="DISPLAY_RANK_IN">
               <option>Display Rank</option>
               <option value="1">1 - High</option>
               <option value="2">2</option>
