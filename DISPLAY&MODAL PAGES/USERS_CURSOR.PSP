@@ -41,8 +41,10 @@ IF USERS_CURSOR%NOTFOUND THEN%>
           <!-- Insert First Name Last Name as linkable text -->
           <a href="mailto:<%=EMAIL_IN%>"><i class="icon-envelope"></i>
           <%=USERS_ROW.F_NAME%> 
-          <%=USERS_ROW.L_NAME%></a></p>
-           <input id="PHONE_NUMBER" type="hidden" value="<%=USERS_ROW.PHONE_NUMBER%>"/><%=USERS_ROW.PHONE_NUMBER%> 
+          <%=USERS_ROW.L_NAME%></a><br />
+          <input id="PHONE_NUMBER" type="hidden" value="<%=USERS_ROW.PHONE_NUMBER%>"/><%=USERS_ROW.PHONE_NUMBER%> 
+
+          </p>
 <%
 END IF;
 CLOSE USERS_CURSOR;%>
@@ -73,8 +75,7 @@ CLOSE USERS_CURSOR;%>
             <input class="span2" type="text" id="USER_STATE_IN" name="STATE_IN" placeholder="State">
             <input class="span2" type="text" id="USER_ZIPCODE_IN" name="ZIPCODE_IN" placeholder="Zipcode">
           </div>
-          <input class="span2" type="HIDDEN" id="EMAIL_ADDRESS_IN" name="EMAIL_ADDRESS_IN" placeholder="Zipcode">
- 
+     
 
     </div><!-- close modal-body -->
     <div class="modal-footer">

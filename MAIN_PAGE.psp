@@ -208,6 +208,8 @@ IF AUTHENTICATE_INT = 0 OR AUTHENTICATE_INT = 2 THEN%>
 
 <%ELSE%>
 <%SELECT RESUMATOR_ID INTO RESUMATOR_ID_VAL FROM USERS WHERE EMAIL_ADDRESS = UPPER(EMAIL_IN);%>
+<%!OBJECTIVE_STATEMENT VARCHAR(500);%>
+<%SELECT OBJECTIVE INTO OBJECTIVE_STATEMENT FROM OBJECTIVE WHERE RESUMATOR_ID = RESUMATOR_ID_VAL;%>
             <li><a href="http://oracle.is.umbc.edu:8080/classpsp/IS420_TEAM_TRG.RESUME_OUTPUT">Resume Link</a></li>
             </ul>
 
@@ -259,7 +261,7 @@ IF AUTHENTICATE_INT = 0 OR AUTHENTICATE_INT = 2 THEN%>
 <!-- RESUME CONTENT BEGINS -->
         <section id="objective">
           <!-- user objective section -->
-          <p class="well well-small">Resumes shouldn't be written in one day, updating information shouldn't be a hassle, and sharing should be simple with no account required to view. Resumator3000 does all this and handles layout, typography, design, and more. We are not a resume builder; we are your resume partner dedicated to working with you over your student career. Join and start building a better resume today. <br />
+          <p class="well well-small"> <%=OBJECTIVE_STATEMENT%> <br />
            <a href="#objective-modal" data-toggle="modal"><i class="icon-pencil"> </i></a> </p>
         </section>
           <hr> 
@@ -464,14 +466,15 @@ IF AUTHENTICATE_INT = 0 OR AUTHENTICATE_INT = 2 THEN%>
       <button type="button" class="close" data-dismiss="modal" aria-hidden="true">x</button>
       <h3 id="myModalLabel">Objective Statement</h3>
     </div>
-    <form>
+    <form action="http://oracle.is.umbc.edu:8080/classpsp/IS420_TEAM_TRG.FORM_UPDATE_OBJECTIVE">
       <div class="modal-body">
-        <textarea class="max-width" rows="5" placeholder="Resumes shouldn't be written in one day, updating information shouldn't be a hassle, and sharing should be simple with no account required to view. Resumator3000 does all this and handles layout, typography, design, and more. We are not a resume builder; we are your resume partner dedicated to working with you over your student career. Join and start building a better resume today."></textarea>
-      </div>
+        <textarea name="OBJECTIVE_IN" class="max-width" rows="5"><%=OBJECTIVE_STATEMENT%></textarea>
+      </div> 
+      <input type="hidden" name="RESUMATOR_ID_IN" value="<%=RESUMATOR_ID_VAL%>"/>
+      <button class="btn" data-dismiss="modal" aria-hidden="true">Cancel</button>
+      <button class="btn btn-primary" type="submit">Save changes</button>
     </form>
     <div class="modal-footer">
-      <button class="btn" data-dismiss="modal" aria-hidden="true">Cancel</button>
-      <button class="btn btn-primary">Save changes</button>
     </div>
   </div>
 

@@ -4,32 +4,19 @@ EMAIL_IN := get_cookie('EMAIL');%>
 PASSWORD_IN VARCHAR2(50);%>
 <!DOCTYPE HTML>
 <%@page language="PL/SQL"%>
-<%@plsql procedure="FORM_UPDATE_USER"%>
+<%@plsql procedure="FORM_UPDATE_OBJECTIVE"%>
 <%@plsql parameter="RESUMATOR_ID_IN" DEFAULT="NULL"%>
-<%@plsql parameter="F_NAME_IN" DEFAULT="NULL"%>
-<%@plsql parameter="M_NAME_IN" DEFAULT="NULL"%>
-<%@plsql parameter="L_NAME_IN" DEFAULT="NULL"%>
-<%@plsql parameter="SURNAME_IN" DEFAULT="NULL"%>
-<%@plsql parameter="PHONE_NUMBER_IN" DEFAULT="NULL"%>
-<%@plsql parameter="STREET_IN" DEFAULT="NULL"%>
-<%@plsql parameter="CITY_IN" DEFAULT="NULL"%>
-<%@plsql parameter="STATE_IN" DEFAULT="NULL"%>
-<%@plsql parameter="ZIPCODE_IN" DEFAULT="NULL"%>
+<%@plsql parameter="OBJECTIVE_IN" DEFAULT="NULL"%>
 
 
 <%
-UPDATE USERS
+UPDATE OBJECTIVE 
     SET
-     CITY               = CITY_IN,
-     STATE              = STATE_IN,
-     ZIPCODE            = ZIPCODE_IN,
-     F_NAME             = F_NAME_IN,
-     L_NAME             = L_NAME_IN,
-     PHONE_NUMBER       = PHONE_NUMBER_IN,
-     STREET             = STREET_IN,
-     SURNAME            = SURNAME_IN
-     WHERE RESUMATOR_ID = RESUMATOR_ID_IN;
-%> 
+     OBJECTIVE         = OBJECTIVE_IN
+    WHERE RESUMATOR_ID     = RESUMATOR_ID_IN;
+%>
+
+
 <HEAD>
 <script>
 

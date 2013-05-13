@@ -1,3 +1,24 @@
+function populate_user_fields(){
+var F_NAME		=	document.getElementById('F_NAME').value;
+var M_NAME		=	document.getElementById('M_NAME').value;
+var L_NAME		=	document.getElementById('L_NAME').value;
+var STREET		=	document.getElementById('STREET').value;
+var CITY		=	document.getElementById('CITY').value;
+var STATE		=	document.getElementById('STATE').value;
+var ZIPCODE		=	document.getElementById('ZIPCODE').value;
+var SURNAME		=	document.getElementById('SURNAME').value;
+
+document.getElementById('F_NAME_IN').setAttribute("value", F_NAME);
+document.getElementById('M_NAME_IN').setAttribute("value", M_NAME);
+document.getElementById('L_NAME_IN').setAttribute("value", L_NAME);
+document.getElementById('SURNAME_IN').setAttribute("value", SURNAME);
+document.getElementById('USER_STREET_ADDRESS_IN').setAttribute("value", STREET);
+document.getElementById('USER_CITY_IN').setAttribute("value", CITY);
+document.getElementById('USER_STATE_IN').setAttribute("value", STATE);
+document.getElementById('USER_ZIPCODE_IN').setAttribute("value", ZIPCODE);
+}
+
+
 function populate_ref_Fields(){
 
 var refID 			=	document.getElementById('REFERENCE_ID_IN'          ).value;
@@ -31,7 +52,7 @@ var SEMESTER_IN 	=	document.getElementById('SEMESTER_'  		+ refID).value;
 document.getElementById('TITLE_IN').setAttribute("value", TITLE);
 document.getElementById('SEMESTER_IN').setAttribute("value", SEMESTER_IN);
 document.getElementById('YEAR_IN').setAttribute("value", YEAR);
-document.getElementById('DISPLAY_IN').setAttribute("value", DISPLAY_RANK_ID);
+document.getElementById('DISPLAY_RANK_IN').setAttribute("value", DISPLAY_RANK_ID);
 document.getElementById('ORGANIZATION_IN').setAttribute("value", ORGANIZATION);
 }
 
@@ -179,29 +200,4 @@ document.getElementById('WORK_CITY_IN').setAttribute("value", CITY);
 document.getElementById('WORK_STATE_IN').setAttribute("value", STATE);
 document.getElementById('WORK_DESCRIPTION_IN').setAttribute("value", DESCRIPTION);
 document.getElementById('DISPLAY_RANK_IN').setAttribute("value", DISPLAY_RANK_ID);
-}
-
-function populate_user_fields(){
-
-
-var F_NAME		=	document.getElementById('F_NAME').value;
-var M_NAME		=	document.getElementById('M_NAME').value;
-var L_NAME		=	document.getElementById('L_NAME').value;
-var STREET		=	document.getElementById('STREET').value;
-var CITY		=	document.getElementById('CITY').value;
-var STATE		=	document.getElementById('STATE').value;
-var ZIPCODE		=	document.getElementById('ZIPCODE').value;
-var SURNAME		=	document.getElementById('SURNAME').value;
-var EMAIL		=	document.getElementById('EMAIL').value;
-
-
-document.getElementById('F_NAME_IN').setAttribute("value", F_NAME);
-document.getElementById('M_NAME_IN').setAttribute("value", M_NAME);
-document.getElementById('L_NAME_IN').setAttribute("value", L_NAME);
-document.getElementById('SURNAME_IN').setAttribute("value", SURNAME);
-document.getElementById('USER_STREET_ADDRESS_IN').setAttribute("value", STREET);
-document.getElementById('USER_CITY_IN').setAttribute("value", CITY);
-document.getElementById('USER_STATE_IN').setAttribute("value", STATE);
-document.getElementById('USER_ZIPCODE_IN').setAttribute("value", ZIPCODE);
-document.getElementById('EMAIL_ADDRESS_IN').setAttribute("value", EMAIL);
 }

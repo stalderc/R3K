@@ -10,7 +10,8 @@ PASSWORD_IN VARCHAR2(50);%>
 <%! RESUMATOR_ID_VAL USERS.RESUMATOR_ID%TYPE;
 AUTHENTICATE_INT NUMBER := 0;%>
 <%SELECT RESUMATOR_ID INTO RESUMATOR_ID_VAL FROM USERS WHERE EMAIL_ADDRESS = UPPER(EMAIL_IN);%>
-
+<%!OBJECTIVE_STATEMENT VARCHAR(500);%>
+<%SELECT OBJECTIVE INTO OBJECTIVE_STATEMENT FROM OBJECTIVE WHERE RESUMATOR_ID = RESUMATOR_ID_VAL;%>
 <html lang="en">
 
 <!-- 
@@ -146,7 +147,7 @@ AUTHENTICATE_INT NUMBER := 0;%>
 <!-- RESUME CONTENT BEGINS -->
         <section id="objective">
           <!-- user objective section -->
-          <p class="well well-small">Resumes shouldn't be written in one day, updating information shouldn't be a hassle, and sharing should be simple with no account required to view. Resumator3000 does all this and handles layout, typography, design, and more. We are not a resume builder; we are your resume partner dedicated to working with you over your student career. Join and start building a better resume today. <br />
+          <p class="well well-small"><%=OBJECTIVE_STATEMENT%><br />
           </p>
         </section>
           <hr> 
