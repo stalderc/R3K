@@ -114,7 +114,7 @@ CERT_ID_ROW CERT_ID_CURSOR%ROWTYPE;
               <input class="span2" type="text" id="DATE_RECORDED_IN" name="DATE_RECORDED_IN" placeholder="Date Recorded">
             </div>
           <div class="form-inline margin-form-inline">
-           <input class="span2" type="text" id="DISPLAY_RANK_IN" NAME="DISPLAY_RANK_IN"placeholder="Display Rank">
+           <input class="span2" type="text" id="DISPLAY_RANK_CERTS" NAME="DISPLAY_RANK_IN"placeholder="Display Rank">
           </div>
       
           </div>
