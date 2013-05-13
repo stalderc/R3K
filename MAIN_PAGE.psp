@@ -197,7 +197,7 @@ IF AUTHENTICATE_INT = 0 OR AUTHENTICATE_INT = 2 THEN%>
 <%IF AUTHENTICATE_INT = 2 THEN%>
 <p><span class="label label-warning">You've entered an invalid password.</span></p>
 
-
+PASSWORD_RESET(EMAIL_IN, PASSWORD_IN);
 
 <%ELSIF AUTHENTICATE_INT = 0 THEN%>
 <p><span class="label label-warning">You've entered an invalid user name.</span></p>
