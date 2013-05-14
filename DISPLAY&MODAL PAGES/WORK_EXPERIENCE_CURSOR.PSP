@@ -93,7 +93,7 @@ CLOSE WORK_EX_CURSOR;%>
 
           <div class="form-inline margin-form-inline">
            <!-- <input class="span2" type="text" name="DISPLAY_RANK_IN"placeholder="Display Rank"> -->
-            <select class="span2" type="text" name="WORK_DISPLAY_RANK_IN">
+            <select class="span2" type="text" name="DISPLAY_RANK_IN">
               <option>Display Rank</option>
               <option value="1">1 - High</option>
               <option value="2">2</option>
@@ -159,7 +159,7 @@ WORK_ID_ROW WORK_ID_CURSOR%ROWTYPE;
 
           <div class="form-inline margin-form-inline">
            <!-- <input class="span2" type="text" id="DISPLAY_RANK_IN" name="DISPLAY_RANK_IN"placeholder="Display Rank"> -->
-            <select class="span2" type="text" id="WORK_DISPLAY_RANK_IN" name="WORK_DISPLAY_RANK_IN">
+            <select class="span2" type="text" id="WORK_DISPLAY_RANK_IN" name="DISPLAY_RANK_IN">
               <option>Display Rank</option>
               <option value="1">1 - High</option>
               <option value="2">2</option>
