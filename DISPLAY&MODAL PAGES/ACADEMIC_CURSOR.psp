@@ -64,7 +64,7 @@ CLOSE COURSE_CURSOR;%>
 
           <div class="form-inline margin-form-inline">
            <!-- <input class="span2" type="text" NAME="DISPLAY_RANK_IN"placeholder="Display Rank"> -->
-            <select class="span2" type="text" name="DISPLAY_RANK_IN">
+            <select class="span2" type="text" name="ACADEMIC_DISPLAY_RANK_IN">
                 <option>Display Rank</option>
                 <option value="1">1 - High</option>
                 <option value="2">2</option>
@@ -126,7 +126,7 @@ COURSE_ID_ROW COURSE_ID_CURSOR%ROWTYPE;
           <textarea class="max-width" rows="3" id="COURSE_DESCRIPTION_IN" name="COURSE_DESCRIPTION_IN" placeholder="Course description goes here."></textarea>
 
           <div class="form-inline margin-form-inline">
-           <input class="span2" type="text" id="DISPLAY_RANK_IN" NAME="DISPLAY_RANK_IN"placeholder="Display Rank">
+           <input class="span2" type="text" id="ACADEMIC_DISPLAY_RANK_IN" NAME="ACADEMIC_DISPLAY_RANK_IN"placeholder="Display Rank">
           </div>
 
     </div>
