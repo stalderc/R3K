@@ -27,8 +27,10 @@ IF USERS_CURSOR%NOTFOUND THEN%>
           <!-- First Name Last Name - Career Title -->
           <input id="F_NAME" type="hidden" value="<%=USERS_ROW.F_NAME%>"/><%=USERS_ROW.F_NAME%>
           <input id="M_NAME" type="hidden" value="<%=USERS_ROW.M_NAME%>"/><%=USERS_ROW.M_NAME%> 
-          <input id="L_NAME" type="hidden" value="<%=USERS_ROW.L_NAME%>"/><%=USERS_ROW.L_NAME%>, 
+          <input id="L_NAME" type="hidden" value="<%=USERS_ROW.L_NAME%>"/><%=USERS_ROW.L_NAME%>,
+          <%IF USERS_ROW.SURNAME IS NOT NULL THEN%> 
           <input id="SURNAME" type="hidden" value="<%=USERS_ROW.SURNAME%>"/><%=USERS_ROW.SURNAME%>.</h4>
+          <%ELSE%></h4><%END IF;%>
           <!-- House Number Street Name Street Type -->
           <p class="address">
           <input id="STREET" type="hidden" value="<%=USERS_ROW.STREET%>"/><%=USERS_ROW.STREET%><br />

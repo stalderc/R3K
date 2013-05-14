@@ -2,12 +2,247 @@
 <%@page language="PL/SQL"%>
 <%@plsql procedure="ACCOUNT_MANAGE"%>
 <%@plsql parameter="COUNT_IN"%>
+<html lang="en">
+
+<!-- 
+*
+*
+*
+*
+*
+*
+*
+*
+*    Head Section
+*
+*
+*
+*
+*
+*
+*
+*
+*
+ -->
 
 
+  <head>
+    <meta charset="utf-8">
+    <title>R3K - Resumator3000 - Your Resume Partner</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <!-- google font links connected to google as absolute links -->
+    <link href='http://fonts.googleapis.com/css?family=Roboto' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Droid+Serif' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Noto+Sans' rel='stylesheet' type='text/css'>
+
+    <!-- css styles relative link needs to be maintained -->
+    <link href="http://userpages.umbc.edu/~booth1/resumator3000/assets/css/bootstrap.css" rel="stylesheet">
+    <link href="http://userpages.umbc.edu/~booth1/resumator3000/assets/css/docs.css" rel="stylesheet">
+    <!-- r3k-styles.css contains custom settings to override TWBS code -->
+    <link href="http://userpages.umbc.edu/~booth1/resumator3000/assets/css/r3k-styles.css" rel="stylesheet">
+    <style type="text/css">
+      body {
+        padding-top: 60px;
+        padding-bottom: 40px;
+      }
+    </style>
+
+    <!-- must have this file for responsive features to work -->
+    <link href="http://userpages.umbc.edu/~booth1/resumator3000/assets/css/bootstrap-responsive.css" rel="stylesheet">
+
+    <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
+    <!--[if lt IE 9]>
+      <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+
+    <!-- Fav and touch icons -->
+    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="http://userpages.umbc.edu/~booth1/resumator3000/assets/ico/apple-touch-icon-144-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="http://userpages.umbc.edu/~booth1/resumator3000/assets/ico/apple-touch-icon-114-precomposed.png">
+      <link rel="apple-touch-icon-precomposed" sizes="72x72" href="http://userpages.umbc.edu/~booth1/resumator3000/assets/ico/apple-touch-icon-72-precomposed.png">
+                    <link rel="apple-touch-icon-precomposed" href="http://userpages.umbc.edu/~booth1/resumator3000/assets/ico/apple-touch-icon-57-precomposed.png">
+                                   <link rel="shortcut icon" href="http://userpages.umbc.edu/~booth1/resumator3000/assets/ico/favicon.png">                                  
+
+    <!-- google analytics -->
+<!-- ???? need to find out if google analytics code must be on each page ???? -->
+    <script type="text/javascript">
+
+      var _gaq = _gaq || [];
+      _gaq.push(['_setAccount', 'UA-37867892-1']);
+      _gaq.push(['_trackPageview']);
+
+      (function() {
+        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+      })();
+
+    </script>
+
+    <!-- jquery assets -->
+    <script src="http://userpages.umbc.edu/~booth1/resumator3000/assets/js/jquery-1.9.1.min.js"></script>
+    <script src="http://userpages.umbc.edu/~booth1/resumator3000/assets/js/jquery.smooth-scroll.js"></script>
+    <script>
+      $(document).ready(function() {
+        $('ul.floatnav a').smoothScroll();
+      });
+    </script>
+
+<!-- code for date pickers -->
+
+  <link rel="stylesheet" href="http://userpages.umbc.edu/~booth1/resumator3000/assets/css/jquery-ui.css" />
+
+  <script src="../assets/js/jquery-1.9.1.js"></script>
+  <script src="http://userpages.umbc.edu/~booth1/resumator3000/assets/js/jquery-ui.js"></script>
+
+  <script>
+    $(function() {
+      $( '#datepicker1' ).datepicker({
+        changeMonth: true,
+        changeYear: true, 
+      });
+    });
+
+    $(function() {
+      $( '#datepicker2' ).datepicker({
+        changeMonth: true,
+        changeYear: true
+      });
+    });
+  </script>
+
+<!-- end code for datepickers -->
+
+  </head>
+
+<!-- 
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*    Body Section
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+ -->
+
+  <body>
+<script>
+
+function postwith (to,p) {
+  var myForm = document.createElement("form");
+  myForm.method="post" ;
+  myForm.action = to ;
+  for (var k in p) {
+    var myInput = document.createElement("input") ;
+    myInput.setAttribute("name", k) ;
+    myInput.setAttribute("value", p[k]);
+    myForm.appendChild(myInput) ;
+  }
+  document.body.appendChild(myForm) ;
+  myForm.submit() ;
+  document.body.removeChild(myForm) ;
+}
+</script>
+
+<!-- START NAVIGATION SECTION -->
+
+    <div class="navbar navbar-inverse navbar-fixed-top">
+      <div class="navbar-inner">
+        <div class="container control-font-size">
+          <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </a>
+          <a class="brand" href="http://oracle.is.umbc.edu:8080/classpsp/IS420_TEAM_TRG.INDEX_PAGE">Resumator3000</a>
+          <div class="nav-collapse collapse">
+            <ul class="nav">
+              <li class="active"><a href="javascript:postwith('http://oracle.is.umbc.edu:8080/classpsp/IS420_TEAM_TRG.EDIT_PAGE',{})">Home</a></li>
+              <li><a href="http://userpages.umbc.edu/~booth1/resumator3000/html/about.html">About</a></li>
+              <li><a href="http://userpages.umbc.edu/~booth1/resumator3000/html/contact.html">Contact</a></li>
+              <li><a href="http://userpages.umbc.edu/~booth1/r3k/index.htm" target="_blank">Project Site</a></li>
+                    </ul>
+            <form class="navbar-form pull-right" action="http://oracle.is.umbc.edu:8080/classpsp/IS420_TEAM_TRG.EDIT_PAGE">
+              <input class="span2" NAME="EMAIL_IN" type="text" placeholder="Email">
+              <input class="span2" NAME="PASSWORD_IN" type="password" placeholder="Password">
+              <button type="submit" class="btn">Log In</button>
+            </form>
+
+          </div><!--/.nav-collapse -->
+        </div>
+      </div>
+    </div>
+
+<!-- 
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*    
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+ -->
+
+</ul>
 <%IF COUNT_IN = 0 THEN%>
-Your username was invalid or was already in use.
+<strong>Your username was invalid or was already in use.</strong>
+
+<br />
 <a href="#account-create-modal" data-toggle="modal"><button class="btn btn-primary">Create Account</button></a>
+<%ELSIF COUNT_IN = 2 THEN%>
+Invalid e-mail. <br />
+<a href="#password-reset-modal" data-toggle="modal"><button class="btn btn-primary">Reset Password</button></a>
+
 <%ELSE%>
+Invalid user name or password! If you don't have an account click the button below to sign up!<br />
 <a href="#account-create-modal" data-toggle="modal"><button class="btn btn-primary">Create Account</button></a>
 <a href="#password-reset-modal" data-toggle="modal"><button class="btn btn-primary">Reset Password</button></a>
 <%END IF;%>
@@ -57,7 +292,7 @@ Your username was invalid or was already in use.
                     Pressing request password will reset your current password.</h3>
     </div>
     <div class="modal-body">
-      <form action="http://oracle.is.umbc.edu:8080/classpsp/IS420_TEAM_TRG.ACCOUNT_CREATE" method="get">
+      <form action="http://oracle.is.umbc.edu:8080/classpsp/IS420_TEAM_TRG.FORM_UPDATE_PASSWORD" method="get">
           <p>Enter your e-mail and a new password.<br />
             <p><input class="span3" type="text" id="USER_EMAIL_ADDRESS_IN" name="USER_EMAIL_ADDRESS_IN" placeholder="Enter an email address"></p>
             <input class="span3" type="text" id="USER_PASSWORD_IN" name="USER_PASSWORD_IN" placeholder="Enter a password">
