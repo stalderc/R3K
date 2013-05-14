@@ -38,7 +38,7 @@ document.getElementById('ADDRESS_IN').setAttribute("value", 		unescape(ADDRESS))
 document.getElementById('EMAIL_IN').setAttribute("value", 			unescape(EMAIL));
 document.getElementById('COMPANY_IN').setAttribute("value", 		unescape(COMPANY));
 document.getElementById('TITLE_IN').setAttribute("value", 			unescape(TITLE));
-document.getElementById('REF_DISPLAY_IN').setAttribute("value", 	unescape(DISPLAY_RANK_ID));
+document.getElementById('REF_DISPLAY_RANK_IN').setAttribute("value", 	unescape(DISPLAY_RANK_ID));
 }
 
 function populate_ex_curr_Fields () {
@@ -65,10 +65,10 @@ var COURSE_NUMBER 		= 	escape(document.getElementById('COURSE_NUMBER_' 		+ refID
 var COURSE_DESCRIPTION 	= 	escape(document.getElementById('COURSE_DESCRIPTION_' 	+ refID).value);
 var DISPLAY_RANK_ID 	=	escape(document.getElementById('DISPLAY_RANK_ID_'  		+ refID).value);
 
-document.getElementById('COURSE_TITLE_IN').setAttribute("value", 		  unescape(COURSE_TITLE));
-document.getElementById('COURSE_NUMBER_IN').setAttribute("value", 		  unescape(COURSE_NUMBER));
-document.getElementById('COURSE_DESCRIPTION_IN').setAttribute("value", 	  unescape(COURSE_DESCRIPTION));
-document.getElementById('ACEDEMIC_DISPLAY_RANK_IN').setAttribute("value", unescape(DISPLAY_RANK_ID));
+unescape(document.getElementById('COURSE_TITLE_IN').setAttribute("value", 		  COURSE_TITLE));
+unescape(document.getElementById('COURSE_NUMBER_IN').setAttribute("value", 		  COURSE_NUMBER));
+unescape(document.getElementById('COURSE_DESCRIPTION_IN').setAttribute("value", 	  COURSE_DESCRIPTION));
+unescape(document.getElementById('ACADEMIC_DISPLAY_RANK_IN').setAttribute("value", DISPLAY_RANK_ID));
 
 }
 
