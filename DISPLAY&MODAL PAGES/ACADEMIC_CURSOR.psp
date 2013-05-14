@@ -106,7 +106,7 @@ COURSE_ID_ROW COURSE_ID_CURSOR%ROWTYPE;
           <div class="form-inline margin-form-inline">
 
 <!-- insert select statement -->
-            <select onchange="populate_academic_fields()"class="span2" ID="COURSE_ID_IN" name="COURSE_WORK_ID_IN">
+            <select onchange="populate_academic_fields()"class="span2" id="COURSE_ID_IN" name="COURSE_WORK_ID_IN">
               <%OPEN COURSE_ID_CURSOR;
                 LOOP
                 FETCH COURSE_ID_CURSOR INTO COURSE_ID_ROW;
