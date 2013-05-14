@@ -1,0 +1,34 @@
+<%@page language="PL/SQL"%>
+<%@plsql procedure="FORM_ADD_ACCOUNT"%>
+<%@plsql parameter="USER_EMAIL_ADDRESS_IN"%>
+<%@plsql parameter="USER_PASSWORD_IN"%>
+<%@plsql parameter="F_NAME_IN"%>
+<%@plsql parameter="M_NAME_IN"%>
+<%@plsql parameter="L_NAME_IN"%>
+<%@plsql parameter="SURNAME_IN"%>
+<%@plsql parameter="PHONE_NUMBER_IN"%>
+<%@plsql parameter="STREET_IN"%>
+<%@plsql parameter="CITY_IN"%>
+<%@plsql parameter="STATE_IN"%>
+<%@plsql parameter="ZIPCODE_IN"%>
+
+<%!
+COUNT_IN INT :=0;
+RESUMATOR_ID_IN VARCHAR2;	
+%>
+<%
+
+COUNT_IN := ACCOUNT_CREATE(USER_EMAIL_ADDRESS_IN,USER_PASSWORD_IN);
+
+IF COUNT_IN = 0 THEN
+ACCOUNT_MANAGE(COUNT_IN);
+ELSE
+RESUMATOR_ID_IN := RES_ID_SEQ.CURRVAL;
+
+FORM_UPDATE_USER(RESUMATOR_ID_IN,F_NAME_IN,M_NAME_IN,L_NAME_IN,SURNAME_IN,PHONE_NUMBER_IN,STREET_IN,CITY_IN,STATE_IN,ZIPCODE_IN);
+
+END IF;%>
+
+<%EXCEPTION
+WHEN OTHERS THEN%>
+<%=SQLERRM%>

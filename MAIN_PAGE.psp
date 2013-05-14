@@ -158,6 +158,23 @@ AUTHENTICATE_INT NUMBER := 0;%>
  -->
 
   <body>
+<script>
+
+function postwith (to,p) {
+  var myForm = document.createElement("form");
+  myForm.method="post" ;
+  myForm.action = to ;
+  for (var k in p) {
+    var myInput = document.createElement("input") ;
+    myInput.setAttribute("name", k) ;
+    myInput.setAttribute("value", p[k]);
+    myForm.appendChild(myInput) ;
+  }
+  document.body.appendChild(myForm) ;
+  myForm.submit() ;
+  document.body.removeChild(myForm) ;
+}
+</script>
 
 <!-- START NAVIGATION SECTION -->
 
@@ -169,10 +186,10 @@ AUTHENTICATE_INT NUMBER := 0;%>
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </a>
-          <a class="brand" href="http://userpages.umbc.edu/~booth1/resumator3000/html/index.html">Resumator3000</a>
+          <a class="brand" href="javascript:postwith('http://oracle.is.umbc.edu:8080/classpsp/IS420_TEAM_TRG.EDIT_PAGE',{email_in:'<%=email_in%>',password_in:'<%=password_in%>'})">Resumator3000</a>
           <div class="nav-collapse collapse">
             <ul class="nav">
-              <li class="active"><a href="http://userpages.umbc.edu/~booth1/resumator3000/html/index.html">Home</a></li>
+              <li class="active"><a href="javascript:postwith('http://oracle.is.umbc.edu:8080/classpsp/IS420_TEAM_TRG.EDIT_PAGE',{email_in:'<%=email_in%>',password_in:'<%=password_in%>'})">Home</a></li>
               <li><a href="http://userpages.umbc.edu/~booth1/resumator3000/html/about.html">About</a></li>
               <li><a href="http://userpages.umbc.edu/~booth1/resumator3000/html/contact.html">Contact</a></li>
               <li><a href="http://userpages.umbc.edu/~booth1/r3k/index.htm" target="_blank">Project Site</a></li>
@@ -194,22 +211,14 @@ IF AUTHENTICATE_INT = 0 OR AUTHENTICATE_INT = 2 THEN%>
     </div>            
 
 <div class="container"><!-- main page container -->
-<%IF AUTHENTICATE_INT = 2 THEN%>
-<p><span class="label label-warning">You've entered an invalid password.</span></p>
 
-
-
-<%ELSIF AUTHENTICATE_INT = 0 THEN%>
-<p><span class="label label-warning">You've entered an invalid user name.</span></p>
-
-
-<%END IF;%>
-</div>    
+<%! COUNT_IN INTEGER :=1;%>
+<%ACCOUNT_MANAGE(COUNT_IN);%>
 
 <%ELSE%>
 <%SELECT RESUMATOR_ID INTO RESUMATOR_ID_VAL FROM USERS WHERE EMAIL_ADDRESS = UPPER(EMAIL_IN);%>
-<%!OBJECTIVE_STATEMENT VARCHAR(500);%>
-<%SELECT OBJECTIVE INTO OBJECTIVE_STATEMENT FROM OBJECTIVE WHERE RESUMATOR_ID = RESUMATOR_ID_VAL;%>
+
+
             <li><a href="http://oracle.is.umbc.edu:8080/classpsp/IS420_TEAM_TRG.RESUME_OUTPUT">Resume Link</a></li>
             </ul>
 
@@ -261,7 +270,7 @@ IF AUTHENTICATE_INT = 0 OR AUTHENTICATE_INT = 2 THEN%>
 <!-- RESUME CONTENT BEGINS -->
         <section id="objective">
           <!-- user objective section -->
-          <p class="well well-small"> <%=OBJECTIVE_STATEMENT%> <br />
+          <p class="well well-small"> <%OBJECTIVE_CURSOR(RESUMATOR_ID_VAL);%> <br />
            <a href="#objective-modal" data-toggle="modal"><i class="icon-pencil"> </i></a> </p>
         </section>
           <hr> 
@@ -461,22 +470,9 @@ IF AUTHENTICATE_INT = 0 OR AUTHENTICATE_INT = 2 THEN%>
 
 <!-- OBJECTIVE MODAL -->
 
-  <div id="objective-modal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-    <div class="modal-header">
-      <button type="button" class="close" data-dismiss="modal" aria-hidden="true">x</button>
-      <h3 id="myModalLabel">Objective Statement</h3>
-    </div>
-    <form action="http://oracle.is.umbc.edu:8080/classpsp/IS420_TEAM_TRG.FORM_UPDATE_OBJECTIVE">
-      <div class="modal-body">
-        <textarea name="OBJECTIVE_IN" class="max-width" rows="5"><%=OBJECTIVE_STATEMENT%></textarea>
-      </div> 
-      <input type="hidden" name="RESUMATOR_ID_IN" value="<%=RESUMATOR_ID_VAL%>"/>
-      <button class="btn" data-dismiss="modal" aria-hidden="true">Cancel</button>
-      <button class="btn btn-primary" type="submit">Save changes</button>
-    </form>
-    <div class="modal-footer">
-    </div>
-  </div>
+
+
+
 
 
 <!--

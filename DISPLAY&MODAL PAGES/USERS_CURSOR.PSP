@@ -6,7 +6,7 @@
 
 <%!CURSOR USERS_CURSOR IS 
 
-SELECT USERS.F_NAME, USERS.L_NAME, USERS.STREET, USERS.CITY, USERS.STATE, USERS.ZIPCODE, USERS.PHONE_NUMBER, USERS.ACCOUNT_TYPE, USERS.SURNAME, USERS.M_NAME
+SELECT USERS.F_NAME, USERS.L_NAME, USERS.STREET, USERS.CITY, USERS.STATE, USERS.ZIPCODE, USERS.PHONE_NUMBER,  USERS.SURNAME, USERS.M_NAME
 FROM USERS
 WHERE USERS.RESUMATOR_ID = RESUMATOR_ID_VAL;
 
@@ -27,8 +27,8 @@ IF USERS_CURSOR%NOTFOUND THEN%>
           <!-- First Name Last Name - Career Title -->
           <input id="F_NAME" type="hidden" value="<%=USERS_ROW.F_NAME%>"/><%=USERS_ROW.F_NAME%>
           <input id="M_NAME" type="hidden" value="<%=USERS_ROW.M_NAME%>"/><%=USERS_ROW.M_NAME%> 
-          <input id="L_NAME" type="hidden" value="<%=USERS_ROW.L_NAME%>"/><%=USERS_ROW.L_NAME%> </h4>
-          <input id="SURNAME" type="hidden" value="<%=USERS_ROW.SURNAME%>"/><%=USERS_ROW.SURNAME%>
+          <input id="L_NAME" type="hidden" value="<%=USERS_ROW.L_NAME%>"/><%=USERS_ROW.L_NAME%>, 
+          <input id="SURNAME" type="hidden" value="<%=USERS_ROW.SURNAME%>"/><%=USERS_ROW.SURNAME%>.</h4>
           <!-- House Number Street Name Street Type -->
           <p class="address">
           <input id="STREET" type="hidden" value="<%=USERS_ROW.STREET%>"/><%=USERS_ROW.STREET%><br />
