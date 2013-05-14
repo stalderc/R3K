@@ -1,4 +1,3 @@
-
 <!DOCTYPE HTML>
 <%@page language="PL/SQL"%>
 <%@plsql procedure="PAGE_EXTRA_CURRICULAR_CURSOR"%>
@@ -69,7 +68,7 @@ CLOSE EXTRA_CURSOR;%>
             <input class="span2" type="text" name="SEMESTER_IN" placeholder="Semester Received">
             <input class="span2" type="text" name="ORGANIZATION_IN" placeholder="Organization">
             <!-- <input class="span2" type="text" name="DISPLAY_RANK_IN"placeholder="Display Rank"> -->
-              <select class="span2" type="text" name="DISPLAY_RANK_IN">
+              <select class="span2" type="text" name="EX_CUR_DISPLAY_RANK_IN">
                 <option>Display Rank</option>
                 <option value="1">1 - High</option>
                 <option value="2">2</option>
@@ -125,7 +124,7 @@ EXTRA_ID_ROW EXTRA_ID_CURSOR%ROWTYPE;
           <div class="form-inline margin-form-inline">
             <input class="span2" id="SEMESTER_IN" name="SEMESTER_IN" type="text" placeholder="Semester Receieved">
             <input class="span2" id="ORGANIZATION_IN" name="ORGANIZATION_IN" type="text" placeholder="Organization">
-            <input class="span2" id="DISPLAY_RANK_IN" name="DISPLAY_RANK_IN" type="text" placeholder="Display Rank">
+            <input class="span2" id="EX_CUR_DISPLAY_RANK_IN" name="EX_CUR_DISPLAY_RANK_IN" type="text" placeholder="Display Rank">
           </div>
             
           <textarea class="max-width" rows="3" name="DESCRIPTION_IN" placeholder="ExtraCurricular description goes here."></textarea>
