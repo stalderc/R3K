@@ -67,8 +67,8 @@ CLOSE SCHOOL_CURSOR;
                 <p>GPA 
                   <input id="GPA_<%=ED_ROW.ED_ID%>" type="hidden" value="<%=ED_ROW.GPA%>"><%=ED_ROW.GPA%></p>
                 <!-- list GPA if above 3.00 -->  
-                <p><input id="MINOR_<%=ED_ROW.ED_ID%>" type="hidden" value="<%=ED_ROW.MINOR%>"><%=ED_ROW.MINOR%> MINOR</p>
-                <p><input id="CERTIFICATIONS_<%=ED_ROW.ED_ID%>" type="hidden" value="<%=ED_ROW.CERTIFICATIONS%>"><%=ED_ROW.CERTIFICATIONS%> CERTIFICATIONS</p>
+                <p><input id="MINOR_<%=ED_ROW.ED_ID%>" type="hidden" value="<%=ED_ROW.MINOR%>"><%=ED_ROW.MINOR%></p>
+                <p><input id="CERTIFICATIONS_<%=ED_ROW.ED_ID%>" type="hidden" value="<%=ED_ROW.CERTIFICATIONS%>"><%=ED_ROW.CERTIFICATIONS%></p>
                 <input id="DISPLAY_RANK_ID_<%=ED_ROW.ED_ID%>" type="hidden" value="<%=ED_ROW.DISPLAY_RANK%>"/>
             </div>
             <!-- end education loop -->  
