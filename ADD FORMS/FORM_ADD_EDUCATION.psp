@@ -6,6 +6,7 @@ PASSWORD_IN VARCHAR2(50);%>
 <%@page language="PL/SQL"%>
 <%@plsql procedure="FORM_ADD_EDUCATION"%>
 <%@plsql parameter="RESUMATOR_ID_IN" DEFAULT="NULL"%>
+<%@plsql parameter="SCHOOL_ID_IN" DEFAULT="NULL"%>
 <%@plsql parameter="DEGREE_NAME_IN" DEFAULT="NULL"%>
 <%@plsql parameter="DEGREE_MAJOR_IN" DEFAULT="NULL"%>
 <%@plsql parameter="DEGREE_MINOR_IN" DEFAULT="NULL"%>
@@ -22,7 +23,7 @@ INSERT
     (
       EDUCATION_SEQ.NEXTVAL,
       RESUMATOR_ID_IN,
-      SCHOOL_SEQ.CURRVAL,
+      SCHOOL_ID_IN,
       DEGREE_NAME_IN,
       DEGREE_MAJOR_IN,
       DEGREE_MINOR_IN,

@@ -5,7 +5,7 @@
 
 <%!CURSOR DESIGN_SKILLS_CURSOR IS
 
-SELECT SKILLS.SKILL_NAME, SKILLS.SKILL_TYPE 
+SELECT SKILLS.SKILL_ID, SKILLS.SKILL_NAME, SKILLS.SKILL_TYPE, USERSSKILLS.DISPLAY_RANK 
 FROM SKILLS, USERSSKILLS
 WHERE SKILLS.SKILL_ID = USERSSKILLS.SKILL_ID
 AND USERSSKILLS.RESUMATOR_ID = RESUMATOR_ID_VAL
@@ -23,13 +23,21 @@ EXIT WHEN DESIGN_SKILLS_CURSOR%NOTFOUND;%>
                 <%IF DESIGN_SKILLS_COUNTER < 4 THEN DESIGN_SKILLS_COUNTER := DESIGN_SKILLS_COUNTER + 1;%>
                 <div class="span4">
                   <ul>
-                     <li><%=DESIGN_SKILLS_ROW.SKILL_NAME%></li>
+                     <li>
+                      <input id="DESIGN_SKILL_NAME_<%=DESIGN_SKILLS_ROW.SKILL_ID%>" type="hidden" value="<%=DESIGN_SKILLS_ROW.SKILL_NAME%>"/><%=DESIGN_SKILLS_ROW.SKILL_NAME%>
+                      <input id="DESIGN_DISPLAY_RANK_ID_<%=DESIGN_SKILLS_ROW.SKILL_ID%>" type="hidden" value="<%=DESIGN_SKILLS_ROW.DISPLAY_RANK%>"/>
+                      <input id="DESIGN_SKILL_TYPE_<%=DESIGN_SKILLS_ROW.SKILL_ID%>" type="hidden" value="<%=DESIGN_SKILLS_ROW.SKILL_TYPE%>"/>
+                      </li>
                   </ul>
                 </div>
                 <%ELSIF DESIGN_SKILLS_COUNTER >= 4 AND DESIGN_SKILLS_COUNTER < 9  THEN DESIGN_SKILLS_COUNTER := DESIGN_SKILLS_COUNTER + 1;%>
                 <div class="span4">
                   <ul>
-                     <li><%=DESIGN_SKILLS_ROW.SKILL_NAME%></li>
+                    <li>
+                      <input id="DESIGN_SKILL_NAME_<%=DESIGN_SKILLS_ROW.SKILL_ID%>" type="hidden" value="<%=DESIGN_SKILLS_ROW.SKILL_NAME%>"/><%=DESIGN_SKILLS_ROW.SKILL_NAME%>
+                      <input id="DESIGN_DISPLAY_RANK_ID_<%=DESIGN_SKILLS_ROW.SKILL_ID%>" type="hidden" value="<%=DESIGN_SKILLS_ROW.DISPLAY_RANK%>"/>
+                      <input id="DESIGN_SKILL_TYPE_<%=DESIGN_SKILLS_ROW.SKILL_ID%>" type="hidden" value="<%=DESIGN_SKILLS_ROW.SKILL_TYPE%>"/>
+                      </li>
                   </ul>
                 </div><!-- end loop -->
 <%
@@ -48,12 +56,9 @@ CLOSE DESIGN_SKILLS_CURSOR;%>
       <form action="http://oracle.is.umbc.edu:8080/classpsp/IS420_TEAM_TRG.FORM_ADD_SKILLS" method="get">
           <div class="form-inline margin-form-inline">
             <input class="span3" type="hidden" name="RESUMATOR_ID_IN" value="<%=RESUMATOR_ID_VAL%>">
-            <input class="span3" type="text" name="SKILL_TYPE_IN" placeholder="Skill Type">
+            <input class="span3" type="hidden" name="SKILL_TYPE_IN" value="Design">
             <input class="span2" type="text" name="SKILL_NAME_IN" placeholder="Skill Name">
-          </div>
-          <div class="form-inline margin-form-inline">
-           <!-- <input class="span2" type="text" name="DISPLAY_RANK_IN"placeholder="Display Rank"> -->
-            <select class="span2" type="text" name="DISPLAY_RANK_IN">
+            <select class="span2" type="text" name="DESIGN_DISPLAY_RANK_IN">
               <option>Display Rank</option>
               <option value="1">1 - High</option>
               <option value="2">2</option>
@@ -71,21 +76,40 @@ CLOSE DESIGN_SKILLS_CURSOR;%>
   </div>
 
 <!-- EDIT DESIGN SKILLS MODAL -->
+<%!CURSOR SKILL_ID_CURSOR IS
 
+SELECT USERSSKILLS.SKILL_ID, USERSSKILLS.DISPLAY_RANK
+FROM USERSSKILLS, SKILLS
+WHERE SKILLS.SKILL_ID = USERSSKILLS.SKILL_ID
+AND USERSSKILLS.RESUMATOR_ID = RESUMATOR_ID_VAL
+AND SKILLS.SKILL_TYPE = 'DESIGN'
+ORDER BY DISPLAY_RANK;
+
+SKILL_ID_ROW SKILL_ID_CURSOR%ROWTYPE;
+%>
   <div id="edit-design-skills-modal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
     <div class="modal-header">
       <button type="button" class="close" data-dismiss="modal" aria-hidden="true">x</button>
       <h3 id="myModalLabel">Edit Design Skills Information</h3>
     </div>
     <div class="modal-body">
-      <form action="http://oracle.is.umbc.edu:8080/classpsp/IS420_TEAM_TRG.FORM_SKILLS" method="get">
+      <form action="http://oracle.is.umbc.edu:8080/classpsp/IS420_TEAM_TRG.FORM_UPDATE_SKILLS" method="get">
           <div class="form-inline margin-form-inline">
+            <select onchange="populate_design_skill_fields()"class="span2" ID="DESIGN_SKILL_ID_IN" name="SKILLS_ID_IN">
+              <%OPEN SKILL_ID_CURSOR;
+                LOOP
+                FETCH SKILL_ID_CURSOR INTO SKILL_ID_ROW;
+                EXIT WHEN SKILL_ID_CURSOR%NOTFOUND;%>
+              <option value="<%=SKILL_ID_ROW.SKILL_ID%>"><%=SKILL_ID_ROW.DISPLAY_RANK%></option>
+              <%END LOOP;
+              CLOSE SKILL_ID_CURSOR;%>
+          </select>
             <input class="span3" type="hidden" id="RESUMATOR_ID_IN" name="RESUMATOR_ID_IN" value="<%=RESUMATOR_ID_VAL%>">
-            <input class="span3" type="text" id="SKILL_TYPE_IN" name="SKILL_TYPE_IN" placeholder="Skill Type">
-            <input class="span2" type="text" id="SKILL_NAME_IN" name="SKILL_NAME_IN" placeholder="Skill Name">
+            <input class="span3" type="text" id="DESIGN_SKILL_TYPE_IN" name="SKILL_TYPE_IN" placeholder="Skill Type">
+            <input class="span2" type="text" id="DESIGN_SKILL_NAME_IN" name="SKILL_NAME_IN" placeholder="Skill Name">
           </div>
           <div class="form-inline margin-form-inline">
-           <input class="span2" type="text" id="DISPLAY_RANK_IN" name="DISPLAY_RANK_IN"placeholder="Display Rank">
+           <input class="span2" type="text" id="DESIGN_DESIGN_DISPLAY_RANK_IN" name="DESIGN_DISPLAY_RANK_IN"placeholder="Display Rank">
     </div>
     <div class="modal-footer">
       <button class="btn" data-dismiss="modal" aria-hidden="true">Cancel</button>

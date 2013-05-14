@@ -6,9 +6,10 @@
 
 <%!CURSOR PROJECT_CURSOR IS
 
-SELECT PROJECTS.PROJECT_NAME, PROJECTS.DISPLAY_RANK
-FROM PROJECTS
+SELECT PROJECTS.PROJECT_ID, PROJECTS.PROJECT_NAME, PROJECTS.DISPLAY_RANK, PROJECT_DESCRIPTION.DESCRIPTION
+FROM PROJECTS, PROJECT_DESCRIPTION
 WHERE PROJECTS.RESUMATOR_ID = RESUMATOR_ID_VAL
+AND PROJECTS.PROJECT_ID = PROJECT_DESCRIPTION.PROJECT_ID
 ORDER BY DISPLAY_RANK;
 
 PROJECT_ROW PROJECT_CURSOR%ROWTYPE;
@@ -21,7 +22,11 @@ LOOP
 FETCH PROJECT_CURSOR INTO PROJECT_ROW;
 EXIT WHEN PROJECT_CURSOR%NOTFOUND;%>
               <ul>
-                 <li><%=PROJECT_ROW.PROJECT_NAME%></li>
+                 <li>
+                  <input id="NAME_<%=PROJECT_ROW.PROJECT_ID%>" type="hidden" value="<%=PROJECT_ROW.PROJECT_NAME%>"/><%=PROJECT_ROW.PROJECT_NAME%><br />
+                  <input id="DESCRIPTION_<%=PROJECT_ROW.PROJECT_ID%>" type="hidden" value="<%=PROJECT_ROW.DESCRIPTION%>"/><%=PROJECT_ROW.DESCRIPTION%>
+                  <input id="DISPLAY_RANK_ID_<%=PROJECT_ROW.PROJECT_ID%>" type="hidden" value="<%=PROJECT_ROW.DISPLAY_RANK%>"/>
+                 </li>
               </ul>
 <%END LOOP;
 CLOSE PROJECT_CURSOR;%>
@@ -45,7 +50,7 @@ CLOSE PROJECT_CURSOR;%>
 
           <div class="form-inline margin-form-inline">
            <!-- <input class="span2" type="text" name="DISPLAY_RANK_IN"placeholder="Display Rank"> -->
-            <select class="span2" type="text" name="DISPLAY_RANK_IN">
+            <select class="span2" type="text" name="PROJ_DISPLAY_RANK_IN">
               <option>Display Rank</option>
               <option value="1">1 - High</option>
               <option value="2">2</option>
@@ -64,23 +69,40 @@ CLOSE PROJECT_CURSOR;%>
 
 
 <!-- EDIT PROJECT MODAL -->
+<%!CURSOR PROJECTS_ID_CURSOR IS
 
+SELECT PROJECTS.PROJECT_ID, PROJECTS.DISPLAY_RANK
+FROM PROJECTS
+WHERE PROJECTS.RESUMATOR_ID = RESUMATOR_ID_VAL
+ORDER BY DISPLAY_RANK;
+
+PROJECTS_ID_ROW PROJECTS_ID_CURSOR%ROWTYPE;
+%>
   <div id="edit-project-modal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
     <div class="modal-header">
       <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
       <h3 id="myModalLabel">Edit Project Information</h3>
     </div>
     <div class="modal-body">
-      <form action="http://oracle.is.umbc.edu:8080/classpsp/IS420_TEAM_TRG.FORM_PROJECT" method="get">
+      <form action="http://oracle.is.umbc.edu:8080/classpsp/IS420_TEAM_TRG.FORM_UPDATE_PROJECTS" method="get">
           <div class="form-inline margin-form-inline">
+            <select onchange="populate_projects_fields()"class="span2" ID="PROJECT_ID_IN" name="PROJECT_ID_IN">
+              <%OPEN PROJECTS_ID_CURSOR;
+                LOOP
+                FETCH PROJECTS_ID_CURSOR INTO PROJECTS_ID_ROW;
+                EXIT WHEN PROJECTS_ID_CURSOR%NOTFOUND;%>
+              <option value="<%=PROJECTS_ID_ROW.PROJECT_ID%>"><%=PROJECTS_ID_ROW.DISPLAY_RANK%></option>
+              <%END LOOP;
+              CLOSE PROJECTS_ID_CURSOR;%>
+          </select>
             <input class="span3" type="hidden" id="RESUMATOR_ID_IN" name="RESUMATOR_ID_IN" VALUE="<%=RESUMATOR_ID_VAL%>">
             <input class="span3" type="text" id="PROJECT_NAME_IN" name="PROJECT_NAME_IN" placeholder="Project Name">        
           </div>
-
+          <input class="span3" type="HIDDEN" id="PROJECT_DESC_ID_IN" name="PROJECT_DESC_ID_IN" placeholder="Project Name">
           <textarea class="max-width" rows="3" id="PROJECT_DESCRIPTION_IN" name="PROJECT_DESCRIPTION_IN" placeholder="Project Description goes here."></textarea>
 
           <div class="form-inline margin-form-inline">
-           <input class="span2" type="text" id="DISPLAY_RANK_IN" name="DISPLAY_RANK_IN"placeholder="Display Rank">          
+           <input class="span2" type="text" id="PROJ_DISPLAY_RANK_IN" name="PROJ_DISPLAY_RANK_IN"placeholder="Display Rank">          
           </div>
       </div>
     <div class="modal-footer">

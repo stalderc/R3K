@@ -23,7 +23,7 @@ EXIT WHEN COURSE_CURSOR%NOTFOUND;%>
                 <%IF COURSE_COUNTER < 4 THEN COURSE_COUNTER := COURSE_COUNTER + 1;%>
                 <div class="span4">
                   <ul>
-                     <li id="COURSE_TITLE_<%=COURSE_ROW.COURSE_ID%>" type="hidden" value="<%=COURSE_ROW.COURSE_ID%>"/> <%=COURSE_ROW.COURSE_TITLE%></li>
+                     <li id="COURSE_TITLE_<%=COURSE_ROW.COURSE_ID%>" type="hidden" value="<%=COURSE_ROW.COURSE_TITLE%>"/> <%=COURSE_ROW.COURSE_TITLE%></li>
                      <input id="COURSE_NUMBER_<%=COURSE_ROW.COURSE_ID%>"type="hidden" value="<%=COURSE_ROW.COURSE_NUMBER%>"/><!-- doesn't show --> 
                      <input id="COURSE_DESCRIPTION_<%=COURSE_ROW.COURSE_ID%>"type="hidden" value="<%=COURSE_ROW.COURSE_DESC%>"/><!-- doesn't show --> 
                      <input id="DISPLAY_RANK_ID_<%=COURSE_ROW.COURSE_ID%>"type="hidden" value="<%=COURSE_ROW.DISPLAY_RANK%>"/><!-- doesn't show -->
@@ -32,7 +32,7 @@ EXIT WHEN COURSE_CURSOR%NOTFOUND;%>
                 <%ELSIF COURSE_COUNTER >= 4 AND COURSE_COUNTER < 9 THEN COURSE_COUNTER := COURSE_COUNTER + 1;%>
                 <div class="span4">
                   <ul>
-                     <li id="COURSE_TITLE_<%=COURSE_ROW.COURSE_ID%>" type="hidden" value="<%=COURSE_ROW.COURSE_ID%>"/> <%=COURSE_ROW.COURSE_TITLE%></li>
+                     <li id="COURSE_TITLE_<%=COURSE_ROW.COURSE_ID%>" type="hidden" value="<%=COURSE_ROW.COURSE_TITLE%>"/> <%=COURSE_ROW.COURSE_TITLE%></li>
                      <input id="COURSE_NUMBER_<%=COURSE_ROW.COURSE_ID%>"type="hidden" value="<%=COURSE_ROW.COURSE_NUMBER%>"/><!-- doesn't show --> 
                      <input id="COURSE_DESCRIPTION_<%=COURSE_ROW.COURSE_ID%>"type="hidden" value="<%=COURSE_ROW.COURSE_DESC%>"/><!-- doesn't show --> 
                      <input id="DISPLAY_RANK_ID_<%=COURSE_ROW.COURSE_ID%>"type="hidden" value="<%=COURSE_ROW.DISPLAY_RANK%>"/><!-- doesn't show -->
@@ -64,7 +64,7 @@ CLOSE COURSE_CURSOR;%>
 
           <div class="form-inline margin-form-inline">
            <!-- <input class="span2" type="text" NAME="DISPLAY_RANK_IN"placeholder="Display Rank"> -->
-            <select class="span2" type="text" name="DISPLAY_RANK_IN">
+            <select class="span2" type="text" name="ACADEMIC_DISPLAY_RANK_IN">
                 <option>Display Rank</option>
                 <option value="1">1 - High</option>
                 <option value="2">2</option>
@@ -102,11 +102,11 @@ COURSE_ID_ROW COURSE_ID_CURSOR%ROWTYPE;
       <h3 id="myModalLabel">Edit Academic Information</h3>
     </div>
     <div class="modal-body">
-      <form action="http://oracle.is.umbc.edu:8080/classpsp/IS420_TEAM_TRG.FORM_COURSE_WORK" method="get">
+      <form action="http://oracle.is.umbc.edu:8080/classpsp/IS420_TEAM_TRG.FORM_UPDATE_COURSE_WORK" method="get">
           <div class="form-inline margin-form-inline">
 
 <!-- insert select statement -->
-            <select onchange="populate_academic_fields()"class="span2" ID="COURSE_ID_IN" name="COURSE_ID_IN">
+            <select onchange="populate_academic_fields()"class="span2" ID="COURSE_ID_IN" name="COURSE_WORK_ID_IN">
               <%OPEN COURSE_ID_CURSOR;
                 LOOP
                 FETCH COURSE_ID_CURSOR INTO COURSE_ID_ROW;
@@ -126,7 +126,7 @@ COURSE_ID_ROW COURSE_ID_CURSOR%ROWTYPE;
           <textarea class="max-width" rows="3" id="COURSE_DESCRIPTION_IN" name="COURSE_DESCRIPTION_IN" placeholder="Course description goes here."></textarea>
 
           <div class="form-inline margin-form-inline">
-           <input class="span2" type="text" id="DISPLAY_RANK_IN" NAME="DISPLAY_RANK_IN"placeholder="Display Rank">
+           <input class="span2" type="text" id="ACADEMIC_DISPLAY_RANK_IN" NAME="ACADEMIC_DISPLAY_RANK_IN"placeholder="Display Rank">
           </div>
 
     </div>

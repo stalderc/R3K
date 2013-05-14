@@ -1,0 +1,56 @@
+<%@page language="PL/SQL"%>
+<%@plsql procedure="FORM_ADD_ACCOUNT"%>
+<%@plsql parameter="USER_EMAIL_ADDRESS_IN"%>
+<%@plsql parameter="USER_PASSWORD_IN"%>
+<%@plsql parameter="F_NAME_IN"%>
+<%@plsql parameter="M_NAME_IN"%>
+<%@plsql parameter="L_NAME_IN"%>
+<%@plsql parameter="SURNAME_IN"%>
+<%@plsql parameter="PHONE_NUMBER_IN"%>
+<%@plsql parameter="STREET_IN"%>
+<%@plsql parameter="CITY_IN"%>
+<%@plsql parameter="STATE_IN"%>
+<%@plsql parameter="ZIPCODE_IN"%>
+
+
+<%!
+COUNT_IN INT :=0;
+RESUMATOR_ID_IN VARCHAR2(50);	
+%>
+<%
+
+COUNT_IN := ACCOUNT_CREATE(USER_EMAIL_ADDRESS_IN,USER_PASSWORD_IN);
+
+IF COUNT_IN = 0 THEN%>
+
+<%ACCOUNT_MANAGE(COUNT_IN);%>
+
+<%
+
+ELSE
+RESUMATOR_ID_IN := RES_ID_SEQ.CURRVAL;
+
+UPDATE USERS
+    SET
+     CITY               = CITY_IN,
+     STATE              = STATE_IN,
+     ZIPCODE            = ZIPCODE_IN,
+     F_NAME             = F_NAME_IN,
+     L_NAME             = L_NAME_IN,
+     PHONE_NUMBER       = PHONE_NUMBER_IN,
+     STREET             = STREET_IN,
+     SURNAME            = SURNAME_IN
+     WHERE RESUMATOR_ID = RESUMATOR_ID_IN;
+ 
+EDIT_PAGE(USER_EMAIL_ADDRESS_IN,USER_PASSWORD_IN);
+
+
+END IF;
+
+
+
+%>
+
+<%EXCEPTION
+WHEN OTHERS THEN%>
+<%=SQLERRM%>

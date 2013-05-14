@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <%@page language="PL/SQL"%>
-<%@plsql procedure="INDEX"%>
+<%@plsql procedure="INDEX_PAGE"%>
 <!-- 
 *
 *
@@ -37,10 +37,10 @@
     <link href='http://fonts.googleapis.com/css?family=Noto+Sans' rel='stylesheet' type='text/css'>
 
     <!-- css styles relative link needs to be maintained -->
-    <link href="../assets/css/bootstrap.css" rel="stylesheet">
-    <link href="../assets/css/docs.css" rel="stylesheet">
+    <link href="http://userpages.umbc.edu/~booth1/resumator3000/assets/css/bootstrap.css" rel="stylesheet">
+    <link href="http://userpages.umbc.edu/~booth1/resumator3000/assets/css/docs.css" rel="stylesheet">
     <!-- r3k-styles.css contains custom settings to override TWBS code -->
-    <link href="../assets/css/r3k-styles.css" rel="stylesheet">
+    <link href="http://userpages.umbc.edu/~booth1/resumator3000/assets/css/r3k-styles.css" rel="stylesheet">
     <style type="text/css">
       body {
         padding-top: 60px;
@@ -49,7 +49,7 @@
     </style>
 
     <!-- must have this file for responsive features to work -->
-    <link href="../assets/css/bootstrap-responsive.css" rel="stylesheet">
+    <link href="http://userpages.umbc.edu/~booth1/resumator3000/assets/css/bootstrap-responsive.css" rel="stylesheet">
 
     <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
     <!--[if lt IE 9]>
@@ -57,11 +57,11 @@
     <![endif]-->
 
     <!-- Fav and touch icons -->
-    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="../assets/ico/apple-touch-icon-144-precomposed.png">
-    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="../assets/ico/apple-touch-icon-114-precomposed.png">
-      <link rel="apple-touch-icon-precomposed" sizes="72x72" href="../assets/ico/apple-touch-icon-72-precomposed.png">
-                    <link rel="apple-touch-icon-precomposed" href="../assets/ico/apple-touch-icon-57-precomposed.png">
-                                   <link rel="shortcut icon" href="../assets/ico/favicon.png">                                  
+    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="http://userpages.umbc.edu/~booth1/resumator3000/assets/ico/apple-touch-icon-144-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="http://userpages.umbc.edu/~booth1/resumator3000/assets/ico/apple-touch-icon-114-precomposed.png">
+      <link rel="apple-touch-icon-precomposed" sizes="72x72" href="http://userpages.umbc.edu/~booth1/resumator3000/assets/ico/apple-touch-icon-72-precomposed.png">
+                    <link rel="apple-touch-icon-precomposed" href="http://userpages.umbc.edu/~booth1/resumator3000/assets/ico/apple-touch-icon-57-precomposed.png">
+                                   <link rel="shortcut icon" href="http://userpages.umbc.edu/~booth1/resumator3000/assets/ico/favicon.png">                                  
 
     <!-- google analytics -->
 <!-- ???? need to find out if google analytics code must be on each page ???? -->
@@ -80,8 +80,8 @@
     </script>
 
     <!-- jquery assets -->
-    <script src="../assets/js/jquery-1.9.1.min.js"></script>
-    <script src="../assets/js/jquery.smooth-scroll.js"></script>
+    <script src="http://userpages.umbc.edu/~booth1/resumator3000/assets/js/jquery-1.9.1.min.js"></script>
+    <script src="http://userpages.umbc.edu/~booth1/resumator3000/assets/js/jquery.smooth-scroll.js"></script>
     <script>
       $(document).ready(function() {
         $('ul.floatnav a').smoothScroll();
@@ -141,7 +141,8 @@
               <li class="active"><a href="index.html">Home</a></li>
               <li><a href="about.html">About</a></li>
               <li><a href="contact.html">Contact</a></li>
-              <li><a href="../../r3k/index.htm" target="_blank">Project Site</a></li>
+              <li><a href="http://userpages.umbc.edu/~booth1/resumator3000/http://userpages.umbc.edu/~booth1/resumator3000/r3k/index.htm" target="_blank">Project Site</a></li>
+              <li><a href="resume.html">View Sample Resume</a></li>
               <!-- <li class="dropdown">
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">Dropdown <b class="caret"></b></a>
                 <ul class="dropdown-menu">
@@ -159,7 +160,7 @@
               <input class="span2" type="text" name="EMAIL_IN" placeholder="Email">
               <input class="span2" type="password" name="PASSWORD_IN" placeholder="Password">
               <button type="submit" class="btn">Come In</button>
-            </form>
+              </form>
           </div><!--/.nav-collapse -->
         </div>
       </div>
@@ -229,21 +230,16 @@
             <h4>Education: <a href="#add-education-modal" data-toggle="modal"><i class="icon-plus"> </i></a> <a href="#edit-education-modal" data-toggle="modal"><i class="icon-pencil"> </i></a>  </h4>
 
             <!-- loop through users education -->
-            <ul>
+            <div class="education-block">
                 <!-- Full name of educational institution, city and state -->
-                <li><a href="http://umbc.edu" target="_blank">University of Maryland, Baltimore County, Baltimore, Maryland</a></li>
-                  <ul>
-                    <!-- Name of Degree Program -->
-                    <li><a href="http://www.is.umbc.edu" target="_blank">Information Systems Department</a></li>
-                      <!-- list GPA if above 3.00 -->  
-                      <ul>
-                        <li>Doctorate</li>
-                        <li>Masters</li>
-                        <li>Bachelors</li>
-                        <li>Associates</li>
-                      </ul>
-                  </ul>
-            </ul>
+                <p><strong>University of Maryland, Baltimore County, Baltimore, Maryland <span class="pull-right">Baltimore, MD</span></strong></p>
+                <!-- Name of Degree Program -->
+                <p>Bachelors, Information Systems<span class="pull-right">May 2013</span></p>
+                <p>4.0 GPA</p>
+                <!-- list GPA if above 3.00 -->  
+                <p>MINOR</p>
+                <p>CERTIFICATIONS</p>
+            </div>
             <!-- end education loop -->  
           </section>  
           <hr>
@@ -504,14 +500,16 @@
           <section id="references">
             <h4>References and Contacts: <a href="#add-references-modal" data-toggle="modal"><i class="icon-plus"> </i></a> <a href="#edit-references-modal" data-toggle="modal"><i class="icon-pencil"> </i></a>  </h4>
               <!-- loop through all listed projects -->
-              <ul>
-                 <li>Bethany Cook</li>
-                 <li>Cameron Stalder</li>
-                 <li>Nicole Dawkins</li>
-                 <li>Sabeeh Hameed</li>
-                 <li>Joseph Booth</li>
-              </ul>
-
+              <div class="reference-block">
+                
+                 <p>George Karabatis<br />
+                                  Associate Professor Information Systems<br />
+                                  University of Maryland, Baltimore County<br />
+                                  1000 Hilltop Circle, Baltimore MD 21250<br />
+                                  email address<br />
+                                  phone number</p>
+              
+              </div>
           </section>
           <hr> 
 
@@ -739,7 +737,7 @@
     </div>
   </div>
 
-
+<%%>
 
 <!-- EDIT CERTIFICATION MODAL -->
 
@@ -1283,22 +1281,96 @@
 
   <div id="add-references-modal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
     <div class="modal-header">
-      <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+      <button type="button" class="close" data-dismiss="modal" aria-hidden="true">x</button>
       <h3 id="myModalLabel">Add References Information</h3>
     </div>
     <div class="modal-body">
-      <form>
+      <form action="http://oracle.is.umbc.edu:8080/classpsp/IS420_TEAM_TRG.FORM_ADD_REFERENCES" method="get">
           <div class="form-inline margin-form-inline">
-            <input class="span3" type="text" placeholder="ExtraCurricular Title">
-            <input class="span2" type="text" placeholder="Year Participated">
+            <input class="span3" type="hidden" NAME="RESUMATOR_ID_IN" >
+            <input class="span2" type="text" NAME="TITLE_IN" placeholder="Title">
+            <input class="span3" type="text" NAME="F_NAME_IN" placeholder="First Name">
+            <input class="span2" type="text" NAME="L_NAME_IN" placeholder="Last Name">
           </div>
           <div class="form-inline margin-form-inline">
-            <input class="span2" type="text" placeholder="Organization">
-            <input class="span2" type="text" placeholder="Semester Received">
+            <input class="span2" type="text" NAME="EMAIL_IN1" placeholder="Email Address">
+            <input class="span2" type="text" NAME="PHONE_NUMBER_IN" placeholder="Phone Number">
           </div>
 
-          <textarea class="max-width" rows="3" placeholder="ExtraCurricular description goes here."></textarea>
+          <div class="form-inline margin-form-inline">
+            <input class="span2" type="text" NAME="COMPANY_IN" placeholder="Company name">
+          </div>
 
+          <textarea class="span3" rows="2" NAME="ADDRESS_IN" placeholder="Address, City, State, Zipcode"></textarea>
+          
+          <div class="form-inline margin-form-inline">
+           <input class="span2" type="text" NAME="DISPLAY_RANK_IN"placeholder="Display Rank">
+          </div>
+      </form>
+    </div>
+    <div class="modal-footer">
+      <button class="btn" data-dismiss="modal" aria-hidden="true">Cancel</button>
+      <button class="btn btn-primary" type="submit">Save changes</button>
+    </div>
+  </div>
+
+<!-- ADD REFERENCES MODAL -->
+
+  <div id="add-references-modal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-header">
+      
+      <h3 id="myModalLabel">Add References Information</h3>
+    </div>
+    <div class="modal-body">
+      
+          <div class="form-inline margin-form-inline">
+            
+          </div>
+          <div class="form-inline margin-form-inline">
+            
+            
+          </div>
+
+          
+
+          <div class="form-inline margin-form-inline">
+            
+            
+            
+            
+          </div>
+    </div>
+    <div class="modal-footer">
+      <button class="btn" data-dismiss="modal" aria-hidden="true">Cancel</button>
+      
+    </div>
+      </form>
+  </div>
+
+<!-- EDIT REFERENCES MODAL -->
+
+  <div id="edit-references-modal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-header">
+      <button type="button" class="close" data-dismiss="modal" aria-hidden="true">x</button>
+      <h3 id="myModalLabel">Edit References Information</h3>
+    </div>
+    <div class="modal-body">
+      <form action="http://oracle.is.umbc.edu:8080/classpsp/IS420_TEAM_TRG.FORM_REFERENCES" method="get">
+          <div class="form-inline margin-form-inline">
+            <input class="span2" type="text" placeholder="Title">
+            <input class="span3" type="text" placeholder="First name">
+            <input class="span2" type="text" placeholder="Last Name">
+          </div>
+          <div class="form-inline margin-form-inline">
+            <input class="span2" type="text" placeholder="Email Address">
+            <input class="span2" type="text" placeholder="Phone Number">
+          </div>
+
+          <div class="form-inline margin-form-inline">
+            <input class="span2" type="text" placeholder="Company name">
+          </div>
+
+          <textarea class="span3" rows="2" placeholder="Address, City, State, Zipcode"></textarea>
       </form>
     </div>
     <div class="modal-footer">
@@ -1312,21 +1384,28 @@
 
   <div id="edit-references-modal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
     <div class="modal-header">
-      <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+      <button type="button" class="close" data-dismiss="modal" aria-hidden="true">x</button>
       <h3 id="myModalLabel">Edit References Information</h3>
     </div>
     <div class="modal-body">
-      <form>
+      <form action="http://oracle.is.umbc.edu:8080/classpsp/IS420_TEAM_TRG.FORM_REFERENCES" method="get">
           <div class="form-inline margin-form-inline">
-            <input class="span3" type="text" placeholder="ExtraCurricular Title">
-            <input class="span2" type="text" placeholder="Year Participated">
+            <input class="span3" type="text" NAME="F_NAME"placeholder="First name">
+            <input class="span2" type="text" NAME="L_NAME"placeholder="Last Name">
           </div>
           <div class="form-inline margin-form-inline">
-            <input class="span2" type="text" placeholder="Organization">
-            <input class="span2" type="text" placeholder="Semester Received">
+            <input class="span2" type="text" NAME="PHONE_NUMBER"placeholder="Phone Number">
+            
           </div>
 
-          <textarea class="max-width" rows="3" placeholder="ExtraCurricular description goes here."></textarea>
+          <textarea class="max-width" rows="3"NAME="ADDRESS" placeholder="Address."></textarea>
+
+          <div class="form-inline margin-form-inline">
+            <input class="span2" type="text" NAME="EMAIL"placeholder="Email Address">
+            <input class="span2" type="text" NAME="COMPANY"placeholder="Company name">
+            <input class="span2" type="text" NAME="TITLE"placeholder="Title">
+            <input class="span2" type="text" NAME="DISPLAY_RANK"placeholder="Display Rank">
+          </div>
       </form>
     </div>
     <div class="modal-footer">
@@ -1334,6 +1413,43 @@
       <button class="btn btn-primary">Save changes</button>
     </div>
   </div>
+
+
+    <div id="account-create-modal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-header">
+      <button type="button" class="close" data-dismiss="modal" aria-hidden="true">x</button>
+      <h3 id="myModalLabel">Create Your Account</h3>
+    </div>
+    <div class="modal-body">
+      <form action="http://oracle.is.umbc.edu:8080/classpsp/IS420_TEAM_TRG.FORM_ADD_ACCOUNT" method="get">
+          <p>These fields are required. <br />
+            <input class="span3" type="text" id="USER_EMAIL_ADDRESS_IN" name="USER_EMAIL_ADDRESS_IN" placeholder="Enter an email address">
+            <input class="span3" type="password" id="USER_PASSWORD_IN" name="USER_PASSWORD_IN" placeholder="Enter a password">
+          </p>
+          <div class="form-inline margin-form-inline" >
+            You can update these later! <br />
+            <input class="span2" type="text" id="F_NAME_IN" name="F_NAME_IN" placeholder="First Name">
+            <input class="span2" type="text" id="M_NAME_IN" name="M_NAME_IN" placeholder="Middle Name">
+            <input class="span2" type="text" id="L_NAME_IN" name="L_NAME_IN" placeholder="Last Name">
+            <input class="span1" type="text" id="SURNAME_IN" name="SURNAME_IN" placeholder="II, Jr.">
+          </div>
+          <div class="form-inline margin-form-inline">
+            <input class="span2" type="text" id="PHONE_NUMBER_IN" name="PHONE_NUMBER_IN" placeholder="555-555-5555">
+            <input class="span3" type="text" id="USER_STREET_ADDRESS_IN" name="STREET_IN" placeholder="Street Address">
+            <input class="span2" type="text" id="USER_CITY_IN" name="CITY_IN" placeholder="City">
+          </div>
+          <div class="form-inline margin-form-inline">
+            <input class="span2" type="text" id="USER_STATE_IN" name="STATE_IN" placeholder="State">
+            <input class="span2" type="text" id="USER_ZIPCODE_IN" name="ZIPCODE_IN" placeholder="Zipcode">
+          </div>
+    </div><!-- close modal-body -->
+    <div class="modal-footer">
+      <button class="btn" data-dismiss="modal" aria-hidden="true">Cancel</button>
+      <button class="btn btn-success" type="submit">Become a Teamator!</button>
+    </div>
+    </form>    
+  </div>
+</div>
 
 
 <!--
@@ -1361,24 +1477,30 @@
 <!-- javascript =================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->
     
-    <!-- <script src="../assets/js/jquery.js"></script> -->
-    <script src="../assets/js/bootstrap-transition.js"></script>
-    <script src="../assets/js/bootstrap-alert.js"></script>
-    <script src="../assets/js/bootstrap-modal.js"></script>
-    <script src="../assets/js/bootstrap-dropdown.js"></script>
-    <script src="../assets/js/bootstrap-scrollspy.js"></script>
-    <script src="../assets/js/bootstrap-tab.js"></script>
-    <script src="../assets/js/bootstrap-tooltip.js"></script>
-    <script src="../assets/js/bootstrap-popover.js"></script>
-    <script src="../assets/js/bootstrap-button.js"></script>
-    <script src="../assets/js/bootstrap-collapse.js"></script>
-    <!-- <script src="../assets/js/bootstrap-carousel.js"></script> -->
-    <script src="../assets/js/bootstrap-typeahead.js"></script>
+    <!-- <script src="http://userpages.umbc.edu/~booth1/resumator3000/assets/js/jquery.js"></script> -->
+    <script src="http://userpages.umbc.edu/~booth1/resumator3000/assets/js/bootstrap-transition.js"></script>
+    <script src="http://userpages.umbc.edu/~booth1/resumator3000/assets/js/bootstrap-alert.js"></script>
+    <script src="http://userpages.umbc.edu/~booth1/resumator3000/assets/js/bootstrap-modal.js"></script>
+    <script src="http://userpages.umbc.edu/~booth1/resumator3000/assets/js/bootstrap-dropdown.js"></script>
+    <script src="http://userpages.umbc.edu/~booth1/resumator3000/assets/js/bootstrap-scrollspy.js"></script>
+    <script src="http://userpages.umbc.edu/~booth1/resumator3000/assets/js/bootstrap-tab.js"></script>
+    <script src="http://userpages.umbc.edu/~booth1/resumator3000/assets/js/bootstrap-tooltip.js"></script>
+    <script src="http://userpages.umbc.edu/~booth1/resumator3000/assets/js/bootstrap-popover.js"></script>
+    <script src="http://userpages.umbc.edu/~booth1/resumator3000/assets/js/bootstrap-button.js"></script>
+    <script src="http://userpages.umbc.edu/~booth1/resumator3000/assets/js/bootstrap-collapse.js"></script>
+    <!-- <script src="http://userpages.umbc.edu/~booth1/resumator3000/assets/js/bootstrap-carousel.js"></script> -->
+    <script src="http://userpages.umbc.edu/~booth1/resumator3000/assets/js/bootstrap-typeahead.js"></script>
     
-    <script src="../assets/js/bootstrap-affix.js"></script>
-    <script src="../assets/js/holder/holder.js"></script>
-    <script src="../assets/js/google-code-prettify/prettify.js"></script>
-    <script src="../assets/js/application.js"></script>
+    <script src="http://userpages.umbc.edu/~booth1/resumator3000/assets/js/bootstrap-affix.js"></script>
+    <script src="http://userpages.umbc.edu/~booth1/resumator3000/assets/js/holder/holder.js"></script>
+    <script src="http://userpages.umbc.edu/~booth1/resumator3000/assets/js/google-code-prettify/prettify.js"></script>
+    <script src="http://userpages.umbc.edu/~booth1/resumator3000/assets/js/application.js"></script>
 
+
+<%
+
+EXCEPTION
+WHEN OTHERS THEN %> 
+<p><%=SQLERRM%></p>
   </body>
 </html>

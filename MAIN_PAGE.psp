@@ -99,10 +99,10 @@ AUTHENTICATE_INT NUMBER := 0;%>
 
 <!-- code for date pickers -->
 
-  <link rel="stylesheet" href="../assets/css/jquery-ui.css" />
+  <link rel="stylesheet" href="http://userpages.umbc.edu/~booth1/resumator3000/assets/css/jquery-ui.css" />
 
   <script src="../assets/js/jquery-1.9.1.js"></script>
-  <script src="../assets/js/jquery-ui.js"></script>
+  <script src="http://userpages.umbc.edu/~booth1/resumator3000/assets/js/jquery-ui.js"></script>
 
   <script>
     $(function() {
@@ -158,6 +158,23 @@ AUTHENTICATE_INT NUMBER := 0;%>
  -->
 
   <body>
+<script>
+
+function postwith (to,p) {
+  var myForm = document.createElement("form");
+  myForm.method="post" ;
+  myForm.action = to ;
+  for (var k in p) {
+    var myInput = document.createElement("input") ;
+    myInput.setAttribute("name", k) ;
+    myInput.setAttribute("value", p[k]);
+    myForm.appendChild(myInput) ;
+  }
+  document.body.appendChild(myForm) ;
+  myForm.submit() ;
+  document.body.removeChild(myForm) ;
+}
+</script>
 
 <!-- START NAVIGATION SECTION -->
 
@@ -172,7 +189,7 @@ AUTHENTICATE_INT NUMBER := 0;%>
           <a class="brand" href="http://userpages.umbc.edu/~booth1/resumator3000/html/index.html">Resumator3000</a>
           <div class="nav-collapse collapse">
             <ul class="nav">
-              <li class="active"><a href="http://userpages.umbc.edu/~booth1/resumator3000/html/index.html">Home</a></li>
+              <li class="active"><a href="javascript:postwith('http://oracle.is.umbc.edu:8080/classpsp/IS420_TEAM_TRG.EDIT_PAGE',{email_in:'<%=email_in%>',password_in:'<%=password_in%>'})">Home</a></li>
               <li><a href="http://userpages.umbc.edu/~booth1/resumator3000/html/about.html">About</a></li>
               <li><a href="http://userpages.umbc.edu/~booth1/resumator3000/html/contact.html">Contact</a></li>
               <li><a href="http://userpages.umbc.edu/~booth1/r3k/index.htm" target="_blank">Project Site</a></li>
@@ -192,26 +209,20 @@ IF AUTHENTICATE_INT = 0 OR AUTHENTICATE_INT = 2 THEN%>
         </div>
       </div>
     </div>            
-
+  
 <div class="container"><!-- main page container -->
-<%IF AUTHENTICATE_INT = 2 THEN%>
-<p><span class="label label-warning">You've entered an invalid password.</span></p>
 
-
-
-<%ELSIF AUTHENTICATE_INT = 0 THEN%>
-<p><span class="label label-warning">You've entered an invalid user name.</span></p>
-
-
-<%END IF;%>
-</div>    
+<%! COUNT_IN INTEGER :=1;%>
+<%ACCOUNT_MANAGE(COUNT_IN);%>
 
 <%ELSE%>
 <%SELECT RESUMATOR_ID INTO RESUMATOR_ID_VAL FROM USERS WHERE EMAIL_ADDRESS = UPPER(EMAIL_IN);%>
+
+
             <li><a href="http://oracle.is.umbc.edu:8080/classpsp/IS420_TEAM_TRG.RESUME_OUTPUT">Resume Link</a></li>
             </ul>
 
-            <a onclick="<%delete_cookie(1);%>" href="http://userpages.umbc.edu/~booth1/resumator3000/html/index.html" class="btn pull-right">Logout</a>
+            <a href="http://oracle.is.umbc.edu:8080/classpsp/IS420_TEAM_TRG.INDEX_PAGE" class="btn pull-right">Logout</a>
             
           </div><!--/.nav-collapse -->
         </div>
@@ -250,7 +261,7 @@ IF AUTHENTICATE_INT = 0 OR AUTHENTICATE_INT = 2 THEN%>
 
 <!-- STUDENT USER PERSONAL DATA -->
 <section id="contactinfo">
-        <h4><a href="#contact-modal" data-toggle="modal"><i class="icon-pencil"></i></a>
+        <h4><a onmousedown="populate_user_fields()" href="#contact-modal" data-toggle="modal"><i class="icon-pencil"></i></a>
         <%PAGE_USERS_CURSOR(RESUMATOR_ID_VAL, EMAIL_IN);%>
         </section>
 
@@ -259,7 +270,7 @@ IF AUTHENTICATE_INT = 0 OR AUTHENTICATE_INT = 2 THEN%>
 <!-- RESUME CONTENT BEGINS -->
         <section id="objective">
           <!-- user objective section -->
-          <p class="well well-small">Resumes shouldn't be written in one day, updating information shouldn't be a hassle, and sharing should be simple with no account required to view. Resumator3000 does all this and handles layout, typography, design, and more. We are not a resume builder; we are your resume partner dedicated to working with you over your student career. Join and start building a better resume today. <br />
+          <p class="well well-small"> <%OBJECTIVE_CURSOR(RESUMATOR_ID_VAL);%> <br />
            <a href="#objective-modal" data-toggle="modal"><i class="icon-pencil"> </i></a> </p>
         </section>
           <hr> 
@@ -271,7 +282,7 @@ IF AUTHENTICATE_INT = 0 OR AUTHENTICATE_INT = 2 THEN%>
 
           <section id="education">
             <h4>Education: <a href="#add-education-modal" data-toggle="modal"><i class="icon-plus"> </i></a>  
-                <a href="#edit-education-modal" data-toggle="modal"><i class="icon-pencil"> </i></a>
+                <a onmousedown="populate_education_fields()" href="#edit-education-modal" data-toggle="modal"><i class="icon-pencil"> </i></a>
             </h4>    
        <%PAGE_EDUCATION_CURSOR(RESUMATOR_ID_VAL);%>
           </section>  
@@ -282,7 +293,7 @@ IF AUTHENTICATE_INT = 0 OR AUTHENTICATE_INT = 2 THEN%>
 
 
           <section id="certifications">
-            <h4>Certifications and Licenses: <a href="#add-certifications-modal" data-toggle="modal"><i class="icon-plus"> </i></a> <a href="#edit-certifications-modal" data-toggle="modal"><i class="icon-pencil"> </i></a> </h4>
+            <h4>Certifications and Licenses: <a href="#add-certifications-modal" data-toggle="modal"><i class="icon-plus"> </i></a> <a onmousedown="populate_certification_fields()" href="#edit-certifications-modal" data-toggle="modal"><i class="icon-pencil"> </i></a> </h4>
 
           <div class="row"><!-- certifications and licenses row -->
 
@@ -298,7 +309,7 @@ IF AUTHENTICATE_INT = 0 OR AUTHENTICATE_INT = 2 THEN%>
 <!-- POPULATE RESEARCH-->
 
           <section id="research">
-            <h4>Research, Publications and Presentations: <a href="#add-research-modal" data-toggle="modal"><i class="icon-plus"> </i></a> <a href="#edit-research-modal" data-toggle="modal"><i class="icon-pencil"> </i></a> </h4>
+            <h4>Research, Publications and Presentations: <a href="#add-research-modal" data-toggle="modal"><i class="icon-plus"> </i></a> <a onmousedown="populate_publication_fields()" href="#edit-research-modal" data-toggle="modal"><i class="icon-pencil"> </i></a> </h4>
               <!-- loop through all listed projects -->
       <%PAGE_PUBLICATION_CURSOR(RESUMATOR_ID_VAL);%>
           </section>
@@ -306,7 +317,7 @@ IF AUTHENTICATE_INT = 0 OR AUTHENTICATE_INT = 2 THEN%>
 
 <!-- PROJECTS SECTION -->
     <section id="projects">
-      <h4>Projects: <a href="#add-project-modal" data-toggle="modal"><i class="icon-plus"> </i></a> <a href="#edit-project-modal" data-toggle="modal"><i class="icon-pencil"> </i></a> </h4>
+      <h4>Projects: <a href="#add-project-modal" data-toggle="modal"><i class="icon-plus"> </i></a> <a onmousedown="populate_projects_fields()" href="#edit-project-modal" data-toggle="modal"><i class="icon-pencil"> </i></a> </h4>
   <!-- loop through all listed projects -->
       <%PAGE_PROJECT_CURSOR(RESUMATOR_ID_VAL);%>
     </section>
@@ -314,7 +325,7 @@ IF AUTHENTICATE_INT = 0 OR AUTHENTICATE_INT = 2 THEN%>
 
 <!-- ACADEMIC COURSEWORK -->
    <section id="academic">
-      <h4>Academic Coursework: <a href="#add-academic-course-modal" data-toggle="modal"><i class="icon-plus"> </i></a> <a href="#edit-academic-course-modal" data-toggle="modal"><i class="icon-pencil"> </i></a> </h4>
+      <h4>Academic Coursework: <a href="#add-academic-course-modal" data-toggle="modal"><i class="icon-plus"> </i></a> <a onmousedown="populate_academic_fields()" href="#edit-academic-course-modal" data-toggle="modal"><i class="icon-pencil"> </i></a> </h4>
          <div class="row"><!-- academic coursework row -->
       <%PAGE_COURSE_WORK_CURSOR(RESUMATOR_ID_VAL);%>
         </div><!-- end academic coursework row -->
@@ -325,7 +336,7 @@ IF AUTHENTICATE_INT = 0 OR AUTHENTICATE_INT = 2 THEN%>
 
 
           <section id="skills">
-            <h4>Skills: <a href="#add-skills-modal" data-toggle="modal"><i class="icon-plus"> </i></a> <a href="#edit-skills-modal" data-toggle="modal"><i class="icon-pencil"> </i></a> </h4>
+            <h4>Skills: <a href="#add-skills-modal" data-toggle="modal"><i class="icon-plus"> </i></a> <a onmousedown="populate_standard_skill_fields()" href="#edit-skills-modal" data-toggle="modal"><i class="icon-pencil"> </i></a> </h4>
             
             <div class="row"><!-- standard skills row -->
         <%PAGE_STANDARD_SKILLS_CURSOR(RESUMATOR_ID_VAL);%>
@@ -338,7 +349,7 @@ IF AUTHENTICATE_INT = 0 OR AUTHENTICATE_INT = 2 THEN%>
 <!-- TECHNICAL SKILLS -->
 
           <section id="technical">
-            <h4>Technical Skills: <a href="#add-technical-skills-modal" data-toggle="modal"><i class="icon-plus"> </i></a> <a href="#edit-technical-skills-modal" data-toggle="modal"><i class="icon-pencil"> </i></a> </h4>
+            <h4>Technical Skills: <a href="#add-technical-skills-modal" data-toggle="modal"><i class="icon-plus"> </i></a> <a onmousedown="populate_technical_skill_fields()" href="#edit-technical-skills-modal" data-toggle="modal"><i class="icon-pencil"> </i></a> </h4>
 
             <!-- technical row --> 
 
@@ -352,7 +363,7 @@ IF AUTHENTICATE_INT = 0 OR AUTHENTICATE_INT = 2 THEN%>
 <!-- DESIGN SKILLS -->
 
           <section id="design">
-            <h4>Design Skills: <a href="#add-design-skills-modal" data-toggle="modal"><i class="icon-plus"> </i></a> <a href="#edit-design-skills-modal" data-toggle="modal"><i class="icon-pencil"> </i></a> </h4>
+            <h4>Design Skills: <a href="#add-design-skills-modal" data-toggle="modal"><i class="icon-plus"> </i></a> <a onmousedown="populate_design_skill_fields()" href="#edit-design-skills-modal" data-toggle="modal"><i class="icon-pencil"> </i></a> </h4>
 
             <!-- DESIGN row -->
 
@@ -366,7 +377,7 @@ IF AUTHENTICATE_INT = 0 OR AUTHENTICATE_INT = 2 THEN%>
 <!--POPULATE WORK HISTORY-->
 
           <section id="workhistory">
-            <h4>Work History: <a href="#add-work-history-modal" data-toggle="modal"><i class="icon-plus"> </i></a> <a href="#edit-work-history-modal" data-toggle="modal"><i class="icon-pencil"> </i></a> </h4>
+            <h4>Work History: <a href="#add-work-history-modal" data-toggle="modal"><i class="icon-plus"> </i></a> <a onmousedown="populate_work_history_fields()" href="#edit-work-history-modal" data-toggle="modal"><i class="icon-pencil"> </i></a> </h4>
 
             <div class="row"><!-- work history box -->
               <% PAGE_WORK_EXPERIENCE_CURSOR (RESUMATOR_ID_VAL); %>
@@ -378,7 +389,7 @@ IF AUTHENTICATE_INT = 0 OR AUTHENTICATE_INT = 2 THEN%>
 <!-- POPULATE HONORS AND AWARDS SECTION -->
 
           <section id="honors">
-            <h4>Honors and Awards: <a href="#add-honors-modal" data-toggle="modal"><i class="icon-plus"> </i></a> <a href="#edit-honors-modal" data-toggle="modal"><i class="icon-pencil"> </i></a> </h4>
+            <h4>Honors and Awards: <a href="#add-honors-modal" data-toggle="modal"><i class="icon-plus"> </i></a> <a onmousedown="populate_award_fields()" href="#edit-honors-modal" data-toggle="modal"><i class="icon-pencil"> </i></a> </h4>
             <% PAGE_AWARD_CURSOR (RESUMATOR_ID_VAL);%>
           </section>
           <hr> 
@@ -388,7 +399,7 @@ IF AUTHENTICATE_INT = 0 OR AUTHENTICATE_INT = 2 THEN%>
 
 
           <section id="activities">
-            <h4>Extra Curricular: <a href="#add-extracurricular-modal" data-toggle="modal"><i class="icon-plus"> </i></a> <a href="#edit-extracurricular-modal" data-toggle="modal"><i class="icon-pencil"> </i></a> </h4>
+            <h4>Extra Curricular: <a href="#add-extracurricular-modal" data-toggle="modal"><i class="icon-plus"> </i></a> <a onmousedown="populate_ex_curr_Fields()" href="#edit-extracurricular-modal" data-toggle="modal"><i class="icon-pencil"> </i></a> </h4>
 
             <div class="row"><!-- extra curricular row -->
               <% PAGE_EXTRA_CURRICULAR_CURSOR (RESUMATOR_ID_VAL); %>
@@ -399,7 +410,7 @@ IF AUTHENTICATE_INT = 0 OR AUTHENTICATE_INT = 2 THEN%>
 <!-- REFERENCES SECTION -->
 
           <section id="references">
-            <h4>References and Contacts: <a href="#add-references-modal" data-toggle="modal"><i class="icon-plus"> </i></a> <a href="#edit-references-modal" data-toggle="modal"><i class="icon-pencil"> </i></a> </h4>
+            <h4>References and Contacts: <a href="#add-references-modal" data-toggle="modal"><i class="icon-plus"> </i></a> <a onmousedown="populate_ref_Fields()" href="#edit-references-modal" data-toggle="modal"><i class="icon-pencil"> </i></a> </h4>
               <% PAGE_REFERENCES_CURSOR (RESUMATOR_ID_VAL); %>
           </section>
           <hr> 
@@ -459,21 +470,9 @@ IF AUTHENTICATE_INT = 0 OR AUTHENTICATE_INT = 2 THEN%>
 
 <!-- OBJECTIVE MODAL -->
 
-  <div id="objective-modal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-    <div class="modal-header">
-      <button type="button" class="close" data-dismiss="modal" aria-hidden="true">x</button>
-      <h3 id="myModalLabel">Objective Statement</h3>
-    </div>
-    <form>
-      <div class="modal-body">
-        <textarea class="max-width" rows="5" placeholder="Resumes shouldn't be written in one day, updating information shouldn't be a hassle, and sharing should be simple with no account required to view. Resumator3000 does all this and handles layout, typography, design, and more. We are not a resume builder; we are your resume partner dedicated to working with you over your student career. Join and start building a better resume today."></textarea>
-      </div>
-    </form>
-    <div class="modal-footer">
-      <button class="btn" data-dismiss="modal" aria-hidden="true">Cancel</button>
-      <button class="btn btn-primary">Save changes</button>
-    </div>
-  </div>
+
+
+
 
 
 <!--

@@ -6,7 +6,6 @@ PASSWORD_IN VARCHAR2(50);%>
 <%@page language="PL/SQL"%>
 <%@plsql procedure="FORM_UPDATE_WORK_EXPERIENCE"%>
 <%@plsql parameter="WORK_EXPERIENCE_ID_IN" DEFAULT="NULL"%>
-<%@plsql parameter="WORK_DESCRIPTION_ID_IN" DEFAULT="NULL"%>
 <%@plsql parameter="RESUMATOR_ID_IN" DEFAULT="NULL"%>
 <%@plsql parameter="WORK_EMPLOYER_IN" DEFAULT="NULL"%>
 <%@plsql parameter="WORK_POSITION_IN" DEFAULT="NULL"%>
@@ -14,6 +13,7 @@ PASSWORD_IN VARCHAR2(50);%>
 <%@plsql parameter="WORK_END_DATE_IN" DEFAULT="NULL"%>
 <%@plsql parameter="WORK_CITY_IN" DEFAULT="NULL"%>
 <%@plsql parameter="WORK_STATE_IN" DEFAULT="NULL"%>
+<%@plsql parameter="WORK_DESCRIPTION_ID_IN" DEFAULT="NULL"%>
 <%@plsql parameter="WORK_DESCRIPTION_IN" DEFAULT="NULL"%>
 <%@plsql parameter="DISPLAY_RANK_IN" DEFAULT="NULL"%>
 
