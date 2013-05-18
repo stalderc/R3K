@@ -80,7 +80,7 @@ CLOSE WORK_EX_CURSOR;%>
             <input class="span2" type="text" name="WORK_POSITION_IN" placeholder="Position Title">
           </div>
           <div class="form-inline margin-form-inline">
-            <input class="span3" type="text" id="datepicker5" name="WORK_START_DATE_IN" placeholder="Start Date">
+            <input class="span2" type="text" id="datepicker5" name="WORK_START_DATE_IN" placeholder="Start Date">
             <input class="span2" type="text" id="datepicker6" name="WORK_END_DATE_IN" placeholder="End Date">
           </div>
           <div class="form-inline margin-form-inline">
@@ -146,7 +146,7 @@ WORK_ID_ROW WORK_ID_CURSOR%ROWTYPE;
             <input class="span2" type="text" id="WORK_POSITION_IN" name="WORK_POSITION_IN" placeholder="Position Title">
           </div>
           <div class="form-inline margin-form-inline">
-            <input class="span3" type="text" id="WORK_START_DATE_IN" name="WORK_START_DATE_IN" placeholder="Start Date">
+            <input class="span2" type="text" id="WORK_START_DATE_IN" name="WORK_START_DATE_IN" placeholder="Start Date">
             <input class="span2" type="text" id="WORK_END_DATE_IN" name="WORK_END_DATE_IN" placeholder="End Date">
           </div>
           <div class="form-inline margin-form-inline">
