@@ -24,11 +24,11 @@ EXIT WHEN EXTRA_CURSOR%NOTFOUND;%>
                 <div class="span4">
                   <ul>
                      <li>
-                      <input id="ORGANIZATION_<%=EXTRA_ROW.EX_CUR_ID%>" type="hidden" value="<%=EXTRA_ROW.ORGANIZATION%>"><%=EXTRA_ROW.ORGANIZATION%>,
-                      <input id="TITLE_<%=EXTRA_ROW.EX_CUR_ID%>" type="hidden" value="<%=EXTRA_ROW.TITLE%>"><%=EXTRA_ROW.TITLE%> 
-                      <input id="SEMESTER_<%=EXTRA_ROW.EX_CUR_ID%>" type="hidden" value="<%=EXTRA_ROW.SEMESTER%>"><%=EXTRA_ROW.SEMESTER%> 
-                      <input id="YEAR_<%=EXTRA_ROW.EX_CUR_ID%>" type="hidden" value="<%=EXTRA_ROW.YEAR%>"><%=EXTRA_ROW.YEAR%>
-                      <input id="DISPLAY_RANK_<%=EXTRA_ROW.EX_CUR_ID%>" type="hidden" value="<%=EXTRA_ROW.DISPLAY_RANK%>">
+                      <input id="ORGANIZATION_<%=EXTRA_ROW.EX_CUR_ID%>" type="hidden" value="<%=EXTRA_ROW.ORGANIZATION%>"/><%=EXTRA_ROW.ORGANIZATION%>,
+                      <input id="TITLE_<%=EXTRA_ROW.EX_CUR_ID%>" type="hidden" value="<%=EXTRA_ROW.TITLE%>"/><%=EXTRA_ROW.TITLE%> 
+                      <input id="EX_CURR_SEMESTER_<%=EXTRA_ROW.EX_CUR_ID%>" type="hidden" value="<%=EXTRA_ROW.SEMESTER%>"/><%=EXTRA_ROW.SEMESTER%> 
+                      <input id="EX_CURR_YEAR_<%=EXTRA_ROW.EX_CUR_ID%>" type="hidden" value="<%=EXTRA_ROW.YEAR%>"/><%=EXTRA_ROW.YEAR%>
+                      <input id="DISPLAY_RANK_<%=EXTRA_ROW.EX_CUR_ID%>" type="hidden" value="<%=EXTRA_ROW.DISPLAY_RANK%>"/>
                     </li>
                   </ul>
                 </div>
@@ -39,8 +39,8 @@ EXIT WHEN EXTRA_CURSOR%NOTFOUND;%>
                       <input id="ORGANIZATION_<%=EXTRA_ROW.EX_CUR_ID%>" type="hidden" value="<%=EXTRA_ROW.ORGANIZATION%>"><%=EXTRA_ROW.ORGANIZATION%>,
                       <input id="TITLE_<%=EXTRA_ROW.EX_CUR_ID%>" type="hidden" value="<%=EXTRA_ROW.TITLE%>"><%=EXTRA_ROW.TITLE%> 
                       <input id="SEMESTER_<%=EXTRA_ROW.EX_CUR_ID%>" type="hidden" value="<%=EXTRA_ROW.SEMESTER%>"><%=EXTRA_ROW.SEMESTER%> 
-                      <input id="YEAR_<%=EXTRA_ROW.EX_CUR_ID%>" type="hidden" value="<%=EXTRA_ROW.YEAR%>"><%=EXTRA_ROW.YEAR%>
-                      <input id="DISPLAY_RANK_<%=EXTRA_ROW.EX_CUR_ID%>" type="hidden" value="<%=EXTRA_ROW.DISPLAY_RANK%>">
+                      <input id="EX_CURR_YEAR_<%=EXTRA_ROW.EX_CUR_ID%>" type="hidden" value="<%=EXTRA_ROW.YEAR%>"><%=EXTRA_ROW.YEAR%>
+                      <input id="EX_CURR_DISPLAY_RANK_<%=EXTRA_ROW.EX_CUR_ID%>" type="hidden" value="<%=EXTRA_ROW.DISPLAY_RANK%>">
                     </li>
                   </ul>
                 </div><!-- loop end -->
@@ -107,7 +107,7 @@ EXTRA_ID_ROW EXTRA_ID_CURSOR%ROWTYPE;
       <h3 id="myModalLabel">Edit ExtraCurricular Information</h3>
     </div>
     <div class="modal-body">
-      <form action="http://oracle.is.umbc.edu:8080/classpsp/IS420_TEAM_TRG.FORM_UPDATE_EXTRA_CURRICULAR" method="get">
+      <form name="editexcurr" action="http://oracle.is.umbc.edu:8080/classpsp/IS420_TEAM_TRG.FORM_UPDATE_EXTRA_CURRICULAR" method="get">
           <div class="form-inline margin-form-inline">
             <select onchange="populate_ex_curr_Fields()"class="span2" ID="EX_CURR_ID_IN" name="EXTRA_CURRICULAR_ID_IN">
               <%OPEN EXTRA_ID_CURSOR;

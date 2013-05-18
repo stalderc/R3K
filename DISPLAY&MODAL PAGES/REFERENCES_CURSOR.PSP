@@ -93,7 +93,7 @@ REF_ID_ROW REF_ID_CURSOR%ROWTYPE;
       <h3 id="myModalLabel">Edit References Information</h3>
     </div>
     <div class="modal-body">
-      <form id="editReferences" action="http://oracle.is.umbc.edu:8080/classpsp/IS420_TEAM_TRG.FORM_REFERENCES" method="get">
+      <form id="editReferences" name="editref" action="http://oracle.is.umbc.edu:8080/classpsp/IS420_TEAM_TRG.FORM_REFERENCES" method="get">
           <div class="form-inline margin-form-inline">
             <select onchange="populate_ref_Fields()"class="span2" ID="REFERENCE_ID_IN" name="REFERENCES_ID_IN">
               <%OPEN REF_ID_CURSOR;
@@ -105,20 +105,20 @@ REF_ID_ROW REF_ID_CURSOR%ROWTYPE;
               CLOSE REF_ID_CURSOR;%>
           </select>
             <input class="span3" type="hidden" ID="RESUMATOR_ID_IN" name="RESUMATOR_ID_IN" value="<%=RESUMATOR_ID_VAL%>">
-            <input class="span3" type="text"   ID="F_NAME_IN" name="F_NAME_IN"  placeholder="First name" value="">
-            <input class="span2" type="text"   ID="L_NAME_IN" name="L_NAME_IN"  placeholder="Last Name" value="">
+            <input class="span3" type="text"   ID="REF_F_NAME_IN" name="F_NAME_IN"  placeholder="First name" value="">
+            <input class="span2" type="text"   ID="REF_L_NAME_IN" name="L_NAME_IN"  placeholder="Last Name" value="">
           </div>
           <div class="form-inline margin-form-inline">
-            <input class="span2" type="text"   ID="PHONE_NUMBER_IN" name="PHONE_NUMBER_IN"  placeholder="Phone Number" value="">
+            <input class="span2" type="text"   ID="REF_PHONE_NUMBER_IN" name="PHONE_NUMBER_IN"  placeholder="Phone Number" value="">
             
           </div>
 
-          <textarea class="max-width" rows="3" ID="ADDRESS_IN" name="ADDRESS_IN"  placeholder="Address." value=""></textarea>
+          <textarea class="max-width" rows="3" name="ADDRESS_IN"  placeholder="Address" value=""></textarea>
 
           <div class="form-inline margin-form-inline">
-            <input class="span2" type="text" ID="EMAIL_IN" name="EMAIL_IN"  placeholder="Email Address" value="">
-            <input class="span2" type="text" ID="COMPANY_IN" name="COMPANY_IN"  placeholder="Company name" value="">
-            <input class="span2" type="text" ID="TITLE_IN" name="TITLE_IN"  placeholder="Title" value="">
+            <input class="span2" type="text" ID="REF_EMAIL_IN" name="EMAIL_IN"  placeholder="Email Address" value="">
+            <input class="span2" type="text" ID="REF_COMPANY_IN" name="COMPANY_IN"  placeholder="Company name" value="">
+            <input class="span2" type="text" ID="REF_TITLE_IN" name="TITLE_IN"  placeholder="Title" value="">
           </div>  
           <div class="form-inline margin-form-inline">  
             <input class="span2" type="text" ID="REF_DISPLAY_RANK_IN" name="DISPLAY_RANK_IN"  placeholder="Display Rank" value="">

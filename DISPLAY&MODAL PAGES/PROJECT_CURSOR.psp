@@ -84,7 +84,7 @@ PROJECTS_ID_ROW PROJECTS_ID_CURSOR%ROWTYPE;
       <h3 id="myModalLabel">Edit Project Information</h3>
     </div>
     <div class="modal-body">
-      <form action="http://oracle.is.umbc.edu:8080/classpsp/IS420_TEAM_TRG.FORM_UPDATE_PROJECTS" method="get">
+      <form name="editproj" action="http://oracle.is.umbc.edu:8080/classpsp/IS420_TEAM_TRG.FORM_UPDATE_PROJECTS" method="get">
           <div class="form-inline margin-form-inline">
             <select onchange="populate_projects_fields()"class="span2" ID="PROJECT_ID_IN" name="PROJECT_ID_IN">
               <%OPEN PROJECTS_ID_CURSOR;
@@ -99,7 +99,7 @@ PROJECTS_ID_ROW PROJECTS_ID_CURSOR%ROWTYPE;
             <input class="span3" type="text" id="PROJECT_NAME_IN" name="PROJECT_NAME_IN" placeholder="Project Name">        
           </div>
           <input class="span3" type="HIDDEN" id="PROJECT_DESC_ID_IN" name="PROJECT_DESC_ID_IN" placeholder="Project Name">
-          <textarea class="max-width" rows="3" id="PROJECT_DESCRIPTION_IN" name="PROJECT_DESCRIPTION_IN" placeholder="Project Description goes here."></textarea>
+          <textarea class="max-width" rows="3" name="PROJECT_DESCRIPTION_IN" placeholder="Project Description goes here."></textarea>
 
           <div class="form-inline margin-form-inline">
            <input class="span2" type="text" id="PROJ_DISPLAY_RANK_IN" name="DISPLAY_RANK_IN"placeholder="Display Rank">          

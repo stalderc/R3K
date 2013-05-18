@@ -54,8 +54,8 @@ EXIT WHEN WORK_EX_CURSOR%NOTFOUND;%>
                     <li>
                       <input id="DESCRIPTION_<%=i%>_<%=WORK_EX_ROW.WORK_ID%>" type="hidden" value="<%=WORK_DESC_ARRAY(i).DESCRIPTION%>"/><%=WORK_DESC_ARRAY(i).DESCRIPTION%>
                     </li>
+                       <input id="DISPLAY_RANK_ID_<%=WORK_EX_ROW.WORK_ID%>" type="hidden" value="<%=WORK_EX_ROW.DISPLAY_RANK%>"/>
                     <%END IF;%>
-                    <input id="DISPLAY_RANK_ID_<%=WORK_EX_ROW.WORK_ID%>" type="hidden" value="<%=WORK_EX_ROW.DISPLAY_RANK%>"/>
                     <%END LOOP;%>
 
                     

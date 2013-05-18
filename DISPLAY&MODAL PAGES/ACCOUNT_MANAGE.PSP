@@ -232,20 +232,10 @@ function postwith (to,p) {
  -->
 
 </ul>
-<%IF COUNT_IN = 0 THEN%>
-<strong>Your username was invalid or was already in use.</strong>
-
-<br />
-<a href="#account-create-modal" data-toggle="modal"><button class="btn btn-primary">Create Account</button></a>
-<%ELSIF COUNT_IN = 2 THEN%>
-Invalid e-mail. <br />
-<a href="#password-reset-modal" data-toggle="modal"><button class="btn btn-primary">Reset Password</button></a>
-
-<%ELSE%>
 Invalid user name or password! If you don't have an account click the button below to sign up!<br />
 <a href="#account-create-modal" data-toggle="modal"><button class="btn btn-primary">Create Account</button></a>
 <a href="#password-reset-modal" data-toggle="modal"><button class="btn btn-primary">Reset Password</button></a>
-<%END IF;%>
+
 
 
   <div id="account-create-modal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
@@ -295,7 +285,7 @@ Invalid user name or password! If you don't have an account click the button bel
       <form action="http://oracle.is.umbc.edu:8080/classpsp/IS420_TEAM_TRG.FORM_UPDATE_PASSWORD" method="get">
           <p>Enter your e-mail and a new password.<br />
             <p><input class="span3" type="text" id="USER_EMAIL_ADDRESS_IN" name="USER_EMAIL_ADDRESS_IN" placeholder="Enter an email address"></p>
-            <input class="span3" type="text" id="USER_PASSWORD_IN" name="USER_PASSWORD_IN" placeholder="Enter a password">
+            <input class="span3" type="password" id="USER_PASSWORD_IN" name="USER_PASSWORD_IN" placeholder="Enter a password">
           </p>
     </div><!-- close modal-body -->
     <div class="modal-footer">
