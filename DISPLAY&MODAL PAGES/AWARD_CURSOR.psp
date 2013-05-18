@@ -20,8 +20,8 @@ EXIT WHEN AWARD_CURSOR%NOTFOUND;%>
               <ul>
                  <li>
                   <input id="AWARD_NAME_<%=AWARD_ROW.HONOR_ID%>" type="hidden"value="<%=AWARD_ROW.HONOR_NAME%>" ><%=AWARD_ROW.HONOR_NAME%>, 
-                  <input id="SEMESTER_<%=AWARD_ROW.HONOR_ID%>" type="hidden"value="<%=AWARD_ROW.SEMESTER%>" ><%=AWARD_ROW.SEMESTER%> 
-                  <input id="YEAR_<%=AWARD_ROW.HONOR_ID%>" type="hidden"value="<%=AWARD_ROW.YEAR%>" ><%=AWARD_ROW.YEAR%>
+                  <input id="AWARD_SEMESTER_<%=AWARD_ROW.HONOR_ID%>" type="hidden"value="<%=AWARD_ROW.SEMESTER%>" ><%=AWARD_ROW.SEMESTER%> 
+                  <input id="AWARD_YEAR_<%=AWARD_ROW.HONOR_ID%>" type="hidden"value="<%=AWARD_ROW.YEAR%>" ><%=AWARD_ROW.YEAR%>
                   <input id="DISPLAY_RANK_ID_<%=AWARD_ROW.HONOR_ID%>" type="hidden" value="<%=AWARD_ROW.DISPLAY_RANK%>"/>
                 </li>
               </ul>

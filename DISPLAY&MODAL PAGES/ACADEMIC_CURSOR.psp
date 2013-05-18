@@ -23,7 +23,8 @@ EXIT WHEN COURSE_CURSOR%NOTFOUND;%>
                 <%IF COURSE_COUNTER < 4 THEN COURSE_COUNTER := COURSE_COUNTER + 1;%>
                 <div class="span4">
                   <ul>
-                     <li id="COURSE_TITLE_<%=COURSE_ROW.COURSE_ID%>" type="hidden" value="<%=COURSE_ROW.COURSE_TITLE%>"/> <%=COURSE_ROW.COURSE_TITLE%></li>
+                     <li> 
+                     <input id="COURSE_TITLE_<%=COURSE_ROW.COURSE_ID%>" type="hidden" value="<%=COURSE_ROW.COURSE_TITLE%>"/> <%=COURSE_ROW.COURSE_TITLE%></li>
                      <input id="COURSE_NUMBER_<%=COURSE_ROW.COURSE_ID%>"type="hidden" value="<%=COURSE_ROW.COURSE_NUMBER%>"/><!-- doesn't show --> 
                      <input id="COURSE_DESCRIPTION_<%=COURSE_ROW.COURSE_ID%>"type="hidden" value="<%=COURSE_ROW.COURSE_DESC%>"/><!-- doesn't show --> 
                      <input id="DISPLAY_RANK_ID_<%=COURSE_ROW.COURSE_ID%>"type="hidden" value="<%=COURSE_ROW.DISPLAY_RANK%>"/><!-- doesn't show -->
@@ -32,7 +33,8 @@ EXIT WHEN COURSE_CURSOR%NOTFOUND;%>
                 <%ELSIF COURSE_COUNTER >= 4 AND COURSE_COUNTER < 9 THEN COURSE_COUNTER := COURSE_COUNTER + 1;%>
                 <div class="span4">
                   <ul>
-                     <li id="COURSE_TITLE_<%=COURSE_ROW.COURSE_ID%>" type="hidden" value="<%=COURSE_ROW.COURSE_TITLE%>"/> <%=COURSE_ROW.COURSE_TITLE%></li>
+                     <li>
+                     <input id="COURSE_TITLE_<%=COURSE_ROW.COURSE_ID%>" type="hidden" value="<%=COURSE_ROW.COURSE_TITLE%>"/> <%=COURSE_ROW.COURSE_TITLE%></li>
                      <input id="COURSE_NUMBER_<%=COURSE_ROW.COURSE_ID%>"type="hidden" value="<%=COURSE_ROW.COURSE_NUMBER%>"/><!-- doesn't show --> 
                      <input id="COURSE_DESCRIPTION_<%=COURSE_ROW.COURSE_ID%>"type="hidden" value="<%=COURSE_ROW.COURSE_DESC%>"/><!-- doesn't show --> 
                      <input id="DISPLAY_RANK_ID_<%=COURSE_ROW.COURSE_ID%>"type="hidden" value="<%=COURSE_ROW.DISPLAY_RANK%>"/><!-- doesn't show -->
