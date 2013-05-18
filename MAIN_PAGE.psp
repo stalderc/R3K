@@ -110,7 +110,7 @@ AUTHENTICATE_INT NUMBER := 0;%>
         changeMonth: true,
         changeYear: true, 
       });
-    });
+    });/*education add modal*/
 
     $(function() {
       $( '#datepicker2' ).datepicker({
@@ -118,6 +118,75 @@ AUTHENTICATE_INT NUMBER := 0;%>
         changeYear: true
       });
     });
+
+    $(function() {
+      $( '#datepicker3' ).datepicker({
+        changeMonth: true,
+        changeYear: true
+      });
+    });/* certification add modal */
+
+    $(function() {
+      $( '#datepicker4' ).datepicker({
+        changeMonth: true,
+        changeYear: true
+      });
+    });/* publication add modal */
+
+    $(function() {
+      $( '#datepicker5' ).datepicker({
+        changeMonth: true,
+        changeYear: true
+      });
+    });/* work experience add modal */
+
+    $(function() {
+      $( '#datepicker6' ).datepicker({
+        changeMonth: true,
+        changeYear: true
+      });
+    });/* work experience add modal */
+
+    $(function() {
+      $( 'GRADUATION_DATE_IN' ).datepicker({
+        changeMonth: true,
+        changeYear: true
+      });
+    });/* education edit modal */
+
+    $(function() {
+      $( 'DATE_RECORDED_IN' ).datepicker({
+        changeMonth: true,
+        changeYear: true
+      });
+    });/* certification edit modal */
+
+    $(function() {
+      $( 'RESEARCH_DATE_PRESENTED_IN' ).datepicker({
+        changeMonth: true,
+        changeYear: true
+      });
+    });/* publication edit modal */    
+
+    $(function() {
+      $( 'WORK_START_DATE_IN' ).datepicker({
+        changeMonth: true,
+        changeYear: true
+      });
+    });/* work experience edit modal */    
+
+    $(function() {
+      $( 'WORK_END_DATE_IN' ).datepicker({
+        changeMonth: true,
+        changeYear: true
+      });
+    });/* work experience edit modal */    
+
+
+
+
+
+
   </script>
 
 <!-- end code for datepickers -->
