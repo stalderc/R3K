@@ -55,7 +55,7 @@ CLOSE SCHOOL_CURSOR;
             <!-- loop through users education -->
             <div class="education-block">
                 <!-- Full name of educational institution, city and state -->
-                <p><input id="SCHOOL_ID_<%=ED_ROW.ED_ID%>" type="hidden" value="<%=ED_ROW.SCHOOL_ID%>">  <%=S_NAME%> 
+                <p class="school-name-location"><input id="SCHOOL_ID_<%=ED_ROW.ED_ID%>" type="hidden" value="<%=ED_ROW.SCHOOL_ID%>">  <%=S_NAME%> 
                   <span class="pull-right">
                   <%=S_CITY%>, 
                   <%=S_STATE%>
