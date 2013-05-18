@@ -311,8 +311,8 @@ function postwith (to,p) {
 <!-- RESUME CONTENT BEGINS -->
         <section id="objective">
           <!-- user objective section -->
-          <p class="well well-small"> <%OBJECTIVE_CURSOR(RESUMATOR_ID_VAL);%> <br />
-           <a href="#objective-modal" data-toggle="modal"><i class="icon-pencil"> </i></a> </p>
+          <h4>Objective: <a href="#objective-modal" data-toggle="modal"><i class="icon-pencil"> </i></a> </h4>
+          <p class="well well-small"> <%OBJECTIVE_CURSOR(RESUMATOR_ID_VAL);%> </p>
         </section>
           <hr> 
 

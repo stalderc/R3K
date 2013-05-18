@@ -141,9 +141,13 @@ p .icon-pencil{
 
 .education-block{
 	margin-left: 20px;
+	margin-bottom: 21px;
 	line-height: 10px;
 }
 
+.school-name-location{
+	font-weight: bold;
+}
 
 
 
