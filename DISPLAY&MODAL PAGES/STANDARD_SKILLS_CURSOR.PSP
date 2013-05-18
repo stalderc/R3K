@@ -116,7 +116,15 @@ SKILL_ID_ROW SKILL_ID_CURSOR%ROWTYPE;
             <input class="span2" type="text" id="STANDARD_SKILL_NAME_IN" name="SKILL_NAME_IN" placeholder="Skill Name">
           </div>
           <div class="form-inline margin-form-inline">
-           <input class="span2" type="text" id="STANDARD_DISPLAY_RANK_IN" name="DISPLAY_RANK_IN"placeholder="Display Rank">
+           <!-- <input class="span2" type="text" id="STANDARD_DISPLAY_RANK_IN" name="DISPLAY_RANK_IN" placeholder="Display Rank"> -->
+           <select class="span2" type="text" id="STANDARD_DISPLAY_RANK_IN" name="DISPLAY_RANK_IN" >
+              <option>Display Rank</option>
+              <option value="1">1 - High</option>
+              <option value="2">2</option>
+              <option value="3">3</option>
+              <option value="4">4</option>
+              <option value="5">5 - Low</option>
+            </select>
     </div>
     <div class="modal-footer">
       <button class="btn" data-dismiss="modal" aria-hidden="true">Cancel</button>
