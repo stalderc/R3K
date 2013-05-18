@@ -45,7 +45,7 @@ CLOSE PUB_CURSOR;%>
           </div>
           <div class="form-inline margin-form-inline">
             <input class="span3" type="text" name="RESEARCH_LOCATION_IN" placeholder="Location">
-            <input class="span2" type="text" id="datepicker1" name="RESEARCH_DATE_PRESENTED_IN" placeholder="Date Presented">
+            <input class="span2" type="text" id="datepicker4" name="RESEARCH_DATE_PRESENTED_IN" placeholder="Date Presented">
           </div>      
           <div class="form-inline margin-form-inline">
            <!-- <input class="span2" type="text" name="DISPLAY_RANK_IN"placeholder="Display Rank"> -->

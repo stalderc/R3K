@@ -101,6 +101,8 @@ CLOSE SCHOOL_CURSOR;
                 <option value="Master of Arts">Master of Arts</option>
                 <option value="Master of Science">Master of Science</option>
             </select>
+          </div>
+          <div class="form-inline margin-form-inline">  
             <input class="span2" type="text" name="DEGREE_MAJOR_IN" placeholder="Major">
             <input class="span2" type="text" name="DEGREE_MINOR_IN" placeholder="Minor">
           </div>
@@ -157,10 +159,12 @@ ED_ID_ROW ED_ID_CURSOR%ROWTYPE;
               <option value="<%=ED_ID_ROW.ED_ID%>"><%=ED_ID_ROW.DISPLAY_RANK%></option>
               <%END LOOP;
               CLOSE ED_ID_CURSOR;%>
-          </select>
+            </select>
             <input class="span3" type="hidden" id="RESUMATOR_ID_IN" name="RESUMATOR_ID_IN" VALUE="<%=RESUMATOR_ID_VAL%>">
             <!-- school_id will need to be inserted here in future versions -->
             <input class="span3" type="text" id="DEGREE_NAME_IN" name="DEGREE_NAME_IN" placeholder="Degree Name">
+          </div>
+          <div class="form-inline margin-form-inline">
             <input class="span2" type="text" id="DEGREE_MAJOR_IN" name="DEGREE_MAJOR_IN" placeholder="Major">
             <input class="span2" type="text" id="DEGREE_MINOR_IN" name="DEGREE_MINOR_IN" placeholder="Minor">
           </div>
