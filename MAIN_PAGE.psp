@@ -148,35 +148,35 @@ AUTHENTICATE_INT NUMBER := 0;%>
     });/* work experience add modal */
 
     $(function() {
-      $( 'GRADUATION_DATE_IN' ).datepicker({
+      $( '#GRADUATION_DATE_IN' ).datepicker({
         changeMonth: true,
         changeYear: true
       });
     });/* education edit modal */
 
     $(function() {
-      $( 'DATE_RECORDED_IN' ).datepicker({
+      $( '#DATE_RECORDED_IN' ).datepicker({
         changeMonth: true,
         changeYear: true
       });
     });/* certification edit modal */
 
     $(function() {
-      $( 'RESEARCH_DATE_PRESENTED_IN' ).datepicker({
+      $( '#RESEARCH_DATE_PRESENTED_IN' ).datepicker({
         changeMonth: true,
         changeYear: true
       });
     });/* publication edit modal */    
 
     $(function() {
-      $( 'WORK_START_DATE_IN' ).datepicker({
+      $( '#WORK_START_DATE_IN' ).datepicker({
         changeMonth: true,
         changeYear: true
       });
     });/* work experience edit modal */    
 
     $(function() {
-      $( 'WORK_END_DATE_IN' ).datepicker({
+      $( '#WORK_END_DATE_IN' ).datepicker({
         changeMonth: true,
         changeYear: true
       });
