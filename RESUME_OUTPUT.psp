@@ -131,6 +131,7 @@ AUTHENTICATE_INT NUMBER := 0;%>
   <body>
   
     <div class="container"><!-- main page container -->
+      <a id="sample-resume-back-home" class="btn btn-info" href="javascript:postwith('http://oracle.is.umbc.edu:8080/classpsp/IS420_TEAM_TRG.EDIT_PAGE',{email_in:'<%=email_in%>',password_in:'<%=password_in%>'})">Home</a>
       <div class="row">
 
         <!-- front-page holds all the conent on the right of the page -->
