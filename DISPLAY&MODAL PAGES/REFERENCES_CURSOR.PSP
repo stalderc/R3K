@@ -58,6 +58,8 @@ CLOSE REF_CURSOR;%>
             <input class="span2" type="text" name="EMAIL_IN1" placeholder="Email Address">
             <input class="span2" type="text" name="COMPANY_IN" placeholder="Company name">
             <input class="span2" type="text" name="TITLE_IN" placeholder="Title">
+          </div>
+          <div class="form-inline margin-form-inline">
             <select class="span2" type="text" name="DISPLAY_RANK_IN">
               <option>Display Rank</option>
               <option value="1">1 - High</option>
