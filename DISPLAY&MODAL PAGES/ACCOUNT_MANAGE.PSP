@@ -179,7 +179,7 @@ function postwith (to,p) {
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </a>
-          <a class="brand" href="http://oracle.is.umbc.edu:8080/classpsp/IS420_TEAM_TRG.INDEX_PAGE">Resumator3000</a>
+          <a class="brand" href="http://userpages.umbc.edu/~booth1/resumator3000/html/index.html">Resumator3000</a>
           <div class="nav-collapse collapse">
             <ul class="nav">
               <li class="active"><a href="javascript:postwith('http://oracle.is.umbc.edu:8080/classpsp/IS420_TEAM_TRG.EDIT_PAGE',{})">Home</a></li>
@@ -272,7 +272,7 @@ Invalid user name or password! If you don't have an account click the button bel
             <input class="span2" type="text" id="USER_CITY_IN" name="CITY_IN" placeholder="City">
           </div>
           <div class="form-inline margin-form-inline">
-            <input class="span2" type="text" id="USER_STATE_IN" name="STATE_IN" placeholder="State">
+            <input class="span2" type="text" id="USER_STATE_IN" name="STATE_IN" placeholder="Abbreviated State (Ex: MD, VA, SD)">
             <input class="span2" type="text" id="USER_ZIPCODE_IN" name="ZIPCODE_IN" placeholder="Zipcode">
           </div>
     </div><!-- close modal-body -->

@@ -11,17 +11,20 @@ WHERE OBJECTIVE.RESUMATOR_ID = RESUMATOR_ID_VAL;
 
 OBJECTIVE_ROW OBJECTIVE_CURSOR%ROWTYPE;
 OB_HOLDER VARCHAR2(500);
+OB_ID_HOLDER VARCHAR2(50);
 %>  
 <%OPEN OBJECTIVE_CURSOR;
 LOOP
 FETCH OBJECTIVE_CURSOR INTO OBJECTIVE_ROW;
 EXIT WHEN OBJECTIVE_CURSOR%NOTFOUND;%>
 					
-          <%=OBJECTIVE_ROW.OBJECTIVE%>
           <%OB_HOLDER := OBJECTIVE_ROW.OBJECTIVE;%>
+          <%OB_ID_HOLDER := OBJECTIVE_ROW.OBJECTIVE_ID;%>
 
 <%END LOOP;
 CLOSE OBJECTIVE_CURSOR;%>
+
+<%=OB_HOLDER%>
 
 
 <div id="objective-modal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
@@ -32,7 +35,8 @@ CLOSE OBJECTIVE_CURSOR;%>
     <form action="http://oracle.is.umbc.edu:8080/classpsp/IS420_TEAM_TRG.FORM_UPDATE_OBJECTIVE">
       <div class="modal-body">
         <textarea name="OBJECTIVE_IN" class="max-width" rows="5"><%=OB_HOLDER%></textarea>
-      </div> 
+      </div>
+      <input type="hidden" name="OBJECTIVE_ID_IN" value="<%=OB_ID_HOLDER%>"/> 
       <input type="hidden" name="RESUMATOR_ID_IN" value="<%=RESUMATOR_ID_VAL%>"/>
       <button class="btn" data-dismiss="modal" aria-hidden="true">Cancel</button>
       <button class="btn btn-primary" type="submit">Save changes</button>

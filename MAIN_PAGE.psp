@@ -222,7 +222,7 @@ IF AUTHENTICATE_INT = 0 OR AUTHENTICATE_INT = 2 THEN%>
             <li><a href="http://oracle.is.umbc.edu:8080/classpsp/IS420_TEAM_TRG.RESUME_OUTPUT">Resume Link</a></li>
             </ul>
 
-            <a href="http://oracle.is.umbc.edu:8080/classpsp/IS420_TEAM_TRG.INDEX_PAGE" class="btn pull-right">Logout</a>
+            <a href="http://userpages.umbc.edu/~booth1/resumator3000/html/index.html" class="btn pull-right">Logout</a>
             
           </div><!--/.nav-collapse -->
         </div>

@@ -59,7 +59,7 @@ CLOSE CERT_CURSOR;%>
             <input class="span2" type="text" id="datepicker1" name="DATE_RECORDED_IN" placeholder="Date Recorded">
           </div>
           <div class="form-inline margin-form-inline">
-            <select class="span2" type="text" name="CERT_DISPLAY_RANK_IN">
+            <select class="span2" type="text" name="DISPLAY_RANK_IN">
               <option>Display Rank</option>
               <option value="1">1 - High</option>
               <option value="2">2</option>
@@ -114,7 +114,7 @@ CERT_ID_ROW CERT_ID_CURSOR%ROWTYPE;
               <input class="span2" type="text" id="DATE_RECORDED_IN" name="DATE_RECORDED_IN" placeholder="Date Recorded">
             </div>
           <div class="form-inline margin-form-inline">
-           <input class="span2" type="text" id="CERT_DISPLAY_RANK_IN" NAME="CERT_DISPLAY_RANK_IN"placeholder="Display Rank">
+           <input class="span2" type="text" id="CERT_DISPLAY_RANK_IN" NAME="DISPLAY_RANK_IN"placeholder="Display Rank">
           </div>
       
           </div>
