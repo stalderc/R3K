@@ -105,7 +105,14 @@ SKILL_ID_ROW SKILL_ID_CURSOR%ROWTYPE;
               CLOSE SKILL_ID_CURSOR;%>
           </select>
             <input class="span3" type="hidden" id="RESUMATOR_ID_IN" name="RESUMATOR_ID_IN" value="<%=RESUMATOR_ID_VAL%>">
-            <input class="span3" type="text" id="DESIGN_SKILL_TYPE_IN" name="SKILL_TYPE_IN" placeholder="Skill Type">
+            <!-- <input class="span3" type="text" id="DESIGN_SKILL_TYPE_IN" name="SKILL_TYPE_IN" placeholder="Skill Type"> -->
+            <select class="span3" type="text" id="DESIGN_SKILL_TYPE_IN" name="SKILL_TYPE_IN">
+              <option>Choose One:</option>
+              <option>Standard</option>
+              <option>Technical</option>
+              <option>Design</option>
+            </select>
+            
             <input class="span2" type="text" id="DESIGN_SKILL_NAME_IN" name="SKILL_NAME_IN" placeholder="Skill Name">
           </div>
           <div class="form-inline margin-form-inline">
