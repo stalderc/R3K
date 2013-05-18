@@ -121,7 +121,15 @@ REF_ID_ROW REF_ID_CURSOR%ROWTYPE;
             <input class="span2" type="text" ID="REF_TITLE_IN" name="TITLE_IN"  placeholder="Title" value="">
           </div>  
           <div class="form-inline margin-form-inline">  
-            <input class="span2" type="text" ID="REF_DISPLAY_RANK_IN" name="DISPLAY_RANK_IN"  placeholder="Display Rank" value="">
+            <!-- <input class="span2" type="text" ID="REF_DISPLAY_RANK_IN" name="DISPLAY_RANK_IN"  placeholder="Display Rank" value=""> -->
+            <select class="span2" type="text" ID="REF_DISPLAY_RANK_IN" name="DISPLAY_RANK_IN">
+              <option>Display Rank</option>
+              <option value="1">1 - High</option>
+              <option value="2">2</option>
+              <option value="3">3</option>
+              <option value="4">4</option>
+              <option value="5">5 - Low</option>
+            </select>
           </div>
       <button class="btn" data-dismiss="modal" aria-hidden="true">Cancel</button>
       <button class="btn btn-primary" type="submit">Save changes</button>
