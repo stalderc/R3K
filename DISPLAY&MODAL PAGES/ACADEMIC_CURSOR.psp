@@ -102,7 +102,7 @@ COURSE_ID_ROW COURSE_ID_CURSOR%ROWTYPE;
       <h3 id="myModalLabel">Edit Academic Information</h3>
     </div>
     <div class="modal-body">
-      <form action="http://oracle.is.umbc.edu:8080/classpsp/IS420_TEAM_TRG.FORM_UPDATE_COURSE_WORK" method="get">
+      <form NAME="editcourse" action="http://oracle.is.umbc.edu:8080/classpsp/IS420_TEAM_TRG.FORM_UPDATE_COURSE_WORK" method="get">
           <div class="form-inline margin-form-inline">
 
 <!-- insert select statement -->
