@@ -79,7 +79,7 @@ PROJECTS_ID_ROW PROJECTS_ID_CURSOR%ROWTYPE;
   <div id="edit-project-modal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
     <form name="editproj" action="http://oracle.is.umbc.edu:8080/classpsp/IS420_TEAM_TRG.FORM_UPDATE_PROJECTS" method="get">
       <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">x</button>
         <h3 class="pull-left pixels20" id="myModalLabel">Edit Project Information</h3>
         <select onchange="populate_projects_fields()"class="span1" ID="PROJECT_ID_IN" name="PROJECT_ID_IN">
           <%OPEN PROJECTS_ID_CURSOR;
