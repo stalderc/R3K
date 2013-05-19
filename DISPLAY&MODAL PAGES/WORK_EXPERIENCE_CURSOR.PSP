@@ -35,82 +35,74 @@ OPEN WORK_EX_CURSOR;
 LOOP
 FETCH WORK_EX_CURSOR INTO WORK_EX_ROW;
 EXIT WHEN WORK_EX_CURSOR%NOTFOUND;%>
-            <div class="span8">
-                <ul>
-                    <!-- Company name and Date Range Employment -->
-                    <h4 class="company-name">
-                      <input id="POSITION_TITLE_<%=WORK_EX_ROW.WORK_ID%>" type="hidden" value="<%=WORK_EX_ROW.POSITION_TITLE%>"/><%=WORK_EX_ROW.POSITION_TITLE%><span class="pull-right">
-                      <input id="START_DATE_<%=WORK_EX_ROW.WORK_ID%>" type="hidden" value="<%=WORK_EX_ROW.START_DATE%>"/><%=WORK_EX_ROW.START_DATE%> - 
-                      <input id="END_DATE_<%=WORK_EX_ROW.WORK_ID%>" type="hidden" value="<%=WORK_EX_ROW.END_DATE%>"/><%=WORK_EX_ROW.END_DATE%></span> </h4>
-                    <!-- job title -->
-                    <h5 class="company-name">
-                      <input id="EMPLOYER_<%=WORK_EX_ROW.WORK_ID%>" type="hidden" value="<%=WORK_EX_ROW.EMPLOYER%>"/><%=WORK_EX_ROW.EMPLOYER%></a><span class="pull-right">
-                      <input id="CITY_<%=WORK_EX_ROW.WORK_ID%>" type="hidden" value="<%=WORK_EX_ROW.CITY%>"/><%=WORK_EX_ROW.CITY%>, 
-                     <input id="STATE_<%=WORK_EX_ROW.WORK_ID%>" type="hidden" value="<%=WORK_EX_ROW.STATE%>"/> <%=WORK_EX_ROW.STATE%></span></h5>
-                    
-                    <!-- loop through job bullet points  -->
-                    <% for i in 1..WORK_DESC_ARRAY.COUNT LOOP%>
-                     <%IF WORK_DESC_ARRAY(i).WORK_ID = WORK_EX_ROW.WORK_ID THEN%> 
-                    <li>
-                      <input id="DESCRIPTION_<%=i%>_<%=WORK_EX_ROW.WORK_ID%>" type="hidden" value="<%=WORK_DESC_ARRAY(i).DESCRIPTION%>"/><%=WORK_DESC_ARRAY(i).DESCRIPTION%>
-                    </li>
-                    <%END IF;%>
-                    <input id="DISPLAY_RANK_ID_<%=WORK_EX_ROW.WORK_ID%>" type="hidden" value="<%=WORK_EX_ROW.DISPLAY_RANK%>"/>
-                    <%END LOOP;%>
-
-                    
-                </ul>
-              </div><!-- end loop through job bullet points -->
+  <div class="span8">
+    <ul>
+      <!-- Company name and Date Range Employment -->
+      <h4 class="company-name">
+        <input id="POSITION_TITLE_<%=WORK_EX_ROW.WORK_ID%>" type="hidden" value="<%=WORK_EX_ROW.POSITION_TITLE%>"/><%=WORK_EX_ROW.POSITION_TITLE%><span class="pull-right">
+        <input id="START_DATE_<%=WORK_EX_ROW.WORK_ID%>" type="hidden" value="<%=WORK_EX_ROW.START_DATE%>"/><%=WORK_EX_ROW.START_DATE%> - 
+        <input id="END_DATE_<%=WORK_EX_ROW.WORK_ID%>" type="hidden" value="<%=WORK_EX_ROW.END_DATE%>"/><%=WORK_EX_ROW.END_DATE%></span></h4>
+      <!-- job title -->
+      <h5 class="company-name">
+        <input id="EMPLOYER_<%=WORK_EX_ROW.WORK_ID%>" type="hidden" value="<%=WORK_EX_ROW.EMPLOYER%>"/><%=WORK_EX_ROW.EMPLOYER%></a><span class="pull-right">
+        <input id="CITY_<%=WORK_EX_ROW.WORK_ID%>" type="hidden" value="<%=WORK_EX_ROW.CITY%>"/><%=WORK_EX_ROW.CITY%>, 
+        <input id="STATE_<%=WORK_EX_ROW.WORK_ID%>" type="hidden" value="<%=WORK_EX_ROW.STATE%>"/> <%=WORK_EX_ROW.STATE%></span></h5>        
+        <!-- loop through job bullet points  -->
+        <% for i in 1..WORK_DESC_ARRAY.COUNT LOOP%>
+          <%IF WORK_DESC_ARRAY(i).WORK_ID = WORK_EX_ROW.WORK_ID THEN%> 
+            <li>
+              <input id="DESCRIPTION_<%=i%>_<%=WORK_EX_ROW.WORK_ID%>" type="hidden" value="<%=WORK_DESC_ARRAY(i).DESCRIPTION%>"/><%=WORK_DESC_ARRAY(i).DESCRIPTION%>
+            </li>
+          <%END IF;%>
+          <input id="DISPLAY_RANK_ID_<%=WORK_EX_ROW.WORK_ID%>" type="hidden" value="<%=WORK_EX_ROW.DISPLAY_RANK%>"/>
+        <%END LOOP;%><!-- end loop through job bullet points -->
+    </ul>
+  </div>
 <%END LOOP;
 CLOSE WORK_EX_CURSOR;%>
 
 <!-- ADD WORK HISTORY MODAL -->
 
   <div id="add-work-history-modal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-    <div class="modal-header">
-      <button type="button" class="close" data-dismiss="modal" aria-hidden="true">x</button>
-      <h3 id="myModalLabel">Add Work History Information</h3>
-    </div>
-    <div class="modal-body">
-      <form action="http://oracle.is.umbc.edu:8080/classpsp/IS420_TEAM_TRG.FORM_ADD_WORK_EXPERIENCE" method="get">
-
-          <div class="form-inline margin-form-inline">
-            <input class="span3" type="hidden" name="RESUMATOR_ID_IN" value="<%=RESUMATOR_ID_VAL%>">
-            <input class="span2" type="text" name="WORK_EMPLOYER_IN" placeholder="Employer">
-            <input class="span2" type="text" name="WORK_POSITION_IN" placeholder="Position Title">
-          </div>
-          <div class="form-inline margin-form-inline">
-            <input class="span2" type="text" id="datepicker5" name="WORK_START_DATE_IN" placeholder="Start Date">
-            <input class="span2" type="text" id="datepicker6" name="WORK_END_DATE_IN" placeholder="End Date">
-          </div>
-          <div class="form-inline margin-form-inline">
-            <input class="span3" type="text" name="WORK_CITY_IN" placeholder="City">
-            <input class="span2" type="text" name="WORK_STATE_IN" placeholder="State">
-          </div>
-
-
+    <form action="http://oracle.is.umbc.edu:8080/classpsp/IS420_TEAM_TRG.FORM_ADD_WORK_EXPERIENCE" method="get">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">x</button>
+        <h3 id="myModalLabel">Add Work History Information</h3>
+      </div><!-- end modal header -->
+      <div class="modal-body">
+        <div class="form-inline margin-form-inline">
+          <input class="span3" type="hidden" name="RESUMATOR_ID_IN" value="<%=RESUMATOR_ID_VAL%>" />
+          <input class="span2" type="text" name="WORK_EMPLOYER_IN" placeholder="Employer" />
+          <input class="span2" type="text" name="WORK_POSITION_IN" placeholder="Position Title" />
+        </div>
+        <div class="form-inline margin-form-inline">
+          <input class="span2" type="text" id="datepicker5" name="WORK_START_DATE_IN" placeholder="Start Date" />
+          <input class="span2" type="text" id="datepicker6" name="WORK_END_DATE_IN" placeholder="End Date" />
+        </div>
+        <div class="form-inline margin-form-inline">
+          <input class="span3" type="text" name="WORK_CITY_IN" placeholder="City" />
+          <input class="span2" type="text" name="WORK_STATE_IN" placeholder="State" />
+        </div>
+        <div class="form-inline margin-form-inline">
           <textarea class="max-width" rows="3" name="WORK_DESCRIPTION_IN" placeholder="Work Description goes here."></textarea>
-
-          <div class="form-inline margin-form-inline">
-           <!-- <input class="span2" type="text" name="DISPLAY_RANK_IN"placeholder="Display Rank"> -->
-            <select class="span2" type="text" name="DISPLAY_RANK_IN">
-              <option>Display Rank</option>
-              <option value="1">1 - High</option>
-              <option value="2">2</option>
-              <option value="3">3</option>
-              <option value="4">4</option>
-              <option value="5">5 - Low</option>
-            </select>           
-          </div>
-
-
-    </div><!-- close modal-body -->
-    <div class="modal-footer">
-      <button class="btn" data-dismiss="modal" aria-hidden="true">Cancel</button>
-      <button class="btn btn-primary" type="submit">Save changes</button>
-    </div>
-    </form>   
-  </div>
+        </div>
+        <div class="form-inline margin-form-inline">
+          <select class="span2" type="text" name="DISPLAY_RANK_IN">
+            <option>Display Rank</option>
+            <option value="1">1 - High</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+            <option value="5">5 - Low</option>
+          </select>           
+        </div>
+      </div><!-- end modal-body -->
+      <div class="modal-footer">
+        <button class="btn" data-dismiss="modal" aria-hidden="true">Cancel</button>
+        <button class="btn btn-primary" type="submit">Save changes</button>
+      </div><!-- end modal footer -->
+    </form> <!-- end form -->
+  </div><!-- end add-work-history-modal -->
 
 
 
@@ -125,55 +117,52 @@ ORDER BY DISPLAY_RANK;
 WORK_ID_ROW WORK_ID_CURSOR%ROWTYPE;
 %>
   <div id="edit-work-history-modal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-    <div class="modal-header">
-      <button type="button" class="close" data-dismiss="modal" aria-hidden="true">x</button>
-      <h3 id="myModalLabel">Edit Work History Information</h3>
-    </div>
-    <div class="modal-body">
-      <form action="http://oracle.is.umbc.edu:8080/classpsp/IS420_TEAM_TRG.FORM_UPDATE_WORK_EXPERIENCE" method="get">
-        <div class="form-inline margin-form-inline">
-           <select onchange="populate_work_history_fields()"class="span2" ID="WORK_ID_IN" name="WORK_EXPERIENCE_ID_IN">
-              <%OPEN WORK_ID_CURSOR;
-                LOOP
-                FETCH WORK_ID_CURSOR INTO WORK_ID_ROW;
-                EXIT WHEN WORK_ID_CURSOR%NOTFOUND;%>
+    <form action="http://oracle.is.umbc.edu:8080/classpsp/IS420_TEAM_TRG.FORM_UPDATE_WORK_EXPERIENCE" method="get">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">x</button>
+        <h3 class="pull-left pixels20" id="myModalLabel">Edit Work History Information</h3>
+        <select onchange="populate_work_history_fields()"class="span1" ID="WORK_ID_IN" name="WORK_EXPERIENCE_ID_IN">
+          <%OPEN WORK_ID_CURSOR;
+            LOOP
+            FETCH WORK_ID_CURSOR INTO WORK_ID_ROW;
+            EXIT WHEN WORK_ID_CURSOR%NOTFOUND;%>
               <option value="<%=WORK_ID_ROW.WORK_ID%>"><%=WORK_ID_ROW.DISPLAY_RANK%></option>
-              <%END LOOP;
-              CLOSE WORK_ID_CURSOR;%>
-          </select>
-            <input class="span3" type="hidden" id="RESUMATOR_ID_IN" name="RESUMATOR_ID_IN" value="<%=RESUMATOR_ID_VAL%>">
-            <input class="span2" type="text" id="WORK_EMPLOYER_IN" name="WORK_EMPLOYER_IN" placeholder="Employer">
-            <input class="span2" type="text" id="WORK_POSITION_IN" name="WORK_POSITION_IN" placeholder="Position Title">
-          </div>
-          <div class="form-inline margin-form-inline">
-            <input class="span2" type="text" id="WORK_START_DATE_IN" name="WORK_START_DATE_IN" placeholder="Start Date">
-            <input class="span2" type="text" id="WORK_END_DATE_IN" name="WORK_END_DATE_IN" placeholder="End Date">
-          </div>
-          <div class="form-inline margin-form-inline">
-            <input class="span3" type="text" id="WORK_CITY_IN" name="WORK_CITY_IN" placeholder="City">
-            <input class="span2" type="text" id="WORK_STATE_IN" name="WORK_STATE_IN" placeholder="State">
-          </div>
-
-          <input class="span2" type="HIDDEN" id="WORK_DESCRIPTION_ID_IN" name="WORK_DESCRIPTION_ID_IN" placeholder="State">
+          <%END LOOP;
+          CLOSE WORK_ID_CURSOR;%>
+        </select>
+      </div><!-- end modal header -->
+      <div class="modal-body">
+        <div class="form-inline margin-form-inline">
+          <input class="span3" type="hidden" id="RESUMATOR_ID_IN" name="RESUMATOR_ID_IN" value="<%=RESUMATOR_ID_VAL%>" />
+          <input class="span2" type="text" id="WORK_EMPLOYER_IN" name="WORK_EMPLOYER_IN" placeholder="Employer" />
+          <input class="span2" type="text" id="WORK_POSITION_IN" name="WORK_POSITION_IN" placeholder="Position Title" />
+        </div>
+        <div class="form-inline margin-form-inline">
+          <input class="span2" type="text" id="WORK_START_DATE_IN" name="WORK_START_DATE_IN" placeholder="Start Date" />
+          <input class="span2" type="text" id="WORK_END_DATE_IN" name="WORK_END_DATE_IN" placeholder="End Date" />
+        </div>
+        <div class="form-inline margin-form-inline">
+          <input class="span3" type="text" id="WORK_CITY_IN" name="WORK_CITY_IN" placeholder="City" />
+          <input class="span2" type="text" id="WORK_STATE_IN" name="WORK_STATE_IN" placeholder="State" />
+        </div>
+        <div class="form-inline margin-form-inline">
+          <input class="span2" type="HIDDEN" id="WORK_DESCRIPTION_ID_IN" name="WORK_DESCRIPTION_ID_IN" placeholder="State" />
           <textarea class="max-width" rows="3" id="WORK_DESCRIPTION_IN" name="WORK_DESCRIPTION_IN" placeholder="Work Description goes here."></textarea>
-
-          <div class="form-inline margin-form-inline">
-           <!-- <input class="span2" type="text" id="DISPLAY_RANK_IN" name="DISPLAY_RANK_IN"placeholder="Display Rank"> -->
-            <select class="span2" type="text" id="WORK_DISPLAY_RANK_IN" name="DISPLAY_RANK_IN">
-              <option>Display Rank</option>
-              <option value="1">1 - High</option>
-              <option value="2">2</option>
-              <option value="3">3</option>
-              <option value="4">4</option>
-              <option value="5">5 - Low</option>
-            </select>           
-          </div>
-
-
-    </div><!-- close modal-body -->
-    <div class="modal-footer">
-      <button class="btn" data-dismiss="modal" aria-hidden="true">Cancel</button>
-      <button class="btn btn-primary" type="submit">Save changes</button>
-    </div>
-    </form>   
-  </div>
+        </div>
+        <div class="form-inline margin-form-inline">
+          <select class="span2" type="text" id="WORK_DISPLAY_RANK_IN" name="DISPLAY_RANK_IN">
+            <option>Display Rank</option>
+            <option value="1">1 - High</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+            <option value="5">5 - Low</option>
+          </select>           
+        </div>
+      </div><!-- end modal-body -->
+      <div class="modal-footer">
+        <button class="btn" data-dismiss="modal" aria-hidden="true">Cancel</button>
+        <button class="btn btn-primary" type="submit">Save changes</button>
+      </div><!-- end modal footer -->
+    </form><!-- end form -->
+  </div><!-- end edit-work-history-modal -->

@@ -26,21 +26,20 @@ CLOSE OBJECTIVE_CURSOR;%>
 
 <%=OB_HOLDER%>
 
-
 <div id="objective-modal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <form action="http://oracle.is.umbc.edu:8080/classpsp/IS420_TEAM_TRG.FORM_UPDATE_OBJECTIVE">
     <div class="modal-header">
       <button type="button" class="close" data-dismiss="modal" aria-hidden="true">x</button>
       <h3 id="myModalLabel">Objective Statement</h3>
-    </div>
-    <form action="http://oracle.is.umbc.edu:8080/classpsp/IS420_TEAM_TRG.FORM_UPDATE_OBJECTIVE">
-      <div class="modal-body">
-        <textarea name="OBJECTIVE_IN" class="max-width" rows="5"><%=OB_HOLDER%></textarea>
-      </div>
-      <input type="hidden" name="OBJECTIVE_ID_IN" value="<%=OB_ID_HOLDER%>"/> 
-      <input type="hidden" name="RESUMATOR_ID_IN" value="<%=RESUMATOR_ID_VAL%>"/>
+    </div><!-- end modal header -->
+    <div class="modal-body">
+      <textarea name="OBJECTIVE_IN" class="max-width" rows="5"><%=OB_HOLDER%></textarea>
+      <input type="hidden" name="OBJECTIVE_ID_IN" value="<%=OB_ID_HOLDER%>"/> <!-- hidden -->
+      <input type="hidden" name="RESUMATOR_ID_IN" value="<%=RESUMATOR_ID_VAL%>"/> <!-- hidden -->
+    </div><!-- end modal body -->
+    <div class="modal-footer">
       <button class="btn" data-dismiss="modal" aria-hidden="true">Cancel</button>
       <button class="btn btn-primary" type="submit">Save changes</button>
-    </form>
-    <div class="modal-footer">
-    </div>
-  </div>
+    </div><!-- end modal footer -->
+  </form><!-- end form -->
+</div><!-- end objective-modal -->

@@ -19,72 +19,66 @@ OPEN COURSE_CURSOR;
 LOOP
 FETCH COURSE_CURSOR INTO COURSE_ROW;
 EXIT WHEN COURSE_CURSOR%NOTFOUND;%>            
-             <!-- loop through academic coursework 5 max -->
-                <%IF COURSE_COUNTER < 4 THEN COURSE_COUNTER := COURSE_COUNTER + 1;%>
-                <div class="span4">
-                  <ul>
-                     <li> 
-                     <input id="COURSE_TITLE_<%=COURSE_ROW.COURSE_ID%>" type="hidden" value="<%=COURSE_ROW.COURSE_TITLE%>"/> <%=COURSE_ROW.COURSE_TITLE%></li>
-                     <input id="COURSE_NUMBER_<%=COURSE_ROW.COURSE_ID%>"type="hidden" value="<%=COURSE_ROW.COURSE_NUMBER%>"/><!-- doesn't show --> 
-                     <input id="COURSE_DESCRIPTION_<%=COURSE_ROW.COURSE_ID%>"type="hidden" value="<%=COURSE_ROW.COURSE_DESC%>"/><!-- doesn't show --> 
-                     <input id="DISPLAY_RANK_ID_<%=COURSE_ROW.COURSE_ID%>"type="hidden" value="<%=COURSE_ROW.DISPLAY_RANK%>"/><!-- doesn't show -->
-                  </ul>
-                </div>
-                <%ELSIF COURSE_COUNTER >= 4 AND COURSE_COUNTER < 9 THEN COURSE_COUNTER := COURSE_COUNTER + 1;%>
-                <div class="span4">
-                  <ul>
-                     <li>
-                     <input id="COURSE_TITLE_<%=COURSE_ROW.COURSE_ID%>" type="hidden" value="<%=COURSE_ROW.COURSE_TITLE%>"/> <%=COURSE_ROW.COURSE_TITLE%></li>
-                     <input id="COURSE_NUMBER_<%=COURSE_ROW.COURSE_ID%>"type="hidden" value="<%=COURSE_ROW.COURSE_NUMBER%>"/><!-- doesn't show --> 
-                     <input id="COURSE_DESCRIPTION_<%=COURSE_ROW.COURSE_ID%>"type="hidden" value="<%=COURSE_ROW.COURSE_DESC%>"/><!-- doesn't show --> 
-                     <input id="DISPLAY_RANK_ID_<%=COURSE_ROW.COURSE_ID%>"type="hidden" value="<%=COURSE_ROW.DISPLAY_RANK%>"/><!-- doesn't show -->
-                  </ul>
-                </div><!-- end loop -->
+<!-- loop through academic coursework 5 max -->
+<%IF COURSE_COUNTER < 4 THEN COURSE_COUNTER := COURSE_COUNTER + 1;%>
+  <div class="span4">
+    <ul>
+       <li> 
+       <input id="COURSE_TITLE_<%=COURSE_ROW.COURSE_ID%>" type="hidden" value="<%=COURSE_ROW.COURSE_TITLE%>"/> <%=COURSE_ROW.COURSE_TITLE%></li>
+       <input id="COURSE_NUMBER_<%=COURSE_ROW.COURSE_ID%>"type="hidden" value="<%=COURSE_ROW.COURSE_NUMBER%>"/><!-- doesn't show --> 
+       <input id="COURSE_DESCRIPTION_<%=COURSE_ROW.COURSE_ID%>"type="hidden" value="<%=COURSE_ROW.COURSE_DESC%>"/><!-- doesn't show --> 
+       <input id="DISPLAY_RANK_ID_<%=COURSE_ROW.COURSE_ID%>"type="hidden" value="<%=COURSE_ROW.DISPLAY_RANK%>"/><!-- doesn't show -->
+    </ul>
+  </div>
+  <%ELSIF COURSE_COUNTER >= 4 AND COURSE_COUNTER < 9 THEN COURSE_COUNTER := COURSE_COUNTER + 1;%>
+  <div class="span4">
+    <ul>
+       <li>
+       <input id="COURSE_TITLE_<%=COURSE_ROW.COURSE_ID%>" type="hidden" value="<%=COURSE_ROW.COURSE_TITLE%>"/> <%=COURSE_ROW.COURSE_TITLE%></li>
+       <input id="COURSE_NUMBER_<%=COURSE_ROW.COURSE_ID%>"type="hidden" value="<%=COURSE_ROW.COURSE_NUMBER%>"/><!-- doesn't show --> 
+       <input id="COURSE_DESCRIPTION_<%=COURSE_ROW.COURSE_ID%>"type="hidden" value="<%=COURSE_ROW.COURSE_DESC%>"/><!-- doesn't show --> 
+       <input id="DISPLAY_RANK_ID_<%=COURSE_ROW.COURSE_ID%>"type="hidden" value="<%=COURSE_ROW.DISPLAY_RANK%>"/><!-- doesn't show -->
+    </ul>
+  </div><!-- end loop -->
 <%
 END IF;
 END LOOP;
 CLOSE COURSE_CURSOR;%>  
 
-
 <!-- ADD ACADEMIC COURSE MODAL -->
-
   <div id="add-academic-course-modal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-    <div class="modal-header">
-      <button type="button" class="close" data-dismiss="modal" aria-hidden="true">x</button>
-      <h3 id="myModalLabel">Add Academic Information</h3>
-    </div>
-    <div class="modal-body">
-      <form action="http://oracle.is.umbc.edu:8080/classpsp/IS420_TEAM_TRG.FORM_ADD_COURSE_WORK" method="get">
-          <div class="form-inline margin-form-inline">
-            <input class="span3" type="hidden" name="RESUMATOR_ID_IN" VALUE="<%=RESUMATOR_ID_VAL%>">
-            <!-- school_id should be here for future versions -->
-            <input class="span3" type="text" name="COURSE_TITLE_IN" placeholder="Course Title">
-            <input class="span2" type="text" name="COURSE_NUMBER_IN" placeholder="Course Number">
-          </div>
-
+    <form action="http://oracle.is.umbc.edu:8080/classpsp/IS420_TEAM_TRG.FORM_ADD_COURSE_WORK" method="get">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">x</button>
+        <h3 id="myModalLabel">Add Academic Information</h3>
+      </div><!-- end modal header -->
+      <div class="modal-body">
+        <div class="form-inline margin-form-inline">
+          <input class="span3" type="hidden" name="RESUMATOR_ID_IN" VALUE="<%=RESUMATOR_ID_VAL%>" />
+          <!-- school_id should be here for future versions -->
+          <input class="span3" type="text" name="COURSE_TITLE_IN" placeholder="Course Title" />
+          <input class="span2" type="text" name="COURSE_NUMBER_IN" placeholder="Course Number" />
+        </div>
+        <div class="form-inline margin-form-inline">
           <textarea class="max-width" rows="3" name="COURSE_DESCRIPTION_IN" placeholder="Course description goes here."></textarea>
-
-          <div class="form-inline margin-form-inline">
-           <!-- <input class="span2" type="text" NAME="DISPLAY_RANK_IN"placeholder="Display Rank"> -->
-            <select class="span2" type="text" name="DISPLAY_RANK_IN">
-                <option>Display Rank</option>
-                <option value="1">1 - High</option>
-                <option value="2">2</option>
-                <option value="3">3</option>
-                <option value="4">4</option>
-                <option value="5">5 - Low</option>
-            </select>
-         
-          </div>
-    </div>
-    <div class="modal-footer">
-      <button class="btn" data-dismiss="modal" aria-hidden="true">Cancel</button>
-      <button class="btn btn-primary" type="submit">Save changes</button>
-    </div>
-    </form>
-  </div>
-
-
+        </div>
+        <div class="form-inline margin-form-inline">
+          <select class="span2" type="text" name="DISPLAY_RANK_IN">
+              <option>Display Rank</option>
+              <option value="1">1 - High</option>
+              <option value="2">2</option>
+              <option value="3">3</option>
+              <option value="4">4</option>
+              <option value="5">5 - Low</option>
+          </select>
+        </div>
+      </div><!-- end modal body -->
+      <div class="modal-footer">
+        <button class="btn" data-dismiss="modal" aria-hidden="true">Cancel</button>
+        <button class="btn btn-primary" type="submit">Save changes</button>
+      </div>
+    </form><!-- end form -->
+  </div><!-- end add-academic-course-modal -->
 
 <!-- EDIT ACADEMIC COURSE MODAL -->
 <!-- create a new cursor -->
@@ -99,51 +93,45 @@ COURSE_ID_ROW COURSE_ID_CURSOR%ROWTYPE;
 %>
 
   <div id="edit-academic-course-modal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-    <div class="modal-header">
-      <button type="button" class="close" data-dismiss="modal" aria-hidden="true">x</button>
-      <h3 id="myModalLabel">Edit Academic Information</h3>
-    </div>
-    <div class="modal-body">
-      <form NAME="editcourse" action="http://oracle.is.umbc.edu:8080/classpsp/IS420_TEAM_TRG.FORM_UPDATE_COURSE_WORK" method="get">
-          <div class="form-inline margin-form-inline">
-
-<!-- insert select statement -->
-            <select onchange="populate_academic_fields()"class="span2" id="COURSE_ID_IN" name="COURSE_WORK_ID_IN">
-              <%OPEN COURSE_ID_CURSOR;
-                LOOP
-                FETCH COURSE_ID_CURSOR INTO COURSE_ID_ROW;
-                EXIT WHEN COURSE_ID_CURSOR%NOTFOUND;%>
-                  <option value="<%=COURSE_ID_ROW.COURSE_ID%>"><%=COURSE_ID_ROW.DISPLAY_RANK%></option>
-                <%END LOOP;
-                CLOSE COURSE_ID_CURSOR;%>
-            </select>
-
-            <div class="form-inline margin-form-inline">
-            <input class="span3" type="hidden"id="RESUMATOR_ID_IN"  NAME="RESUMATOR_ID_IN" VALUE="<%=RESUMATOR_ID_VAL%>">
-            <!-- school_id should be here for future versions -->
-            <input class="span3" type="text" id="COURSE_TITLE_IN" name="COURSE_TITLE_IN" placeholder="Course Title">
-            <input class="span2" type="text" id="COURSE_NUMBER_IN" name="COURSE_NUMBER_IN" placeholder="Course Number">
-          </div>
-
+    <form NAME="editcourse" action="http://oracle.is.umbc.edu:8080/classpsp/IS420_TEAM_TRG.FORM_UPDATE_COURSE_WORK" method="get">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">x</button>
+        <h3 class="pull-left pixels20" id="myModalLabel">Edit Academic Information</h3>
+        <select onchange="populate_academic_fields()"class="span1" id="COURSE_ID_IN" name="COURSE_WORK_ID_IN">
+          <%OPEN COURSE_ID_CURSOR;
+            LOOP
+            FETCH COURSE_ID_CURSOR INTO COURSE_ID_ROW;
+            EXIT WHEN COURSE_ID_CURSOR%NOTFOUND;%>
+              <option value="<%=COURSE_ID_ROW.COURSE_ID%>"><%=COURSE_ID_ROW.DISPLAY_RANK%></option>
+            <%END LOOP;
+            CLOSE COURSE_ID_CURSOR;%>
+        </select>
+      </div><!-- end modal header -->
+      <div class="modal-body">
+        <div class="form-inline margin-form-inline">
+          <input class="span3" type="hidden"id="RESUMATOR_ID_IN"  NAME="RESUMATOR_ID_IN" VALUE="<%=RESUMATOR_ID_VAL%>" />
+          <!-- school_id should be here for future versions -->
+          <input class="span3" type="text" id="COURSE_TITLE_IN" name="COURSE_TITLE_IN" placeholder="Course Title" />
+          <input class="span2" type="text" id="COURSE_NUMBER_IN" name="COURSE_NUMBER_IN" placeholder="Course Number" />
+        </div>
+        <div class="form-inline margin-form-inline">
           <textarea class="max-width" rows="3" id="COURSE_DESCRIPTION_IN" name="COURSE_DESCRIPTION_IN" placeholder="Course description goes here."></textarea>
-
-          <div class="form-inline margin-form-inline">
-           <!-- <input class="span2" type="text" id="ACADEMIC_DISPLAY_RANK_IN" NAME="DISPLAY_RANK_IN" placeholder="Display Rank"> -->
-           <select class="span2" type="text" id="ACADEMIC_DISPLAY_RANK_IN" NAME="DISPLAY_RANK_IN">
-                <option>Display Rank</option>
-                <option value="1">1 - High</option>
-                <option value="2">2</option>
-                <option value="3">3</option>
-                <option value="4">4</option>
-                <option value="5">5 - Low</option>
-            </select>
-          </div>
-
-    </div>
-    <div class="modal-footer">
-      <button class="btn" data-dismiss="modal" aria-hidden="true">Cancel</button>
-      <button class="btn btn-primary" type="submit">Save changes</button>
-    </div>
-    </form>    
-  </div>
+        </div>
+        <div class="form-inline margin-form-inline">
+         <select class="span2" type="text" id="ACADEMIC_DISPLAY_RANK_IN" NAME="DISPLAY_RANK_IN">
+            <option>Display Rank</option>
+            <option value="1">1 - High</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+            <option value="5">5 - Low</option>
+          </select>
+        </div>
+      </div><!-- end modal body -->
+      <div class="modal-footer">
+        <button class="btn" data-dismiss="modal" aria-hidden="true">Cancel</button>
+        <button class="btn btn-primary" type="submit">Save changes</button>
+      </div><!-- end modal footer -->
+    </form><!-- end form -->
+  </div><!-- end edit-academic-course-modal -->
   

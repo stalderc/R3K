@@ -18,64 +18,62 @@ REF_ROW REF_CURSOR%ROWTYPE;
 LOOP
 FETCH REF_CURSOR INTO REF_ROW;
 EXIT WHEN REF_CURSOR%NOTFOUND;%>
-              <!-- loop through all listed projects -->
-               <p class="reference-block">
-                 <input id="F_NAME_<%=REF_ROW.REFERENCE_ID%>" type="hidden" value="<%=REF_ROW.F_NAME%>"/> <%=REF_ROW.F_NAME%> <input id="L_NAME_<%=REF_ROW.REFERENCE_ID%>" type="hidden" value="<%=REF_ROW.L_NAME%>"/><%=REF_ROW.L_NAME%><br/>
-                 <input id="TITLE_<%=REF_ROW.REFERENCE_ID%>" type="hidden" value="<%=REF_ROW.TITLE%>"/><%=REF_ROW.TITLE%><br/>
-                 <input id="COMPANY_<%=REF_ROW.REFERENCE_ID%>" type="hidden" value="<%=REF_ROW.COMPANY%>"/><%=REF_ROW.COMPANY%><br/>
-                 <input id="ADDRESS_<%=REF_ROW.REFERENCE_ID%>" type="hidden" value="<%=REF_ROW.ADDRESS%>"/><%=REF_ROW.ADDRESS%><br/>
-                 <input id="EMAIL_<%=REF_ROW.REFERENCE_ID%>" type="hidden" value="<%=REF_ROW.EMAIL%>"/><%=REF_ROW.EMAIL%><br/>
-                 <input id="PHONE_NUMBER_<%=REF_ROW.REFERENCE_ID%>" type="hidden" value="<%=REF_ROW.PHONE_NUMBER%>"/> <%=REF_ROW.PHONE_NUMBER%><br/>
-                 <input id="DISPLAY_RANK_ID_<%=REF_ROW.REFERENCE_ID%>" type="hidden" value="<%=REF_ROW.DISPLAY_RANK%>"/>
-              </p>
+  <!-- loop through all listed projects -->
+  <p class="reference-block">
+    <input id="F_NAME_<%=REF_ROW.REFERENCE_ID%>" type="hidden" value="<%=REF_ROW.F_NAME%>"/> <%=REF_ROW.F_NAME%> <input id="L_NAME_<%=REF_ROW.REFERENCE_ID%>" type="hidden" value="<%=REF_ROW.L_NAME%>"/><%=REF_ROW.L_NAME%><br/>
+    <input id="TITLE_<%=REF_ROW.REFERENCE_ID%>" type="hidden" value="<%=REF_ROW.TITLE%>"/><%=REF_ROW.TITLE%><br/>
+    <input id="COMPANY_<%=REF_ROW.REFERENCE_ID%>" type="hidden" value="<%=REF_ROW.COMPANY%>"/><%=REF_ROW.COMPANY%><br/>
+    <input id="ADDRESS_<%=REF_ROW.REFERENCE_ID%>" type="hidden" value="<%=REF_ROW.ADDRESS%>"/><%=REF_ROW.ADDRESS%><br/>
+    <input id="EMAIL_<%=REF_ROW.REFERENCE_ID%>" type="hidden" value="<%=REF_ROW.EMAIL%>"/><%=REF_ROW.EMAIL%><br/>
+    <input id="PHONE_NUMBER_<%=REF_ROW.REFERENCE_ID%>" type="hidden" value="<%=REF_ROW.PHONE_NUMBER%>"/> <%=REF_ROW.PHONE_NUMBER%><br/>
+    <input id="DISPLAY_RANK_ID_<%=REF_ROW.REFERENCE_ID%>" type="hidden" value="<%=REF_ROW.DISPLAY_RANK%>"/>
+  </p>
 <%
 SCRIPT_COUNTER := SCRIPT_COUNTER + 1;
 END LOOP;
 CLOSE REF_CURSOR;%>
 
-  <!-- ADD EDUCATION MODAL -->
-
+<!-- ADD EDUCATION MODAL -->
   <div id="add-references-modal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-    <div class="modal-header">
-      <button type="button" class="close" data-dismiss="modal" aria-hidden="true">x</button>
-      <h3 id="myModalLabel">Add References Information</h3>
-    </div>
-    <div class="modal-body">
-      <form action="http://oracle.is.umbc.edu:8080/classpsp/IS420_TEAM_TRG.FORM_ADD_REFERENCES" method="get">
-          <div class="form-inline margin-form-inline">
-            <input class="span3" type="hidden" name="RESUMATOR_ID_IN" value="<%=RESUMATOR_ID_VAL%>">
-            <input class="span3" type="text" name="F_NAME_IN" placeholder="First name">
-            <input class="span2" type="text" name="L_NAME_IN" placeholder="Last Name">
-          </div>
-          <div class="form-inline margin-form-inline">
-            <input class="span2" type="text" name="PHONE_NUMBER_IN" placeholder="Phone Number">
-            
-          </div>
-
-          <textarea class="max-width" rows="3"name="ADDRESS_IN"  placeholder="Address."></textarea>
-
-          <div class="form-inline margin-form-inline">
-            <input class="span2" type="text" name="EMAIL_IN1" placeholder="Email Address">
-            <input class="span2" type="text" name="COMPANY_IN" placeholder="Company name">
-            <input class="span2" type="text" name="TITLE_IN" placeholder="Title">
-          </div>
-          <div class="form-inline margin-form-inline">
-            <select class="span2" type="text" name="DISPLAY_RANK_IN">
-              <option>Display Rank</option>
-              <option value="1">1 - High</option>
-              <option value="2">2</option>
-              <option value="3">3</option>
-              <option value="4">4</option>
-              <option value="5">5 - Low</option>
-            </select>
-          </div>
-    </div>
-    <div class="modal-footer">
-      <button class="btn" data-dismiss="modal" aria-hidden="true">Cancel</button>
-      <button class="btn btn-primary" type="submit">Save changes</button>
-    </div>
-      </form>
-  </div>
+    <form action="http://oracle.is.umbc.edu:8080/classpsp/IS420_TEAM_TRG.FORM_ADD_REFERENCES" method="get">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">x</button>
+        <h3 id="myModalLabel">Add References Information</h3>
+      </div><!-- end modal header -->
+      <div class="modal-body">
+        <div class="form-inline margin-form-inline">
+          <input class="span3" type="hidden" name="RESUMATOR_ID_IN" value="<%=RESUMATOR_ID_VAL%>" /><!-- hidden -->
+          <input class="span3" type="text" name="F_NAME_IN" placeholder="First name" />
+          <input class="span2" type="text" name="L_NAME_IN" placeholder="Last Name" />
+        </div>
+        <div class="form-inline margin-form-inline">
+          <input class="span2" type="text" name="PHONE_NUMBER_IN" placeholder="Phone Number" />
+        </div>
+        <div class="form-inline margin-form-inline">
+        <textarea class="max-width" rows="3"name="ADDRESS_IN"  placeholder="Address."></textarea>
+        </div>
+        <div class="form-inline margin-form-inline">
+          <input class="span2" type="text" name="EMAIL_IN1" placeholder="Email Address" />
+          <input class="span2" type="text" name="COMPANY_IN" placeholder="Company name" />
+          <input class="span2" type="text" name="TITLE_IN" placeholder="Title" />
+        </div>
+        <div class="form-inline margin-form-inline">
+          <select class="span2" type="text" name="DISPLAY_RANK_IN">
+            <option>Display Rank</option>
+            <option value="1">1 - High</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+            <option value="5">5 - Low</option>
+          </select>
+        </div>
+      </div><!-- end modal body -->
+      <div class="modal-footer">
+        <button class="btn" data-dismiss="modal" aria-hidden="true">Cancel</button>
+        <button class="btn btn-primary" type="submit">Save changes</button>
+      </div><!-- end modal footer -->
+    </form><!-- end form -->
+  </div><!-- end add-references-modal -->
 
 <!-- EDIT REFERENCES MODAL -->
 <%!CURSOR REF_ID_CURSOR IS
@@ -88,53 +86,51 @@ ORDER BY DISPLAY_RANK;
 REF_ID_ROW REF_ID_CURSOR%ROWTYPE;
 %>
   <div id="edit-references-modal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-    <div class="modal-header">
-      <button type="button" class="close" data-dismiss="modal" aria-hidden="true">x</button>
-      <h3 id="myModalLabel">Edit References Information</h3>
-    </div>
-    <div class="modal-body">
-      <form id="editReferences" name="editref" action="http://oracle.is.umbc.edu:8080/classpsp/IS420_TEAM_TRG.FORM_REFERENCES" method="get">
-          <div class="form-inline margin-form-inline">
-            <select onchange="populate_ref_Fields()"class="span2" ID="REFERENCE_ID_IN" name="REFERENCES_ID_IN">
-              <%OPEN REF_ID_CURSOR;
-                LOOP
-                FETCH REF_ID_CURSOR INTO REF_ID_ROW;
-                EXIT WHEN REF_ID_CURSOR%NOTFOUND;%>
+    <form id="editReferences" name="editref" action="http://oracle.is.umbc.edu:8080/classpsp/IS420_TEAM_TRG.FORM_REFERENCES" method="get">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">x</button>
+        <h3 class="pull-left pixels20" id="myModalLabel">Edit References Information</h3>
+        <select onchange="populate_ref_Fields()"class="span1" ID="REFERENCE_ID_IN" name="REFERENCES_ID_IN">
+          <%OPEN REF_ID_CURSOR;
+            LOOP
+            FETCH REF_ID_CURSOR INTO REF_ID_ROW;
+            EXIT WHEN REF_ID_CURSOR%NOTFOUND;%>
               <option value="<%=REF_ID_ROW.REFERENCE_ID%>"><%=REF_ID_ROW.DISPLAY_RANK%></option>
-              <%END LOOP;
-              CLOSE REF_ID_CURSOR;%>
-          </select>
-            <input class="span3" type="hidden" ID="RESUMATOR_ID_IN" name="RESUMATOR_ID_IN" value="<%=RESUMATOR_ID_VAL%>">
-            <input class="span3" type="text"   ID="REF_F_NAME_IN" name="F_NAME_IN"  placeholder="First name" value="">
-            <input class="span2" type="text"   ID="REF_L_NAME_IN" name="L_NAME_IN"  placeholder="Last Name" value="">
-          </div>
-          <div class="form-inline margin-form-inline">
-            <input class="span2" type="text"   ID="REF_PHONE_NUMBER_IN" name="PHONE_NUMBER_IN"  placeholder="Phone Number" value="">
-            
-          </div>
-
+          <%END LOOP;
+          CLOSE REF_ID_CURSOR;%>
+        </select>        
+      </div><!-- end modal header -->
+      <div class="modal-body">
+        <div class="form-inline margin-form-inline">
+          <input class="span3" type="hidden" ID="RESUMATOR_ID_IN" name="RESUMATOR_ID_IN" value="<%=RESUMATOR_ID_VAL%>" /><!-- hidden -->
+          <input class="span3" type="text"   ID="REF_F_NAME_IN" name="F_NAME_IN"  placeholder="First name" value="" />
+          <input class="span2" type="text"   ID="REF_L_NAME_IN" name="L_NAME_IN"  placeholder="Last Name" value="" />
+        </div>
+        <div class="form-inline margin-form-inline">
+          <input class="span2" type="text"   ID="REF_PHONE_NUMBER_IN" name="PHONE_NUMBER_IN"  placeholder="Phone Number" value="" />
+        </div>
+        <div class="form-inline margin-form-inline">
           <textarea class="max-width" rows="3" name="ADDRESS_IN"  placeholder="Address" value=""></textarea>
-
-          <div class="form-inline margin-form-inline">
-            <input class="span2" type="text" ID="REF_EMAIL_IN" name="EMAIL_IN"  placeholder="Email Address" value="">
-            <input class="span2" type="text" ID="REF_COMPANY_IN" name="COMPANY_IN"  placeholder="Company name" value="">
-            <input class="span2" type="text" ID="REF_TITLE_IN" name="TITLE_IN"  placeholder="Title" value="">
-          </div>  
-          <div class="form-inline margin-form-inline">  
-            <!-- <input class="span2" type="text" ID="REF_DISPLAY_RANK_IN" name="DISPLAY_RANK_IN"  placeholder="Display Rank" value=""> -->
-            <select class="span2" type="text" ID="REF_DISPLAY_RANK_IN" name="DISPLAY_RANK_IN">
-              <option>Display Rank</option>
-              <option value="1">1 - High</option>
-              <option value="2">2</option>
-              <option value="3">3</option>
-              <option value="4">4</option>
-              <option value="5">5 - Low</option>
-            </select>
-          </div>
-      <button class="btn" data-dismiss="modal" aria-hidden="true">Cancel</button>
-      <button class="btn btn-primary" type="submit">Save changes</button>
-      </form>
-    </div>
-    <div class="modal-footer">
-    </div>
-  </div>
+        </div>
+        <div class="form-inline margin-form-inline">
+          <input class="span2" type="text" ID="REF_EMAIL_IN" name="EMAIL_IN"  placeholder="Email Address" value="" />
+          <input class="span2" type="text" ID="REF_COMPANY_IN" name="COMPANY_IN"  placeholder="Company name" value="" />
+          <input class="span2" type="text" ID="REF_TITLE_IN" name="TITLE_IN"  placeholder="Title" value="" />
+        </div>  
+        <div class="form-inline margin-form-inline">  
+          <select class="span2" type="text" ID="REF_DISPLAY_RANK_IN" name="DISPLAY_RANK_IN">
+            <option>Display Rank</option>
+            <option value="1">1 - High</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+            <option value="5">5 - Low</option>
+          </select>
+        </div>
+      </div><!-- end modal boday -->
+      <div class="modal-footer">
+        <button class="btn" data-dismiss="modal" aria-hidden="true">Cancel</button>
+        <button class="btn btn-primary" type="submit">Save changes</button>
+      </div><!-- end modal footer -->
+    </form><!-- end form -->
+  </div><!-- end edit-references-modal -->

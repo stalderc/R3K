@@ -52,22 +52,22 @@ CLOSE SCHOOL_CURSOR;
     SELECT SCHOOL_CITY INTO S_CITY FROM SCHOOL WHERE SCHOOL.SCHOOL_ID = ED_ROW.SCHOOL_ID;
     SELECT SCHOOL_STATE INTO S_STATE FROM SCHOOL WHERE SCHOOL.SCHOOL_ID = ED_ROW.SCHOOL_ID;%>
 
-            <!-- loop through users education -->
-            <div class="education-block">
-                <!-- Full name of educational institution, city and state -->
-                <p class="school-name-location"><input id="SCHOOL_ID_<%=ED_ROW.ED_ID%>" type="hidden" value="<%=ED_ROW.SCHOOL_ID%>"> <%=S_NAME%> 
-                  <span class="pull-right"><%=S_CITY%>, <%=S_STATE%></span></p>
-                <!-- Name of Degree Program -->
-                <p><input id="DEGREE_<%=ED_ROW.ED_ID%>" type="hidden" value="<%=ED_ROW.DEGREE%>"><%=ED_ROW.DEGREE%>, 
-                  <input id="MAJOR_<%=ED_ROW.ED_ID%>" type="hidden" value="<%=ED_ROW.MAJOR%>"><%=ED_ROW.MAJOR%><span class="pull-right">
-                  <input id="GRAD_DATE_<%=ED_ROW.ED_ID%>" type="hidden" value="<%=ED_ROW.GRAD_DATE%>"><%=ED_ROW.GRAD_DATE%></span></p>
-                <p>GPA <input id="GPA_<%=ED_ROW.ED_ID%>" type="hidden" value="<%=ED_ROW.GPA%>"><%=ED_ROW.GPA%></p>
-                <!-- list GPA if above 3.00 -->  
-                <p><input id="MINOR_<%=ED_ROW.ED_ID%>" type="hidden" value="<%=ED_ROW.MINOR%>"><%=ED_ROW.MINOR%></p>
-                <p><input id="CERTIFICATIONS_<%=ED_ROW.ED_ID%>" type="hidden" value="<%=ED_ROW.CERTIFICATIONS%>"><%=ED_ROW.CERTIFICATIONS%></p>
-                <input id="DISPLAY_RANK_ID_<%=ED_ROW.ED_ID%>" type="hidden" value="<%=ED_ROW.DISPLAY_RANK%>"/>
-            </div>
-            <!-- end education loop -->  
+    <!-- loop through users education -->
+    <div class="education-block">
+      <!-- Full name of educational institution, city and state -->
+      <p class="school-name-location"><input id="SCHOOL_ID_<%=ED_ROW.ED_ID%>" type="hidden" value="<%=ED_ROW.SCHOOL_ID%>"> <%=S_NAME%> 
+        <span class="pull-right"><%=S_CITY%>, <%=S_STATE%></span></p>
+      <!-- Name of Degree Program -->
+      <p><input id="DEGREE_<%=ED_ROW.ED_ID%>" type="hidden" value="<%=ED_ROW.DEGREE%>" /><%=ED_ROW.DEGREE%>, 
+        <input id="MAJOR_<%=ED_ROW.ED_ID%>" type="hidden" value="<%=ED_ROW.MAJOR%>" /><%=ED_ROW.MAJOR%><span class="pull-right">
+        <input id="GRAD_DATE_<%=ED_ROW.ED_ID%>" type="hidden" value="<%=ED_ROW.GRAD_DATE%>" /><%=ED_ROW.GRAD_DATE%></span></p>
+      <p>GPA <input id="GPA_<%=ED_ROW.ED_ID%>" type="hidden" value="<%=ED_ROW.GPA%>" /><%=ED_ROW.GPA%></p>
+      <!-- list GPA if above 3.00 -->  
+      <p><input id="MINOR_<%=ED_ROW.ED_ID%>" type="hidden" value="<%=ED_ROW.MINOR%>" /><%=ED_ROW.MINOR%></p>
+      <p><input id="CERTIFICATIONS_<%=ED_ROW.ED_ID%>" type="hidden" value="<%=ED_ROW.CERTIFICATIONS%>" /><%=ED_ROW.CERTIFICATIONS%></p>
+      <input id="DISPLAY_RANK_ID_<%=ED_ROW.ED_ID%>" type="hidden" value="<%=ED_ROW.DISPLAY_RANK%>" />
+    </div>
+    <!-- end education loop -->  
   <%
   END LOOP;
   CLOSE ED_CURSOR;%>
@@ -75,58 +75,56 @@ CLOSE SCHOOL_CURSOR;
   <!-- ADD EDUCATION MODAL -->
 
 <div id="add-education-modal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-  <div class="modal-header">
-    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">x</button>
-    <h3 id="myModalLabel">Add Education Information</h3>
-  </div>
-  <div class="modal-body">
-    <form action="http://oracle.is.umbc.edu:8080/classpsp/IS420_TEAM_TRG.FORM_ADD_EDUCATION" method="get">
-        <div class="form-inline margin-form-inline">
-          <input class="span3" type="hidden" name="RESUMATOR_ID_IN" VALUE="<%=RESUMATOR_ID_VAL%>">
-          <select class="span3" name="SCHOOL_ID_IN">
-           <% for i in 1..SCHOOL_DETAILS_ARRAY.COUNT LOOP%>
-                   
-                  <OPTION VALUE="<%=SCHOOL_DETAILS_ARRAY(i).SCHOOL_ID%>"><%=SCHOOL_DETAILS_ARRAY(i).SCHOOL_NAME%></OPTION>
-                  <%END LOOP;%>
-          </select>
-          <select class="span3" name="DEGREE_NAME_IN">
-              <option value="Associate of Arts">Associate of Arts</option>
-              <option value="Associate of Applied Sciance">Associate of Applied Sciance</option>
-              <option value="Bachelor of Arts">Bachelor of Arts</option>
-              <option value="Bachelor of Science">Bachelor of Science</option>
-              <option value="Master of Arts">Master of Arts</option>
-              <option value="Master of Science">Master of Science</option>
-          </select>
-        </div>
-        <div class="form-inline margin-form-inline">  
-          <input class="span2" type="text" name="DEGREE_MAJOR_IN" placeholder="Major">
-          <input class="span2" type="text" name="DEGREE_MINOR_IN" placeholder="Minor">
-        </div>
-        <div class="form-inline margin-form-inline">
-          <input class="span3" type="text" name="CERTIFICATION_IN" placeholder="Certification">
-        </div>
-        <div class="form-inline margin-form-inline">
-          <input class="span2" type="text" name="GRADE_POINTS_IN" placeholder="Grade Point Average">
-          <input class="span2" type="text" id="datepicker1" name="GRADUATION_DATE_IN" placeholder="Graduation Date">
-        </div>
-        <div class="form-inline margin-form-inline">
-         <!-- <input class="span2" type="text" name="DISPLAY_RANK_IN"placeholder="Display Rank"> -->
-          <select class="span2" type="text" name="DISPLAY_RANK_IN">
-            <option>Display Rank</option>
-            <option value="1">1 - High</option>
-            <option value="2">2</option>
-            <option value="3">3</option>
-            <option value="4">4</option>
-            <option value="5">5 - Low</option>
-          </select>
-        </div>
-  </div>
-  <div class="modal-footer">
-        <button class="btn" data-dismiss="modal" aria-hidden="true">Cancel</button>
-        <button class="btn btn-primary" type="submit" >Save changes</button>
-  </div>
-    </form>
-</div>
+  <form action="http://oracle.is.umbc.edu:8080/classpsp/IS420_TEAM_TRG.FORM_ADD_EDUCATION" method="get">
+    <div class="modal-header">
+      <button type="button" class="close" data-dismiss="modal" aria-hidden="true">x</button>
+      <h3 id="myModalLabel">Add Education Information</h3>
+    </div><!-- end modal header -->
+    <div class="modal-body">
+      <div class="form-inline margin-form-inline">
+        <input class="span3" type="hidden" name="RESUMATOR_ID_IN" VALUE="<%=RESUMATOR_ID_VAL%>" />
+        <select class="span3" name="SCHOOL_ID_IN">
+          <% for i in 1..SCHOOL_DETAILS_ARRAY.COUNT LOOP%>
+          <OPTION VALUE="<%=SCHOOL_DETAILS_ARRAY(i).SCHOOL_ID%>"><%=SCHOOL_DETAILS_ARRAY(i).SCHOOL_NAME%></OPTION>
+          <%END LOOP;%>
+        </select>
+        <select class="span3" name="DEGREE_NAME_IN">
+          <option value="Associate of Arts">Associate of Arts</option>
+          <option value="Associate of Applied Sciance">Associate of Applied Sciance</option>
+          <option value="Bachelor of Arts">Bachelor of Arts</option>
+          <option value="Bachelor of Science">Bachelor of Science</option>
+          <option value="Master of Arts">Master of Arts</option>
+          <option value="Master of Science">Master of Science</option>
+        </select>
+      </div>
+      <div class="form-inline margin-form-inline">  
+        <input class="span2" type="text" name="DEGREE_MAJOR_IN" placeholder="Major" />
+        <input class="span2" type="text" name="DEGREE_MINOR_IN" placeholder="Minor" />
+      </div>
+      <div class="form-inline margin-form-inline">
+        <input class="span3" type="text" name="CERTIFICATION_IN" placeholder="Certification" />
+      </div>
+      <div class="form-inline margin-form-inline">
+        <input class="span2" type="text" name="GRADE_POINTS_IN" placeholder="Grade Point Average" />
+        <input class="span2" type="text" id="datepicker1" name="GRADUATION_DATE_IN" placeholder="Graduation Date" />
+      </div>
+      <div class="form-inline margin-form-inline">
+        <select class="span2" type="text" name="DISPLAY_RANK_IN">
+          <option>Display Rank</option>
+          <option value="1">1 - High</option>
+          <option value="2">2</option>
+          <option value="3">3</option>
+          <option value="4">4</option>
+          <option value="5">5 - Low</option>
+        </select>
+      </div>
+    </div><!-- end modal body -->
+    <div class="modal-footer">
+      <button class="btn" data-dismiss="modal" aria-hidden="true">Cancel</button>
+      <button class="btn btn-primary" type="submit" >Save changes</button>
+    </div><!-- end modal footer -->
+  </form><!-- end form -->
+</div><!-- end add-education-modal -->
 
 
 <!-- EDIT EDUCATION MODAL -->
@@ -140,7 +138,7 @@ ORDER BY DISPLAY_RANK;
 ED_ID_ROW ED_ID_CURSOR%ROWTYPE;
 %>
 <div id="edit-education-modal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-  <form class="" action="http://oracle.is.umbc.edu:8080/classpsp/IS420_TEAM_TRG.FORM_UPDATE_EDUCATION" method="get">
+  <form action="http://oracle.is.umbc.edu:8080/classpsp/IS420_TEAM_TRG.FORM_UPDATE_EDUCATION" method="get">
     <div class="modal-header ">
       <button type="button" class="close" data-dismiss="modal" aria-hidden="true">x</button>
       <h3 class="pull-left pixels20" id="myModalLabel">Edit Education Information</h3>
@@ -156,20 +154,20 @@ ED_ID_ROW ED_ID_CURSOR%ROWTYPE;
     </div><!-- end modal header -->
     <div class="modal-body">
       <div class="form-inline margin-form-inline">
-        <input class="span3" type="hidden" id="RESUMATOR_ID_IN" name="RESUMATOR_ID_IN" VALUE="<%=RESUMATOR_ID_VAL%>">
+        <input class="span3" type="hidden" id="RESUMATOR_ID_IN" name="RESUMATOR_ID_IN" VALUE="<%=RESUMATOR_ID_VAL%>" />
         <!-- school_id will need to be inserted here in future versions -->
-        <input class="span3" type="text" id="DEGREE_NAME_IN" name="DEGREE_NAME_IN" placeholder="Degree Name">
+        <input class="span3" type="text" id="DEGREE_NAME_IN" name="DEGREE_NAME_IN" placeholder="Degree Name" />
       </div>
       <div class="form-inline margin-form-inline">
-        <input class="span2" type="text" id="DEGREE_MAJOR_IN" name="DEGREE_MAJOR_IN" placeholder="Major">
-        <input class="span2" type="text" id="DEGREE_MINOR_IN" name="DEGREE_MINOR_IN" placeholder="Minor">
+        <input class="span2" type="text" id="DEGREE_MAJOR_IN" name="DEGREE_MAJOR_IN" placeholder="Major" />
+        <input class="span2" type="text" id="DEGREE_MINOR_IN" name="DEGREE_MINOR_IN" placeholder="Minor" />
       </div>
       <div class="form-inline margin-form-inline">
-        <input class="span3" type="text" id="CERTIFICATION_IN" name="CERTIFICATION_IN" placeholder="Certification">
+        <input class="span3" type="text" id="CERTIFICATION_IN" name="CERTIFICATION_IN" placeholder="Certification" />
       </div>
       <div class="form-inline margin-form-inline">
-        <input class="span2" type="text" id="GRADE_POINTS_IN" name="GRADE_POINTS_IN" placeholder="Grade Point Average">
-        <input class="span2" type="text" id="GRADUATION_DATE_IN" name="GRADUATION_DATE_IN" placeholder="Graduation Date">
+        <input class="span2" type="text" id="GRADE_POINTS_IN" name="GRADE_POINTS_IN" placeholder="Grade Point Average" />
+        <input class="span2" type="text" id="GRADUATION_DATE_IN" name="GRADUATION_DATE_IN" placeholder="Graduation Date" />
       </div>
       <div class="form-inline margin-form-inline">
        <select class="span2" type="text" id="EDU_DISPLAY_RANK_IN" name="DISPLAY_RANK_IN">

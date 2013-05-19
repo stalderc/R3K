@@ -19,26 +19,23 @@ LOOP
 FETCH CERT_CURSOR INTO CERT_ROW;
 EXIT WHEN CERT_CURSOR%NOTFOUND;%>
             
-            
-                <!-- loop through certifications and licenses 5 max -->
-                <%IF CERT_COUNTER < 4 THEN CERT_COUNTER := CERT_COUNTER + 1;%>
-                <div class="span4">
-                  <ul>
-                     <li><input id="CERTIFICATION_TITLE_<%=CERT_ROW.CERT_ID%>" type="hidden" value="<%=CERT_ROW.TITLE%>"/><%=CERT_ROW.TITLE%>, 
-                     <input id="CERTIFICATION_DATE_<%=CERT_ROW.CERT_ID%>" type="hidden" value="<%=CERT_ROW.DATE_REC%>"/><%=CERT_ROW.DATE_REC%></li>
-                     <input id="DISPLAY_RANK_ID_<%=CERT_ROW.CERT_ID%>"type="hidden" value="<%=CERT_ROW.DISPLAY_RANK%>"/><!-- doesn't show -->
-                  </ul>
-                </div>
-                <%ELSIF CERT_COUNTER >= 4 AND CERT_COUNTER < 9 THEN CERT_COUNTER := CERT_COUNTER + 1;%>
-                <div class="span4">
-                  <ul>
-                     <li><input id="CERTIFICATION_TITLE_<%=CERT_ROW.CERT_ID%>" type="hidden" value="<%=CERT_ROW.TITLE%>"/><%=CERT_ROW.TITLE%>, 
-                     <input id="CERTIFICATION_DATE_<%=CERT_ROW.CERT_ID%>" type="hidden" value="<%=CERT_ROW.DATE_REC%>"/><%=CERT_ROW.DATE_REC%></li>
-                     <input id="DISPLAY_RANK_ID_<%=CERT_ROW.CERT_ID%>"type="hidden" value="<%=CERT_ROW.DISPLAY_RANK%>"/><!-- doesn't show -->
-                  </ul>
-                </div>
-              
-            
+<!-- loop through certifications and licenses 5 max -->
+<%IF CERT_COUNTER < 4 THEN CERT_COUNTER := CERT_COUNTER + 1;%>
+  <div class="span4">
+    <ul>
+       <li><input id="CERTIFICATION_TITLE_<%=CERT_ROW.CERT_ID%>" type="hidden" value="<%=CERT_ROW.TITLE%>"/><%=CERT_ROW.TITLE%>, 
+       <input id="CERTIFICATION_DATE_<%=CERT_ROW.CERT_ID%>" type="hidden" value="<%=CERT_ROW.DATE_REC%>"/><%=CERT_ROW.DATE_REC%></li>
+       <input id="DISPLAY_RANK_ID_<%=CERT_ROW.CERT_ID%>"type="hidden" value="<%=CERT_ROW.DISPLAY_RANK%>"/><!-- doesn't show -->
+    </ul>
+  </div>
+<%ELSIF CERT_COUNTER >= 4 AND CERT_COUNTER < 9 THEN CERT_COUNTER := CERT_COUNTER + 1;%>
+  <div class="span4">
+    <ul>
+       <li><input id="CERTIFICATION_TITLE_<%=CERT_ROW.CERT_ID%>" type="hidden" value="<%=CERT_ROW.TITLE%>"/><%=CERT_ROW.TITLE%>, 
+       <input id="CERTIFICATION_DATE_<%=CERT_ROW.CERT_ID%>" type="hidden" value="<%=CERT_ROW.DATE_REC%>"/><%=CERT_ROW.DATE_REC%></li>
+       <input id="DISPLAY_RANK_ID_<%=CERT_ROW.CERT_ID%>"type="hidden" value="<%=CERT_ROW.DISPLAY_RANK%>"/><!-- doesn't show -->
+    </ul>
+  </div>
 <%
 END IF;
 END LOOP;
@@ -47,34 +44,34 @@ CLOSE CERT_CURSOR;%>
 <!-- ADD CERTIFICATION MODAL -->
 
   <div id="add-certifications-modal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-    <div class="modal-header">
-      <button type="button" class="close" data-dismiss="modal" aria-hidden="true">x</button>
-      <h3 id="myModalLabel">Add Certification Information</h3>
-    </div>
-    <div class="modal-body">
-      <form action="http://oracle.is.umbc.edu:8080/classpsp/IS420_TEAM_TRG.FORM_ADD_CERTIFICATIONS" method="get">
-          <div class="form-inline margin-form-inline">
-            <input class="span3" type="hidden" NAME="RESUMATOR_ID_IN" VALUE="<%=RESUMATOR_ID_VAL%>">
-            <input class="span3" type="text" name="CERTIFICATION_TITLE_IN" placeholder="Certification Title">
-            <input class="span2" type="text" id="datepicker3" name="DATE_RECORDED_IN" placeholder="Date Recorded">
-          </div>
-          <div class="form-inline margin-form-inline">
-            <select class="span2" type="text" name="DISPLAY_RANK_IN">
-              <option>Display Rank</option>
-              <option value="1">1 - High</option>
-              <option value="2">2</option>
-              <option value="3">3</option>
-              <option value="4">4</option>
-              <option value="5">5 - Low</option>
-            </select>           
-          </div>
-    </div>
-    <div class="modal-footer">
-      <button class="btn" data-dismiss="modal" aria-hidden="true">Cancel</button>
-      <button class="btn btn-primary" type="submit">Save changes</button>
-    </div>
-    </form>
-  </div>
+    <form action="http://oracle.is.umbc.edu:8080/classpsp/IS420_TEAM_TRG.FORM_ADD_CERTIFICATIONS" method="get">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">x</button>
+        <h3 id="myModalLabel">Add Certification Information</h3>
+      </div><!-- end modal header -->
+      <div class="modal-body">
+        <div class="form-inline margin-form-inline">
+          <input class="span3" type="hidden" NAME="RESUMATOR_ID_IN" VALUE="<%=RESUMATOR_ID_VAL%>" />
+          <input class="span3" type="text" name="CERTIFICATION_TITLE_IN" placeholder="Certification Title" />
+          <input class="span2" type="text" id="datepicker3" name="DATE_RECORDED_IN" placeholder="Date Recorded" />
+        </div>
+        <div class="form-inline margin-form-inline">
+          <select class="span2" type="text" name="DISPLAY_RANK_IN">
+            <option>Display Rank</option>
+            <option value="1">1 - High</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+            <option value="5">5 - Low</option>
+          </select>           
+        </div>
+      </div><!-- end modal body -->
+      <div class="modal-footer">
+        <button class="btn" data-dismiss="modal" aria-hidden="true">Cancel</button>
+        <button class="btn btn-primary" type="submit">Save changes</button>
+      </div><!-- end modal footer -->
+    </form><!-- end form -->
+  </div><!-- end add-certifications-modal -->
 
 <!-- EDIT ACADEMIC COURSE MODAL -->
 <!-- create a new cursor -->
@@ -89,50 +86,44 @@ CERT_ID_ROW CERT_ID_CURSOR%ROWTYPE;
 %>
 
   <div id="edit-certifications-modal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-    <div class="modal-header">
-      <button type="button" class="close" data-dismiss="modal" aria-hidden="true">x</button>
-      <h3 id="myModalLabel">Edit Certification Information</h3>
-    </div>
-    <div class="modal-body">
-      <form action="http://oracle.is.umbc.edu:8080/classpsp/IS420_TEAM_TRG.FORM_UPDATE_CERTIFICATIONS" method="get">
-          <div class="form-inline margin-form-inline">
-
-            <!-- insert select statement -->
-            <select onchange="populate_certification_fields()"class="span2" ID="CERT_ID_IN" name="CERT_ID_IN">
-              <%OPEN CERT_ID_CURSOR;
-                LOOP
-                FETCH CERT_ID_CURSOR INTO CERT_ID_ROW;
-                EXIT WHEN CERT_ID_CURSOR%NOTFOUND;%>
-                  <option value="<%=CERT_ID_ROW.CERT_ID%>"><%=CERT_ID_ROW.DISPLAY_RANK%></option>
-                <%END LOOP;
-                CLOSE CERT_ID_CURSOR;%>
-            </select>
-
-            <div class="form-inline margin-form-inline">
-              <input class="span3" type="hidden" id="RESUMATOR_ID_IN" NAME="RESUMATOR_ID_IN" VALUE="<%=RESUMATOR_ID_VAL%>">
-              <input class="span3" type="text" id="CERTIFICATION_TITLE_IN" name="CERTIFICATION_TITLE_IN" placeholder="Certification Title">
-              <input class="span2" type="text" id="DATE_RECORDED_IN" name="DATE_RECORDED_IN" placeholder="Date Recorded">
-            </div>
-          <div class="form-inline margin-form-inline">
-           <!-- <input class="span2" type="text" id="CERT_DISPLAY_RANK_IN" NAME="DISPLAY_RANK_IN" placeholder="Display Rank"> -->
-           <select class="span2" type="text" id="CERT_DISPLAY_RANK_IN" NAME="DISPLAY_RANK_IN" >
-              <option>Display Rank</option>
-              <option value="1">1 - High</option>
-              <option value="2">2</option>
-              <option value="3">3</option>
-              <option value="4">4</option>
-              <option value="5">5 - Low</option>
-            </select> 
-          </div>
-      
-          </div>
-    <div class="modal-footer">
-      <button class="btn" data-dismiss="modal" aria-hidden="true">Cancel</button>
-      <button class="btn btn-primary" type="submit">Save changes</button>
-    </div>
-    </form>    
-  </div>
-  <!-- removed what appeared to be an extra div -->
+    <form action="http://oracle.is.umbc.edu:8080/classpsp/IS420_TEAM_TRG.FORM_UPDATE_CERTIFICATIONS" method="get">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">x</button>
+        <h3 class="pull-left pixels20" id="myModalLabel">Edit Certification Information</h3>
+        <!-- insert select statement -->
+        <select onchange="populate_certification_fields()"class="span1" ID="CERT_ID_IN" name="CERT_ID_IN">
+          <%OPEN CERT_ID_CURSOR;
+            LOOP
+            FETCH CERT_ID_CURSOR INTO CERT_ID_ROW;
+            EXIT WHEN CERT_ID_CURSOR%NOTFOUND;%>
+              <option value="<%=CERT_ID_ROW.CERT_ID%>"><%=CERT_ID_ROW.DISPLAY_RANK%></option>
+            <%END LOOP;
+            CLOSE CERT_ID_CURSOR;%>
+        </select>
+      </div><!-- end modal header -->
+      <div class="modal-body">
+        <div class="form-inline margin-form-inline">
+          <input class="span3" type="hidden" id="RESUMATOR_ID_IN" NAME="RESUMATOR_ID_IN" VALUE="<%=RESUMATOR_ID_VAL%>" />
+          <input class="span3" type="text" id="CERTIFICATION_TITLE_IN" name="CERTIFICATION_TITLE_IN" placeholder="Certification Title" />
+          <input class="span2" type="text" id="DATE_RECORDED_IN" name="DATE_RECORDED_IN" placeholder="Date Recorded" />
+        </div>
+        <div class="form-inline margin-form-inline">
+         <select class="span2" type="text" id="CERT_DISPLAY_RANK_IN" NAME="DISPLAY_RANK_IN" >
+            <option>Display Rank</option>
+            <option value="1">1 - High</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+            <option value="5">5 - Low</option>
+          </select> 
+        </div>
+      </div><!-- end modal body -->
+      <div class="modal-footer">
+        <button class="btn" data-dismiss="modal" aria-hidden="true">Cancel</button>
+        <button class="btn btn-primary" type="submit">Save changes</button>
+      </div><!-- end modal footer -->
+    </form><!-- end form -->
+  </div><!-- end edit-certifications-modal -->
 
 
 
