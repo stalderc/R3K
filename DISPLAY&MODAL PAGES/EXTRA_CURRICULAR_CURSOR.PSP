@@ -19,76 +19,76 @@ EXTRA_ROW EXTRA_CURSOR%ROWTYPE;
 LOOP
 FETCH EXTRA_CURSOR INTO EXTRA_ROW;
 EXIT WHEN EXTRA_CURSOR%NOTFOUND;%>
-            <!-- loop through extra curricular 5 max -->
-                <%IF EXTRA_COUNTER < 4 THEN EXTRA_COUNTER := EXTRA_COUNTER + 1;%>
-                <div class="span4">
-                  <ul>
-                     <li>
-                      <input id="ORGANIZATION_<%=EXTRA_ROW.EX_CUR_ID%>" type="hidden" value="<%=EXTRA_ROW.ORGANIZATION%>"/><%=EXTRA_ROW.ORGANIZATION%>,
-                      <input id="TITLE_<%=EXTRA_ROW.EX_CUR_ID%>" type="hidden" value="<%=EXTRA_ROW.TITLE%>"/><%=EXTRA_ROW.TITLE%> 
-                      <input id="EX_CURR_SEMESTER_<%=EXTRA_ROW.EX_CUR_ID%>" type="hidden" value="<%=EXTRA_ROW.SEMESTER%>"/><%=EXTRA_ROW.SEMESTER%> 
-                      <input id="EX_CURR_YEAR_<%=EXTRA_ROW.EX_CUR_ID%>" type="hidden" value="<%=EXTRA_ROW.YEAR%>"/><%=EXTRA_ROW.YEAR%>
-                      <input id="DISPLAY_RANK_<%=EXTRA_ROW.EX_CUR_ID%>" type="hidden" value="<%=EXTRA_ROW.DISPLAY_RANK%>"/>
-                    </li>
-                  </ul>
-                </div>
-                <%ELSIF EXTRA_COUNTER >= 4 AND EXTRA_COUNTER < 9 THEN EXTRA_COUNTER := EXTRA_COUNTER + 1;%>
-                <div class="span4">
-                  <ul>
-                     <li>
-                      <input id="ORGANIZATION_<%=EXTRA_ROW.EX_CUR_ID%>" type="hidden" value="<%=EXTRA_ROW.ORGANIZATION%>"><%=EXTRA_ROW.ORGANIZATION%>,
-                      <input id="TITLE_<%=EXTRA_ROW.EX_CUR_ID%>" type="hidden" value="<%=EXTRA_ROW.TITLE%>"><%=EXTRA_ROW.TITLE%> 
-                      <input id="SEMESTER_<%=EXTRA_ROW.EX_CUR_ID%>" type="hidden" value="<%=EXTRA_ROW.SEMESTER%>"><%=EXTRA_ROW.SEMESTER%> 
-                      <input id="EX_CURR_YEAR_<%=EXTRA_ROW.EX_CUR_ID%>" type="hidden" value="<%=EXTRA_ROW.YEAR%>"><%=EXTRA_ROW.YEAR%>
-                      <input id="EX_CURR_DISPLAY_RANK_<%=EXTRA_ROW.EX_CUR_ID%>" type="hidden" value="<%=EXTRA_ROW.DISPLAY_RANK%>">
-                    </li>
-                  </ul>
-                </div><!-- loop end -->
+<!-- loop through extra curricular 5 max -->
+<%IF EXTRA_COUNTER < 4 THEN EXTRA_COUNTER := EXTRA_COUNTER + 1;%>
+  <div class="span4">
+    <ul>
+       <li>
+        <input id="ORGANIZATION_<%=EXTRA_ROW.EX_CUR_ID%>" type="hidden" value="<%=EXTRA_ROW.ORGANIZATION%>"/><%=EXTRA_ROW.ORGANIZATION%>,
+        <input id="TITLE_<%=EXTRA_ROW.EX_CUR_ID%>" type="hidden" value="<%=EXTRA_ROW.TITLE%>"/><%=EXTRA_ROW.TITLE%> 
+        <input id="EX_CURR_SEMESTER_<%=EXTRA_ROW.EX_CUR_ID%>" type="hidden" value="<%=EXTRA_ROW.SEMESTER%>"/><%=EXTRA_ROW.SEMESTER%> 
+        <input id="EX_CURR_YEAR_<%=EXTRA_ROW.EX_CUR_ID%>" type="hidden" value="<%=EXTRA_ROW.YEAR%>"/><%=EXTRA_ROW.YEAR%>
+        <input id="DISPLAY_RANK_<%=EXTRA_ROW.EX_CUR_ID%>" type="hidden" value="<%=EXTRA_ROW.DISPLAY_RANK%>"/>
+      </li>
+    </ul>
+  </div>
+<%ELSIF EXTRA_COUNTER >= 4 AND EXTRA_COUNTER < 9 THEN EXTRA_COUNTER := EXTRA_COUNTER + 1;%>
+  <div class="span4">
+    <ul>
+       <li>
+        <input id="ORGANIZATION_<%=EXTRA_ROW.EX_CUR_ID%>" type="hidden" value="<%=EXTRA_ROW.ORGANIZATION%>"><%=EXTRA_ROW.ORGANIZATION%>,
+        <input id="TITLE_<%=EXTRA_ROW.EX_CUR_ID%>" type="hidden" value="<%=EXTRA_ROW.TITLE%>"><%=EXTRA_ROW.TITLE%> 
+        <input id="SEMESTER_<%=EXTRA_ROW.EX_CUR_ID%>" type="hidden" value="<%=EXTRA_ROW.SEMESTER%>"><%=EXTRA_ROW.SEMESTER%> 
+        <input id="EX_CURR_YEAR_<%=EXTRA_ROW.EX_CUR_ID%>" type="hidden" value="<%=EXTRA_ROW.YEAR%>"><%=EXTRA_ROW.YEAR%>
+        <input id="EX_CURR_DISPLAY_RANK_<%=EXTRA_ROW.EX_CUR_ID%>" type="hidden" value="<%=EXTRA_ROW.DISPLAY_RANK%>">
+      </li>
+    </ul>
+  </div>
+<!-- loop end -->
 <%
 END IF;
 END LOOP;
 CLOSE EXTRA_CURSOR;%>
 
-<%%>
+<%%><!-- does this need to be here? -->
 <!-- ADD EXTRACURRICULAR MODAL -->
 
   <div id="add-extracurricular-modal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-    <div class="modal-header">
-      <button type="button" class="close" data-dismiss="modal" aria-hidden="true">x</button>
-      <h3 id="myModalLabel">Add ExtraCurricular Information</h3>
-    </div>
-    <div class="modal-body">
-      <form action="http://oracle.is.umbc.edu:8080/classpsp/IS420_TEAM_TRG.FORM_ADD_EXTRA_CURRICULAR" method="get">
-          <div class="form-inline margin-form-inline">
-            <input class="span3" type="hidden" name="RESUMATOR_ID_IN" VALUE="<%=RESUMATOR_ID_VAL%>">
-            <input class="span3" type="text" name="TITLE_IN" placeholder="ExtraCurricular Title">
-            <input class="span2" type="text" name="ORGANIZATION_IN" placeholder="Organization">
-          </div>
-          <div class="form-inline margin-form-inline">
-            <input class="span2" type="text" name="SEMESTER_IN" placeholder="Semester Received">
-            <input class="span2" type="text" name="YEAR_IN" placeholder="Year Participated">
-            <!-- <input class="span2" type="text" name="DISPLAY_RANK_IN"placeholder="Display Rank"> -->
-          </div>
-          <div class="form-inline margin-form-inline">  
-            <textarea class="max-width" rows="3" name="DESCRIPTION_IN" placeholder="ExtraCurricular description goes here."></textarea>
-          </div>  
-          <div class="form-inline margin-form-inline">
-              <select class="span2" type="text" name="DISPLAY_RANK_IN">
-                <option>Display Rank</option>
-                <option value="1">1 - High</option>
-                <option value="2">2</option>
-                <option value="3">3</option>
-                <option value="4">4</option>
-                <option value="5">5 - Low</option>
-              </select>
-          </div>
-      <button class="btn" data-dismiss="modal" aria-hidden="true">Cancel</button>
-      <button class="btn btn-primary" type="submit">Save changes</button>
-      </form>
-    </div>
-    <div class="modal-footer">
-    </div>
-  </div>
+    <form action="http://oracle.is.umbc.edu:8080/classpsp/IS420_TEAM_TRG.FORM_ADD_EXTRA_CURRICULAR" method="get">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">x</button>
+        <h3 id="myModalLabel">Add ExtraCurricular Information</h3>
+      </div><!-- end modal header -->
+      <div class="modal-body">
+        <div class="form-inline margin-form-inline">
+          <input class="span3" type="hidden" name="RESUMATOR_ID_IN" VALUE="<%=RESUMATOR_ID_VAL%>" />
+          <input class="span3" type="text" name="TITLE_IN" placeholder="ExtraCurricular Title" />
+          <input class="span2" type="text" name="ORGANIZATION_IN" placeholder="Organization" />
+        </div>
+        <div class="form-inline margin-form-inline">
+          <input class="span2" type="text" name="SEMESTER_IN" placeholder="Semester Received" />
+          <input class="span2" type="text" name="YEAR_IN" placeholder="Year Participated" />
+        </div>
+        <div class="form-inline margin-form-inline">  
+          <textarea class="max-width" rows="3" name="DESCRIPTION_IN" placeholder="ExtraCurricular description goes here."></textarea>
+        </div>  
+        <div class="form-inline margin-form-inline">
+          <select class="span2" type="text" name="DISPLAY_RANK_IN">
+            <option>Display Rank</option>
+            <option value="1">1 - High</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+            <option value="5">5 - Low</option>
+          </select>
+        </div>
+      </div><!-- end modal body -->
+      <div class="modal-footer">      
+        <button class="btn" data-dismiss="modal" aria-hidden="true">Cancel</button>
+        <button class="btn btn-primary" type="submit">Save changes</button>        
+      </div><!-- end modal footer -->
+    </form><!-- end form -->
+  </div><!-- end add-extracurricular-modal -->
 <%!CURSOR EXTRA_ID_CURSOR IS
 
 SELECT EXTRA_CURRICULAR.EX_CUR_ID, EXTRA_CURRICULAR.DISPLAY_RANK
@@ -102,57 +102,48 @@ EXTRA_ID_ROW EXTRA_ID_CURSOR%ROWTYPE;
 <!-- EDIT EXTRACURRICULAR MODAL -->
 
   <div id="edit-extracurricular-modal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-    <div class="modal-header">
-      <button type="button" class="close" data-dismiss="modal" aria-hidden="true">x</button>
-      <h3 id="myModalLabel">Edit ExtraCurricular Information</h3>
-    </div>
-    <div class="modal-body">
-      <form name="editexcurr" action="http://oracle.is.umbc.edu:8080/classpsp/IS420_TEAM_TRG.FORM_UPDATE_EXTRA_CURRICULAR" method="get">
-          <div class="form-inline margin-form-inline">
-            <select onchange="populate_ex_curr_Fields()"class="span2" ID="EX_CURR_ID_IN" name="EXTRA_CURRICULAR_ID_IN">
-              <%OPEN EXTRA_ID_CURSOR;
-                LOOP
-                FETCH EXTRA_ID_CURSOR INTO EXTRA_ID_ROW;
-                EXIT WHEN EXTRA_ID_CURSOR%NOTFOUND;%>
-              <option value="<%=EXTRA_ID_ROW.EX_CUR_ID%>"><%=EXTRA_ID_ROW.DISPLAY_RANK%></option>
-              <%END LOOP;
-              CLOSE EXTRA_ID_CURSOR;%>
+    <form name="editexcurr" action="http://oracle.is.umbc.edu:8080/classpsp/IS420_TEAM_TRG.FORM_UPDATE_EXTRA_CURRICULAR" method="get">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">x</button>
+        <h3 class="pull-left pixels20" id="myModalLabel">Edit ExtraCurricular Information</h3>
+        <select onchange="populate_ex_curr_Fields()"class="span1" ID="EX_CURR_ID_IN" name="EXTRA_CURRICULAR_ID_IN">
+          <%OPEN EXTRA_ID_CURSOR;
+            LOOP
+            FETCH EXTRA_ID_CURSOR INTO EXTRA_ID_ROW;
+            EXIT WHEN EXTRA_ID_CURSOR%NOTFOUND;%>
+            <option value="<%=EXTRA_ID_ROW.EX_CUR_ID%>"><%=EXTRA_ID_ROW.DISPLAY_RANK%></option>
+          <%END LOOP;
+          CLOSE EXTRA_ID_CURSOR;%>
+        </select>        
+      </div><!-- end modal header -->
+      <div class="modal-body">
+        <div class="form-inline margin-form-inline">
+          <input class="span3" type="hidden" name="EXTRA_CURRICULAR_DESC_ID_IN" VALUE="<%=RESUMATOR_ID_VAL%>" />
+          <input class="span3" type="hidden" name="RESUMATOR_ID_IN" VALUE="<%=RESUMATOR_ID_VAL%>" />
+          <input class="span3" id="TITLE_IN" name="TITLE_IN" type="text" placeholder="ExtraCurricular Title" />
+          <input class="span2" id="ORGANIZATION_IN" name="ORGANIZATION_IN" type="text" placeholder="Organization" />
+        </div>
+        <div class="form-inline margin-form-inline">
+          <input class="span2" id="SEMESTER_IN" name="SEMESTER_IN" type="text" placeholder="Semester Receieved" />
+          <input class="span2" id="YEAR_IN" name="YEAR_IN" type="text" placeholder="Year Participated" />
+        </div>
+        <div class="form-inline margin-form-inline">
+          <textarea class="max-width" rows="3" name="DESCRIPTION_IN" placeholder="ExtraCurricular description goes here."></textarea>
+        </div>
+        <div class="form-inline margin-form-inline">
+          <select class="span2" id="EX_CUR_DISPLAY_RANK_IN" name="DISPLAY_RANK_IN" type="text">
+            <option>Display Rank</option>
+            <option value="1">1 - High</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+            <option value="5">5 - Low</option>
           </select>
-            <input class="span3" type="hidden" name="EXTRA_CURRICULAR_DESC_ID_IN" VALUE="<%=RESUMATOR_ID_VAL%>">
-            <input class="span3" type="hidden" name="RESUMATOR_ID_IN" VALUE="<%=RESUMATOR_ID_VAL%>">
-            <input class="span3" id="TITLE_IN" name="TITLE_IN" type="text" placeholder="ExtraCurricular Title">
-            <input class="span2" id="ORGANIZATION_IN" name="ORGANIZATION_IN" type="text" placeholder="Organization">
-            
-          </div>
-          <div class="form-inline margin-form-inline">
-            <input class="span2" id="SEMESTER_IN" name="SEMESTER_IN" type="text" placeholder="Semester Receieved">
-            <input class="span2" id="YEAR_IN" name="YEAR_IN" type="text" placeholder="Year Participated">
-          </div>
-          <div class="form-inline margin-form-inline">
-            <textarea class="max-width" rows="3" name="DESCRIPTION_IN" placeholder="ExtraCurricular description goes here."></textarea>
-          </div>
-          <div class="form-inline margin-form-inline">
-            <!-- <input class="span2" id="EX_CUR_DISPLAY_RANK_IN" name="DISPLAY_RANK_IN" type="text" placeholder="Display Rank"> -->
-            <select class="span2" id="EX_CUR_DISPLAY_RANK_IN" name="DISPLAY_RANK_IN" type="text">
-                <option>Display Rank</option>
-                <option value="1">1 - High</option>
-                <option value="2">2</option>
-                <option value="3">3</option>
-                <option value="4">4</option>
-                <option value="5">5 - Low</option>
-              </select>
-          </div>
-            
-          
-      <button class="btn" data-dismiss="modal" aria-hidden="true">Cancel</button>
-      <button class="btn btn-primary">Save changes</button>
-      </form>
-    </div>
-    <div class="modal-footer">
-    </div>
-  </div>
-
-
-
-
-  
+        </div>
+      </div><!-- end modal body -->        
+      <div class="modal-footer">      
+        <button class="btn" data-dismiss="modal" aria-hidden="true">Cancel</button>
+        <button class="btn btn-primary">Save changes</button>
+      </div><!-- end modal footer -->
+    </form><!-- end form -->
+  </div><!-- end edit-extracurricular-modal -->

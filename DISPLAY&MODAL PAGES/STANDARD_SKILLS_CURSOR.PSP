@@ -19,61 +19,61 @@ STANDARD_SKILLS_ROW STANDARD_SKILLS_CURSOR%ROWTYPE;
 LOOP
 FETCH STANDARD_SKILLS_CURSOR INTO STANDARD_SKILLS_ROW;
 EXIT WHEN STANDARD_SKILLS_CURSOR%NOTFOUND;%>  
-               <!-- loop through academic coursework 5 max -->
-                <%IF STANDARD_SKILLS_COUNTER < 4 THEN STANDARD_SKILLS_COUNTER := STANDARD_SKILLS_COUNTER + 1;%>
-                <div class="span4">
-                  <ul>
-                     <li>
-                      <input id="STANDARD_SKILL_NAME_<%=STANDARD_SKILLS_ROW.SKILL_ID%>" type="hidden" value="<%=STANDARD_SKILLS_ROW.SKILL_NAME%>"/><%=STANDARD_SKILLS_ROW.SKILL_NAME%>
-                      <input id="STANDARD_DISPLAY_RANK_ID_<%=STANDARD_SKILLS_ROW.SKILL_ID%>" type="hidden" value="<%=STANDARD_SKILLS_ROW.DISPLAY_RANK%>"/>
-                      <input id="STANDARD_SKILL_TYPE_<%=STANDARD_SKILLS_ROW.SKILL_ID%>" type="hidden" value="<%=STANDARD_SKILLS_ROW.SKILL_TYPE%>"/>
-                      </li>
-                  </ul>
-                </div>
-                <%ELSIF STANDARD_SKILLS_COUNTER >= 4 AND STANDARD_SKILLS_COUNTER < 9  THEN STANDARD_SKILLS_COUNTER := STANDARD_SKILLS_COUNTER + 1;%>
-                <div class="span4">
-                  <ul>
-                    <li>
-                      <input id="STANDARD_SKILL_NAME_<%=STANDARD_SKILLS_ROW.SKILL_ID%>" type="hidden" value="<%=STANDARD_SKILLS_ROW.SKILL_NAME%>"/><%=STANDARD_SKILLS_ROW.SKILL_NAME%>
-                      <input id="STANDARD_DISPLAY_RANK_ID_<%=STANDARD_SKILLS_ROW.SKILL_ID%>" type="hidden" value="<%=STANDARD_SKILLS_ROW.DISPLAY_RANK%>"/>
-                      <input id="STANDARD_SKILL_TYPE_<%=STANDARD_SKILLS_ROW.SKILL_ID%>" type="hidden" value="<%=STANDARD_SKILLS_ROW.SKILL_TYPE%>"/>
-                      </li>
-                  </ul>
-                </div><!-- end loop -->
+ <!-- loop through academic coursework 5 max -->
+<%IF STANDARD_SKILLS_COUNTER < 4 THEN STANDARD_SKILLS_COUNTER := STANDARD_SKILLS_COUNTER + 1;%>
+  <div class="span4">
+    <ul>
+      <li>
+        <input id="STANDARD_SKILL_NAME_<%=STANDARD_SKILLS_ROW.SKILL_ID%>" type="hidden" value="<%=STANDARD_SKILLS_ROW.SKILL_NAME%>"/><%=STANDARD_SKILLS_ROW.SKILL_NAME%>
+        <input id="STANDARD_DISPLAY_RANK_ID_<%=STANDARD_SKILLS_ROW.SKILL_ID%>" type="hidden" value="<%=STANDARD_SKILLS_ROW.DISPLAY_RANK%>"/>
+        <input id="STANDARD_SKILL_TYPE_<%=STANDARD_SKILLS_ROW.SKILL_ID%>" type="hidden" value="<%=STANDARD_SKILLS_ROW.SKILL_TYPE%>"/>
+      </li>
+    </ul>
+  </div>
+<%ELSIF STANDARD_SKILLS_COUNTER >= 4 AND STANDARD_SKILLS_COUNTER < 9  THEN STANDARD_SKILLS_COUNTER := STANDARD_SKILLS_COUNTER + 1;%>
+  <div class="span4">
+    <ul>
+      <li>
+        <input id="STANDARD_SKILL_NAME_<%=STANDARD_SKILLS_ROW.SKILL_ID%>" type="hidden" value="<%=STANDARD_SKILLS_ROW.SKILL_NAME%>"/><%=STANDARD_SKILLS_ROW.SKILL_NAME%>
+        <input id="STANDARD_DISPLAY_RANK_ID_<%=STANDARD_SKILLS_ROW.SKILL_ID%>" type="hidden" value="<%=STANDARD_SKILLS_ROW.DISPLAY_RANK%>"/>
+        <input id="STANDARD_SKILL_TYPE_<%=STANDARD_SKILLS_ROW.SKILL_ID%>" type="hidden" value="<%=STANDARD_SKILLS_ROW.SKILL_TYPE%>"/>
+      </li>
+    </ul>
+  </div>
+<!-- end loop -->
 <%
 END IF;
 END LOOP;
 CLOSE STANDARD_SKILLS_CURSOR;%>
 
 <!-- ADD STANDARD SKILLS MODAL -->
-
   <div id="add-skills-modal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-    <div class="modal-header">
-      <button type="button" class="close" data-dismiss="modal" aria-hidden="true">x</button>
-      <h3 id="myModalLabel">Add Standard Skills Information</h3>
-    </div>
-    <div class="modal-body">
-      <form action="http://oracle.is.umbc.edu:8080/classpsp/IS420_TEAM_TRG.FORM_ADD_SKILLS" method="get">
-          <div class="form-inline margin-form-inline">
-            <input class="span3" type="hidden" name="RESUMATOR_ID_IN" value="<%=RESUMATOR_ID_VAL%>">
-            <input class="span3" type="hidden" name="SKILL_TYPE_IN" value="STANDARD">
-            <input class="span2" type="text" name="SKILL_NAME_IN" placeholder="Skill Name">
-            <select class="span2" type="text" name="DISPLAY_RANK_IN">
-              <option>Display Rank</option>
-              <option value="1">1 - High</option>
-              <option value="2">2</option>
-              <option value="3">3</option>
-              <option value="4">4</option>
-              <option value="5">5 - Low</option>
-            </select>
-          </div> 
-    </div>
-    <div class="modal-footer">
-      <button class="btn" data-dismiss="modal" aria-hidden="true">Cancel</button>
-      <button class="btn btn-primary" type="submit">Save changes</button>
-    </div>
-    </form>    
-  </div>
+    <form action="http://oracle.is.umbc.edu:8080/classpsp/IS420_TEAM_TRG.FORM_ADD_SKILLS" method="get">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">x</button>
+        <h3 id="myModalLabel">Add Standard Skills Information</h3>
+      </div>
+      <div class="modal-body">
+        <div class="form-inline margin-form-inline">
+          <input class="span3" type="hidden" name="RESUMATOR_ID_IN" value="<%=RESUMATOR_ID_VAL%>" /><!-- hidden -->
+          <input class="span3" type="hidden" name="SKILL_TYPE_IN" value="STANDARD" /><!-- hidden -->
+          <input class="span2" type="text" name="SKILL_NAME_IN" placeholder="Skill Name" />
+          <select class="span2" type="text" name="DISPLAY_RANK_IN">
+            <option>Display Rank</option>
+            <option value="1">1 - High</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+            <option value="5">5 - Low</option>
+          </select>
+        </div> 
+      </div><!-- end modal body -->
+      <div class="modal-footer">
+        <button class="btn" data-dismiss="modal" aria-hidden="true">Cancel</button>
+        <button class="btn btn-primary" type="submit">Save changes</button>
+      </div><!-- end modal footer -->
+    </form><!-- end form -->
+  </div><!-- end add-skills-modal -->
 
 <!-- EDIT STANDARD SKILLS MODAL -->
 <%!CURSOR SKILL_ID_CURSOR IS
@@ -88,50 +88,48 @@ ORDER BY DISPLAY_RANK;
 SKILL_ID_ROW SKILL_ID_CURSOR%ROWTYPE;
 %>
   <div id="edit-skills-modal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-    <div class="modal-header">
-      <button type="button" class="close" data-dismiss="modal" aria-hidden="true">x</button>
-      <h3 id="myModalLabel">Edit Standard Skills Information</h3>
-    </div>
-    <div class="modal-body">
-      <form action="http://oracle.is.umbc.edu:8080/classpsp/IS420_TEAM_TRG.FORM_UPDATE_SKILLS" method="get">
-          <div class="form-inline margin-form-inline">
-            <select onchange="populate_standard_skill_fields()"class="span2" ID="STANDARD_SKILL_ID_IN" name="SKILL_ID_IN">
-              <%OPEN SKILL_ID_CURSOR;
-                LOOP
-                FETCH SKILL_ID_CURSOR INTO SKILL_ID_ROW;
-                EXIT WHEN SKILL_ID_CURSOR%NOTFOUND;%>
+    <form action="http://oracle.is.umbc.edu:8080/classpsp/IS420_TEAM_TRG.FORM_UPDATE_SKILLS" method="get">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">x</button>
+        <h3 class="pull-left pixels20" id="myModalLabel">Edit Standard Skills Information</h3>
+        <select onchange="populate_standard_skill_fields()"class="span1" ID="STANDARD_SKILL_ID_IN" name="SKILL_ID_IN">
+          <%OPEN SKILL_ID_CURSOR;
+            LOOP
+            FETCH SKILL_ID_CURSOR INTO SKILL_ID_ROW;
+            EXIT WHEN SKILL_ID_CURSOR%NOTFOUND;%>
               <option value="<%=SKILL_ID_ROW.SKILL_ID%>"><%=SKILL_ID_ROW.DISPLAY_RANK%></option>
-              <%END LOOP;
-              CLOSE SKILL_ID_CURSOR;%>
+          <%END LOOP;
+          CLOSE SKILL_ID_CURSOR;%>
+        </select>        
+      </div><!-- end modal header -->
+      <div class="modal-body">
+        <div class="form-inline margin-form-inline">
+          <input class="span3" type="hidden" id="STANDARD_RESUMATOR_ID_IN" name="RESUMATOR_ID_IN" value="<%=RESUMATOR_ID_VAL%>" /><!-- hidden -->
+          <select class="span3" type="text" id="STANDARD_SKILL_TYPE_IN" name="SKILL_TYPE_IN">
+            <option>Choose One:</option>
+            <option>Standard</option>
+            <option>Technical</option>
+            <option>Design</option>
           </select>
-            <input class="span3" type="hidden" id="STANDARD_RESUMATOR_ID_IN" name="RESUMATOR_ID_IN" value="<%=RESUMATOR_ID_VAL%>">
-            <!-- <input class="span3" type="text" id="STANDARD_SKILL_TYPE_IN" name="SKILL_TYPE_IN" placeholder="Skill Type"> -->
-            <select class="span3" type="text" id="STANDARD_SKILL_TYPE_IN" name="SKILL_TYPE_IN">
-              <option>Choose One:</option>
-              <option>Standard</option>
-              <option>Technical</option>
-              <option>Design</option>
-            </select>
-
-            <input class="span2" type="text" id="STANDARD_SKILL_NAME_IN" name="SKILL_NAME_IN" placeholder="Skill Name">
-          </div>
-          <div class="form-inline margin-form-inline">
-           <!-- <input class="span2" type="text" id="STANDARD_DISPLAY_RANK_IN" name="DISPLAY_RANK_IN" placeholder="Display Rank"> -->
-           <select class="span2" type="text" id="STANDARD_DISPLAY_RANK_IN" name="DISPLAY_RANK_IN" >
-              <option>Display Rank</option>
-              <option value="1">1 - High</option>
-              <option value="2">2</option>
-              <option value="3">3</option>
-              <option value="4">4</option>
-              <option value="5">5 - Low</option>
-            </select>
-    </div>
-    <div class="modal-footer">
-      <button class="btn" data-dismiss="modal" aria-hidden="true">Cancel</button>
-      <button class="btn btn-primary" type="submit">Save changes</button>
-    </div>
-    </form>    
-  </div>
+          <input class="span2" type="text" id="STANDARD_SKILL_NAME_IN" name="SKILL_NAME_IN" placeholder="Skill Name" />
+        </div>
+        <div class="form-inline margin-form-inline">
+         <select class="span2" type="text" id="STANDARD_DISPLAY_RANK_IN" name="DISPLAY_RANK_IN" >
+            <option>Display Rank</option>
+            <option value="1">1 - High</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+            <option value="5">5 - Low</option>
+          </select>
+        </div>
+      </div><!-- end modal body -->
+      <div class="modal-footer">
+        <button class="btn" data-dismiss="modal" aria-hidden="true">Cancel</button>
+        <button class="btn btn-primary" type="submit">Save changes</button>
+      </div><!-- end modal footer -->
+    </form><!-- end form -->
+  </div><!-- end edit-skills-modal -->
 
 
 
