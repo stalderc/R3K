@@ -144,11 +144,11 @@ ORDER BY DISPLAY_RANK;
 ED_ID_ROW ED_ID_CURSOR%ROWTYPE;
 %>
   <div id="edit-education-modal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-    <div class="modal-header">
-      <form action="http://oracle.is.umbc.edu:8080/classpsp/IS420_TEAM_TRG.FORM_UPDATE_EDUCATION" method="get">
+    <div class="modal-header ">
+      <form class="" action="http://oracle.is.umbc.edu:8080/classpsp/IS420_TEAM_TRG.FORM_UPDATE_EDUCATION" method="get">
       <button type="button" class="close" data-dismiss="modal" aria-hidden="true">x</button>
-      <h3 class="pull-left" id="myModalLabel">Edit Education Information</h3>
-        <select class="pull-left" onchange="populate_education_fields()"class="span2" ID="EDUCATION_ID_IN" name="EDUCATION_ID_IN">
+      <h3 class="pull-left pixels20 " id="myModalLabel">Edit Education Information</h3>
+        <select  onchange="populate_education_fields()" class="span1" ID="EDUCATION_ID_IN" name="EDUCATION_ID_IN">
           <%OPEN ED_ID_CURSOR;
             LOOP
             FETCH ED_ID_CURSOR INTO ED_ID_ROW;
