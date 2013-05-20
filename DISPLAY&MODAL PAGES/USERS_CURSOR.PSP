@@ -39,9 +39,7 @@ IF USERS_CURSOR%NOTFOUND THEN%>
           <input id="EMAIL" type="hidden" value="<%=EMAIL_IN%>"/>
           <!-- href="mailto:emailaddress@domain.com" -->
           <!-- Insert First Name Last Name as linkable text -->
-          <a href="mailto:<%=EMAIL_IN%>"><i class="icon-envelope"></i>
-          <%=USERS_ROW.F_NAME%> 
-          <%=USERS_ROW.L_NAME%></a><br />
+          <a href="mailto:<%=EMAIL_IN%>"><%=EMAIL_IN%></a><br />
           <input id="PHONE_NUMBER" type="hidden" value="<%=USERS_ROW.PHONE_NUMBER%>"/><%=USERS_ROW.PHONE_NUMBER%> 
 
           </p>

@@ -24,6 +24,7 @@ UPDATE USERS
      STATE              = STATE_IN,
      ZIPCODE            = ZIPCODE_IN,
      F_NAME             = F_NAME_IN,
+     M_NAME             = M_NAME_IN,
      L_NAME             = L_NAME_IN,
      PHONE_NUMBER       = PHONE_NUMBER_IN,
      STREET             = STREET_IN,

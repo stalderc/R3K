@@ -92,7 +92,7 @@ SKILL_ID_ROW SKILL_ID_CURSOR%ROWTYPE;
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">x</button>
         <h3 class="pull-left pixels20" id="myModalLabel">Edit Design Skills Information</h3>
-        <select onchange="populate_design_skill_fields()"class="span1" ID="DESIGN_SKILL_ID_IN" name="SKILLS_ID_IN">
+        <select onchange="populate_design_skill_fields()"class="span1" ID="DESIGN_SKILL_ID_IN" name="SKILL_ID_IN">
           <%OPEN SKILL_ID_CURSOR;
             LOOP
             FETCH SKILL_ID_CURSOR INTO SKILL_ID_ROW;
@@ -106,10 +106,9 @@ SKILL_ID_ROW SKILL_ID_CURSOR%ROWTYPE;
         <div class="form-inline margin-form-inline">
           <input class="span3" type="hidden" id="RESUMATOR_ID_IN" name="RESUMATOR_ID_IN" value="<%=RESUMATOR_ID_VAL%>" />
           <select class="span3" type="text" id="DESIGN_SKILL_TYPE_IN" name="SKILL_TYPE_IN">
-            <option>Choose One:</option>
-            <option>Standard</option>
-            <option>Technical</option>
-            <option>Design</option>
+            <option value="STANDARD">Standard</option>
+            <option value="TECHNICAL">Technical</option>
+            <option value="DESIGN" selected>Design</option>
           </select>
           <input class="span2" type="text" id="DESIGN_SKILL_NAME_IN" name="SKILL_NAME_IN" placeholder="Skill Name" />
         </div>

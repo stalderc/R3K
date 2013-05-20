@@ -10,8 +10,6 @@ PASSWORD_IN VARCHAR2(50);%>
 <%! RESUMATOR_ID_VAL USERS.RESUMATOR_ID%TYPE;
 AUTHENTICATE_INT NUMBER := 0;%>
 <%SELECT RESUMATOR_ID INTO RESUMATOR_ID_VAL FROM USERS WHERE EMAIL_ADDRESS = UPPER(EMAIL_IN);%>
-<%!OBJECTIVE_STATEMENT VARCHAR(500);%>
-<%SELECT OBJECTIVE INTO OBJECTIVE_STATEMENT FROM OBJECTIVE WHERE RESUMATOR_ID = RESUMATOR_ID_VAL;%>
 <html lang="en">
 
 <!-- 
@@ -166,7 +164,7 @@ AUTHENTICATE_INT NUMBER := 0;%>
 <!-- RESUME CONTENT BEGINS -->
         <section id="objective">
           <!-- user objective section -->
-          <p class="well well-small"><%=OBJECTIVE_STATEMENT%><br />
+          <p class="well well-small"><%OBJECTIVE_CURSOR(RESUMATOR_ID_VAL);%><br />
           </p>
         </section>
           <hr> 

@@ -6,9 +6,9 @@ PASSWORD_IN VARCHAR2(50);%>
 <%@page language="PL/SQL"%>
 <%@plsql procedure="FORM_UPDATE_PROJECTS"%>
 <%@plsql parameter="PROJECT_ID_IN" DEFAULT="NULL"%>
-<%@plsql parameter="PROJECT_DESC_ID_IN" DEFAULT="NULL"%>
 <%@plsql parameter="RESUMATOR_ID_IN" DEFAULT="NULL"%>
 <%@plsql parameter="PROJECT_NAME_IN" DEFAULT="NULL"%>
+<%@plsql parameter="PROJECT_DESC_ID_IN" DEFAULT="NULL"%>
 <%@plsql parameter="PROJECT_DESCRIPTION_IN" DEFAULT="NULL"%>
 <%@plsql parameter="DISPLAY_RANK_IN" DEFAULT="NULL"%>
 
